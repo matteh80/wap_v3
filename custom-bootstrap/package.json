@@ -1,0 +1,15 @@
+{
+  "name": "custom-bootstrap",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node-sass --include-path scss index.scss build/index.css"
+  },
+  "dependencies": {
+    "bootstrap": "4.0.0",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.7.2",
+    "popper.js": "^1.12.9"
+  }
+}
