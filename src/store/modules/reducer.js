@@ -1,15 +1,21 @@
 import { routerReducer } from 'react-router-redux'
+import storage from 'redux-persist/es/storage'
+import { persistCombineReducers, purgeStoredState } from 'redux-persist'
 import auth from './auth'
 import profile from './profile'
 import skills from './skills'
-import storage from 'redux-persist/es/storage'
-import { persistCombineReducers, purgeStoredState } from 'redux-persist'
+import languages from './languages'
+import occupations from './occupations'
+import locations from './locations'
 
 const appReducer = {
   routing: routerReducer,
   auth: auth,
-  profile: profile,
-  skills: skills
+  profile,
+  skills,
+  languages,
+  occupations,
+  locations
 }
 
 const config = {
