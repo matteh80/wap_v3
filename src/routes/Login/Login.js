@@ -7,6 +7,7 @@ import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
 import { fetchProfile } from '../../store/modules/profile'
+import login_bg from './login_bg.jpg'
 
 class Login extends React.Component {
   constructor(props) {
@@ -40,10 +41,13 @@ class Login extends React.Component {
   render() {
     let { loading, loadingStep } = this.state
     return (
-      <div className="login-wrapper h-100">
+      <div
+        className="login-wrapper h-100"
+        style={{ background: 'url("' + login_bg + '")' }}
+      >
         <Container fluid className="login-container h-100">
           <Row className="h-100">
-            <Col xs={12} lg={5} xl={4} className="left-content p-5">
+            <Col xs={12} lg={5} xl={4} className="left-content p-5 bg-white">
               <Row>
                 <Col xs={12} className="text-center">
                   <img
@@ -99,10 +103,7 @@ class Login extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col
-              className="d-none d-lg-block"
-              style={{ background: '#cdcdcd' }}
-            />
+            <Col className="d-none d-lg-block" />
           </Row>
         </Container>
       </div>

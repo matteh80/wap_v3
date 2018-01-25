@@ -8545,6 +8545,9 @@ header.header .navbar .profile-picture {
   margin-right: 5px;
 }
 
+.login-wrapper {
+  background: url('/img/login_bg.jpg');
+}
 .login-wrapper .login-container .left-content .login-logo {
   max-width: 120px;
 }

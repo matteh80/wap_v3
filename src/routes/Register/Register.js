@@ -6,6 +6,7 @@ import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { connect } from 'react-redux'
 import { register } from '../../store/modules/auth'
 import { updateProfile } from '../../store/modules/profile'
+import register_bg from './register_bg.png'
 
 class Register extends React.Component {
   constructor(props) {
@@ -46,10 +47,13 @@ class Register extends React.Component {
     const { loading } = this.state
 
     return (
-      <div className="register-wrapper h-100">
+      <div
+        className="register-wrapper h-100"
+        style={{ background: 'url("' + register_bg + '")' }}
+      >
         <Container fluid className="register-container h-100">
           <Row className="h-100">
-            <Col xs={12} lg={5} xl={4} className="left-content p-5">
+            <Col xs={12} lg={5} xl={4} className="left-content p-5 bg-white">
               <Row>
                 <Col xs={12} className="text-center">
                   <img
@@ -113,10 +117,7 @@ class Register extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col
-              className="d-none d-lg-block"
-              style={{ background: '#cdcdcd' }}
-            />
+            <Col className="d-none d-lg-block" />
           </Row>
         </Container>
       </div>

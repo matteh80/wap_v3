@@ -21,6 +21,7 @@ const reducer = persistCombineReducers(config, appReducer)
 // purgeStoredState(config)
 
 export const rootReducer = (state, action) => {
+  // purgeStoredState(config)
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
     purgeStoredState(config)

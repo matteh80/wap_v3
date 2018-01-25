@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProfileEditableCard from '../ProfileEditableCard'
 import {
+  editUserSkills,
   fetchAllSkills,
   fetchUserSkills
 } from '../../../../store/modules/skills'
@@ -11,6 +12,7 @@ import Select from 'react-select'
 import $ from 'jquery'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
+import update from 'immutability-helper'
 
 class SkillsCard extends React.Component {
   constructor(props) {
@@ -18,11 +20,13 @@ class SkillsCard extends React.Component {
 
     this.state = {
       skillsInEditMode: false,
-      addMode: false
+      addMode: false,
+      userSkills: []
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
     this.cbEditMode = this.cbEditMode.bind(this)
+    this.updateSkills = this.updateSkills.bind(this)
   }
 
   componentDidMount() {
@@ -31,7 +35,8 @@ class SkillsCard extends React.Component {
     Promise.all([dispatch(fetchUserSkills()), dispatch(fetchAllSkills())]).then(
       () => {
         this.setState({
-          allLoaded: true
+          allLoaded: true,
+          userSkills: this.props.userSkills
         })
       }
     )
@@ -49,6 +54,11 @@ class SkillsCard extends React.Component {
     })
   }
 
+  updateSkills(skills) {
+    let { dispatch } = this.props
+    dispatch(editUserSkills(skills))
+  }
+
   render() {
     const { userSkills, allSkills } = this.props
     const { allLoaded, addMode, skillsInEditMode } = this.state
@@ -59,6 +69,7 @@ class SkillsCard extends React.Component {
             skills={allSkills}
             userSkills={userSkills}
             isOpen={addMode}
+            updateFn={this.updateSkills}
           />
         )}
         <Row className="profile-content">
@@ -75,6 +86,7 @@ class SkillsCard extends React.Component {
                 name={userSkill.name}
                 experience={userSkill.experience}
                 cbEditMode={this.cbEditMode}
+                updateFn={this.updateSkills}
               />
             ))}
         </Row>
@@ -102,6 +114,7 @@ class SkillsSlider extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
+    this.updateSkills = this.updateSkills.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -122,6 +135,8 @@ class SkillsSlider extends React.Component {
       editMode: !this.state.editMode
     })
   }
+
+  updateSkills() {}
 
   render() {
     let { value, editMode } = this.state
@@ -161,7 +176,7 @@ class SkillsSlider extends React.Component {
           )}
           {editMode && (
             <div className="skill-buttons skill-buttons--edit-mode">
-              <div className="skill-button done" onClick={this.toggleEditMode}>
+              <div className="skill-button done" onClick={this.updateSkills}>
                 <i className="fa fa-check ml-1" />
               </div>
               <div className="skill-button revert">
@@ -175,6 +190,10 @@ class SkillsSlider extends React.Component {
   }
 }
 
+SkillsSlider.propTypes = {
+  updateFn: PropTypes.func.isRequired
+}
+
 class SkillsForm extends React.Component {
   constructor(props) {
     super(props)
@@ -182,10 +201,20 @@ class SkillsForm extends React.Component {
     this.state = {
       skills: this.setUpSkills(),
       value: undefined,
-      experience: 1
+      experience: 1,
+      options: []
     }
 
     this.setUpSkills = this.setUpSkills.bind(this)
+    this.addSkill = this.addSkill.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.userSkills !== this.props.userSkills) {
+      this.setState({
+        skills: this.setUpSkills()
+      })
+    }
   }
 
   setUpSkills() {
@@ -218,8 +247,21 @@ class SkillsForm extends React.Component {
     return optiondata
   }
 
+  addSkill() {
+    let { updateFn, userSkills } = this.props
+    let { value, experience } = this.state
+    let skillToAdd = {
+      id: value,
+      experience: experience
+    }
+
+    let newSkills = update(userSkills, { $push: [skillToAdd] })
+
+    updateFn(newSkills)
+  }
+
   render() {
-    let { value, skills, experience } = this.state
+    let { value, skills, experience, options } = this.state
     const { isOpen, cbAddMode } = this.props
     const inputProps = {
       placeholder: 'Skriv in en kompetens',
@@ -234,8 +276,8 @@ class SkillsForm extends React.Component {
             <Col xs={12} md={6}>
               <Select
                 name="form-field-name"
-                value={value}
                 simpleValue
+                value={value}
                 onChange={value => this.setState({ value: value })}
                 options={skills}
               />
@@ -259,7 +301,13 @@ class SkillsForm extends React.Component {
           </Row>
           <Row className="mt-3">
             <Col xs={12}>
-              <Button className="mr-3">Lägg till kompetens</Button>
+              <Button
+                className="mr-3"
+                disabled={!value}
+                onClick={this.addSkill}
+              >
+                Lägg till kompetens
+              </Button>
             </Col>
           </Row>
         </div>
@@ -269,7 +317,8 @@ class SkillsForm extends React.Component {
 }
 
 SkillsForm.propTypes = {
-  isOpen: PropTypes.bool.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  updateFn: PropTypes.func.isRequired
 }
 
 const handle = props => {
