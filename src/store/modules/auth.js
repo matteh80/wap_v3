@@ -6,10 +6,16 @@ const LOGIN_SUCCESS = 'wap/auth/LOGIN_SUCCESS'
 const LOGIN_FAIL = 'wap/auth/LOGIN_FAIL'
 const LOGOUT = 'wap/auth/LOGOUT'
 
+const REGISTER_START = 'wap/auth/REGISTER_START'
+const REGISTER_SUCCESS = 'wap/auth/REGISTER_SUCCESS'
+const REGISTER_FAIL = 'wap/auth/REGISTER_FAIL'
+
 const EMPTY_STATE = {
   loggingIn: false,
+  registering: false,
   token: null,
-  loginError: undefined
+  loginError: undefined,
+  registerError: undefined
 }
 const INITIAL_STATE = window.__PRELOADED_STATE__ || EMPTY_STATE
 
@@ -34,6 +40,20 @@ export default function auth(state = INITIAL_STATE, action = {}) {
       return {
         token: null
       }
+    case REGISTER_START:
+      return Object.assign({}, state, {
+        registering: true
+      })
+    case REGISTER_SUCCESS:
+      return Object.assign({}, state, {
+        registering: false,
+        token: action.token
+      })
+    case REGISTER_FAIL:
+      return Object.assign({}, state, {
+        registering: false,
+        registerError: action.error
+      })
     default:
       return state
   }
@@ -97,5 +117,34 @@ export function socialLogin(data) {
 export function logout() {
   return {
     type: LOGOUT
+  }
+}
+
+export function register(email, password) {
+  return dispatch => {
+    dispatch({ type: REGISTER_START })
+
+    return apiClient
+      .post('register/', {
+        email: email,
+        password: password
+      })
+      .then(result => {
+        apiClient.defaults.headers = {
+          Authorization: 'Token ' + result.data.token
+        }
+
+        return dispatch({
+          type: REGISTER_SUCCESS,
+          token: result.data.token
+        })
+      })
+      .catch(error => {
+        console.log(error)
+        return dispatch({
+          type: REGISTER_FAIL,
+          error: error.response.data
+        })
+      })
   }
 }

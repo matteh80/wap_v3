@@ -10,6 +10,7 @@ import { Row, Col, Collapse, Button } from 'reactstrap'
 import Select from 'react-select'
 import $ from 'jquery'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 class SkillsCard extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class SkillsCard extends React.Component {
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
+    this.cbEditMode = this.cbEditMode.bind(this)
   }
 
   componentDidMount() {
@@ -35,6 +37,12 @@ class SkillsCard extends React.Component {
     )
   }
 
+  cbEditMode(editMode) {
+    this.setState({
+      skillsInEditMode: editMode
+    })
+  }
+
   cbAddMode(addMode) {
     this.setState({
       addMode: addMode
@@ -43,7 +51,7 @@ class SkillsCard extends React.Component {
 
   render() {
     const { userSkills, allSkills } = this.props
-    const { allLoaded, addMode } = this.state
+    const { allLoaded, addMode, skillsInEditMode } = this.state
     return (
       <ProfileEditableCard cardTitle="Kompetenser" cbAddMode={this.cbAddMode}>
         {allLoaded && (
@@ -53,13 +61,20 @@ class SkillsCard extends React.Component {
             isOpen={addMode}
           />
         )}
-        <Row>
+        <Row className="profile-content">
+          <div
+            className={classnames(
+              'overlay',
+              (addMode || skillsInEditMode) && 'active'
+            )}
+          />
           {userSkills &&
             userSkills.map(userSkill => (
               <SkillsSlider
                 key={userSkill.id}
                 name={userSkill.name}
                 experience={userSkill.experience}
+                cbEditMode={this.cbEditMode}
               />
             ))}
         </Row>
@@ -89,6 +104,12 @@ class SkillsSlider extends React.Component {
     this.toggleEditMode = this.toggleEditMode.bind(this)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.editMode !== this.state.editMode) {
+      this.props.cbEditMode(this.state.editMode)
+    }
+  }
+
   handleChange(value) {
     this.state.editMode &&
       this.setState({
@@ -107,19 +128,27 @@ class SkillsSlider extends React.Component {
     let { name, experience } = this.props
 
     return (
-      <Col xs={12} md={6} className="skill-wrapper">
+      <Col
+        xs={12}
+        md={6}
+        className="skill-wrapper"
+        style={{ zIndex: editMode && 2 }}
+      >
         <h5 className="mb-0">{name}</h5>
-        <div className="d-flex flex-row align-items-center">
-          <Slider
-            min={1}
-            max={5}
-            handle={handle}
-            dots
-            value={value}
-            onChange={value => this.handleChange(value)}
-            disabled={!editMode}
-            className="mr-4"
-          />
+        <div className="d-flex flex-row">
+          <div className="skills-slider">
+            <Slider
+              min={1}
+              max={5}
+              handle={handle}
+              dots
+              value={value}
+              onChange={value => this.handleChange(value)}
+              disabled={!editMode}
+              className="mr-4"
+            />
+            <div className="value text-center">{getSkillString(value)}</div>
+          </div>
           {!editMode && (
             <div className="skill-buttons">
               <div className="skill-button edit" onClick={this.toggleEditMode}>
@@ -141,7 +170,6 @@ class SkillsSlider extends React.Component {
             </div>
           )}
         </div>
-        <div className="value text-center">{getSkillString(value)}</div>
       </Col>
     )
   }
@@ -192,7 +220,7 @@ class SkillsForm extends React.Component {
 
   render() {
     let { value, skills, experience } = this.state
-    const { isOpen } = this.props
+    const { isOpen, cbAddMode } = this.props
     const inputProps = {
       placeholder: 'Skriv in en kompetens',
       value,
@@ -232,7 +260,6 @@ class SkillsForm extends React.Component {
           <Row className="mt-3">
             <Col xs={12}>
               <Button className="mr-3">Lägg till kompetens</Button>
-              <Button>Avbryt</Button>
             </Col>
           </Row>
         </div>

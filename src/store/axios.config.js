@@ -2,8 +2,8 @@ import axios from 'axios'
 
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
-  // instance.defaults.baseURL = 'https://wapstage.leinfors.com/api/v1/'
-  instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
+  instance.defaults.baseURL = 'https://assignments.workandpassion.bid/api/v1/'
+  // instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 } else {
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 }

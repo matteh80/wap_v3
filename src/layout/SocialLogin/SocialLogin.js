@@ -277,7 +277,7 @@ class SocialLogin extends React.Component {
           style={{ opacity: 0 }}
         />
 
-        <div className="row social justify-content-center align-items-center justify-content-center align-items-center w-100 py-5">
+        <div className="row social justify-content-center align-items-center justify-content-center align-items-center w-100 pt-3 pb-2">
           <div onClick={this.getLinkedInData} id="linkedin-btn">
             <i className="fab fa-linkedin-in mx-4" />
             LinkedIn

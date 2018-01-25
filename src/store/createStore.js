@@ -15,14 +15,6 @@ let store
 
 export const history = createHistory()
 
-const config = {
-  key: 'wap_v3',
-  storage
-}
-
-const reducer = persistCombineReducers(config, rootReducer)
-// purgeStoredState(config)
-
 function savePreloadedState({ getState }) {
   return next => action => {
     const returnValue = next(action)
@@ -51,13 +43,9 @@ export default function configureStore() {
     ...enhancers
   )
 
-  store = createStore(reducer, composedEnhancers)
+  store = createStore(rootReducer, composedEnhancers)
   setListener(store)
   let persistor = persistStore(store)
 
   return { persistor, store, history }
-}
-
-export function emptyStore() {
-  return purgeStoredState(config)
 }

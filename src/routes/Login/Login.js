@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { AvForm, AvGroup, AvField } from 'availity-reactstrap-validation'
 import { Container, Row, Col, Button } from 'reactstrap'
 import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
 import { fetchProfile } from '../../store/modules/profile'
-import { fetchUserSkills } from '../../store/modules/skills'
 
 class Login extends React.Component {
   constructor(props) {
@@ -30,9 +29,9 @@ class Login extends React.Component {
     dispatch(login(values.email, values.password)).then(() => {
       fnArray.map((fn, index) => {
         dispatch(fn).then(() => {
-          this.setState({
-            loadingStep: this.state.loadingStep + 1
-          })
+          // this.setState({
+          //   loadingStep: this.state.loadingStep + 1
+          // })
         })
       })
     })
@@ -83,6 +82,20 @@ class Login extends React.Component {
                       finishedStep={loadingStep}
                     />
                   </AvForm>
+                </Col>
+              </Row>
+              <Row className="my-5">
+                <Col xs={12}>
+                  Har du inget konto?{' '}
+                  <Link to={'/register'}>Registrera dig!</Link>
+                </Col>
+              </Row>
+              <Row className="copyright my-5">
+                <Col xs={12}>
+                  <small>
+                    ©2018 All Rights Reserved. WAP® is a registered trademark.
+                    Privacy and Terms
+                  </small>
                 </Col>
               </Row>
             </Col>

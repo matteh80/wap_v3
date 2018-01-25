@@ -30,7 +30,7 @@ const routes = (
     <Route path="/login" component={userIsNotAuthenticated(Login)} />
     <Route path="/register" component={userIsNotAuthenticated(Register)} />
     <RouteWithLayout layout={CoreLayout} path="/profile" component={Profile} />
-    {/*<Redirect path="/" to="/jobs" />*/}
+    <Redirect path="/" to="/profile" />
   </Switch>
 )
 
