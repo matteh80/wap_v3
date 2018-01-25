@@ -25,6 +25,8 @@
 
     &.addMode {
       transform: rotate(45deg);
+      background: red;
+      color: #fff;
 
       &:hover {
         background: red;

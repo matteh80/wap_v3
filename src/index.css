@@ -8155,6 +8155,10 @@ body {
   height: 100%;
 }
 
+.Select-menu-outer {
+  z-index: 99;
+}
+
 input.av-invalid ~ .invalid-feedback {
   display: block;
   margin-top: 0;
@@ -8575,6 +8579,8 @@ header.header .navbar .profile-picture {
 }
 .profile-card .addNew.addMode {
   transform: rotate(45deg);
+  background: red;
+  color: #fff;
 }
 .profile-card .addNew.addMode:hover {
   background: red;
