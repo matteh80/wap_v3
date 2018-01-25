@@ -1,1 +1,25 @@
+$primary: #00b2cd;
+//$secondary: #8fcd00;
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+        xs: 0,
+  // Small screen / phone
+        sm: 576px,
+  // Medium screen / tablet
+        md: 768px,
+  // Large screen / desktop
+        lg: 992px,
+  // Extra large screen / wide desktop
+        xl: 1400px
+);
+
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1340px
+);
+
 @import "./node_modules/bootstrap/scss/bootstrap";
+

@@ -9,7 +9,7 @@ import {
   purgeStoredState
 } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
-// import setListener from './axios.config'
+import setListener from './axios.config'
 
 let store
 
@@ -23,20 +23,20 @@ const config = {
 const reducer = persistCombineReducers(config, rootReducer)
 // purgeStoredState(config)
 
-// function savePreloadedState({ getState }) {
-//   return next => action => {
-//     const returnValue = next(action)
-//     // just point the __PRELOADED_STATE__ at the state after this action.
-//     window.__PRELOADED_STATE__ = getState()
-//
-//     // we're not modifying the state, just spying on it.
-//     return returnValue
-//   }
-// }
+function savePreloadedState({ getState }) {
+  return next => action => {
+    const returnValue = next(action)
+    // just point the __PRELOADED_STATE__ at the state after this action.
+    window.__PRELOADED_STATE__ = getState()
+
+    // we're not modifying the state, just spying on it.
+    return returnValue
+  }
+}
 
 export default function configureStore() {
   const enhancers = []
-  const middleware = [thunk, routerMiddleware(history)]
+  const middleware = [thunk, routerMiddleware(history), savePreloadedState]
 
   if (process.env.NODE_ENV === 'development') {
     const devToolsExtension = window.devToolsExtension
@@ -52,8 +52,12 @@ export default function configureStore() {
   )
 
   store = createStore(reducer, composedEnhancers)
-  // setListener(store)
+  setListener(store)
   let persistor = persistStore(store)
 
   return { persistor, store, history }
+}
+
+export function emptyStore() {
+  return purgeStoredState(config)
 }

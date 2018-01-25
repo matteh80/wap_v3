@@ -1,0 +1,9 @@
+//VALIDATION
+
+input {
+  &.av-invalid {
+    ~.invalid-feedback {
+      display: block;
+    }
+  }
+}

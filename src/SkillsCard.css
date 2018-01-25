@@ -1,0 +1,7 @@
+.skill-wrapper .skills-slider {
+  flex-grow: 1;
+}
+
+.skill-wrapper .skill-buttons {
+  color: #cdcdcd;
+}

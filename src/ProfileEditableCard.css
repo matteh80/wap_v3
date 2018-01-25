@@ -1,0 +1,7 @@
+.profile-card .addNew {
+  text-align: center;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

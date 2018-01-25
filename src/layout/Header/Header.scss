@@ -1,0 +1,23 @@
+header.header {
+  .navbar {
+    //padding-top: 0;
+    //padding-bottom: 0;
+
+    @include media-breakpoint-up(md) {
+      height: 60px;
+    }
+
+    .dropdown-toggle::after {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+
+    .profile-picture {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  }
+}

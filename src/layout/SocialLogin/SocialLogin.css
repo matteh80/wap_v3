@@ -1,0 +1,33 @@
+.social-login .social > div {
+  color: #fff;
+  font-size: 22px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 25px;
+  text-align: center;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 500ms;
+  box-shadow: 0px 0px 0 rgba(255, 255, 255, 0) inset;
+}
+.social-login .social > div#linkedin-btn {
+  background-color: #0077b5;
+  width: auto;
+  padding-right: 25px;
+}
+.social-login .social > div#linkedin-btn:hover {
+  box-shadow: -200px 0px 0 #00669c inset;
+}
+.social-login .social > div#facebook-btn {
+  background-color: #3b5999;
+}
+.social-login .social > div#facebook-btn:hover {
+  box-shadow: -50px 0px 0 #344e87 inset;
+}
+.social-login .social > div#google-btn {
+  background-color: #dd4b39;
+}
+.social-login .social > div#google-btn:hover {
+  box-shadow: -50px 0px 0 #d73925 inset;
+}
