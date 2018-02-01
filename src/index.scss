@@ -1,17 +1,20 @@
+@import url("https://use.typekit.net/ytn6jcj.css");
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
+
 @import '../custom-bootstrap/index';
 @import '~react-select/dist/react-select.css';
 
 @import './styles/global';
 @import './styles/form';
 @import './styles/slider';
+@import './styles/card';
 
 @import './layout/CoreLayout/CoreLayout';
 @import './layout/Header/Header';
 
 @import './routes/Login/Login';
 @import './routes/Register/Register';
-@import './routes/Profile/components/ProfileEditableCard';
-@import './routes/Profile/components/SkillsCard/SkillsCard';
+@import './routes/Profile/Profile';
 
 @import './components/LoadingButton/LoadingButton';
 

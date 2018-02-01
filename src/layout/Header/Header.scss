@@ -1,7 +1,19 @@
 header.header {
+  background: url('layout/Header/headerBg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  width: 100%;
+  z-index: 98;
+
+  #header--logo {
+    max-height: 80px;
+  }
+
   .navbar {
     //padding-top: 0;
     //padding-bottom: 0;
+    height: auto !important;
 
     @include media-breakpoint-up(md) {
       height: 60px;
@@ -13,6 +25,10 @@ header.header {
       }
     }
 
+    .nav-item {
+      text-align: right;
+    }
+
     .profile-picture {
       height: 30px;
       width: 30px;
@@ -20,4 +36,32 @@ header.header {
       margin-right: 5px;
     }
   }
+
+  #header-bottom {
+    height: 180px;
+    color: #fff;
+    transition: all 250ms;
+
+    .candidate-name {
+      font-weight: bold;
+    }
+
+    .candidate-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 100;
+    }
+  }
 }
+
+//body.fixed {
+//  header.header {
+//    position: fixed;
+//    width: 100%;
+//    z-index: 99;
+//
+//    #header-bottom {
+//      height: 0;
+//    }
+//  }
+//}

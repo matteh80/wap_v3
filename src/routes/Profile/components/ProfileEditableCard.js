@@ -31,7 +31,7 @@ class ProfileEditableCard extends React.Component {
     const { children, cardTitle } = this.props
 
     return (
-      <Card className="profile-card">
+      <Card className="profile-card mb-5">
         <div
           className={classnames('addNew', addMode && 'addMode')}
           onClick={this.handleAddNew}

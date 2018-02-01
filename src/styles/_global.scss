@@ -1,12 +1,20 @@
 html, body {
-  height: 100%;
-  min-height: 100vh;
+  //height: 100%;
+  //min-height: 100vh;
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+
+  &.fixed {
+    //padding-top: 260px;
+
+    .main-content {
+      padding-top: 260px !important;
+    }
+  }
 }
 
 #root, .App {

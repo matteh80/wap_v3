@@ -1,4 +1,4 @@
-$primary: #00b2cd;
+$primary: #406462;
 //$secondary: #8fcd00;
 
 $grid-breakpoints: (
@@ -20,6 +20,8 @@ $container-max-widths: (
         lg: 960px,
         xl: 1340px
 );
+
+$headings-font-family: 'futura-pt', sans-serif;
 
 @import "./node_modules/bootstrap/scss/bootstrap";
 

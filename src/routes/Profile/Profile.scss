@@ -1,0 +1,37 @@
+@import './components/ProfileEditableCard';
+@import './components/SkillsCard/SkillsCard';
+
+.profile {
+  .left {
+    //margin-top: -180px;
+
+    .card {
+      .profile-picture {
+        transition: height 250ms;
+      }
+    }
+
+    &.fixed {
+      .card {
+        position: fixed;
+        z-index: 99;
+        top: 110px;
+        transition: all 250ms;
+
+        @include media-breakpoint-up(md) {
+          width: 150px;
+        }
+        @include media-breakpoint-up(lg) {
+          width: 210px;
+        }
+        @include media-breakpoint-up(xl) {
+          width: 305px;
+        }
+
+        .profile-picture {
+          //height: 0;
+        }
+      }
+    }
+  }
+}

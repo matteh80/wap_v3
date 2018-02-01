@@ -3,21 +3,19 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import {
   Container,
+  Row,
+  Col,
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavLink
 } from 'reactstrap'
-import noPicMale from './noPicMale.png'
-import niPicFemale from './noPicFemale.png'
+import $ from 'jquery'
 import { logout } from '../../store/modules/auth'
+import headerLogo from './headerLogo.png'
 
 class Header extends React.Component {
   constructor(props) {
@@ -28,6 +26,19 @@ class Header extends React.Component {
 
     this.toggle = this.toggle.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  componentDidMount() {
+    let $window = $(window)
+    let $headerBottom = $('#header-bottom')
+
+    $window.scroll(function() {
+      console.log($window.scrollTop() / 180)
+      $headerBottom.css({
+        height: 180 - $window.scrollTop(),
+        opacity: 1 - $window.scrollTop() / 180
+      })
+    })
   }
 
   toggle() {
@@ -45,9 +56,11 @@ class Header extends React.Component {
     let { profile } = this.props
     return (
       <header className="header">
-        <Navbar color="faded" dark expand="md" className="bg-primary">
+        <Navbar color="faded" dark expand="never">
           <Container>
-            <NavbarBrand href="/">Work and Passion</NavbarBrand>
+            <NavbarBrand href="/">
+              <img src={headerLogo} id="header--logo" />
+            </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
@@ -59,27 +72,22 @@ class Header extends React.Component {
                     Github
                   </NavLink>
                 </NavItem>
-                <UncontrolledDropdown nav className="d-none d-md-block">
-                  <DropdownToggle nav caret>
-                    <img src={noPicMale} className="profile-picture" />
-                    <span className="d-md-none d-lg-inline">
-                      {' '}
-                      {profile.first_name} {profile.last_name}
-                    </span>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Option 1</DropdownItem>
-                    <DropdownItem>Option 2</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem onClick={this.handleLogout}>
-                      Logga ut
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
               </Nav>
             </Collapse>
           </Container>
         </Navbar>
+        <div id="header-bottom">
+          <Container className="h-100">
+            <Row className="h-100 align-items-end">
+              <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2">
+                <h1 className="candidate-name mb-0">
+                  {profile.first_name + ' ' + profile.last_name}
+                </h1>
+                <h3 className="candidate-subtitle mt-0">{profile.title}</h3>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </header>
     )
   }
