@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ProfileEditableCard from '../ProfileEditableCard'
 import {
-  editUserSkills,
-  fetchAllSkills,
-  fetchUserSkills
-} from '../../../../store/modules/skills'
+  editUserLanguages,
+  fetchAllLanguages,
+  fetchUserLanguages
+} from '../../../../store/modules/languages'
 import Slider, { Handle } from 'rc-slider'
 import { Row, Col, Collapse, Button } from 'reactstrap'
 import Select from 'react-select'
@@ -15,37 +15,38 @@ import classnames from 'classnames'
 import update from 'immutability-helper'
 import _ from 'lodash'
 
-class SkillsCard extends React.Component {
+class LanguagesCard extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      skillsInEditMode: false,
+      languagesInEditMode: false,
       addMode: false,
-      userSkills: []
+      userLanguages: []
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
     this.cbEditMode = this.cbEditMode.bind(this)
-    this.updateSkills = this.updateSkills.bind(this)
+    this.updateLanguages = this.updateLanguages.bind(this)
   }
 
   componentDidMount() {
     let { dispatch } = this.props
 
-    Promise.all([dispatch(fetchUserSkills()), dispatch(fetchAllSkills())]).then(
-      () => {
-        this.setState({
-          allLoaded: true,
-          userSkills: this.props.userSkills
-        })
-      }
-    )
+    Promise.all([
+      dispatch(fetchUserLanguages()),
+      dispatch(fetchAllLanguages())
+    ]).then(() => {
+      this.setState({
+        allLoaded: true,
+        userLanguages: this.props.userLanguages
+      })
+    })
   }
 
   cbEditMode(editMode) {
     this.setState({
-      skillsInEditMode: editMode
+      languagesInEditMode: editMode
     })
   }
 
@@ -55,46 +56,47 @@ class SkillsCard extends React.Component {
     })
   }
 
-  updateSkills(skills) {
+  updateLanguages(languages) {
     let { dispatch } = this.props
 
-    dispatch(editUserSkills(skills))
+    dispatch(editUserLanguages(languages))
   }
 
   render() {
-    const { userSkills, allSkills, updatingUserSkills } = this.props
-    const { allLoaded, addMode, skillsInEditMode } = this.state
+    const { userLanguages, allLanguages, updatingUserLanguages } = this.props
+    const { allLoaded, addMode, languagesInEditMode } = this.state
     return (
       <ProfileEditableCard
-        cardTitle="Kompetenser"
+        cardTitle="Språk"
         cbAddMode={this.cbAddMode}
-        loading={updatingUserSkills}
+        loading={updatingUserLanguages}
       >
         {allLoaded && (
-          <SkillsForm
-            skills={allSkills}
-            userSkills={userSkills}
+          <LanguagesForm
+            languages={allLanguages}
+            userLanguages={userLanguages}
             isOpen={addMode}
-            updateFn={this.updateSkills}
+            updateFn={this.updateLanguages}
           />
         )}
         <Row className="profile-content">
           <div
             className={classnames(
               'overlay',
-              (addMode || skillsInEditMode || updatingUserSkills) && 'active'
+              (addMode || languagesInEditMode || updatingUserLanguages) &&
+                'active'
             )}
           />
-          {userSkills &&
-            userSkills.map(userSkill => (
-              <SkillsSlider
-                key={userSkill.id}
-                name={userSkill.name}
-                experience={userSkill.experience}
-                userSkill={userSkill}
-                userSkills={userSkills}
+          {userLanguages &&
+            userLanguages.map(userLanguage => (
+              <LanguagesSlider
+                key={userLanguage.id}
+                name={userLanguage.name}
+                experience={userLanguage.experience}
+                userLanguage={userLanguage}
+                userLanguages={userLanguages}
                 cbEditMode={this.cbEditMode}
-                updateFn={this.updateSkills}
+                updateFn={this.updateLanguages}
               />
             ))}
         </Row>
@@ -104,14 +106,14 @@ class SkillsCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userSkills: state.skills.userSkills,
-  allSkills: state.skills.allSkills,
-  updatingUserSkills: state.skills.updatingUserSkills
+  userLanguages: state.languages.userLanguages,
+  allLanguages: state.languages.allLanguages,
+  updatingUserLanguages: state.languages.updatingUserLanguages
 })
 
-export default connect(mapStateToProps)(SkillsCard)
+export default connect(mapStateToProps)(LanguagesCard)
 
-class SkillsSlider extends React.Component {
+class LanguagesSlider extends React.Component {
   constructor(props) {
     super(props)
 
@@ -123,9 +125,8 @@ class SkillsSlider extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
-    this.updateSkills = this.updateSkills.bind(this)
-    this.removeSkill = this.removeSkill.bind(this)
-    this.revertChanges = this.revertChanges.bind(this)
+    this.updateLanguages = this.updateLanguages.bind(this)
+    this.removeLanguage = this.removeLanguage.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -147,40 +148,33 @@ class SkillsSlider extends React.Component {
     })
   }
 
-  updateSkills() {
+  updateLanguages() {
     this.setState({
       editMode: false
     })
 
-    let { userSkills, userSkill } = this.props
+    let { userLanguages, userLanguage } = this.props
     let { value } = this.state
 
-    let index = _.findIndex(userSkills, { id: userSkill.id })
-    let newSkills = Object.assign([], userSkills)
-    newSkills[index].experience = value
+    let index = _.findIndex(userLanguages, { id: userLanguage.id })
+    let newLanguages = Object.assign([], userLanguages)
+    newLanguages[index].experience = value
 
-    this.props.updateFn(newSkills)
+    this.props.updateFn(newLanguages)
   }
 
-  removeSkill() {
+  removeLanguage() {
     this.setState({
       editMode: false
     })
 
-    let { userSkills, userSkill } = this.props
+    let { userLanguages, userLanguage } = this.props
 
-    let newSkills = _.filter(userSkills, function(skill) {
-      return skill.id !== userSkill.id
+    let newLanguages = _.filter(userLanguages, function(language) {
+      return language.id !== userLanguage.id
     })
 
-    this.props.updateFn(newSkills)
-  }
-
-  revertChanges() {
-    this.setState({
-      editMode: false,
-      value: this.props.experience
-    })
+    this.props.updateFn(newLanguages)
   }
 
   render() {
@@ -191,12 +185,12 @@ class SkillsSlider extends React.Component {
       <Col
         xs={12}
         md={6}
-        className="skill-wrapper"
+        className="language-wrapper"
         style={{ zIndex: editMode && 2 }}
       >
         <h5 className="mb-0">{name}</h5>
         <div className="d-flex flex-row">
-          <div className="skills-slider">
+          <div className="languages-slider">
             <Slider
               min={1}
               max={5}
@@ -207,24 +201,33 @@ class SkillsSlider extends React.Component {
               disabled={!editMode}
               className="mr-4"
             />
-            <div className="value text-center">{getSkillString(value)}</div>
+            <div className="value text-center">{getLanguageString(value)}</div>
           </div>
           {!editMode && (
-            <div className="skill-buttons">
-              <div className="skill-button edit" onClick={this.toggleEditMode}>
+            <div className="language-buttons">
+              <div
+                className="language-button edit"
+                onClick={this.toggleEditMode}
+              >
                 <i className="fa fa-edit ml-1" />
               </div>
-              <div className="skill-button" onClick={this.removeSkill}>
+              <div className="language-button" onClick={this.removeLanguage}>
                 <i className="fa fa-trash ml-1" />
               </div>
             </div>
           )}
           {editMode && (
-            <div className="skill-buttons skill-buttons--edit-mode">
-              <div className="skill-button done" onClick={this.updateSkills}>
+            <div className="language-buttons language-buttons--edit-mode">
+              <div
+                className="language-button done"
+                onClick={this.updateLanguages}
+              >
                 <i className="fa fa-check ml-1" />
               </div>
-              <div className="skill-button revert" onClick={this.revertChanges}>
+              <div
+                className="language-button revert"
+                onClick={this.toggleEditMode}
+              >
                 <i className="fa fa-times ml-1" />
               </div>
             </div>
@@ -235,43 +238,45 @@ class SkillsSlider extends React.Component {
   }
 }
 
-SkillsSlider.propTypes = {
+LanguagesSlider.propTypes = {
   updateFn: PropTypes.func.isRequired
 }
 
-class SkillsForm extends React.Component {
+class LanguagesForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      skills: this.setUpSkills(),
+      languages: this.setUpLanguages(),
       value: undefined,
       experience: 1,
       options: []
     }
 
-    this.setUpSkills = this.setUpSkills.bind(this)
-    this.addSkill = this.addSkill.bind(this)
+    this.setUpLanguages = this.setUpLanguages.bind(this)
+    this.addLanguage = this.addLanguage.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.userSkills !== this.props.userSkills) {
+    if (prevProps.userLanguages !== this.props.userLanguages) {
       this.setState({
-        skills: this.setUpSkills(),
+        languages: this.setUpLanguages(),
         value: undefined
       })
     }
   }
 
-  setUpSkills() {
-    let { skills } = this.props
-    let { userSkills } = this.props
+  setUpLanguages() {
+    let { languages } = this.props
+    let { userLanguages } = this.props
     let optiondata = []
     let index = -1
 
-    $.each(skills, function(i, categoryitem) {
-      $.each(categoryitem.skills, function(x, item) {
-        index = userSkills.findIndex(userSkills => userSkills.id === item.id)
+    $.each(languages, function(i, categoryitem) {
+      $.each(categoryitem.languages, function(x, item) {
+        index = userLanguages.findIndex(
+          userLanguages => userLanguages.id === item.id
+        )
         if (index === -1) {
           optiondata.push({
             label: item.name,
@@ -293,31 +298,31 @@ class SkillsForm extends React.Component {
     return optiondata
   }
 
-  addSkill() {
-    let { updateFn, userSkills } = this.props
+  addLanguage() {
+    let { updateFn, userLanguages } = this.props
     let { value, experience } = this.state
-    let skillToAdd = {
+    let languageToAdd = {
       id: value,
       experience: experience
     }
 
-    let newSkills = update(userSkills, { $push: [skillToAdd] })
+    let newLanguages = update(userLanguages, { $push: [languageToAdd] })
 
-    updateFn(newSkills)
+    updateFn(newLanguages)
   }
 
   render() {
-    let { value, skills, experience, options } = this.state
+    let { value, languages, experience, options } = this.state
     const { isOpen, cbAddMode } = this.props
     const inputProps = {
-      placeholder: 'Skriv in en kompetens',
+      placeholder: 'Skriv in ett språk',
       value,
       onChange: this.onChange
     }
 
     return (
       <Collapse isOpen={isOpen}>
-        <div className="skills-form mb-3 py-3">
+        <div className="languages-form mb-3 py-3">
           <Row>
             <Col xs={12} md={6}>
               <Select
@@ -325,11 +330,11 @@ class SkillsForm extends React.Component {
                 simpleValue
                 value={value}
                 onChange={value => this.setState({ value: value })}
-                options={skills}
+                options={languages}
               />
             </Col>
             <Col xs={12} md={6}>
-              <div className="skill-slider">
+              <div className="language-slider">
                 <Slider
                   min={1}
                   max={5}
@@ -340,7 +345,7 @@ class SkillsForm extends React.Component {
                   className="mr-4"
                 />
                 <div className="value text-center">
-                  {getSkillString(experience)}
+                  {getLanguageString(experience)}
                 </div>
               </div>
             </Col>
@@ -350,9 +355,9 @@ class SkillsForm extends React.Component {
               <Button
                 className="mr-3"
                 disabled={!value}
-                onClick={this.addSkill}
+                onClick={this.addLanguage}
               >
-                Lägg till kompetens
+                Lägg till språk
               </Button>
             </Col>
           </Row>
@@ -362,7 +367,7 @@ class SkillsForm extends React.Component {
   }
 }
 
-SkillsForm.propTypes = {
+LanguagesForm.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   updateFn: PropTypes.func.isRequired
 }
@@ -376,7 +381,7 @@ const handle = props => {
   )
 }
 
-const getSkillString = value => {
+const getLanguageString = value => {
   switch (value) {
     case 1:
       return 'Inga kunskaper'

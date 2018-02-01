@@ -1,0 +1,40 @@
+
+.language-wrapper {
+
+
+
+}
+
+.languages-slider {
+  flex-grow: 1;
+  //overflow: hidden;
+}
+
+.language-buttons {
+  display: flex;
+  flex-direction: row;
+  .language-button {
+    color: $gray-300;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+      color: $gray-700;
+    }
+  }
+
+  &.language-buttons--edit-mode {
+    color: #000;
+  }
+}
+
+.value {
+  color: $gray-600;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.languages-form {
+  border-bottom: 1px solid $gray-200;
+}

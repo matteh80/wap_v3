@@ -8693,6 +8693,37 @@ header.header #header-bottom .candidate-subtitle {
   border-bottom: 1px solid #e9ecef;
 }
 
+.languages-slider {
+  flex-grow: 1;
+}
+
+.language-buttons {
+  display: flex;
+  flex-direction: row;
+}
+.language-buttons .language-button {
+  color: #dee2e6;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.language-buttons .language-button:hover {
+  color: #495057;
+}
+.language-buttons.language-buttons--edit-mode {
+  color: #000;
+}
+
+.value {
+  color: #6c757d;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.languages-form {
+  border-bottom: 1px solid #e9ecef;
+}
+
 .profile .left .card .profile-picture {
   transition: height 250ms;
 }

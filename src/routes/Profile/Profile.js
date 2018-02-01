@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
 import SkillsCard from './components/SkillsCard/SkillsCard'
+import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 
 class Profile extends React.Component {
   componentDidMount() {}
@@ -33,6 +34,7 @@ class Profile extends React.Component {
           </Col>
           <Col xs={12} md={9} className="right">
             <SkillsCard />
+            <LanguagesCard />
             <Card className="mb-5">
               <CardBody className="py-5">Test</CardBody>
             </Card>
