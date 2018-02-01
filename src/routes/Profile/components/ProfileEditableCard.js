@@ -28,10 +28,11 @@ class ProfileEditableCard extends React.Component {
 
   render() {
     let { addMode } = this.state
-    const { children, cardTitle } = this.props
+    const { children, cardTitle, loading } = this.props
 
     return (
       <Card className="profile-card mb-5">
+        <div className={classnames('loading-progress', loading && 'visible')} />
         <div
           className={classnames('addNew', addMode && 'addMode')}
           onClick={this.handleAddNew}
@@ -55,5 +56,6 @@ export default ProfileEditableCard
 
 ProfileEditableCard.propTypes = {
   cardTitle: PropTypes.string,
-  cbAddMode: PropTypes.func.isRequired
+  cbAddMode: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }

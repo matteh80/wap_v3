@@ -33,9 +33,18 @@ class Profile extends React.Component {
           </Col>
           <Col xs={12} md={9} className="right">
             <SkillsCard />
-            <SkillsCard />
-            <SkillsCard />
-            <SkillsCard />
+            <Card className="mb-5">
+              <CardBody className="py-5">Test</CardBody>
+            </Card>
+            <Card className="mb-5">
+              <CardBody className="py-5">Test</CardBody>
+            </Card>
+            <Card className="mb-5">
+              <CardBody className="py-5">Test</CardBody>
+            </Card>
+            <Card className="mb-5">
+              <CardBody className="py-5">Test</CardBody>
+            </Card>
           </Col>
         </Row>
       </Container>

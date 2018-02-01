@@ -8521,6 +8521,10 @@ label {
   border-top-color: #6c6c6c;
 }
 
+.card {
+  border: none;
+}
+
 .main-content {
   background-color: #adb5bd;
   background-position: center;
@@ -8564,7 +8568,6 @@ header.header .navbar .profile-picture {
 header.header #header-bottom {
   height: 180px;
   color: #fff;
-  transition: all 250ms;
 }
 header.header #header-bottom .candidate-name {
   font-weight: bold;
@@ -8588,6 +8591,20 @@ header.header #header-bottom .candidate-subtitle {
 
 .profile-card {
   position: relative;
+}
+.profile-card .loading-progress {
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to right, #87e0fd 0%, #00aadd 51%, #87e0fd 100%);
+  background-size: 50% 100%;
+  animation-name: moving-gradient;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transition: height 250ms;
+}
+.profile-card .loading-progress.visible {
+  height: 5px;
 }
 .profile-card .addNew {
   position: absolute;
@@ -8634,6 +8651,15 @@ header.header #header-bottom .candidate-subtitle {
 .profile-card .profile-content .overlay.active {
   background: rgba(255, 255, 255, 0.75);
   z-index: 1;
+}
+
+@keyframes moving-gradient {
+  0% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right bottom;
+  }
 }
 
 .skills-slider {

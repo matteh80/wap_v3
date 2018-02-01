@@ -15,7 +15,7 @@ const FETCH_ALLSKILLS_FAIL = 'wap/skills/FETCH_ALLSKILLS_FAIL'
 const EMPTY_STATE = {
   fetchingUserSkills: false,
   fetchingAllSkills: false,
-  addingUserSkill: false,
+  updatingUserSkills: false,
   userSkills: null,
   allSkills: null,
   skillsError: null
@@ -42,11 +42,11 @@ export default function skills(state = INITIAL_STATE, action = {}) {
 
     case EDIT_USERSKILLS_START:
       return Object.assign({}, state, {
-        addingUserSkill: true
+        updatingUserSkills: true
       })
     case EDIT_USERSKILLS_SUCCESS:
       return Object.assign({}, state, {
-        addingUserSkill: false,
+        updatingUserSkills: false,
         userSkills: action.skills
       })
     case EDIT_USERSKILLS_FAIL:
@@ -66,7 +66,8 @@ export default function skills(state = INITIAL_STATE, action = {}) {
     case FETCH_ALLSKILLS_FAIL:
       return Object.assign({}, state, {
         fetchingAllSkills: false,
-        skillsError: action.error
+        skillsError: action.error,
+        updatingUserSkills: false
       })
     default:
       return state

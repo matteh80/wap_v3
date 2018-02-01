@@ -13,6 +13,7 @@ import $ from 'jquery'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import update from 'immutability-helper'
+import _ from 'lodash'
 
 class SkillsCard extends React.Component {
   constructor(props) {
@@ -56,14 +57,19 @@ class SkillsCard extends React.Component {
 
   updateSkills(skills) {
     let { dispatch } = this.props
+
     dispatch(editUserSkills(skills))
   }
 
   render() {
-    const { userSkills, allSkills } = this.props
+    const { userSkills, allSkills, updatingUserSkills } = this.props
     const { allLoaded, addMode, skillsInEditMode } = this.state
     return (
-      <ProfileEditableCard cardTitle="Kompetenser" cbAddMode={this.cbAddMode}>
+      <ProfileEditableCard
+        cardTitle="Kompetenser"
+        cbAddMode={this.cbAddMode}
+        loading={updatingUserSkills}
+      >
         {allLoaded && (
           <SkillsForm
             skills={allSkills}
@@ -76,7 +82,7 @@ class SkillsCard extends React.Component {
           <div
             className={classnames(
               'overlay',
-              (addMode || skillsInEditMode) && 'active'
+              (addMode || skillsInEditMode || updatingUserSkills) && 'active'
             )}
           />
           {userSkills &&
@@ -85,6 +91,8 @@ class SkillsCard extends React.Component {
                 key={userSkill.id}
                 name={userSkill.name}
                 experience={userSkill.experience}
+                userSkill={userSkill}
+                userSkills={userSkills}
                 cbEditMode={this.cbEditMode}
                 updateFn={this.updateSkills}
               />
@@ -97,7 +105,8 @@ class SkillsCard extends React.Component {
 
 const mapStateToProps = state => ({
   userSkills: state.skills.userSkills,
-  allSkills: state.skills.allSkills
+  allSkills: state.skills.allSkills,
+  updatingUserSkills: state.skills.updatingUserSkills
 })
 
 export default connect(mapStateToProps)(SkillsCard)
@@ -115,6 +124,7 @@ class SkillsSlider extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.toggleEditMode = this.toggleEditMode.bind(this)
     this.updateSkills = this.updateSkills.bind(this)
+    this.removeSkill = this.removeSkill.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -136,7 +146,34 @@ class SkillsSlider extends React.Component {
     })
   }
 
-  updateSkills() {}
+  updateSkills() {
+    this.setState({
+      editMode: false
+    })
+
+    let { userSkills, userSkill } = this.props
+    let { value } = this.state
+
+    let index = _.findIndex(userSkills, { id: userSkill.id })
+    let newSkills = Object.assign([], userSkills)
+    newSkills[index].experience = value
+
+    this.props.updateFn(newSkills)
+  }
+
+  removeSkill() {
+    this.setState({
+      editMode: false
+    })
+
+    let { userSkills, userSkill } = this.props
+
+    let newSkills = _.filter(userSkills, function(skill) {
+      return skill.id !== userSkill.id
+    })
+
+    this.props.updateFn(newSkills)
+  }
 
   render() {
     let { value, editMode } = this.state
@@ -169,7 +206,7 @@ class SkillsSlider extends React.Component {
               <div className="skill-button edit" onClick={this.toggleEditMode}>
                 <i className="fa fa-edit ml-1" />
               </div>
-              <div className="skill-button">
+              <div className="skill-button" onClick={this.removeSkill}>
                 <i className="fa fa-trash ml-1" />
               </div>
             </div>
@@ -179,7 +216,10 @@ class SkillsSlider extends React.Component {
               <div className="skill-button done" onClick={this.updateSkills}>
                 <i className="fa fa-check ml-1" />
               </div>
-              <div className="skill-button revert">
+              <div
+                className="skill-button revert"
+                onClick={this.toggleEditMode}
+              >
                 <i className="fa fa-times ml-1" />
               </div>
             </div>
@@ -212,7 +252,8 @@ class SkillsForm extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.userSkills !== this.props.userSkills) {
       this.setState({
-        skills: this.setUpSkills()
+        skills: this.setUpSkills(),
+        value: undefined
       })
     }
   }
