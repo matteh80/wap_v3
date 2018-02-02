@@ -8539,7 +8539,6 @@ label {
   height: 100vh;
   position: fixed;
   top: 0;
-  background-image: url('layout/CoreLayout/moln.jpg');
   background-position: center;
   background-attachment: fixed;
   z-index: 0;
@@ -8555,9 +8554,11 @@ label {
 }
 .main-content .clouds#cloud1 {
   animation-delay: -7s;
+  animation-name: cloud2;
 }
 .main-content .clouds#cloud2 {
   animation-delay: -5s;
+  animation-name: cloud2;
 }
 .main-content .clouds#cloud3 {
   animation-delay: -3s;
@@ -8565,10 +8566,12 @@ label {
 .main-content .clouds#cloud4 {
   transform: scaleX(-1);
   animation-delay: -1s;
+  animation-name: cloud2;
 }
 .main-content .clouds#cloud5 {
   transform: scaleX(-1);
   animation-delay: 1s;
+  animation-name: cloud2;
 }
 .main-content .clouds#cloud6 {
   transform: scaleX(-1);
@@ -8576,6 +8579,23 @@ label {
 }
 
 @keyframes cloud1 {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes cloud2 {
   0% {
     transform: scale(0.5);
     opacity: 0;
@@ -8655,7 +8675,7 @@ header.header #header-bottom .candidate-subtitle {
 .profile-card .loading-progress {
   width: 100%;
   height: 0;
-  background: linear-gradient(to right, #87e0fd 0%, #00aadd 51%, #87e0fd 100%);
+  background: linear-gradient(to right, #065372 0%, #0cabeb 50%, #065372 100%);
   background-size: 50% 100%;
   animation-name: moving-gradient;
   animation-duration: 1s;
@@ -8814,6 +8834,24 @@ header.header #header-bottom .candidate-subtitle {
   position: relative;
   overflow: hidden;
 }
+.loading-button--wrapper .loading-progress {
+  position: absolute;
+  top: 0;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to right, #065372 0%, #36bef4 50%, #065372 100%);
+  background-size: 50% 100%;
+  animation-name: moving-gradient;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transition: height 250ms;
+}
+.loading-button--wrapper .loading-progress.visible {
+  height: 5px;
+}
 .loading-button--wrapper .loading-button--loader {
   position: absolute;
   height: 100%;
@@ -8824,4 +8862,13 @@ header.header #header-bottom .candidate-subtitle {
 .loading-button--wrapper .loading-button--btn {
   width: 100%;
   color: #fff;
+}
+
+@keyframes moving-gradient {
+  0% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right bottom;
+  }
 }

@@ -14,6 +14,9 @@ class CoreLayout extends React.Component {
             <img src={cloud_1} className="clouds" id="cloud1" />
             <img src={cloud_2} className="clouds" id="cloud2" />
             <img src={cloud_3} className="clouds" id="cloud3" />
+            <img src={cloud_1} className="clouds" id="cloud4" />
+            <img src={cloud_2} className="clouds" id="cloud5" />
+            <img src={cloud_3} className="clouds" id="cloud6" />
           </div>
 
           {this.props.children}
