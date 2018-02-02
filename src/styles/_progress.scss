@@ -1,0 +1,8 @@
+.progress {
+  height: 12px;
+  border-radius: 6px;
+
+  .progress-bar {
+    background: linear-gradient(to right, $primary 30%, $secondary 100%);
+  }
+}

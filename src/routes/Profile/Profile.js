@@ -1,6 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col, Card, CardBody, CardImg } from 'reactstrap'
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardBody,
+  CardImg,
+  Progress
+} from 'reactstrap'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 
@@ -23,12 +31,18 @@ class Profile extends React.Component {
                 className="img-fluid profile-picture"
               />
               <CardBody>
-                <h6>Anställningar</h6>
-                <h6>Utbildningar</h6>
-                <h6>Kompetenser</h6>
-                <h6>Språk</h6>
-                <h6>Körkort</h6>
-                <h6>Referenser</h6>
+                <Progress value={50} />
+                <small className="text-center mb-3 d-block">
+                  Din profil är 50% klar
+                </small>
+                <div className="sidemenu">
+                  <h6>Anställningar</h6>
+                  <h6>Utbildningar</h6>
+                  <h6>Kompetenser</h6>
+                  <h6>Språk</h6>
+                  <h6>Körkort</h6>
+                  <h6>Referenser</h6>
+                </div>
               </CardBody>
             </Card>
           </Col>
