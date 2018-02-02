@@ -1,6 +1,7 @@
 $sliderHeight: 12px;
 $handleSize: 20px;
 $sliderColor: $primary;
+$handleColor: $secondary;
 
 .rc-slider {
   position: relative;
@@ -29,7 +30,8 @@ $sliderColor: $primary;
   left: 0;
   height: $sliderHeight;
   border-radius: $sliderHeight / 2;
-  background-color: lighten($sliderColor, 5%);
+  //background-color: lighten($sliderColor, 5%);
+  background: linear-gradient(to right, $primary 30%, $secondary 100%);
 }
 .rc-slider-handle {
   position: absolute;
@@ -43,7 +45,7 @@ $sliderColor: $primary;
   border-radius: 50%;
   //border: solid 2px #96dbfa;
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  background-color: $sliderColor;
+  background-color: $handleColor;
   -ms-touch-action: pan-x;
   touch-action: pan-x;
   display: flex;

@@ -210,7 +210,7 @@ class SkillsSlider extends React.Component {
             <div className="value text-center">{getSkillString(value)}</div>
           </div>
           {!editMode && (
-            <div className="skill-buttons">
+            <div className="skill-buttons edit-remove-buttons">
               <div className="skill-button edit" onClick={this.toggleEditMode}>
                 <i className="fa fa-edit ml-1" />
               </div>
@@ -220,7 +220,7 @@ class SkillsSlider extends React.Component {
             </div>
           )}
           {editMode && (
-            <div className="skill-buttons skill-buttons--edit-mode">
+            <div className="skill-buttons skill-buttons--edit-mode edit-remove-buttons">
               <div className="skill-button done" onClick={this.updateSkills}>
                 <i className="fa fa-check ml-1" />
               </div>

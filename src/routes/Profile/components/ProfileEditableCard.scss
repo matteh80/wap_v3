@@ -13,7 +13,7 @@
     transition: height 250ms;
 
     &.visible {
-      height: 5px;
+      height: 7px;
     }
   }
 
@@ -67,6 +67,18 @@
         background: rgba(255,255,255,0.75);
         z-index: 1;
       }
+    }
+  }
+
+  .edit-remove-buttons {
+    width: 0;
+    transition: width 250ms;
+    overflow: hidden;
+  }
+
+  &:hover {
+    .edit-remove-buttons {
+      width: 48px;
     }
   }
 }
