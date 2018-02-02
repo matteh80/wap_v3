@@ -8638,10 +8638,16 @@ header.header #header-bottom .candidate-subtitle {
 .login-wrapper {
   background: url('/img/login_bg.jpg');
 }
+.login-wrapper .login-container .left-content {
+  min-height: 100vh;
+}
 .login-wrapper .login-container .left-content .login-logo {
   max-width: 120px;
 }
 
+.register-wrapper .register-container .left-content {
+  min-height: 100vh;
+}
 .register-wrapper .register-container .left-content .register-logo {
   max-width: 120px;
 }
