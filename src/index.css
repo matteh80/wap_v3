@@ -8635,9 +8635,6 @@ header.header #header-bottom .candidate-subtitle {
   font-weight: 100;
 }
 
-.login-wrapper {
-  background: url('/img/login_bg.jpg');
-}
 .login-wrapper .login-container .left-content {
   min-height: 100vh;
 }

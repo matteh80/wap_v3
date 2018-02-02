@@ -8,6 +8,7 @@ import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
 import { fetchProfile } from '../../store/modules/profile'
 import login_bg from './login_bg.jpg'
+import moln_flat from './moln_flat.jpg'
 
 class Login extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class Login extends React.Component {
     return (
       <div
         className="login-wrapper h-100"
-        style={{ background: 'url("' + login_bg + '")' }}
+        style={{ background: 'url("' + moln_flat + '")' }}
       >
         <Container fluid className="login-container h-100">
           <Row className="h-100">
