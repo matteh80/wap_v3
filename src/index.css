@@ -8666,6 +8666,15 @@ header.header #header-bottom .candidate-subtitle {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-weight: 100;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+header.header #header-bottom .progress {
+  max-width: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+header.header #header-bottom .progress .progress-bar {
+  background: #fff;
 }
 
 .login-wrapper .login-container .left-content {
@@ -8686,6 +8695,8 @@ header.header #header-bottom .candidate-subtitle {
   position: relative;
 }
 .profile-card .loading-progress {
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: 0;
   background: linear-gradient(to right, #547581 0%, #98b3bc 50%, #547581 100%);
@@ -8825,8 +8836,29 @@ header.header #header-bottom .candidate-subtitle {
   border-bottom: 1px solid #e9ecef;
 }
 
+.profile .left .card .picture-wrapper {
+  position: relative;
+}
+
+.profile .left .card .progress-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10px 15px;
+}
+.profile .left .card .progress-wrapper .progress {
+  background-color: rgba(255, 255, 255, 0.75);
+  height: 0;
+  transition: height 250ms;
+}
+.profile .left .card .progress-wrapper .progress .progress-bar {
+  background: #11ada7;
+}
+
 .profile .left .card .profile-picture {
   transition: height 250ms;
+  border-radius: 0;
 }
 
 .profile .left.fixed .card {

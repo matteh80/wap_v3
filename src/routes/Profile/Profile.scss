@@ -7,8 +7,34 @@
     //margin-top: -180px;
 
     .card {
+      .picture-wrapper {
+        position: relative;
+
+      }
+      .progress-wrapper {
+        //background: url('layout/Header/headerBg.jpg');
+        //background-position: center;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        padding: 10px 15px;
+
+        .progress {
+          background-color: rgba(255,255,255,0.75);
+          //border-radius: 0;
+          height: 0;
+          transition: height 250ms;
+          
+          .progress-bar {
+            background: $secondary;
+            //background: linear-gradient(to right, darken($accent, 25%) 30%, $accent 100%);
+          }
+        }
+      }
       .profile-picture {
         transition: height 250ms;
+        border-radius: 0;
       }
     }
 

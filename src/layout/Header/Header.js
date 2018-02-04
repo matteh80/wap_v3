@@ -11,7 +11,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Progress
 } from 'reactstrap'
 import $ from 'jquery'
 import { logout } from '../../store/modules/auth'
@@ -31,12 +32,19 @@ class Header extends React.Component {
   componentDidMount() {
     let $window = $(window)
     let $headerBottom = $('#header-bottom')
+    let $profileProgress = $('.progress-wrapper .progress')
 
     $window.scroll(function() {
       $headerBottom.css({
         height: 180 - $window.scrollTop(),
         opacity: 1 - $window.scrollTop() / 180
       })
+
+      if ($window.scrollTop() > 180) {
+        $profileProgress.css('height', 12)
+      } else {
+        $profileProgress.css('height', 0)
+      }
     })
   }
 
@@ -80,11 +88,12 @@ class Header extends React.Component {
         <div id="header-bottom">
           <Container className="h-100">
             <Row className="h-100 align-items-end">
-              <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2">
+              <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2 mb-3">
                 <h1 className="candidate-name mb-0">
                   {profile.first_name + ' ' + profile.last_name}
                 </h1>
-                <h3 className="candidate-subtitle mt-0">{profile.title}</h3>
+                <h3 className="candidate-subtitle">{profile.title}</h3>
+                <Progress value={50} />
               </Col>
             </Row>
           </Container>
