@@ -10,25 +10,6 @@
   //overflow: hidden;
 }
 
-.skill-buttons {
-  display: flex;
-  flex-direction: row;
-  .skill-button {
-    color: $gray-300;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-
-    &:hover {
-      color: $gray-700;
-    }
-  }
-
-  &.skill-buttons--edit-mode {
-    color: #000;
-  }
-}
-
 .value {
   color: $gray-600;
   text-transform: uppercase;

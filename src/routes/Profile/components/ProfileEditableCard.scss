@@ -97,13 +97,35 @@
 
   .edit-remove-buttons {
     width: 0;
-    transition: width 250ms;
+    transition: width 250ms, opacity 250ms 150ms;
     overflow: hidden;
+    text-align: end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    opacity: 0;
+
+    .edit-remove-button {
+      color: $gray-300;
+      cursor: pointer;
+      width: 22px;
+      height: 24px;
+      float: right;
+
+      &:hover {
+        color: $gray-700;
+      }
+    }
+
+    &.edit-remove-buttons--edit-mode {
+      color: #000;
+    }
   }
 
   &:hover {
     .edit-remove-buttons {
       width: 48px;
+      opacity: 1;
     }
   }
 }

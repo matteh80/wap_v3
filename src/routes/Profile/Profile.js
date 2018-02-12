@@ -9,6 +9,7 @@ import {
   CardImg,
   Progress
 } from 'reactstrap'
+import EmploymentsCard from './components/EmploymentsCard/EmploymentsCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 
@@ -52,6 +53,7 @@ class Profile extends React.Component {
             </Card>
           </Col>
           <Col xs={12} md={9} className="right">
+            <EmploymentsCard />
             <SkillsCard />
             <LanguagesCard />
             <Card className="mb-5">

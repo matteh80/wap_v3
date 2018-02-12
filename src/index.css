@@ -8758,11 +8758,30 @@ header.header #header-bottom .progress .progress-bar {
 }
 .profile-card .edit-remove-buttons {
   width: 0;
-  transition: width 250ms;
+  transition: width 250ms, opacity 250ms 150ms;
   overflow: hidden;
+  text-align: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  opacity: 0;
+}
+.profile-card .edit-remove-buttons .edit-remove-button {
+  color: #dee2e6;
+  cursor: pointer;
+  width: 22px;
+  height: 24px;
+  float: right;
+}
+.profile-card .edit-remove-buttons .edit-remove-button:hover {
+  color: #495057;
+}
+.profile-card .edit-remove-buttons.edit-remove-buttons--edit-mode {
+  color: #000;
 }
 .profile-card:hover .edit-remove-buttons {
   width: 48px;
+  opacity: 1;
 }
 
 @keyframes moving-gradient {
@@ -8778,23 +8797,6 @@ header.header #header-bottom .progress .progress-bar {
   flex-grow: 1;
 }
 
-.skill-buttons {
-  display: flex;
-  flex-direction: row;
-}
-.skill-buttons .skill-button {
-  color: #dee2e6;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
-.skill-buttons .skill-button:hover {
-  color: #495057;
-}
-.skill-buttons.skill-buttons--edit-mode {
-  color: #000;
-}
-
 .value {
   color: #6c757d;
   text-transform: uppercase;
@@ -8807,23 +8809,6 @@ header.header #header-bottom .progress .progress-bar {
 
 .languages-slider {
   flex-grow: 1;
-}
-
-.language-buttons {
-  display: flex;
-  flex-direction: row;
-}
-.language-buttons .language-button {
-  color: #dee2e6;
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
-.language-buttons .language-button:hover {
-  color: #495057;
-}
-.language-buttons.language-buttons--edit-mode {
-  color: #000;
 }
 
 .value {
@@ -8849,11 +8834,14 @@ header.header #header-bottom .progress .progress-bar {
 }
 .profile .left .card .progress-wrapper .progress {
   background-color: rgba(255, 255, 255, 0.75);
-  height: 0;
-  transition: height 250ms;
+  transform: scale(0);
+  transition: all 250ms;
+}
+.profile .left .card .progress-wrapper .progress.visible {
+  transform: scale(1);
 }
 .profile .left .card .progress-wrapper .progress .progress-bar {
-  background: #11ada7;
+  background: #fff;
 }
 
 .profile .left .card .profile-picture {

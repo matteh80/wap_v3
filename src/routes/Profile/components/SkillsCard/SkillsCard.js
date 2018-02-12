@@ -211,20 +211,32 @@ class SkillsSlider extends React.Component {
           </div>
           {!editMode && (
             <div className="skill-buttons edit-remove-buttons">
-              <div className="skill-button edit" onClick={this.toggleEditMode}>
+              <div
+                className="skill-button edit-remove-button edit"
+                onClick={this.toggleEditMode}
+              >
                 <i className="fa fa-edit ml-1" />
               </div>
-              <div className="skill-button" onClick={this.removeSkill}>
+              <div
+                className="skill-button edit-remove-button"
+                onClick={this.removeSkill}
+              >
                 <i className="fa fa-trash ml-1" />
               </div>
             </div>
           )}
           {editMode && (
-            <div className="skill-buttons skill-buttons--edit-mode edit-remove-buttons">
-              <div className="skill-button done" onClick={this.updateSkills}>
+            <div className="skill-buttons edit-remove-buttons--edit-mode edit-remove-buttons">
+              <div
+                className="skill-button edit-remove-button done"
+                onClick={this.updateSkills}
+              >
                 <i className="fa fa-check ml-1" />
               </div>
-              <div className="skill-button revert" onClick={this.revertChanges}>
+              <div
+                className="skill-button edit-remove-button revert"
+                onClick={this.revertChanges}
+              >
                 <i className="fa fa-times ml-1" />
               </div>
             </div>
@@ -326,6 +338,7 @@ class SkillsForm extends React.Component {
                 value={value}
                 onChange={value => this.setState({ value: value })}
                 options={skills}
+                placeholder="Välj en kompetens"
               />
             </Col>
             <Col xs={12} md={6}>

@@ -15,7 +15,7 @@ const FETCH_ALLLANGUAGES_FAIL = 'wap/languages/FETCH_ALLLANGUAGES_FAIL'
 const EMPTY_STATE = {
   fetchingUserLanguages: false,
   fetchingAllLanguages: false,
-  addingUserLanguage: false,
+  updatingUserLanguages: false,
   userLanguages: null,
   allLanguages: null,
   languagesError: null
@@ -42,11 +42,11 @@ export default function languages(state = INITIAL_STATE, action = {}) {
 
     case EDIT_USERLANGUAGES_START:
       return Object.assign({}, state, {
-        addingUserLanguage: true
+        updatingUserLanguages: true
       })
     case EDIT_USERLANGUAGES_SUCCESS:
       return Object.assign({}, state, {
-        addingUserLanguage: false,
+        updatingUserLanguages: false,
         userLanguages: action.languages
       })
     case EDIT_USERLANGUAGES_FAIL:
@@ -66,7 +66,8 @@ export default function languages(state = INITIAL_STATE, action = {}) {
     case FETCH_ALLLANGUAGES_FAIL:
       return Object.assign({}, state, {
         fetchingAllLanguages: false,
-        languagesError: action.error
+        languagesError: action.error,
+        updatingUserLanguages: false
       })
     default:
       return state

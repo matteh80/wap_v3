@@ -92,7 +92,6 @@ class LanguagesCard extends React.Component {
               <LanguagesSlider
                 key={userLanguage.id}
                 name={userLanguage.name}
-                experience={userLanguage.experience}
                 userLanguage={userLanguage}
                 userLanguages={userLanguages}
                 cbEditMode={this.cbEditMode}
@@ -118,7 +117,9 @@ class LanguagesSlider extends React.Component {
     super(props)
 
     this.state = {
-      value: props.experience,
+      value: Math.ceil(
+        (props.userLanguage.spoken + props.userLanguage.written) / 2
+      ),
       editMode: false,
       addMode: false
     }
@@ -127,6 +128,7 @@ class LanguagesSlider extends React.Component {
     this.toggleEditMode = this.toggleEditMode.bind(this)
     this.updateLanguages = this.updateLanguages.bind(this)
     this.removeLanguage = this.removeLanguage.bind(this)
+    this.revertChanges = this.revertChanges.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -158,7 +160,8 @@ class LanguagesSlider extends React.Component {
 
     let index = _.findIndex(userLanguages, { id: userLanguage.id })
     let newLanguages = Object.assign([], userLanguages)
-    newLanguages[index].experience = value
+    newLanguages[index].spoken = value
+    newLanguages[index].written = value
 
     this.props.updateFn(newLanguages)
   }
@@ -177,9 +180,16 @@ class LanguagesSlider extends React.Component {
     this.props.updateFn(newLanguages)
   }
 
+  revertChanges() {
+    this.setState({
+      editMode: false,
+      value: (this.props.spoken + this.props.written) / 2
+    })
+  }
+
   render() {
     let { value, editMode } = this.state
-    let { name, experience } = this.props
+    let { name, spoken } = this.props
 
     return (
       <Col
@@ -204,29 +214,32 @@ class LanguagesSlider extends React.Component {
             <div className="value text-center">{getLanguageString(value)}</div>
           </div>
           {!editMode && (
-            <div className="language-buttons">
+            <div className="language-buttons edit-remove-buttons">
               <div
-                className="language-button edit"
+                className="language-button edit-remove-button edit"
                 onClick={this.toggleEditMode}
               >
                 <i className="fa fa-edit ml-1" />
               </div>
-              <div className="language-button" onClick={this.removeLanguage}>
+              <div
+                className="language-button edit-remove-button"
+                onClick={this.removeLanguage}
+              >
                 <i className="fa fa-trash ml-1" />
               </div>
             </div>
           )}
           {editMode && (
-            <div className="language-buttons language-buttons--edit-mode">
+            <div className="language-buttons edit-remove-buttons--edit-mode edit-remove-buttons">
               <div
-                className="language-button done"
+                className="language-button edit-remove-button done"
                 onClick={this.updateLanguages}
               >
                 <i className="fa fa-check ml-1" />
               </div>
               <div
-                className="language-button revert"
-                onClick={this.toggleEditMode}
+                className="language-button edit-remove-button revert"
+                onClick={this.revertChanges}
               >
                 <i className="fa fa-times ml-1" />
               </div>
@@ -249,7 +262,7 @@ class LanguagesForm extends React.Component {
     this.state = {
       languages: this.setUpLanguages(),
       value: undefined,
-      experience: 1,
+      spoken: 1,
       options: []
     }
 
@@ -272,21 +285,18 @@ class LanguagesForm extends React.Component {
     let optiondata = []
     let index = -1
 
-    $.each(languages, function(i, categoryitem) {
-      $.each(categoryitem.languages, function(x, item) {
-        index = userLanguages.findIndex(
-          userLanguages => userLanguages.id === item.id
-        )
-        if (index === -1) {
-          optiondata.push({
-            label: item.name,
-            value: item.id,
-            name: item.name,
-            id: item.id,
-            parent_name: categoryitem.name
-          })
-        }
-      })
+    $.each(languages, function(x, item) {
+      index = userLanguages.findIndex(
+        userLanguages => userLanguages.id === item.id
+      )
+      if (index === -1) {
+        optiondata.push({
+          label: item.name,
+          value: item.id,
+          name: item.name,
+          id: item.id
+        })
+      }
     })
 
     optiondata.sort(function(a, b) {
@@ -300,10 +310,11 @@ class LanguagesForm extends React.Component {
 
   addLanguage() {
     let { updateFn, userLanguages } = this.props
-    let { value, experience } = this.state
+    let { value, spoken } = this.state
     let languageToAdd = {
       id: value,
-      experience: experience
+      spoken: spoken,
+      written: spoken
     }
 
     let newLanguages = update(userLanguages, { $push: [languageToAdd] })
@@ -312,10 +323,10 @@ class LanguagesForm extends React.Component {
   }
 
   render() {
-    let { value, languages, experience, options } = this.state
+    let { value, languages, spoken, options } = this.state
     const { isOpen, cbAddMode } = this.props
     const inputProps = {
-      placeholder: 'Skriv in ett språk',
+      placeholder: 'Skriv in en språk',
       value,
       onChange: this.onChange
     }
@@ -331,6 +342,7 @@ class LanguagesForm extends React.Component {
                 value={value}
                 onChange={value => this.setState({ value: value })}
                 options={languages}
+                placeholder="Välj en språk"
               />
             </Col>
             <Col xs={12} md={6}>
@@ -340,12 +352,12 @@ class LanguagesForm extends React.Component {
                   max={5}
                   handle={handle}
                   dots
-                  value={experience}
-                  onChange={value => this.setState({ experience: value })}
+                  value={spoken}
+                  onChange={value => this.setState({ spoken: value })}
                   className="mr-4"
                 />
                 <div className="value text-center">
-                  {getLanguageString(experience)}
+                  {getLanguageString(spoken)}
                 </div>
               </div>
             </Col>
@@ -386,13 +398,13 @@ const getLanguageString = value => {
     case 1:
       return 'Inga kunskaper'
     case 2:
-      return 'Grundläggande kunskaper'
+      return 'Begränsad yrkeskunskap'
     case 3:
-      return 'Goda kunskaper'
+      return 'Grundläggande yrkeskunskap'
     case 4:
-      return 'Mycket goda kunskaper'
+      return 'Professionell yrkeskunskap'
     case 5:
-      return 'Expert'
+      return 'Modersmål'
     default:
       return '-'
   }

@@ -41,9 +41,9 @@ class Header extends React.Component {
       })
 
       if ($window.scrollTop() > 180) {
-        $profileProgress.css('height', 12)
+        $profileProgress.addClass('visible')
       } else {
-        $profileProgress.css('height', 0)
+        $profileProgress.removeClass('visible')
       }
     })
   }
@@ -63,7 +63,7 @@ class Header extends React.Component {
     let { profile } = this.props
     return (
       <header className="header">
-        <Navbar color="faded" dark expand="never">
+        <Navbar color="faded" dark expand="lg">
           <Container>
             <NavbarBrand href="/">
               <img src={headerLogo} id="header--logo" />
@@ -72,13 +72,13 @@ class Header extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/logout/" onClick={this.handleLogout}>
-                    Logga ut
+                  <NavLink href="https://github.com/reactstrap/reactstrap">
+                    Konto
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">
-                    Github
+                  <NavLink href="/logout/" onClick={this.handleLogout}>
+                    Logga ut
                   </NavLink>
                 </NavItem>
               </Nav>
