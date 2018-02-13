@@ -47,6 +47,7 @@ class EmploymentsCard extends React.Component {
     let { updatingEmployments, userEmployments } = this.props
     return (
       <ProfileEditableCard
+        id="employments"
         cardTitle="Anställningar"
         cbAddMode={this.cbAddMode}
         loading={updatingEmployments}

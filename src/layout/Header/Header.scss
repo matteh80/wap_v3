@@ -63,6 +63,17 @@ header.header {
       }
     }
   }
+
+  .rc-slider {
+    .rc-slider-track {
+      background: $secondary;
+    }
+    .rc-slider-dot {
+      background-color: $primary;
+      opacity: 1 !important;
+      width: 5px;
+    }
+  }
 }
 
 //body.fixed {

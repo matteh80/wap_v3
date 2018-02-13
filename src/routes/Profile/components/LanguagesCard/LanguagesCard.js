@@ -67,6 +67,7 @@ class LanguagesCard extends React.Component {
     const { allLoaded, addMode, languagesInEditMode } = this.state
     return (
       <ProfileEditableCard
+        id="languages"
         cardTitle="Språk"
         cbAddMode={this.cbAddMode}
         loading={updatingUserLanguages}

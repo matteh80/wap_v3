@@ -1,0 +1,68 @@
+.profile-sidenav {
+  position: fixed;
+  right: 0;
+  top: 300px;
+  width: 250px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .nav-item {
+    display: flex;
+    position: relative;
+    right: -190px;
+    transition: all 250ms ease-in-out;
+    background: #fff;
+
+    a {
+      width: 100%;
+    }
+
+    .icon {
+      background: $primary;
+      color: #fff;
+      height: 60px;
+      width: 60px;
+      text-align: center;
+      line-height: 60px;
+      font-size: 20px;
+      float: left;
+      box-shadow: inset 0 0 0 $secondary;
+      transition: all 250ms;
+
+    }
+    
+    .nav-text {
+      //float: left;
+      line-height: 60px;
+      transition: width 250ms;
+      padding-left: 70px;
+    }
+
+    &.is-current {
+      //right: -180px;
+
+      .icon {
+        //background: $secondary;
+        font-size: 24px;
+        box-shadow: inset -60px 0 0 $secondary;
+      }
+    }
+
+    &:hover {
+      right: 0;
+      .nav-text {
+
+      }
+    }
+  }
+}
+
+@keyframes navItemIsCurrent {
+  0%   { right: -190px; }
+  70% { right: -180px}
+  100% { right: -190px; }
+}

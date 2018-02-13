@@ -17,6 +17,7 @@ import {
 import $ from 'jquery'
 import { logout } from '../../store/modules/auth'
 import headerLogo from './headerLogo.png'
+import Slider from 'rc-slider'
 
 class Header extends React.Component {
   constructor(props) {
@@ -93,7 +94,12 @@ class Header extends React.Component {
                   {profile.first_name + ' ' + profile.last_name}
                 </h1>
                 <h3 className="candidate-subtitle">{profile.title}</h3>
-                <Progress value={50} />
+                {/*<Progress value={50} />*/}
+                <Row>
+                  <Col xs={12} md={6}>
+                    <Slider min={1} max={10} dots value={6} disabled={true} />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Container>

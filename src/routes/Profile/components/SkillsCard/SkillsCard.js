@@ -66,6 +66,7 @@ class SkillsCard extends React.Component {
     const { allLoaded, addMode, skillsInEditMode } = this.state
     return (
       <ProfileEditableCard
+        id="skills"
         cardTitle="Kompetenser"
         cbAddMode={this.cbAddMode}
         loading={updatingUserSkills}

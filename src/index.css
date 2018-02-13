@@ -7,6 +7,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url(~react-select/dist/react-select.css);
+@import url(~react-circular-progressbar/dist/styles.css);
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -8144,6 +8145,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  position: relative;
 }
 body.fixed .main-content {
   padding-top: 260px !important;
@@ -8676,6 +8678,14 @@ header.header #header-bottom .progress {
 header.header #header-bottom .progress .progress-bar {
   background: #fff;
 }
+header.header .rc-slider .rc-slider-track {
+  background: #11ada7;
+}
+header.header .rc-slider .rc-slider-dot {
+  background-color: #547581;
+  opacity: 1 !important;
+  width: 5px;
+}
 
 .login-wrapper .login-container .left-content {
   min-height: 100vh;
@@ -8689,6 +8699,137 @@ header.header #header-bottom .progress .progress-bar {
 }
 .register-wrapper .register-container .left-content .register-logo {
   max-width: 120px;
+}
+
+.profile-progress--wrapper {
+  position: fixed;
+  z-index: 99;
+  transition: all 250ms;
+  top: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .profile-progress--wrapper {
+    width: 150px;
+  }
+}
+@media (min-width: 992px) {
+  .profile-progress--wrapper {
+    width: 210px;
+  }
+}
+@media (min-width: 1400px) {
+  .profile-progress--wrapper {
+    width: 305px;
+  }
+}
+.profile-progress--wrapper .profile-picture {
+  transition: all 250ms;
+  position: absolute;
+  top: -1px;
+  padding: 0;
+  z-index: 2;
+}
+.profile-progress--wrapper .progress-circle {
+  position: absolute;
+  top: 0;
+}
+.profile-progress--wrapper .progress-circle .CircularProgressbar {
+  position: relative;
+  z-index: 1;
+  transform: scale(0);
+  transition: all 250ms;
+}
+.profile-progress--wrapper
+  .progress-circle
+  .CircularProgressbar
+  .CircularProgressbar-path {
+  stroke: #11ada7;
+  stroke-linecap: square;
+}
+.profile-progress--wrapper.scrolled .profile-picture {
+  border-radius: 50%;
+  padding: 8%;
+}
+.profile-progress--wrapper.scrolled .CircularProgressbar {
+  animation-name: showProgress;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showProgress {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profile-sidenav {
+  position: fixed;
+  right: 0;
+  top: 300px;
+  width: 250px;
+}
+.profile-sidenav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.profile-sidenav .nav-item {
+  display: flex;
+  position: relative;
+  right: -190px;
+  transition: all 250ms ease-in-out;
+  background: #fff;
+}
+.profile-sidenav .nav-item a {
+  width: 100%;
+}
+.profile-sidenav .nav-item .icon {
+  background: #547581;
+  color: #fff;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
+  float: left;
+  box-shadow: inset 0 0 0 #11ada7;
+  transition: all 250ms;
+}
+.profile-sidenav .nav-item .nav-text {
+  line-height: 60px;
+  transition: width 250ms;
+  padding-left: 70px;
+}
+.profile-sidenav .nav-item.is-current .icon {
+  font-size: 24px;
+  box-shadow: inset -60px 0 0 #11ada7;
+}
+.profile-sidenav .nav-item:hover {
+  right: 0;
+}
+
+@keyframes navItemIsCurrent {
+  0% {
+    right: -190px;
+  }
+  70% {
+    right: -180px;
+  }
+  100% {
+    right: -190px;
+  }
 }
 
 .profile-card {
@@ -8821,6 +8962,41 @@ header.header #header-bottom .progress .progress-bar {
   border-bottom: 1px solid #e9ecef;
 }
 
+.profile .left .profile-tips {
+  position: fixed;
+  z-index: 99;
+  transition: all 250ms;
+  top: 450px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .profile .left .profile-tips {
+    width: 150px;
+  }
+}
+@media (min-width: 992px) {
+  .profile .left .profile-tips {
+    width: 210px;
+  }
+}
+@media (min-width: 1400px) {
+  .profile .left .profile-tips {
+    width: 305px;
+  }
+}
+.profile .left .profile-tips:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 25px 25px;
+  border-color: transparent transparent #ffffff transparent;
+  position: absolute;
+  top: -25px;
+}
+
 .profile .left .card .picture-wrapper {
   position: relative;
 }
@@ -8852,7 +9028,7 @@ header.header #header-bottom .progress .progress-bar {
 .profile .left.fixed .card {
   position: fixed;
   z-index: 99;
-  top: 110px;
+  top: 310px;
   transition: all 250ms;
 }
 @media (min-width: 768px) {
