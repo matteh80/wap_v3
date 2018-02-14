@@ -9003,6 +9003,15 @@ header.header .rc-slider .rc-slider-dot {
   margin-bottom: 5px;
   padding: 0;
   background: #fff;
+  overflow: hidden;
+}
+.occupation-item .remove-icon {
+  color: #dee2e6;
+  width: 0;
+  height: 24px;
+  position: absolute;
+  right: 0;
+  transition: width 250ms;
 }
 .occupation-item .index {
   background: #11ada7;
@@ -9022,13 +9031,22 @@ header.header .rc-slider .rc-slider-dot {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
+  padding-right: 0;
+  transition: padding 250ms;
 }
 .occupation-item .moving-icon {
   display: none;
   text-align: center;
 }
-.occupation-item:hover {
-  cursor: move;
+.occupation-item:hover .remove-icon {
+  width: 24px;
+}
+.occupation-item:hover .remove-icon:hover {
+  cursor: pointer;
+  color: #495057;
+}
+.occupation-item:hover h5 {
+  padding-right: 24px;
 }
 .occupation-item:hover .index-number {
   display: none;

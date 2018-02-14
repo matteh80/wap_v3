@@ -24,7 +24,8 @@ import update from 'immutability-helper'
 import {
   SortableContainer,
   SortableElement,
-  arrayMove
+  arrayMove,
+  SortableHandle
 } from 'react-sortable-hoc'
 
 class OccupationsCard extends React.Component {
@@ -40,6 +41,7 @@ class OccupationsCard extends React.Component {
     this.cbAddMode = this.cbAddMode.bind(this)
     this.cbEditMode = this.cbEditMode.bind(this)
     this.updateOccupations = this.updateOccupations.bind(this)
+    this.removeOccupation = this.removeOccupation.bind(this)
   }
 
   componentDidMount() {
@@ -82,12 +84,27 @@ class OccupationsCard extends React.Component {
     dispatch(editUserOccupations(occupations))
   }
 
+  removeOccupation(index) {
+    let newOccupations = Object.assign([], this.state.userOccupations)
+    newOccupations.splice(index, 1)
+
+    this.updateOccupations(newOccupations)
+  }
+
   onSortEnd = ({ oldIndex, newIndex }) => {
-    console.log(oldIndex)
-    console.log(arrayMove(this.state.userOccupations, oldIndex, newIndex))
-    this.setState({
-      userOccupations: arrayMove(this.state.userOccupations, oldIndex, newIndex)
-    })
+    if (oldIndex !== newIndex) {
+      let newOccupations = arrayMove(
+        this.state.userOccupations,
+        oldIndex,
+        newIndex
+      )
+
+      this.setState({
+        userOccupations: newOccupations
+      })
+
+      this.updateOccupations(newOccupations)
+    }
   }
 
   render() {
@@ -99,13 +116,23 @@ class OccupationsCard extends React.Component {
       userOccupations
     } = this.state
 
+    const DragHandle = SortableHandle(({ mIndex }) => (
+      <div className="index">
+        <span className="index-number">{mIndex + 1}</span>
+        <i className="fa fa-arrows-alt moving-icon" />
+      </div>
+    ))
+
     const SortableItem = SortableElement(({ value, index, mIndex }) => (
       <div className="occupation-item col-12 col-md-4 d-flex flex-row align-items-center">
-        <div className="index">
-          <span className="index-number">{mIndex + 1}</span>
-          <i className="fa fa-arrows-alt moving-icon" />
-        </div>
+        <DragHandle mIndex={mIndex} />
         <h5>{value.name}</h5>
+        <div
+          className="remove-icon"
+          onClick={() => this.removeOccupation(index)}
+        >
+          <i className="fa fa-trash ml-1" />
+        </div>
       </div>
     ))
 
@@ -150,6 +177,7 @@ class OccupationsCard extends React.Component {
           <Col xs={12}>
             <SortableList
               axis={'xy'}
+              useDragHandle
               items={userOccupations}
               onSortEnd={this.onSortEnd}
               helperClass="moving-occupation"
