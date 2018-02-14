@@ -38,7 +38,7 @@ class Header extends React.Component {
     $window.scroll(function() {
       $headerBottom.css({
         height: 180 - $window.scrollTop(),
-        opacity: 1 - $window.scrollTop() / 180
+        opacity: 1 - $window.scrollTop() / 160
       })
 
       if ($window.scrollTop() > 180) {

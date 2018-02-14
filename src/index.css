@@ -7,6 +7,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url(~react-select/dist/react-select.css);
+@import url(~react-datetime/css/react-datetime.css);
 @import url(~react-circular-progressbar/dist/styles.css);
 :root {
   --blue: #007bff;
@@ -8143,6 +8144,7 @@ a.text-dark:focus {
 
 html {
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -8174,6 +8176,59 @@ label {
   font-size: 12px;
   color: #547581;
   margin-bottom: 0;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  margin-right: 10px;
+  margin-left: 0;
+  position: relative !important;
+}
+
+input[type='radio']:before,
+input[type='checkbox']:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -2px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: -1px 6px 0 0;
+  vertical-align: middle;
+  background-color: #fff;
+}
+
+input[type='radio']:after,
+input[type='checkbox']:after {
+  content: '';
+  position: relative;
+  top: -6px;
+  left: -2px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin: -1px 6px 0 0;
+  vertical-align: middle;
+  background-color: lightgray;
+  transition: transform 500ms, background-color 250ms ease 250ms;
+}
+
+input[type='radio']:checked:after,
+input[type='checkbox']:checked:after {
+  background-color: #547581;
+  transform: rotateY(360deg);
+  text-align: center;
+  content: '\f00c';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
+  font-size: 1.3rem;
+  line-height: 24px;
 }
 
 .Select-menu-outer {
@@ -8862,6 +8917,10 @@ header.header .rc-slider .rc-slider-dot {
 .profile-card {
   position: relative;
 }
+.profile-card .card-body {
+  padding-left: 45px;
+  padding-right: 45px;
+}
 .profile-card .loading-progress {
   position: relative;
   z-index: 2;
@@ -9069,6 +9128,25 @@ header.header .rc-slider .rc-slider-dot {
   border-bottom: 1px solid #e9ecef;
 }
 
+.employment-item {
+  position: relative;
+}
+.employment-item .left {
+  width: 60px;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background: #11ada7;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+.employment-item .right .date-string {
+  color: #6c757d;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
 .profile .left .profile-tips {
   position: fixed;
   z-index: 99;
@@ -9152,6 +9230,14 @@ header.header .rc-slider .rc-slider-dot {
   .profile .left.fixed .card {
     width: 305px;
   }
+}
+
+.start-end-date select {
+  width: auto;
+  margin-right: 5px;
+}
+.start-end-date select.month {
+  text-transform: capitalize;
 }
 
 .loading-button--wrapper {

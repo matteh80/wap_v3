@@ -8,6 +8,7 @@ import SkillsCard from './components/SkillsCard/SkillsCard'
 import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 import OccupationsCard from './components/OccupationsCard/OccupationsCard'
 import SideNav from './components/SideNav/SideNav'
+import EducationsCard from './components/EducationsCard/EducationsCard'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -56,9 +57,7 @@ class Profile extends React.Component {
             </Col>
             <Col xs={12} md={9} className="right">
               <EmploymentsCard />
-              <Card className="mb-5" id="educations">
-                <CardBody className="py-5">Test</CardBody>
-              </Card>
+              <EducationsCard />
               <SkillsCard />
               <OccupationsCard />
               <LanguagesCard />

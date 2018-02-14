@@ -1,0 +1,23 @@
+$employmentIconSize: 60px;
+
+.employment-item {
+  position: relative;
+
+  .left {
+    width: $employmentIconSize;
+    min-width: $employmentIconSize;
+    height: $employmentIconSize;
+    line-height: $employmentIconSize;
+    background: $secondary;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+  }
+  .right {
+    .date-string {
+      color: $gray-600;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+  }
+}

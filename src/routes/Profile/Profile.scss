@@ -4,6 +4,7 @@
 @import './components/SkillsCard/SkillsCard';
 @import './components/LanguagesCard/LanguagesCard';
 @import './components/OccupationsCard/OccupationsCard';
+@import './components/EmploymentsCard/EmploymentsCard';
 
 .profile {
   .left {
@@ -98,6 +99,17 @@
           //height: 0;
         }
       }
+    }
+  }
+}
+
+.start-end-date {
+  select {
+    width: auto;
+    margin-right: 5px;
+
+    &.month {
+      text-transform: capitalize;
     }
   }
 }

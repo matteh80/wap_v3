@@ -16,6 +16,60 @@ label {
   margin-bottom: 0;
 }
 
+// Checkbox and radio
+input[type='radio'], input[type='checkbox'] {
+  margin-right:10px;
+  margin-left: 0;
+  position: relative !important;
+}
+
+input[type='radio']:before, input[type='checkbox']:before {
+  content: '';
+  position: absolute;
+  top:-6px;
+  left:-2px;
+  display:inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin:-1px 6px 0 0;
+  vertical-align:middle;
+  //background:url(check_radio_sheet.png) left top no-repeat;
+  background-color: #fff;
+}
+
+input[type='radio']:after, input[type='checkbox']:after {
+  content: '';
+  position: relative;
+  top:-6px;
+  left:-2px;
+  display:inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 24px;
+  margin:-1px 6px 0 0;
+  vertical-align:middle;
+  //background:url(check_radio_sheet.png) left top no-repeat;
+  background-color: lightgray;
+  //cursor:pointer;
+
+  transition: transform 500ms, background-color 250ms ease 250ms;
+}
+
+input[type='radio']:checked:after, input[type='checkbox']:checked:after {
+  background-color: $primary;
+  transform: rotateY(360deg);
+  text-align: center;
+  content: '\f00c';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #fff;
+  margin: 0 auto;
+  display: block;
+  font-size: 1.3rem;
+  line-height: 24px;
+}
+
 
 // React select
 .Select-menu-outer {

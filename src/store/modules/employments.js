@@ -43,7 +43,7 @@ export function fetchEmployments() {
       .then(result => {
         return dispatch({
           type: FETCH_EMPLOYMENTS_SUCCESS,
-          userEmployments: result.data
+          userEmployments: result.data.reverse()
         })
       })
       .catch(error => {
