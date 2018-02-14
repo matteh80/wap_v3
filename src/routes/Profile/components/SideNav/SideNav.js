@@ -5,17 +5,29 @@ import Scrollspy from 'react-scrollspy'
 import _ from 'lodash'
 import $ from 'jquery'
 
+const SCROLL_DIR_DOWN = 'down'
+const SCROLL_DIR_UP = 'up'
+
 class SideNav extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      menuItems: menuItems
+      menuItems: menuItems,
+      direction: SCROLL_DIR_DOWN,
+      lastScrollPos: 0
     }
 
     this.setActiveOption = this.setActiveOption.bind(this)
   }
-  componentDidMount() {}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.tempMenuItems !== this.state.tempMenuItems) {
+      this.setState({
+        menuItems: this.state.tempMenuItems
+      })
+    }
+  }
 
   setActiveOption(e) {
     if (!e) return
@@ -23,12 +35,18 @@ class SideNav extends React.Component {
     const newMenuItems = this.state.menuItems.map(
       menuItem =>
         menuItem.id === e.id
-          ? { ...menuItem, isCurrent: true }
-          : { ...menuItem, isCurrent: false }
+          ? { ...menuItem, isCurrent: true, isPrev: null }
+          : menuItem.isCurrent
+            ? { ...menuItem, isCurrent: false, isPrev: true }
+            : { ...menuItem, isCurrent: false, isPrev: null }
     )
 
+    let prevIndex = _.findIndex(newMenuItems, { isPrev: true })
+    let currentIndex = _.findIndex(newMenuItems, { isCurrent: true })
+
     this.setState({
-      menuItems: newMenuItems
+      direction: prevIndex < currentIndex ? SCROLL_DIR_DOWN : SCROLL_DIR_UP,
+      tempMenuItems: newMenuItems
     })
   }
 
@@ -41,9 +59,12 @@ class SideNav extends React.Component {
   }
 
   render() {
-    const { menuItems } = this.state
+    const { menuItems, direction } = this.state
     return (
-      <div className="profile-sidenav" id="profile-sidenav">
+      <div
+        className={classnames('profile-sidenav', direction)}
+        id="profile-sidenav"
+      >
         <Scrollspy
           items={_.map(menuItems, 'id')}
           offset={-80}
@@ -56,6 +77,7 @@ class SideNav extends React.Component {
               id={menuItem.id}
               icon={menuItem.icon}
               isCurrent={menuItem.isCurrent}
+              isPrev={menuItem.isPrev}
               onClick={this.handleClick}
             />
           ))}
@@ -88,6 +110,12 @@ const menuItems = [
     isCurrent: false
   },
   {
+    name: 'Befattningar',
+    id: 'occupations',
+    icon: 'fa-rocket',
+    isCurrent: false
+  },
+  {
     name: 'Språk',
     id: 'languages',
     icon: 'fa-comments',
@@ -103,9 +131,15 @@ class NavItem extends React.Component {
   }
 
   render() {
-    const { name, id, icon, isCurrent } = this.props
+    const { name, id, icon, isCurrent, isPrev } = this.props
     return (
-      <li className={classnames('nav-item', isCurrent && 'is-current')}>
+      <li
+        className={classnames(
+          'nav-item',
+          isCurrent && 'is-current',
+          isPrev && 'is-prev'
+        )}
+      >
         <a href={`#${id}`} onClick={e => this.props.onClick(e, `#${id}`)}>
           <div className="icon">
             <i className={`fa ${icon}`} />

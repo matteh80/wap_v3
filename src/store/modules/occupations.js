@@ -19,7 +19,7 @@ const FETCH_ALLOCCUPATIONS_FAIL = 'wap/occupations/FETCH_ALLOCCUPATIONS_FAIL'
 const EMPTY_STATE = {
   fetchingUserOccupations: false,
   fetchingAllOccupations: false,
-  addingUserOccupation: false,
+  updatingUserOccupations: false,
   userOccupations: null,
   allOccupations: null,
   occupationsError: null
@@ -46,11 +46,11 @@ export default function occupations(state = INITIAL_STATE, action = {}) {
 
     case EDIT_USEROCCUPATIONS_START:
       return Object.assign({}, state, {
-        addingUserOccupation: true
+        updatingUserOccupations: true
       })
     case EDIT_USEROCCUPATIONS_SUCCESS:
       return Object.assign({}, state, {
-        addingUserOccupation: false,
+        updatingUserOccupations: false,
         userOccupations: action.occupations
       })
     case EDIT_USEROCCUPATIONS_FAIL:
@@ -70,7 +70,8 @@ export default function occupations(state = INITIAL_STATE, action = {}) {
     case FETCH_ALLOCCUPATIONS_FAIL:
       return Object.assign({}, state, {
         fetchingAllOccupations: false,
-        occupationsError: action.error
+        occupationsError: action.error,
+        updatingUserOccupations: false
       })
     default:
       return state

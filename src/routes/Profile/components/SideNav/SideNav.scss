@@ -1,8 +1,13 @@
+$menuItemSize: 40px;
+$menuItemIconSize: 18px;
+$menuItemFontSize: 14px;
+$sideNavSize: 250px;
+
 .profile-sidenav {
   position: fixed;
   right: 0;
   top: 300px;
-  width: 250px;
+  width: $sideNavSize;
 
   ul {
     margin: 0;
@@ -13,33 +18,42 @@
   .nav-item {
     display: flex;
     position: relative;
-    right: -190px;
+    right: - ($sideNavSize - $menuItemSize);
     transition: all 250ms ease-in-out;
     background: #fff;
 
     a {
       width: 100%;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     .icon {
       background: $primary;
       color: #fff;
-      height: 60px;
-      width: 60px;
+      height: $menuItemSize;
+      width: $menuItemSize;
       text-align: center;
-      line-height: 60px;
-      font-size: 20px;
+      line-height: $menuItemSize;
+      font-size: $menuItemIconSize;
       float: left;
       box-shadow: inset 0 0 0 $secondary;
       transition: all 250ms;
-
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-out;
     }
     
     .nav-text {
       //float: left;
-      line-height: 60px;
+      line-height: $menuItemSize;
       transition: width 250ms;
-      padding-left: 70px;
+      padding-left: $menuItemSize + 10;
+      font-size: $menuItemFontSize;
+
+
     }
 
     &.is-current {
@@ -47,8 +61,8 @@
 
       .icon {
         //background: $secondary;
-        font-size: 24px;
-        box-shadow: inset -60px 0 0 $secondary;
+        font-size: $menuItemIconSize + 4;
+        //box-shadow: inset -60px 0 0 $secondary;
       }
     }
 
@@ -59,10 +73,43 @@
       }
     }
   }
+
+  &.down {
+    .is-current {
+      .icon {
+        animation-name: navItemIsCurrentDown;
+      }
+    }
+
+    .is-prev {
+      .icon {
+        animation-name: navItemIsCurrentUp;
+        animation-direction: reverse;
+      }
+    }
+  }
+
+  &.up {
+    .is-current {
+      .icon {
+        animation-name: navItemIsCurrentUp;
+      }
+    }
+
+    .is-prev {
+      .icon {
+        animation-name: navItemIsCurrentDown;
+        animation-direction: reverse;
+      }
+    }
+  }
 }
 
-@keyframes navItemIsCurrent {
-  0%   { right: -190px; }
-  70% { right: -180px}
-  100% { right: -190px; }
+@keyframes navItemIsCurrentDown {
+  0%   { box-shadow: inset 0 0 0 $secondary; }
+  100% { box-shadow: inset 0 60px 0 $secondary; }
+}
+@keyframes navItemIsCurrentUp {
+  0%   { box-shadow: inset 0 0 0 $secondary; }
+  100% { box-shadow: inset 0 -60px 0 $secondary; }
 }

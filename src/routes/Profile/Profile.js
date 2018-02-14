@@ -6,6 +6,7 @@ import ProfileProgress from './components/ProfileProgress/ProfileProgress'
 import EmploymentsCard from './components/EmploymentsCard/EmploymentsCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import LanguagesCard from './components/LanguagesCard/LanguagesCard'
+import OccupationsCard from './components/OccupationsCard/OccupationsCard'
 import SideNav from './components/SideNav/SideNav'
 
 class Profile extends React.Component {
@@ -59,6 +60,7 @@ class Profile extends React.Component {
                 <CardBody className="py-5">Test</CardBody>
               </Card>
               <SkillsCard />
+              <OccupationsCard />
               <LanguagesCard />
 
               <Card className="mb-5">
