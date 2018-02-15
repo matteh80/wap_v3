@@ -9,9 +9,13 @@ class StartEndDate extends React.Component {
     super(props)
 
     this.state = {
-      start_date: moment().format('YYYY') + '-01-01',
-      end_date: moment().format('YYYY') + '-01-31',
-      current: false
+      start_date: props.defaultValues
+        ? moment(props.defaultValues[0]).format('YYYY-MM-DD')
+        : moment().format('YYYY') + '-01-01',
+      end_date: props.defaultValues
+        ? moment(props.defaultValues[1]).format('YYYY-MM-DD')
+        : moment().format('YYYY') + '-01-31',
+      current: props.defaultValues ? props.defaultValues[2] : false
     }
 
     moment.locale('sv-SE')
@@ -70,7 +74,7 @@ class StartEndDate extends React.Component {
 
   render() {
     const { start_date, end_date, current } = this.state
-
+    console.log(moment(start_date).month())
     return (
       <AvGroup className="col-12 col-md-6 start-end-date">
         <Row>
@@ -85,14 +89,24 @@ class StartEndDate extends React.Component {
                     className="month"
                     onChange={this.handleSelectChange}
                   >
-                    {moment.months().map(month => <option>{month}</option>)}
+                    {moment
+                      .months()
+                      .map((month, index) => (
+                        <option selected={index === moment(start_date).month()}>
+                          {month}
+                        </option>
+                      ))}
                   </Input>
                   <Input
                     type="select"
                     name="start_date_year"
                     onChange={this.handleSelectChange}
                   >
-                    {this.getYearArray().map(month => <option>{month}</option>)}
+                    {this.getYearArray().map(year => (
+                      <option selected={year === moment(start_date).year()}>
+                        {year}
+                      </option>
+                    ))}
                   </Input>
                   <AvField type="hidden" name="start_date" value={start_date} />
                 </div>
@@ -107,7 +121,17 @@ class StartEndDate extends React.Component {
                     disabled={current}
                     onChange={this.handleSelectChange}
                   >
-                    {moment.months().map(month => <option>{month}</option>)}
+                    {moment
+                      .months()
+                      .map((month, index) => (
+                        <option
+                          selected={
+                            !current && index === moment(end_date).month()
+                          }
+                        >
+                          {month}
+                        </option>
+                      ))}
                   </Input>
                   <Input
                     type="select"
@@ -115,7 +139,13 @@ class StartEndDate extends React.Component {
                     disabled={current}
                     onChange={this.handleSelectChange}
                   >
-                    {this.getYearArray().map(month => <option>{month}</option>)}
+                    {this.getYearArray().map(year => (
+                      <option
+                        selected={!current && year === moment(end_date).year()}
+                      >
+                        {year}
+                      </option>
+                    ))}
                   </Input>
                   <AvField type="hidden" name="end_date" value={end_date} />
                 </div>
@@ -127,6 +157,7 @@ class StartEndDate extends React.Component {
               type="checkbox"
               id="current"
               onChange={this.handleCurrentChange}
+              defaultChecked={current}
             />{' '}
             Nuvarande
           </Col>

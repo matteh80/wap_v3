@@ -26,16 +26,17 @@ const config = {
 }
 
 const reducer = persistCombineReducers(config, appReducer)
+// export default reducer
 // purgeStoredState(config)
 
 export const rootReducer = (state, action) => {
   // purgeStoredState(config)
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
-    purgeStoredState(config)
-    state = {
-      routing: state.routing
-    }
+    // purgeStoredState(config)
+    // state = {
+    //   routing: state.routing
+    // }
   }
   return reducer(state, action)
 }

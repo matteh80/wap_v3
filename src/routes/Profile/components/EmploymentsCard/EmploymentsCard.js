@@ -83,6 +83,7 @@ class EmploymentsCard extends React.Component {
               <EmploymentItem
                 employment={employment}
                 cbEditMode={this.cbEditMode}
+                occupations={allOccupations}
               />
             ))}
         </div>
@@ -105,7 +106,8 @@ class EmploymentItem extends React.Component {
 
     this.state = {
       editMode: false,
-      addMode: false
+      addMode: false,
+      employment: props.employment
     }
 
     this.toggleEditMode = this.toggleEditMode.bind(this)
@@ -144,15 +146,20 @@ class EmploymentItem extends React.Component {
   }
 
   render() {
-    const { employment } = this.props
+    const { occupations } = this.props
+    const { editMode, employment } = this.state
     const { start_date, end_date, current } = employment
-    const { editMode } = this.state
 
     return (
-      <Row className="employment-item mb-3" style={{ zIndex: editMode && 2 }}>
+      <Row
+        className={classnames('employment-item mb-3', editMode && 'editMode')}
+        style={{ zIndex: editMode && 2 }}
+      >
         <Col xs={12} className="d-flex flex-row">
           <div className="left mr-3">
-            <i className="fa fa-briefcase" />
+            <div
+              className={classnames('employment-icon', editMode && 'edit')}
+            />
           </div>
           <div className="right d-flex align-items-center w-100">
             <Row>
@@ -184,22 +191,14 @@ class EmploymentItem extends React.Component {
               </div>
             </div>
           )}
-          {editMode && (
-            <div className="employment-buttons edit-remove-buttons--edit-mode edit-remove-buttons">
-              <div
-                className="employment-button edit-remove-button done"
-                onClick={this.updateEmployments}
-              >
-                <i className="fa fa-check ml-1" />
-              </div>
-              <div
-                className="employment-button edit-remove-button revert"
-                onClick={this.revertChanges}
-              >
-                <i className="fa fa-times ml-1" />
-              </div>
-            </div>
-          )}
+        </Col>
+        <Col xs={12}>
+          <EmploymentsForm
+            employment={employment}
+            isOpen={editMode}
+            cbRevert={this.revertChanges}
+            occupations={occupations}
+          />
         </Col>
       </Row>
     )
@@ -215,9 +214,11 @@ class EmploymentsForm extends React.Component {
     super(props)
 
     this.state = {
-      employment: {},
+      employment: props.employment ? props.employment : null,
       occupationValue: null
     }
+
+    this.abort = this.abort.bind(this)
   }
 
   handleDateChange(start_date, end_date, current) {
@@ -232,9 +233,7 @@ class EmploymentsForm extends React.Component {
 
   setUpOccupations() {
     let { occupations } = this.props
-    let { userOccupations } = this.props
     let optiondata = []
-    let index = -1
 
     $.each(occupations, function(i, categoryitem) {
       $.each(categoryitem.occupations, function(x, item) {
@@ -257,14 +256,23 @@ class EmploymentsForm extends React.Component {
     return optiondata
   }
 
+  abort(e) {
+    e.preventDefault()
+
+    this.props.cbRevert()
+  }
+
   render() {
-    const { isOpen, cbAddMode } = this.props
-    const { occupationValue } = this.state
+    const { isOpen, cbAddMode, cbRevert } = this.props
+    const { occupationValue, employment } = this.state
+    const defaultDateValues = employment
+      ? [employment.start_date, employment.end_date, employment.current]
+      : null
 
     return (
       <Collapse isOpen={isOpen}>
         <div className="employments-form mb-3 py-3">
-          <AvForm className="row">
+          <AvForm className="row" model={employment ? employment : null}>
             <AvGroup className="col-12 col-md-6">
               <AvField
                 type="text"
@@ -294,13 +302,26 @@ class EmploymentsForm extends React.Component {
                 placeholder="Välj en befattning"
               />
             </AvGroup>
-            <StartEndDate withCurrent onChange={this.handleDateChange} />
+            <StartEndDate
+              withCurrent
+              onChange={this.handleDateChange}
+              defaultValues={defaultDateValues}
+            />
             <Col xs={12}>
-              <Button>Lägg till</Button>
+              <Button>{employment ? 'Uppdatera' : 'Lägg till'}</Button>
+              {employment && (
+                <Button className="ml-3" color="primary" onClick={this.abort}>
+                  Avbryt
+                </Button>
+              )}
             </Col>
           </AvForm>
         </div>
       </Collapse>
     )
   }
+}
+
+EmploymentsForm.propTypes = {
+  employment: PropTypes.object
 }

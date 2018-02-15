@@ -62,7 +62,7 @@ class SideNav extends React.Component {
     const { menuItems, direction } = this.state
     return (
       <div
-        className={classnames('profile-sidenav', direction)}
+        className={classnames('profile-sidenav d-none d-md-block', direction)}
         id="profile-sidenav"
       >
         <Scrollspy
@@ -112,7 +112,7 @@ const menuItems = [
   {
     name: 'Befattningar',
     id: 'occupations',
-    icon: 'fa-rocket',
+    icon: 'fa-tags',
     isCurrent: false
   },
   {

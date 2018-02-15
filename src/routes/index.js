@@ -13,7 +13,7 @@ const locationHelper = locationHelperBuilder({})
 const userIsAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
   authenticatedSelector: state =>
-    state.auth.token !== null && state.profile.id !== null,
+    state.auth.token !== null && state.profile !== null,
   wrapperDisplayName: 'UserIsAuthenticated'
 })
 

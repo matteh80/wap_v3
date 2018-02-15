@@ -55,7 +55,8 @@ class Header extends React.Component {
     })
   }
 
-  handleLogout() {
+  handleLogout(e) {
+    e.preventDefault()
     let { dispatch } = this.props
     dispatch(logout())
   }
@@ -78,7 +79,10 @@ class Header extends React.Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/logout/" onClick={this.handleLogout}>
+                  <NavLink
+                    href="/login?logout=true"
+                    onClick={this.handleLogout}
+                  >
                     Logga ut
                   </NavLink>
                 </NavItem>

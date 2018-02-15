@@ -269,11 +269,6 @@ class OccupationsForm extends React.Component {
   render() {
     let { value, occupations, experience, options } = this.state
     const { isOpen, cbAddMode } = this.props
-    const inputProps = {
-      placeholder: 'Skriv in en kompetens',
-      value,
-      onChange: this.onChange
-    }
 
     return (
       <Collapse isOpen={isOpen}>
@@ -286,7 +281,7 @@ class OccupationsForm extends React.Component {
                 value={value}
                 onChange={value => this.setState({ value: value })}
                 options={occupations}
-                placeholder="Välj en kompetens"
+                placeholder="Välj en befattning"
               />
             </Col>
             <Col xs={12} md={6}>
