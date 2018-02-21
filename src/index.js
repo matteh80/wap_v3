@@ -11,7 +11,7 @@ const { persistor, store, history } = configureStore()
 
 ReactDOM.render(
   <Provider store={store}>
-    <PersistGate persistor={persistor}>
+    <PersistGate loading={null} persistor={persistor}>
       <App history={history} />
     </PersistGate>
   </Provider>,

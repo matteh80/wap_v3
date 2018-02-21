@@ -37,9 +37,9 @@ export default function auth(state = INITIAL_STATE, action = {}) {
         loginError: action.error
       })
     case LOGOUT:
-      return {
-        token: null
-      }
+      return Object.assign({}, state, {
+        token: ''
+      })
     case REGISTER_START:
       return Object.assign({}, state, {
         registering: true
@@ -115,8 +115,10 @@ export function socialLogin(data) {
 }
 
 export function logout() {
-  return {
-    type: LOGOUT
+  return dispatch => {
+    return dispatch({
+      type: LOGOUT
+    })
   }
 }
 
