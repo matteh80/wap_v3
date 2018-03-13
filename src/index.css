@@ -1,13 +1,12 @@
-@import url('https://use.typekit.net/ytn6jcj.css');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 /*!
  * Bootstrap v4.0.0 (https://getbootstrap.com)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url('https://use.typekit.net/ytn6jcj.css');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 @import url(~react-select/dist/react-select.css);
-@import url(~react-datetime/css/react-datetime.css);
 @import url(~react-circular-progressbar/dist/styles.css);
 :root {
   --blue: #007bff;
@@ -393,7 +392,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: 'futura-pt', sans-serif;
+  font-family: inherit;
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
@@ -5175,6 +5174,7 @@ button.close {
   bottom: 0;
   border-top-color: rgba(0, 0, 0, 0.25);
 }
+
 .bs-popover-top .arrow::after,
 .bs-popover-auto[x-placement^='top'] .arrow::after {
   bottom: 1px;
@@ -5203,6 +5203,7 @@ button.close {
   left: 0;
   border-right-color: rgba(0, 0, 0, 0.25);
 }
+
 .bs-popover-right .arrow::after,
 .bs-popover-auto[x-placement^='right'] .arrow::after {
   left: 1px;
@@ -5228,6 +5229,7 @@ button.close {
   top: 0;
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
+
 .bs-popover-bottom .arrow::after,
 .bs-popover-auto[x-placement^='bottom'] .arrow::after {
   top: 1px;
@@ -5267,6 +5269,7 @@ button.close {
   right: 0;
   border-left-color: rgba(0, 0, 0, 0.25);
 }
+
 .bs-popover-left .arrow::after,
 .bs-popover-auto[x-placement^='left'] .arrow::after {
   right: 1px;
@@ -8178,59 +8181,37 @@ label {
   margin-bottom: 0;
 }
 
-input[type='radio'],
 input[type='checkbox'] {
-  margin-right: 10px;
-  margin-left: 0;
-  position: relative !important;
+  display: none;
 }
 
-input[type='radio']:before,
-input[type='checkbox']:before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: -2px;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 24px;
-  margin: -1px 6px 0 0;
-  vertical-align: middle;
-  background-color: #fff;
+/* to hide the checkbox itself */
+input[type='checkbox'] + label:before {
+  display: none;
+  font-family: 'Font Awesome 5 Solid';
+  content: '\f058';
 }
 
-input[type='radio']:after,
-input[type='checkbox']:after {
-  content: '';
-  position: relative;
-  top: -6px;
-  left: -2px;
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 24px;
-  margin: -1px 6px 0 0;
-  vertical-align: middle;
-  background-color: lightgray;
-  transition: transform 500ms, background-color 250ms ease 250ms;
+input[type='checkbox'] + label:before {
+  content: '\f111';
 }
 
-input[type='radio']:checked:after,
-input[type='checkbox']:checked:after {
-  background-color: #547581;
-  transform: rotateY(360deg);
-  text-align: center;
-  content: '\f00c';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  color: #fff;
-  margin: 0 auto;
-  display: block;
-  font-size: 1.3rem;
-  line-height: 24px;
+/* unchecked icon */
+input[type='checkbox'] + label:before {
+  letter-spacing: 10px;
 }
 
+/* space between checkbox and label */
+input[type='checkbox']:checked + label:before {
+  content: '\f058';
+}
+
+/* checked icon */
+input[type='checkbox']:checked + label:before {
+  letter-spacing: 5px;
+}
+
+/* allow space for check mark */
 .Select-menu-outer {
   z-index: 2 !important;
 }
@@ -9155,14 +9136,14 @@ header.header .rc-slider .rc-slider-dot {
   padding-top: 20px;
 }
 .employment-item .left {
-  width: 60px;
-  min-width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  line-height: 50px;
   background: #11ada7;
   color: #fff;
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
 }
 .employment-item .left .employment-icon {
   width: 100%;
@@ -9171,9 +9152,9 @@ header.header .rc-slider .rc-slider-dot {
   transition: all 500ms;
 }
 .employment-item .left .employment-icon:after {
+  display: none;
+  font-family: 'Font Awesome 5 Solid';
   content: '\f0b1';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
 }
 .employment-item .left .employment-icon.edit:after {
   content: '\f303';

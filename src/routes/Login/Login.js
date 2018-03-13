@@ -25,17 +25,18 @@ class Login extends React.Component {
   handleValidSubmit(event, values) {
     this.setState({ loading: true })
 
-    let fnArray = [fetchProfile()]
+    // let fnArray = [fetchProfile()]
 
     let { dispatch } = this.props
     dispatch(login(values.email, values.password)).then(() => {
-      fnArray.map((fn, index) => {
-        dispatch(fn).then(() => {
-          // this.setState({
-          //   loadingStep: this.state.loadingStep + 1
-          // })
-        })
-      })
+      // fnArray.map((fn, index) => {
+      //   dispatch(fn).then(() => {
+      //     // this.setState({
+      //     //   loadingStep: this.state.loadingStep + 1
+      //     // })
+      //   })
+      // })
+      dispatch(fetchProfile())
     })
   }
 

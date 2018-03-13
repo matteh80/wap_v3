@@ -8,7 +8,7 @@ import connectedAuthWrapper from 'redux-auth-wrapper/connectedAuthWrapper'
 const locationHelper = locationHelperBuilder({})
 
 const userIsAuthenticatedDefaults = {
-  authenticatedSelector: state => state.auth.token !== '',
+  authenticatedSelector: state => state.auth.token !== null,
   authenticatingSelector: state => state.auth.loggingIn,
   wrapperDisplayName: 'UserIsAuthenticated'
 }
@@ -33,7 +33,7 @@ export const userIsAdminRedir = connectedRouterRedirect({
 
 const userIsNotAuthenticatedDefaults = {
   // Want to redirect the user when they are done loading and authenticated
-  authenticatedSelector: state => state.auth.token === '',
+  authenticatedSelector: state => state.auth.token === null,
   wrapperDisplayName: 'UserIsNotAuthenticated'
 }
 

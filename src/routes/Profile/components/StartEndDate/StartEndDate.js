@@ -74,7 +74,7 @@ class StartEndDate extends React.Component {
 
   render() {
     const { start_date, end_date, current } = this.state
-    console.log(moment(start_date).month())
+
     return (
       <AvGroup className="col-12 col-md-6 start-end-date">
         <Row>
@@ -88,22 +88,22 @@ class StartEndDate extends React.Component {
                     name="start_date_month"
                     className="month"
                     onChange={this.handleSelectChange}
+                    defaultValue={moment(start_date).format('MMMM')}
                   >
-                    {moment
-                      .months()
-                      .map((month, index) => (
-                        <option selected={index === moment(start_date).month()}>
-                          {month}
-                        </option>
-                      ))}
+                    {moment.months().map((month, index) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
                   </Input>
                   <Input
                     type="select"
                     name="start_date_year"
                     onChange={this.handleSelectChange}
+                    defaultValue={moment(start_date).year()}
                   >
                     {this.getYearArray().map(year => (
-                      <option selected={year === moment(start_date).year()}>
+                      <option key={year} value={year}>
                         {year}
                       </option>
                     ))}
@@ -120,29 +120,23 @@ class StartEndDate extends React.Component {
                     className="month"
                     disabled={current}
                     onChange={this.handleSelectChange}
+                    defaultValue={moment(end_date).format('MMMM')}
                   >
-                    {moment
-                      .months()
-                      .map((month, index) => (
-                        <option
-                          selected={
-                            !current && index === moment(end_date).month()
-                          }
-                        >
-                          {month}
-                        </option>
-                      ))}
+                    {moment.months().map((month, index) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
                   </Input>
                   <Input
                     type="select"
                     name="end_date_year"
                     disabled={current}
                     onChange={this.handleSelectChange}
+                    defaultValue={moment(end_date).year()}
                   >
                     {this.getYearArray().map(year => (
-                      <option
-                        selected={!current && year === moment(end_date).year()}
-                      >
+                      <option key={year} value={year}>
                         {year}
                       </option>
                     ))}
@@ -155,11 +149,11 @@ class StartEndDate extends React.Component {
           <Col xs={12} className="mt-2">
             <Input
               type="checkbox"
-              id="current"
+              id={start_date + end_date}
               onChange={this.handleCurrentChange}
               defaultChecked={current}
             />{' '}
-            Nuvarande
+            <label for={start_date + end_date}>Nuvarande</label>
           </Col>
         </Row>
       </AvGroup>

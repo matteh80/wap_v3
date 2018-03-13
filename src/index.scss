@@ -1,10 +1,8 @@
+@import '../custom-bootstrap/index';
 @import url("https://use.typekit.net/ytn6jcj.css");
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 
-@import '../custom-bootstrap/index';
 @import '~react-select/dist/react-select.css';
-@import '~react-datetime/css/react-datetime.css';
-
 @import './styles/global';
 @import './styles/form';
 @import './styles/slider';

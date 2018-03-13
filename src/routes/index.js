@@ -30,7 +30,7 @@ const routes = (
       path="/account"
       component={Account}
     />
-    {/*<Redirect path="/" to="/profile" />*/}
+    <Redirect path="/" to="/profile" />
   </Switch>
 )
 

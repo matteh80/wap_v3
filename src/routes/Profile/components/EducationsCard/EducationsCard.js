@@ -7,8 +7,8 @@ class EducationsCard extends React.Component {
       <ProfileEditableCard
         id="educations"
         cardTitle="Utbildning"
-        cbAddMode={null}
-        loading={null}
+        cbAddMode={undefined}
+        loading={false}
       />
     )
   }

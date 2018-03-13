@@ -1,4 +1,4 @@
-$employmentIconSize: 60px;
+$employmentIconSize: 50px;
 
 .employment-item {
   position: relative;
@@ -18,7 +18,7 @@ $employmentIconSize: 60px;
     background: $secondary;
     color: #fff;
     text-align: center;
-    font-size: 30px;
+    font-size: $employmentIconSize / 2;
 
     .employment-icon {
       width: 100%;
@@ -27,9 +27,9 @@ $employmentIconSize: 60px;
       transition: all 500ms;
 
       &:after {
-        content: '\f0b1';
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
+        display: none;
+        font-family: "Font Awesome 5 Solid";
+        content: "\f0b1";
       }
 
       &.edit {

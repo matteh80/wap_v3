@@ -38,7 +38,7 @@ export default function auth(state = INITIAL_STATE, action = {}) {
       })
     case LOGOUT:
       return Object.assign({}, state, {
-        token: ''
+        token: null
       })
     case REGISTER_START:
       return Object.assign({}, state, {

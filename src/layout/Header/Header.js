@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import {
   Container,
   Row,
@@ -11,7 +11,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   Progress
 } from 'reactstrap'
 import $ from 'jquery'
@@ -74,17 +73,19 @@ class Header extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="https://github.com/reactstrap/reactstrap">
+                  <NavLink to="/account" className="nav-link">
                     Konto
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink
-                    href="/login?logout=true"
-                    onClick={this.handleLogout}
-                  >
-                    Logga ut
+                  <NavLink to="/profile" className="nav-link">
+                    Profil
                   </NavLink>
+                </NavItem>
+                <NavItem>
+                  <div className="nav-link" onClick={this.handleLogout}>
+                    Logga ut
+                  </div>
                 </NavItem>
               </Nav>
             </Collapse>

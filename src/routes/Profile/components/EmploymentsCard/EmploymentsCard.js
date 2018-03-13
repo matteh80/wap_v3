@@ -81,6 +81,7 @@ class EmploymentsCard extends React.Component {
           {userEmployments &&
             userEmployments.map(employment => (
               <EmploymentItem
+                key={employment.id}
                 employment={employment}
                 cbEditMode={this.cbEditMode}
                 occupations={allOccupations}
