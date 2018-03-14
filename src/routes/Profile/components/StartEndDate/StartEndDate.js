@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import 'moment/min/locales'
-import { Row, Col, Input } from 'reactstrap'
+import { Row, Col, Input, Label } from 'reactstrap'
 import { AvGroup, AvField } from 'availity-reactstrap-validation'
 
 class StartEndDate extends React.Component {
@@ -81,7 +81,7 @@ class StartEndDate extends React.Component {
           <Col xs={12}>
             <div className="d-flex flex-row">
               <div className="d-flex flex-column mr-3">
-                <label>Från</label>
+                <Label>Från</Label>
                 <div className="d-flex flex-row">
                   <Input
                     type="select"
@@ -112,7 +112,7 @@ class StartEndDate extends React.Component {
                 </div>
               </div>
               <div className="d-flex flex-column">
-                <label>Till</label>
+                <Label>Till</Label>
                 <div className="d-flex flex-row">
                   <Input
                     type="select"
@@ -153,7 +153,7 @@ class StartEndDate extends React.Component {
               onChange={this.handleCurrentChange}
               defaultChecked={current}
             />{' '}
-            <label for={start_date + end_date}>Nuvarande</label>
+            <Label for={start_date + end_date}>Nuvarande</Label>
           </Col>
         </Row>
       </AvGroup>
