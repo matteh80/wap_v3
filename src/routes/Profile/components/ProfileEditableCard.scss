@@ -1,6 +1,5 @@
 .profile-card {
   position: relative;
-  overflow: hidden;
   //padding-top: 60px;
   
   //.card-title {
@@ -69,7 +68,7 @@
     cursor: pointer;
     transition: all 250ms;
 
-    &:hover {
+    &:not(.fetching):hover {
       background: $primary;
       color: #fff;
     }

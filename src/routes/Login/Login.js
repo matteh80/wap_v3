@@ -9,6 +9,10 @@ import { login } from '../../store/modules/auth'
 import { fetchProfile } from '../../store/modules/profile'
 import login_bg from './login_bg.jpg'
 import moln_flat from './moln_flat.jpg'
+import { fetchEmployments } from '../../store/modules/employments'
+import { fetchUserSkills } from '../../store/modules/skills'
+import { fetchUserLanguages } from '../../store/modules/languages'
+import { fetchUserLocations } from '../../store/modules/locations'
 
 class Login extends React.Component {
   constructor(props) {
@@ -25,18 +29,24 @@ class Login extends React.Component {
   handleValidSubmit(event, values) {
     this.setState({ loading: true })
 
-    // let fnArray = [fetchProfile()]
+    // let fnArray = [
+    //   fetchProfile(),
+    //   fetchEmployments(),
+    //   fetchUserSkills(),
+    //   fetchUserLanguages(),
+    //   fetchUserLocations()
+    // ]
 
     let { dispatch } = this.props
     dispatch(login(values.email, values.password)).then(() => {
       // fnArray.map((fn, index) => {
       //   dispatch(fn).then(() => {
-      //     // this.setState({
-      //     //   loadingStep: this.state.loadingStep + 1
-      //     // })
+      //     this.setState({
+      //       loadingStep: this.state.loadingStep + 1
+      //     })
       //   })
       // })
-      dispatch(fetchProfile())
+      // dispatch(fetchProfile())
     })
   }
 

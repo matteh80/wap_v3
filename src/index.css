@@ -8829,6 +8829,7 @@ header.header .rc-slider .rc-slider-dot {
   right: -210px;
   transition: all 250ms ease-in-out;
   background: #fff;
+  box-shadow: -2px 0 0 #e8003b;
 }
 .profile-sidenav .nav-item a {
   width: 100%;
@@ -8845,7 +8846,7 @@ header.header .rc-slider .rc-slider-dot {
   line-height: 40px;
   font-size: 18px;
   float: left;
-  box-shadow: inset 0 0 0 #11ada7;
+  box-shadow: inset 0 0 0 #e8003b;
   transition: all 250ms;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
@@ -8862,6 +8863,9 @@ header.header .rc-slider .rc-slider-dot {
 }
 .profile-sidenav .nav-item:hover {
   right: 0;
+}
+.profile-sidenav .nav-item.is-done {
+  box-shadow: -2px 0 0 #547581;
 }
 .profile-sidenav.down .is-current .icon {
   animation-name: navItemIsCurrentDown;
@@ -8898,7 +8902,6 @@ header.header .rc-slider .rc-slider-dot {
 
 .profile-card {
   position: relative;
-  overflow: hidden;
 }
 @media (min-width: 768px) {
   .profile-card .card-body {
@@ -8941,7 +8944,7 @@ header.header .rc-slider .rc-slider-dot {
   cursor: pointer;
   transition: all 250ms;
 }
-.profile-card .addNew:hover {
+.profile-card .addNew:not(.fetching):hover {
   background: #547581;
   color: #fff;
 }

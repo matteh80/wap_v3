@@ -2,7 +2,7 @@ import { routerReducer } from 'react-router-redux'
 import storage from 'redux-persist/es/storage'
 import { persistCombineReducers, purgeStoredState } from 'redux-persist'
 import auth from './auth'
-import profile from './profile'
+import profile, { setProfileProgress } from './profile'
 import skills from './skills'
 import languages from './languages'
 import occupations from './occupations'
@@ -34,10 +34,11 @@ export const rootReducer = (state, action) => {
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
     // purgeStoredState(config)
-    // state = {
-    //   routing: state.routing
-    // }
+    state = {
+      routing: state.routing
+    }
   }
+
   return reducer(state, action)
 }
 

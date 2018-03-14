@@ -28,16 +28,24 @@ class ProfileEditableCard extends React.Component {
 
   render() {
     let { addMode } = this.state
-    const { children, cardTitle, loading, id } = this.props
+    const { children, cardTitle, loading, fetching, id } = this.props
 
     return (
       <Card className="profile-card mb-5" id={id}>
         <div className={classnames('loading-progress', loading && 'visible')} />
         <div
-          className={classnames('addNew', addMode && 'addMode')}
-          onClick={this.handleAddNew}
+          className={classnames(
+            'addNew',
+            addMode && 'addMode',
+            fetching && 'fetching'
+          )}
+          onClick={!fetching ? this.handleAddNew : undefined}
         >
-          <i className="fa fa-plus" />
+          {fetching ? (
+            <i className="fas fa-circle-notch fa-spin" />
+          ) : (
+            <i className="fa fa-plus" />
+          )}
         </div>
         <CardBody>
           <Row>
@@ -57,5 +65,6 @@ export default ProfileEditableCard
 ProfileEditableCard.propTypes = {
   cardTitle: PropTypes.string,
   cbAddMode: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  fetching: PropTypes.bool
 }

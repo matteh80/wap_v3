@@ -3,15 +3,8 @@ import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './modules/reducer'
-import {
-  persistStore,
-  persistCombineReducers,
-  purgeStoredState
-} from 'redux-persist'
-import storage from 'redux-persist/es/storage'
+import { persistStore } from 'redux-persist'
 import setListener from './axios.config'
-
-let store
 
 export const history = createHistory()
 
@@ -43,8 +36,9 @@ export default function configureStore() {
     ...enhancers
   )
 
-  store = createStore(rootReducer, composedEnhancers)
+  const store = createStore(rootReducer, composedEnhancers)
   setListener(store)
+
   let persistor = persistStore(store)
 
   return { persistor, store, history }

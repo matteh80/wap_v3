@@ -9,16 +9,13 @@ class ProfileProgress extends React.Component {
     super(props)
 
     this.state = {
-      scrolled: false,
-      progress: 0
+      scrolled: false
     }
   }
 
   componentDidMount() {
     let _this = this
     let $window = $(window)
-    let $wrapper = $('.profile-progress--wrapper')
-    let $profilePicture = $('.profile-progress--wrapper .profile-picture')
 
     $window.scroll(function() {
       if ($window.scrollTop() > 180) {
@@ -33,20 +30,9 @@ class ProfileProgress extends React.Component {
     })
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.scrolled && this.state.scrolled) {
-      let _this = this
-      setTimeout(function() {
-        _this.setState({
-          progress: 60
-        })
-      }, 500)
-    }
-  }
-
   render() {
-    let { profile } = this.props
-    let { scrolled, progress } = this.state
+    let { scrolled } = this.state
+    const { profileId, progressPercent } = this.props
 
     return (
       <div
@@ -58,14 +44,14 @@ class ProfileProgress extends React.Component {
         <img
           src={
             'https://api.wapcard.se/api/v1/profiles/' +
-            profile.id +
+            profileId +
             '/picture/500'
           }
           className="img-fluid profile-picture"
         />
         <div className="progress-circle">
           <CircularProgressbar
-            percentage={progress}
+            percentage={progressPercent}
             initialAnimation
             textForPercentage={null}
             strokeWidth={10}
@@ -77,7 +63,8 @@ class ProfileProgress extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  profileId: state.profile.id,
+  progressPercent: state.profile.progress.progressPercent
 })
 
 export default connect(mapStateToProps)(ProfileProgress)

@@ -9,6 +9,7 @@ import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 import OccupationsCard from './components/OccupationsCard/OccupationsCard'
 import SideNav from './components/SideNav/SideNav'
 import EducationsCard from './components/EducationsCard/EducationsCard'
+import { setProfileProgress } from '../../store/modules/profile'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -17,8 +18,13 @@ class Profile extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.props.dispatch(setProfileProgress())
+    }
+  }
+
   render() {
-    let { profile } = this.props
     return (
       <div>
         <SideNav />
@@ -62,7 +68,10 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  profile: state.profile
+  userEmployments: state.employments.userEmployments,
+  userSkills: state.skills.userSkills,
+  userLanguages: state.languages.userLanguages,
+  userOccupations: state.occupations.userOccupations
 })
 
 export default connect(mapStateToProps)(Profile)

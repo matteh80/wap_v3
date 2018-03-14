@@ -57,13 +57,19 @@ class EmploymentsCard extends React.Component {
 
   render() {
     let { addMode, employmentsInEditMode } = this.state
-    let { updatingEmployments, userEmployments, allOccupations } = this.props
+    let {
+      updatingEmployments,
+      fetchingEmployments,
+      userEmployments,
+      allOccupations
+    } = this.props
     return (
       <ProfileEditableCard
         id="employments"
         cardTitle="Anställningar"
         cbAddMode={this.cbAddMode}
         loading={updatingEmployments}
+        fetching={fetchingEmployments}
       >
         <EmploymentsForm
           isOpen={addMode}
@@ -96,6 +102,7 @@ class EmploymentsCard extends React.Component {
 const mapStateToProps = state => ({
   userEmployments: state.employments.userEmployments,
   updatingEmployments: state.employments.updatingEmployments,
+  fetchingEmployments: state.employments.fetchingEmployments,
   allOccupations: state.occupations.allOccupations
 })
 

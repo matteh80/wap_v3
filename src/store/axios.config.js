@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { setProfileProgress } from './modules/profile'
 
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
@@ -26,6 +27,17 @@ instance.interceptors.request.use(config => {
   }
   return config
 })
+
+// instance.interceptors.response.use(
+//   response => {
+//     dispatch(setProfileProgress())
+//     return response
+//   },
+//   error => {
+//     console.log(`error ${error}`)
+//     return Promise.reject(error)
+//   }
+// )
 
 export const apiClient = instance
 

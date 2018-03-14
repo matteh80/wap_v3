@@ -10,13 +10,13 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  Progress
+  NavItem
 } from 'reactstrap'
 import $ from 'jquery'
 import { logout } from '../../store/modules/auth'
 import headerLogo from './headerLogo.png'
 import Slider from 'rc-slider'
+import _ from 'lodash'
 
 class Header extends React.Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class Header extends React.Component {
   }
 
   render() {
-    let { profile } = this.props
+    let { profile, progress } = this.props
     return (
       <header className="header">
         <Navbar color="faded" dark expand="lg">
@@ -102,7 +102,13 @@ class Header extends React.Component {
                 {/*<Progress value={50} />*/}
                 <Row>
                   <Col xs={12} md={6}>
-                    <Slider min={1} max={10} dots value={6} disabled={true} />
+                    <Slider
+                      min={0}
+                      max={_.size(progress.items)}
+                      dots
+                      value={progress.doneItems.length}
+                      disabled={true}
+                    />
                   </Col>
                 </Row>
               </Col>
@@ -116,7 +122,8 @@ class Header extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  progress: state.profile.progress
 })
 
 export default withRouter(connect(mapStateToProps)(Header))

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { apiClient } from '../axios.config'
+import { fetchProfile } from './profile'
 
 const LOGIN_START = 'wap/auth/LOGIN_START'
 const LOGIN_SUCCESS = 'wap/auth/LOGIN_SUCCESS'
@@ -74,9 +75,11 @@ export function login(email, password) {
           Authorization: 'Token ' + result.data.token
         }
 
-        return dispatch({
-          type: LOGIN_SUCCESS,
-          token: result.data.token
+        return dispatch(fetchProfile()).then(() => {
+          return dispatch({
+            type: LOGIN_SUCCESS,
+            token: result.data.token
+          })
         })
       })
       .catch(error => {

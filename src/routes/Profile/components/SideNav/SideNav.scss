@@ -21,6 +21,7 @@ $sideNavSize: 250px;
     right: - ($sideNavSize - $menuItemSize);
     transition: all 250ms ease-in-out;
     background: #fff;
+    box-shadow: -2px 0 0 $accent;
 
     a {
       width: 100%;
@@ -39,7 +40,7 @@ $sideNavSize: 250px;
       line-height: $menuItemSize;
       font-size: $menuItemIconSize;
       float: left;
-      box-shadow: inset 0 0 0 $secondary;
+      box-shadow: inset 0 0 0 $accent;
       transition: all 250ms;
       animation-duration: .5s;
       animation-fill-mode: forwards;
@@ -71,6 +72,10 @@ $sideNavSize: 250px;
       .nav-text {
 
       }
+    }
+
+    &.is-done {
+      box-shadow: -2px 0 0 $primary;
     }
   }
 

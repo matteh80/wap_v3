@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import Scrollspy from 'react-scrollspy'
 import _ from 'lodash'
 import $ from 'jquery'
+import { connect } from 'react-redux'
 
 const SCROLL_DIR_DOWN = 'down'
 const SCROLL_DIR_UP = 'up'
@@ -13,7 +14,7 @@ class SideNav extends React.Component {
     super(props)
 
     this.state = {
-      menuItems: menuItems,
+      menuItems: _.values(props.items),
       direction: SCROLL_DIR_DOWN,
       lastScrollPos: 0
     }
@@ -77,6 +78,7 @@ class SideNav extends React.Component {
               name={menuItem.name}
               id={menuItem.id}
               icon={menuItem.icon}
+              isDone={menuItem.done}
               isCurrent={menuItem.isCurrent}
               isPrev={menuItem.isPrev}
               onClick={this.handleClick}
@@ -88,41 +90,44 @@ class SideNav extends React.Component {
   }
 }
 
-export default SideNav
+const mapStateToProps = state => ({
+  items: state.profile.progress.items
+})
 
-const menuItems = [
-  // { name: 'Profil', id: 'profile', icon: 'fa-user' },
-  {
-    name: 'Anställningar',
-    id: 'employments',
-    icon: 'fa-briefcase',
-    isCurrent: false
-  },
-  {
-    name: 'Utbildningar',
-    id: 'educations',
-    icon: 'fa-graduation-cap',
-    isCurrent: false
-  },
-  {
-    name: 'Kompetenser',
-    id: 'skills',
-    icon: 'fa-rocket',
-    isCurrent: false
-  },
-  {
-    name: 'Befattningar',
-    id: 'occupations',
-    icon: 'fa-tags',
-    isCurrent: false
-  },
-  {
-    name: 'Språk',
-    id: 'languages',
-    icon: 'fa-comments',
-    isCurrent: false
-  }
-]
+export default connect(mapStateToProps)(SideNav)
+
+// const menuItems = [
+//   {
+//     name: 'Anställningar',
+//     id: 'employments',
+//     icon: 'fa-briefcase',
+//     isCurrent: false
+//   },
+//   {
+//     name: 'Utbildningar',
+//     id: 'educations',
+//     icon: 'fa-graduation-cap',
+//     isCurrent: false
+//   },
+//   {
+//     name: 'Kompetenser',
+//     id: 'skills',
+//     icon: 'fa-rocket',
+//     isCurrent: false
+//   },
+//   {
+//     name: 'Befattningar',
+//     id: 'occupations',
+//     icon: 'fa-tags',
+//     isCurrent: false
+//   },
+//   {
+//     name: 'Språk',
+//     id: 'languages',
+//     icon: 'fa-comments',
+//     isCurrent: false
+//   }
+// ]
 
 class NavItem extends React.Component {
   constructor(props) {
@@ -132,11 +137,12 @@ class NavItem extends React.Component {
   }
 
   render() {
-    const { name, id, icon, isCurrent, isPrev } = this.props
+    const { name, id, icon, isDone, isCurrent, isPrev } = this.props
     return (
       <li
         className={classnames(
           'nav-item',
+          isDone && 'is-done',
           isCurrent && 'is-current',
           isPrev && 'is-prev'
         )}
@@ -156,5 +162,6 @@ NavItem.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  isCurrent: PropTypes.bool.isRequired
+  isCurrent: PropTypes.bool.isRequired,
+  isDone: PropTypes.bool.isRequired
 }
