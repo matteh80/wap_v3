@@ -5,38 +5,23 @@ $employmentIconSize: 50px;
   padding-top: 0;
   transition: padding 250ms;
 
-  &.editMode {
-    background: $gray-100;
-    padding-top: 20px;
-  }
-
   .left {
     width: $employmentIconSize;
     min-width: $employmentIconSize;
     height: $employmentIconSize;
     line-height: $employmentIconSize;
+    border-radius: $employmentIconSize / 2;
     background: $secondary;
     color: #fff;
     text-align: center;
-    font-size: $employmentIconSize / 2;
+    font-size: $employmentIconSize / 3;
+    transition: all 250ms;
 
     .employment-icon {
       width: 100%;
       height: 100%;
       position: relative;
       transition: all 500ms;
-
-      &:after {
-        display: none;
-        font-family: "Font Awesome 5 Solid";
-        content: "\f0b1";
-      }
-
-      &.edit {
-        &:after {
-          content: '\f303';
-        }
-      }
     }
   }
   .right {
@@ -44,6 +29,22 @@ $employmentIconSize: 50px;
       color: $gray-600;
       text-transform: uppercase;
       font-size: 12px;
+    }
+  }
+
+  &:hover {
+    .left {
+      background: $accent;
+    }
+  }
+
+  &.editMode {
+    background: $gray-100;
+    padding-top: 20px;
+
+    .left {
+      border-radius: 0;
+      background: $accent;
     }
   }
 }

@@ -158,15 +158,19 @@ class EmploymentItem extends React.Component {
       >
         <Col xs={12} className="d-flex flex-row">
           <div className="left mr-3">
-            <div
-              className={classnames('employment-icon', editMode && 'edit')}
-            />
+            <div className={classnames('employment-icon', editMode && 'edit')}>
+              <i
+                className={classnames(
+                  editMode ? 'fas fa-pencil-alt' : 'fas fa-briefcase'
+                )}
+              />
+            </div>
           </div>
           <div className="right d-flex align-items-center w-100">
             <Row>
               <Col xs={12}>
                 <h4 className="mb-0">
-                  {employment.title} | {employment.employer}
+                  {employment.title} ({employment.employer})
                 </h4>
               </Col>
               <Col xs={12}>

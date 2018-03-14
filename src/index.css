@@ -392,7 +392,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.5rem;
-  font-family: inherit;
+  font-family: 'futura-pt', sans-serif;
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
@@ -8568,7 +8568,8 @@ input[type='checkbox']:checked + label:before {
 }
 
 .card {
-  border-radius: 0;
+  border: none;
+  border-radius: 15px;
 }
 .card .card-title {
   color: #e8003b;
@@ -8897,6 +8898,7 @@ header.header .rc-slider .rc-slider-dot {
 
 .profile-card {
   position: relative;
+  overflow: hidden;
 }
 @media (min-width: 768px) {
   .profile-card .card-body {
@@ -8906,12 +8908,13 @@ header.header .rc-slider .rc-slider-dot {
 }
 .profile-card .loading-progress {
   position: relative;
-  top: -1px;
-  z-index: 2;
+  top: 0px;
   width: 100%;
   height: 0;
-  background: linear-gradient(to right, #547581 0%, #98b3bc 50%, #547581 100%);
+  background: linear-gradient(to right, #11ada7 0%, #547581 50%, #11ada7 100%);
   background-size: 50% 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   animation-name: moving-gradient;
   animation-duration: 1s;
   animation-iteration-count: infinite;
@@ -8919,12 +8922,12 @@ header.header .rc-slider .rc-slider-dot {
   transition: height 250ms;
 }
 .profile-card .loading-progress.visible {
-  height: 7px;
+  height: 10px;
 }
 .profile-card .addNew {
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -8944,13 +8947,11 @@ header.header .rc-slider .rc-slider-dot {
 }
 .profile-card .addNew.addMode {
   transform: rotate(45deg);
-  background: red;
+  background: #cd2500;
   color: #fff;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 .profile-card .addNew.addMode:hover {
-  background: red;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  background: #cd2500;
 }
 .profile-card .profile-content {
   position: relative;
@@ -9131,19 +9132,17 @@ header.header .rc-slider .rc-slider-dot {
   padding-top: 0;
   transition: padding 250ms;
 }
-.employment-item.editMode {
-  background: #f8f9fa;
-  padding-top: 20px;
-}
 .employment-item .left {
   width: 50px;
   min-width: 50px;
   height: 50px;
   line-height: 50px;
+  border-radius: 25px;
   background: #11ada7;
   color: #fff;
   text-align: center;
-  font-size: 25px;
+  font-size: 16.66667px;
+  transition: all 250ms;
 }
 .employment-item .left .employment-icon {
   width: 100%;
@@ -9151,18 +9150,21 @@ header.header .rc-slider .rc-slider-dot {
   position: relative;
   transition: all 500ms;
 }
-.employment-item .left .employment-icon:after {
-  display: none;
-  font-family: 'Font Awesome 5 Solid';
-  content: '\f0b1';
-}
-.employment-item .left .employment-icon.edit:after {
-  content: '\f303';
-}
 .employment-item .right .date-string {
   color: #6c757d;
   text-transform: uppercase;
   font-size: 12px;
+}
+.employment-item:hover .left {
+  background: #e8003b;
+}
+.employment-item.editMode {
+  background: #f8f9fa;
+  padding-top: 20px;
+}
+.employment-item.editMode .left {
+  border-radius: 0;
+  background: #e8003b;
 }
 
 .profile .left .profile-tips {
@@ -9299,4 +9301,26 @@ header.header .rc-slider .rc-slider-dot {
   100% {
     background-position: right bottom;
   }
+}
+
+.custom-checkbox label {
+  font-size: initial;
+  text-transform: initial;
+  display: flex;
+  align-items: start;
+}
+
+.custom-checkbox input[type='checkbox'] {
+  display: none;
+}
+
+.custom-checkbox i {
+  margin-left: -1.25rem;
+  font-size: 18px;
+  transition: all 500ms;
+}
+
+.custom-checkbox.checked i {
+  color: #11ada7;
+  transform: rotateY(360deg) scale(1.3);
 }

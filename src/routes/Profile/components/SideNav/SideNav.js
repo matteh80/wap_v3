@@ -53,9 +53,10 @@ class SideNav extends React.Component {
   handleClick(e, anchor) {
     e.preventDefault()
     e.stopPropagation()
-    console.log(e.srcElement)
 
-    $('html, body').animate({ scrollTop: $(anchor).offset().top - 100 }, 500)
+    if ($(anchor).offset()) {
+      $('html, body').animate({ scrollTop: $(anchor).offset().top - 200 }, 500)
+    }
   }
 
   render() {

@@ -28,10 +28,10 @@ class ProfileEditableCard extends React.Component {
 
   render() {
     let { addMode } = this.state
-    const { children, cardTitle, loading } = this.props
+    const { children, cardTitle, loading, id } = this.props
 
     return (
-      <Card className="profile-card mb-5">
+      <Card className="profile-card mb-5" id={id}>
         <div className={classnames('loading-progress', loading && 'visible')} />
         <div
           className={classnames('addNew', addMode && 'addMode')}

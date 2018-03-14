@@ -3,6 +3,7 @@ import moment from 'moment'
 import 'moment/min/locales'
 import { Row, Col, Input, Label } from 'reactstrap'
 import { AvGroup, AvField } from 'availity-reactstrap-validation'
+import Checkbox from '../../../../components/Checkbox/Checkbox'
 
 class StartEndDate extends React.Component {
   constructor(props) {
@@ -154,6 +155,12 @@ class StartEndDate extends React.Component {
               defaultChecked={current}
             />{' '}
             <Label for={start_date + end_date}>Nuvarande</Label>
+            <Checkbox
+              label="Nuvarande"
+              name="hidden"
+              onChange={this.handleCurrentChange}
+              defaultChecked={current}
+            />
           </Col>
         </Row>
       </AvGroup>
