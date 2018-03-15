@@ -10,7 +10,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  UncontrolledTooltip
 } from 'reactstrap'
 import $ from 'jquery'
 import { logout } from '../../store/modules/auth'
@@ -31,6 +32,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     let $window = $(window)
+    let $header = $('.header')
     let $headerBottom = $('#header-bottom')
     let $profileProgress = $('.progress-wrapper .progress')
 
@@ -45,6 +47,12 @@ class Header extends React.Component {
       } else {
         $profileProgress.removeClass('visible')
       }
+
+      if ($headerBottom.height() < 10) {
+        $header.addClass('collapsed')
+      } else {
+        $header.removeClass('collapsed')
+      }
     })
   }
 
@@ -58,6 +66,35 @@ class Header extends React.Component {
     e.preventDefault()
     let { dispatch } = this.props
     dispatch(logout())
+  }
+
+  getTooltips() {
+    const { items } = this.props.profile.progress
+    let mArray = _.values(items)
+    mArray.sort(function(a, b) {
+      if (a.done && !b.done) {
+        return -1
+      } else if (!a.done && b.done) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+
+    return mArray.map(item => (
+      <div
+        key={item.id}
+        className="tooltip-target"
+        id={'tooltip-target-' + item.id}
+      >
+        <UncontrolledTooltip
+          placement="bottom"
+          target={'tooltip-target-' + item.id}
+        >
+          {item.name}
+        </UncontrolledTooltip>
+      </div>
+    ))
   }
 
   render() {
@@ -101,14 +138,17 @@ class Header extends React.Component {
                 <h3 className="candidate-subtitle">{profile.title}</h3>
                 {/*<Progress value={50} />*/}
                 <Row>
-                  <Col xs={12} md={6}>
+                  <Col xs={12} md={6} className="slider-wrapper">
                     <Slider
                       min={0}
                       max={_.size(progress.items)}
                       dots
-                      value={progress.doneItems.length}
+                      value={progress.doneItems ? progress.doneItems.length : 0}
                       disabled={true}
                     />
+                    <div className="tooltip-holder d-flex">
+                      {this.getTooltips()}
+                    </div>
                   </Col>
                 </Row>
               </Col>

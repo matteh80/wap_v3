@@ -7,7 +7,7 @@ const FETCH_EMPLOYMENTS_FAIL = 'wap/employments/FETCH_EMPLOYMENTS_FAIL'
 const EMPTY_STATE = {
   fetchingEmployments: false,
   updatingEmployments: false,
-  userEmployments: null,
+  userEmployments: [],
   employmentsError: null
 }
 const INITIAL_STATE = window.__PRELOADED_STATE__ || EMPTY_STATE

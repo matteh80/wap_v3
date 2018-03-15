@@ -6,8 +6,13 @@ header.header {
   width: 100%;
   z-index: 98;
 
-  #header--logo {
-    max-height: 45px;
+  .navbar-brand {
+    margin-top: 15px;
+    transition: all 250ms;
+    #header--logo {
+      max-height: 45px;
+      transition: inherit;
+    }
   }
 
   .navbar {
@@ -62,6 +67,23 @@ header.header {
         background: #fff;
       }
     }
+
+    .slider-wrapper {
+      position: relative;
+
+      .tooltip-holder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0 15px;
+
+        .tooltip-target {
+          flex: 1;
+        }
+      }
+    }
   }
 
   .rc-slider {
@@ -72,6 +94,15 @@ header.header {
       background-color: $primary;
       opacity: 1 !important;
       width: 5px;
+    }
+  }
+
+  &.collapsed {
+    .navbar-brand {
+      margin-top: 5px;
+      #header--logo {
+        max-height: 40px;
+      }
     }
   }
 }

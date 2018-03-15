@@ -16,7 +16,7 @@ const EMPTY_STATE = {
   fetchingUserLocations: false,
   fetchingAllLocations: false,
   addingUserLocation: false,
-  userLocations: null,
+  userLocations: [],
   allLocations: null,
   locationsError: null
 }

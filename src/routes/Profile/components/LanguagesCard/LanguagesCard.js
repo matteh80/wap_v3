@@ -71,6 +71,7 @@ class LanguagesCard extends React.Component {
         cardTitle="Språk"
         cbAddMode={this.cbAddMode}
         loading={updatingUserLanguages}
+        isDone={userLanguages.length > 0}
       >
         {allLoaded && (
           <LanguagesForm

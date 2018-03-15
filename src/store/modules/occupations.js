@@ -20,7 +20,7 @@ const EMPTY_STATE = {
   fetchingUserOccupations: false,
   fetchingAllOccupations: false,
   updatingUserOccupations: false,
-  userOccupations: null,
+  userOccupations: [],
   allOccupations: null,
   occupationsError: null
 }

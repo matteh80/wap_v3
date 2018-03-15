@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap'
+import { Card, CardBody, CardTitle, Row, Col, Badge } from 'reactstrap'
 import classnames from 'classnames'
 
 class ProfileEditableCard extends React.Component {
@@ -28,10 +28,25 @@ class ProfileEditableCard extends React.Component {
 
   render() {
     let { addMode } = this.state
-    const { children, cardTitle, loading, fetching, id } = this.props
+    const {
+      children,
+      cardTitle,
+      loading,
+      fetching,
+      id,
+      isDone,
+      inEditMode
+    } = this.props
 
     return (
-      <Card className="profile-card mb-5" id={id}>
+      <Card
+        className={classnames(
+          'profile-card mb-5',
+          addMode && 'inAddMode',
+          inEditMode && 'inEditMode'
+        )}
+        id={id}
+      >
         <div className={classnames('loading-progress', loading && 'visible')} />
         <div
           className={classnames(
@@ -41,16 +56,27 @@ class ProfileEditableCard extends React.Component {
           )}
           onClick={!fetching ? this.handleAddNew : undefined}
         >
-          {fetching ? (
-            <i className="fas fa-circle-notch fa-spin" />
-          ) : (
-            <i className="fa fa-plus" />
-          )}
+          <span className="addNewText">{addMode ? 'Stäng' : 'Lägg till'}</span>
+          <div className="addNewIcon">
+            {fetching ? (
+              <i className="fas fa-circle-notch fa-spin" />
+            ) : (
+              <i className="fa fa-plus" />
+            )}
+          </div>
         </div>
         <CardBody>
           <Row>
             <Col xs={10}>
-              <CardTitle>{cardTitle}</CardTitle>
+              <CardTitle className="mb-4">
+                {cardTitle}{' '}
+                <Badge
+                  className={classnames('ml-4', isDone && 'isDone')}
+                  color="primary"
+                >
+                  Ofullständig
+                </Badge>
+              </CardTitle>
             </Col>
           </Row>
           {children}
@@ -66,5 +92,7 @@ ProfileEditableCard.propTypes = {
   cardTitle: PropTypes.string,
   cbAddMode: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  fetching: PropTypes.bool
+  fetching: PropTypes.bool,
+  isDone: PropTypes.bool.isRequired,
+  inEditMode: PropTypes.bool
 }

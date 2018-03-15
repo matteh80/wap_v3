@@ -16,7 +16,7 @@ const EMPTY_STATE = {
   fetchingUserSkills: false,
   fetchingAllSkills: false,
   updatingUserSkills: false,
-  userSkills: null,
+  userSkills: [],
   allSkills: null,
   skillsError: null
 }

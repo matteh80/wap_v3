@@ -157,6 +157,7 @@ class OccupationsCard extends React.Component {
         cardTitle="Befattningar"
         cbAddMode={this.cbAddMode}
         loading={updatingUserOccupations}
+        isDone={userOccupations.length > 0}
       >
         {allLoaded && (
           <OccupationsForm

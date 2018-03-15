@@ -70,6 +70,7 @@ class SkillsCard extends React.Component {
         cardTitle="Kompetenser"
         cbAddMode={this.cbAddMode}
         loading={updatingUserSkills}
+        isDone={userSkills.length > 0}
       >
         {allLoaded && (
           <SkillsForm

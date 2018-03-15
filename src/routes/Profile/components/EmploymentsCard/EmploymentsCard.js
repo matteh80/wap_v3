@@ -70,6 +70,8 @@ class EmploymentsCard extends React.Component {
         cbAddMode={this.cbAddMode}
         loading={updatingEmployments}
         fetching={fetchingEmployments}
+        isDone={userEmployments.length > 0}
+        inEditMode={employmentsInEditMode}
       >
         <EmploymentsForm
           isOpen={addMode}

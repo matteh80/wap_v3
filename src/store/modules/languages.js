@@ -16,7 +16,7 @@ const EMPTY_STATE = {
   fetchingUserLanguages: false,
   fetchingAllLanguages: false,
   updatingUserLanguages: false,
-  userLanguages: null,
+  userLanguages: [],
   allLanguages: null,
   languagesError: null
 }
