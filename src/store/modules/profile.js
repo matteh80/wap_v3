@@ -49,6 +49,12 @@ const EMPTY_STATE = {
         id: 'languages',
         done: false,
         icon: 'fa-comments'
+      },
+      drivinglicenses: {
+        name: 'Körkort',
+        id: 'drivinglicenses',
+        done: false,
+        icon: 'fa-car'
       }
     }
   }
@@ -153,6 +159,9 @@ export function setProfileProgress() {
     mProgress.items['employments'].done =
       getState().employments.userEmployments &&
       getState().employments.userEmployments.length > 0
+    mProgress.items['educations'].done =
+      getState().educations.userEducations &&
+      getState().educations.userEducations.length > 0
     mProgress.items['skills'].done =
       getState().skills.userSkills && getState().skills.userSkills.length > 0
     mProgress.items['occupations'].done =
@@ -161,6 +170,9 @@ export function setProfileProgress() {
     mProgress.items['languages'].done =
       getState().languages.userLanguages &&
       getState().languages.userLanguages.length > 0
+    mProgress.items['drivinglicenses'].done =
+      getState().drivinglicenses.userDrivinglicenses &&
+      getState().drivinglicenses.userDrivinglicenses.length > 0
 
     const doneItems = _.filter(mProgress.items, item => {
       return item.done

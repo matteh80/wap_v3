@@ -108,7 +108,11 @@ class OccupationsCard extends React.Component {
   }
 
   render() {
-    const { allOccupations, updatingUserOccupations } = this.props
+    const {
+      allOccupations,
+      updatingUserOccupations,
+      fetchingUserOccupations
+    } = this.props
     const {
       allLoaded,
       addMode,
@@ -157,6 +161,7 @@ class OccupationsCard extends React.Component {
         cardTitle="Befattningar"
         cbAddMode={this.cbAddMode}
         loading={updatingUserOccupations}
+        fetching={fetchingUserOccupations}
         isDone={userOccupations.length > 0}
       >
         {allLoaded && (
@@ -193,7 +198,8 @@ class OccupationsCard extends React.Component {
 const mapStateToProps = state => ({
   userOccupations: state.occupations.userOccupations,
   allOccupations: state.occupations.allOccupations,
-  updatingUserOccupations: state.occupations.updatingUserOccupations
+  updatingUserOccupations: state.occupations.updatingUserOccupations,
+  fetchUserOccupations: state.occupations.fetc
 })
 
 export default connect(mapStateToProps)(OccupationsCard)

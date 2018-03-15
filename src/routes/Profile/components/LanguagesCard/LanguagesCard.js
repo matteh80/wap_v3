@@ -63,7 +63,12 @@ class LanguagesCard extends React.Component {
   }
 
   render() {
-    const { userLanguages, allLanguages, updatingUserLanguages } = this.props
+    const {
+      userLanguages,
+      allLanguages,
+      updatingUserLanguages,
+      fetchingUserLanguages
+    } = this.props
     const { allLoaded, addMode, languagesInEditMode } = this.state
     return (
       <ProfileEditableCard
@@ -71,6 +76,7 @@ class LanguagesCard extends React.Component {
         cardTitle="Språk"
         cbAddMode={this.cbAddMode}
         loading={updatingUserLanguages}
+        fetching={fetchingUserLanguages}
         isDone={userLanguages.length > 0}
       >
         {allLoaded && (
@@ -109,7 +115,8 @@ class LanguagesCard extends React.Component {
 const mapStateToProps = state => ({
   userLanguages: state.languages.userLanguages,
   allLanguages: state.languages.allLanguages,
-  updatingUserLanguages: state.languages.updatingUserLanguages
+  updatingUserLanguages: state.languages.updatingUserLanguages,
+  fetchingUserLanguages: state.languages.fetchingUserLanguages
 })
 
 export default connect(mapStateToProps)(LanguagesCard)

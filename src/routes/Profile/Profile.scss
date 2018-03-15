@@ -6,6 +6,7 @@
 @import './components/OccupationsCard/OccupationsCard';
 @import './components/EmploymentsCard/EmploymentsCard';
 @import './components/EducationsCard/EducationsCard';
+@import './components/LicensesCard/LicensesCard';
 
 .profile {
   .left {
@@ -102,6 +103,33 @@
       }
     }
   }
+
+  .profile-select-item {
+    cursor: pointer;
+    background: transparent;
+    border: 2px solid $secondary;
+    color: $secondary;
+    transition: all 250ms;
+
+    &:hover:not(.selected) {
+      background: $accent;
+      border: 2px solid $accent;
+      color: #fff;
+    }
+
+    &.selected {
+      background: $secondary;
+      color: #fff;
+    }
+  }
+
+  .badge {
+    font-size: 12px;
+
+    &.disabled {
+      opacity: 0.3;
+    }
+  }
 }
 
 .start-end-date {
@@ -114,4 +142,6 @@
     }
   }
 }
+
+
 

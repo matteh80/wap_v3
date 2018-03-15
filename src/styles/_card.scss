@@ -13,5 +13,16 @@
     font-size: 24px;
     display: flex;
     align-items: center;
+
+    .badge {
+      font-family: 'Open Sans', serif !important;
+      text-transform: capitalize !important;
+      font-size: 12px;
+
+      &.badge-accent {
+        background: $accent;
+        color: #fff;
+      }
+    }
   }
 }

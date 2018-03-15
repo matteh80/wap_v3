@@ -8169,16 +8169,6 @@ body.fixed .main-content {
   z-index: 99;
 }
 
-.badge {
-  font-family: 'Open Sans', serif !important;
-  text-transform: capitalize !important;
-  font-size: 16px;
-}
-.badge.badge-accent {
-  background: #e8003b;
-  color: #fff;
-}
-
 input.av-invalid ~ .invalid-feedback {
   display: block;
   margin-top: 0;
@@ -8588,6 +8578,15 @@ input[type='checkbox']:checked + label:before {
   display: flex;
   align-items: center;
 }
+.card .card-title .badge {
+  font-family: 'Open Sans', serif !important;
+  text-transform: capitalize !important;
+  font-size: 12px;
+}
+.card .card-title .badge.badge-accent {
+  background: #e8003b;
+  color: #fff;
+}
 
 .progress {
   height: 12px;
@@ -8684,6 +8683,57 @@ header.header {
   width: 100%;
   z-index: 98;
 }
+header.header > .container {
+  position: relative;
+}
+header.header > .container .slider-wrapper {
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+  width: calc(100% - 60px);
+  z-index: 9;
+}
+@media (min-width: 768px) {
+  header.header > .container .slider-wrapper {
+    left: 195px;
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  header.header > .container .slider-wrapper {
+    left: 255px;
+  }
+}
+@media (min-width: 1400px) {
+  header.header > .container .slider-wrapper {
+    left: 350px;
+  }
+}
+header.header > .container .slider-wrapper .tooltip-holder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+}
+header.header > .container .slider-wrapper .tooltip-holder > ul {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+header.header > .container .slider-wrapper .tooltip-holder .tooltip-target {
+  flex: 1;
+  cursor: pointer;
+}
+header.header > .container .slider-wrapper #marker {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: -10px;
+  transition: left 500ms ease-in-out;
+}
 header.header .navbar-brand {
   margin-top: 15px;
   transition: all 250ms;
@@ -8691,6 +8741,12 @@ header.header .navbar-brand {
 header.header .navbar-brand #header--logo {
   max-height: 45px;
   transition: inherit;
+}
+header.header .navbar {
+  position: relative;
+}
+header.header .navbar > .container {
+  position: relative;
 }
 @media (min-width: 768px) {
   header.header .navbar {
@@ -8714,6 +8770,7 @@ header.header .navbar .profile-picture {
 header.header #header-bottom {
   height: 180px;
   color: #fff;
+  min-height: 40px;
 }
 header.header #header-bottom .candidate-name {
   font-weight: bold;
@@ -8938,7 +8995,6 @@ header.header.collapsed .navbar-brand #header--logo {
 
 .profile-card {
   position: relative;
-  overflow: hidden;
 }
 @media (min-width: 768px) {
   .profile-card .card-body {
@@ -9380,6 +9436,30 @@ header.header.collapsed .navbar-brand #header--logo {
   .profile .left.fixed .card {
     width: 305px;
   }
+}
+
+.profile .profile-select-item {
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid #11ada7;
+  color: #11ada7;
+  transition: all 250ms;
+}
+.profile .profile-select-item:hover:not(.selected) {
+  background: #e8003b;
+  border: 2px solid #e8003b;
+  color: #fff;
+}
+.profile .profile-select-item.selected {
+  background: #11ada7;
+  color: #fff;
+}
+
+.profile .badge {
+  font-size: 12px;
+}
+.profile .badge.disabled {
+  opacity: 0.3;
 }
 
 .start-end-date select {

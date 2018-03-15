@@ -18,6 +18,8 @@ import { logout } from '../../store/modules/auth'
 import headerLogo from './headerLogo.png'
 import Slider from 'rc-slider'
 import _ from 'lodash'
+import PropTypes from 'prop-types'
+import Scrollspy from 'react-scrollspy'
 
 class Header extends React.Component {
   constructor(props) {
@@ -39,7 +41,7 @@ class Header extends React.Component {
     $window.scroll(function() {
       $headerBottom.css({
         height: 180 - $window.scrollTop(),
-        opacity: 1 - $window.scrollTop() / 160
+        opacity: 1 - $window.scrollTop() / 100
       })
 
       if ($window.scrollTop() > 180) {
@@ -68,41 +70,12 @@ class Header extends React.Component {
     dispatch(logout())
   }
 
-  getTooltips() {
-    const { items } = this.props.profile.progress
-    let mArray = _.values(items)
-    mArray.sort(function(a, b) {
-      if (a.done && !b.done) {
-        return -1
-      } else if (!a.done && b.done) {
-        return 1
-      } else {
-        return 0
-      }
-    })
-
-    return mArray.map(item => (
-      <div
-        key={item.id}
-        className="tooltip-target"
-        id={'tooltip-target-' + item.id}
-      >
-        <UncontrolledTooltip
-          placement="bottom"
-          target={'tooltip-target-' + item.id}
-        >
-          {item.name}
-        </UncontrolledTooltip>
-      </div>
-    ))
-  }
-
   render() {
     let { profile, progress } = this.props
     return (
       <header className="header">
-        <Navbar color="faded" dark expand="lg">
-          <Container>
+        <Container>
+          <Navbar color="faded" dark expand="lg">
             <NavbarBrand href="/">
               <img src={headerLogo} id="header--logo" />
             </NavbarBrand>
@@ -126,35 +99,22 @@ class Header extends React.Component {
                 </NavItem>
               </Nav>
             </Collapse>
-          </Container>
-        </Navbar>
-        <div id="header-bottom">
-          <Container className="h-100">
-            <Row className="h-100 align-items-end">
-              <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2 mb-3">
-                <h1 className="candidate-name mb-0">
-                  {profile.first_name + ' ' + profile.last_name}
-                </h1>
-                <h3 className="candidate-subtitle">{profile.title}</h3>
-                {/*<Progress value={50} />*/}
-                <Row>
-                  <Col xs={12} md={6} className="slider-wrapper">
-                    <Slider
-                      min={0}
-                      max={_.size(progress.items)}
-                      dots
-                      value={progress.doneItems ? progress.doneItems.length : 0}
-                      disabled={true}
-                    />
-                    <div className="tooltip-holder d-flex">
-                      {this.getTooltips()}
-                    </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+          </Navbar>
+          <div id="header-bottom">
+            <Container className="h-100 pb-5">
+              <Row className="h-100 align-items-end">
+                <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2 mb-3">
+                  <h1 className="candidate-name mb-0">
+                    {profile.first_name + ' ' + profile.last_name}
+                  </h1>
+                  <h3 className="candidate-subtitle">{profile.title}</h3>
+                  {/*<Progress value={50} />*/}
+                </Col>
+              </Row>
+            </Container>
+          </div>
+          <HeaderProgress progress={progress} />
+        </Container>
       </header>
     )
   }
@@ -167,3 +127,100 @@ const mapStateToProps = state => ({
 })
 
 export default withRouter(connect(mapStateToProps)(Header))
+
+class HeaderProgress extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      menuItems: _.values(props.progress.items)
+    }
+  }
+  getTooltips() {
+    const { items } = this.props.progress
+    let mArray = _.values(items)
+    mArray.sort(function(a, b) {
+      if (a.done && !b.done) {
+        return -1
+      } else if (!a.done && b.done) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+
+    return mArray.map(item => (
+      <div
+        key={item.id}
+        className="tooltip-target"
+        id={'tooltip-target-' + item.id}
+        data-id={item.id}
+        onClick={e => this.handleClick(e, `#${item.id}`)}
+      >
+        <UncontrolledTooltip
+          delay={0}
+          placement="bottom"
+          target={'tooltip-target-' + item.id}
+        >
+          {item.name}
+        </UncontrolledTooltip>
+      </div>
+    ))
+  }
+
+  handleClick(e, anchor) {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($(anchor).offset()) {
+      $('html, body').animate({ scrollTop: $(anchor).offset().top - 120 }, 500)
+    }
+  }
+
+  handleUpdate(e) {
+    let $marker = $('#marker')
+    let $tooltipHolder = $('.tooltip-holder')
+    let $active = $('#tooltip-target-' + e.id)
+
+    let holderOffsetLeft = $tooltipHolder.offset().left
+    let activeOffsetLeft = $active.offset().left
+    let leftValue =
+      holderOffsetLeft -
+      activeOffsetLeft -
+      $active.width() / 2 -
+      $marker.outerWidth() / 2
+    $marker.css('left', -leftValue)
+  }
+
+  render() {
+    const { progress } = this.props
+
+    return (
+      <div className="slider-wrapper">
+        <Slider
+          min={0}
+          max={_.size(progress.items)}
+          // max={12}
+          dots
+          value={progress.doneItems ? progress.doneItems.length : 0}
+          disabled={true}
+        />
+        <i className="fas fa-map-marker" id="marker" />
+        <div className="tooltip-holder d-flex">
+          <Scrollspy
+            items={_.map(this.state.menuItems, 'id')}
+            offset={-80}
+            currentClassName="active"
+            onUpdate={this.handleUpdate}
+          >
+            {this.getTooltips()}
+          </Scrollspy>
+        </div>
+      </div>
+    )
+  }
+}
+
+HeaderProgress.propTypes = {
+  progress: PropTypes.number.isRequired
+}

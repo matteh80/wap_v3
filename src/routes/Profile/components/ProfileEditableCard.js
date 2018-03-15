@@ -16,7 +16,13 @@ class ProfileEditableCard extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.addMode !== this.state.addMode) {
-      this.props.cbAddMode(this.state.addMode)
+      this.props.cbAddMode && this.props.cbAddMode(this.state.addMode)
+    }
+
+    if (prevProps.fetching && !this.props.fetching && !this.props.isDone) {
+      this.setState({
+        addMode: true
+      })
     }
   }
 
@@ -35,7 +41,8 @@ class ProfileEditableCard extends React.Component {
       fetching,
       id,
       isDone,
-      inEditMode
+      inEditMode,
+      noForm
     } = this.props
 
     return (
@@ -57,10 +64,18 @@ class ProfileEditableCard extends React.Component {
           )}
           onClick={!fetching ? this.handleAddNew : undefined}
         >
-          <span className="addNewText">{addMode ? 'Stäng' : 'Lägg till'}</span>
+          <span className="addNewText">
+            {addMode ? 'Stäng' : noForm ? 'Ändra' : 'Lägg till'}
+          </span>
           <div className="addNewIcon">
             {fetching ? (
               <i className="fas fa-circle-notch fa-spin" />
+            ) : noForm ? (
+              addMode ? (
+                <i className="fa fa-plus" />
+              ) : (
+                <i className="fa fa-pencil-alt" />
+              )
             ) : (
               <i className="fa fa-plus" />
             )}
@@ -91,9 +106,10 @@ export default ProfileEditableCard
 
 ProfileEditableCard.propTypes = {
   cardTitle: PropTypes.string,
-  cbAddMode: PropTypes.func.isRequired,
+  cbAddMode: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   fetching: PropTypes.bool,
   isDone: PropTypes.bool.isRequired,
-  inEditMode: PropTypes.bool
+  inEditMode: PropTypes.bool,
+  noForm: PropTypes.bool
 }

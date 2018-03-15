@@ -21,8 +21,7 @@ class SkillsCard extends React.Component {
 
     this.state = {
       skillsInEditMode: false,
-      addMode: false,
-      userSkills: []
+      addMode: false
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
@@ -33,14 +32,7 @@ class SkillsCard extends React.Component {
   componentDidMount() {
     let { dispatch } = this.props
 
-    Promise.all([dispatch(fetchUserSkills()), dispatch(fetchAllSkills())]).then(
-      () => {
-        this.setState({
-          allLoaded: true,
-          userSkills: this.props.userSkills
-        })
-      }
-    )
+    Promise.all([dispatch(fetchUserSkills()), dispatch(fetchAllSkills())])
   }
 
   cbEditMode(editMode) {
@@ -62,7 +54,12 @@ class SkillsCard extends React.Component {
   }
 
   render() {
-    const { userSkills, allSkills, updatingUserSkills } = this.props
+    const {
+      userSkills,
+      allSkills,
+      updatingUserSkills,
+      fetchingUserSkills
+    } = this.props
     const { allLoaded, addMode, skillsInEditMode } = this.state
     return (
       <ProfileEditableCard
@@ -70,16 +67,15 @@ class SkillsCard extends React.Component {
         cardTitle="Kompetenser"
         cbAddMode={this.cbAddMode}
         loading={updatingUserSkills}
+        fetching={fetchingUserSkills}
         isDone={userSkills.length > 0}
       >
-        {allLoaded && (
-          <SkillsForm
-            skills={allSkills}
-            userSkills={userSkills}
-            isOpen={addMode}
-            updateFn={this.updateSkills}
-          />
-        )}
+        <SkillsForm
+          skills={allSkills}
+          userSkills={userSkills}
+          isOpen={addMode}
+          updateFn={this.updateSkills}
+        />
         <Row className="profile-content">
           <div
             className={classnames(
@@ -108,7 +104,8 @@ class SkillsCard extends React.Component {
 const mapStateToProps = state => ({
   userSkills: state.skills.userSkills,
   allSkills: state.skills.allSkills,
-  updatingUserSkills: state.skills.updatingUserSkills
+  updatingUserSkills: state.skills.updatingUserSkills,
+  fetchingUserSkills: state.skills.updatingUserSkills
 })
 
 export default connect(mapStateToProps)(SkillsCard)

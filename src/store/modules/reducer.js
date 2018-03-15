@@ -9,6 +9,7 @@ import occupations from './occupations'
 import locations from './locations'
 import employments from './employments'
 import educations from './educations'
+import drivinglicenses from './drivinglicenses'
 
 const appReducer = {
   routing: routerReducer,
@@ -19,7 +20,8 @@ const appReducer = {
   occupations,
   locations,
   employments,
-  educations
+  educations,
+  drivinglicenses
 }
 
 const config = {
@@ -35,7 +37,7 @@ export const rootReducer = (state, action) => {
   // purgeStoredState(config)
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
-    // purgeStoredState(config)
+    purgeStoredState(config)
     state = {
       routing: state.routing
     }
