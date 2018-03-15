@@ -173,7 +173,7 @@ class EducationItem extends React.Component {
             <div className={classnames('education-icon', editMode && 'edit')}>
               <i
                 className={classnames(
-                  editMode ? 'fas fa-pencil-alt' : 'fas fa-briefcase'
+                  editMode ? 'fas fa-pencil-alt' : 'fas fa-graduation-cap'
                 )}
               />
             </div>
