@@ -8171,8 +8171,12 @@ body.fixed .main-content {
 
 .badge {
   font-family: 'Open Sans', serif !important;
-  text-transform: uppercase;
+  text-transform: capitalize !important;
   font-size: 16px;
+}
+.badge.badge-accent {
+  background: #e8003b;
+  color: #fff;
 }
 
 input.av-invalid ~ .invalid-feedback {
@@ -8578,10 +8582,9 @@ input[type='checkbox']:checked + label:before {
   border-radius: 15px;
 }
 .card .card-title {
-  color: #e8003b;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 30px;
+  color: #547581;
+  text-transform: uppercase;
+  font-size: 24px;
   display: flex;
   align-items: center;
 }
@@ -9072,18 +9075,19 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-card .edit-remove-buttons.edit-remove-buttons--edit-mode .revert {
   color: #cd2500;
 }
-.profile-card:hover .edit-remove-buttons {
+.profile-card:hover:not(.fetching) .edit-remove-buttons {
   width: 48px;
   opacity: 1;
 }
-.profile-card:hover .addNew:not(.addMode) .addNewIcon {
+.profile-card:hover:not(.fetching) .addNew:not(.addMode) .addNewIcon {
   background: #547581;
 }
-.profile-card:hover .addNew:not(.addMode) .addNewText {
+.profile-card:hover:not(.fetching) .addNew:not(.addMode) .addNewText {
   transform: translateX(0);
 }
 .profile-card.inEditMode .addNew {
-  transform: translateY(-60px);
+  transform: translateY(-15px);
+  opacity: 0;
 }
 
 @keyframes moving-gradient {
@@ -9100,13 +9104,16 @@ header.header.collapsed .navbar-brand #header--logo {
   }
 }
 
+.skill-wrapper .skill-name {
+  text-transform: initial;
+}
+
 .skills-slider {
   flex-grow: 1;
 }
 
 .value {
   color: #6c757d;
-  text-transform: uppercase;
   font-size: 12px;
 }
 
@@ -9235,6 +9242,7 @@ header.header.collapsed .navbar-brand #header--logo {
   color: #6c757d;
   text-transform: uppercase;
   font-size: 12px;
+  margin-top: -3px;
 }
 .employment-item:hover .left {
   background: #e8003b;

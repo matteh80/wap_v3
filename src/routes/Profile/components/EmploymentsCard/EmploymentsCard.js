@@ -1,6 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchEmployments } from '../../../../store/modules/employments'
+import {
+  createEmployment,
+  fetchEmployments,
+  removeEmployment,
+  updateEmployment
+} from '../../../../store/modules/employments'
 import ProfileEditableCard from '../ProfileEditableCard'
 import { Row, Col, Collapse, Button } from 'reactstrap'
 import { AvForm, AvField, AvGroup } from 'availity-reactstrap-validation'
@@ -19,26 +24,19 @@ class EmploymentsCard extends React.Component {
 
     this.state = {
       employmentsInEditMode: false,
-      addMode: false,
-      userEmployments: []
+      addMode: false
     }
 
     props.dispatch(fetchAllOccupations())
 
     this.cbAddMode = this.cbAddMode.bind(this)
     this.cbEditMode = this.cbEditMode.bind(this)
-    this.addEmployment = this.addEmployment.bind(this)
   }
 
   componentDidMount() {
     let { dispatch } = this.props
 
-    dispatch(fetchEmployments()).then(() => {
-      this.setState({
-        allLoaded: true,
-        userEmployments: this.props.userEmployments
-      })
-    })
+    dispatch(fetchEmployments())
   }
 
   cbEditMode(editMode) {
@@ -53,11 +51,10 @@ class EmploymentsCard extends React.Component {
     })
   }
 
-  addEmployment(employment) {}
-
   render() {
-    let { addMode, employmentsInEditMode } = this.state
-    let {
+    const { addMode, employmentsInEditMode } = this.state
+    const {
+      dispatch,
       updatingEmployments,
       fetchingEmployments,
       userEmployments,
@@ -77,6 +74,7 @@ class EmploymentsCard extends React.Component {
           isOpen={addMode}
           updateFn={this.addEmployment}
           occupations={allOccupations}
+          dispatch={dispatch}
         />
         <div className="profile-content">
           <div
@@ -93,6 +91,7 @@ class EmploymentsCard extends React.Component {
                 employment={employment}
                 cbEditMode={this.cbEditMode}
                 occupations={allOccupations}
+                dispatch={dispatch}
               />
             ))}
         </div>
@@ -116,17 +115,21 @@ class EmploymentItem extends React.Component {
 
     this.state = {
       editMode: false,
-      addMode: false,
-      employment: props.employment
+      addMode: false
     }
 
     this.toggleEditMode = this.toggleEditMode.bind(this)
     this.revertChanges = this.revertChanges.bind(this)
+    this.remove = this.remove.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.editMode !== this.state.editMode) {
       this.props.cbEditMode(this.state.editMode)
+    }
+
+    if (prevProps.employment !== this.props.employment && this.state.editMode) {
+      this.toggleEditMode()
     }
   }
 
@@ -155,9 +158,14 @@ class EmploymentItem extends React.Component {
     }
   }
 
+  remove() {
+    const { dispatch, employment } = this.props
+    dispatch(removeEmployment(employment))
+  }
+
   render() {
-    const { occupations } = this.props
-    const { editMode, employment } = this.state
+    const { employment, occupations, dispatch } = this.props
+    const { editMode } = this.state
     const { start_date, end_date, current } = employment
 
     return (
@@ -199,7 +207,7 @@ class EmploymentItem extends React.Component {
               </div>
               <div
                 className="employment-button edit-remove-button"
-                onClick={this.removeEmployment}
+                onClick={this.remove}
               >
                 <i className="fa fa-trash ml-1" />
               </div>
@@ -212,6 +220,7 @@ class EmploymentItem extends React.Component {
             isOpen={editMode}
             cbRevert={this.revertChanges}
             occupations={occupations}
+            dispatch={dispatch}
           />
         </Col>
       </Row>
@@ -228,11 +237,21 @@ class EmploymentsForm extends React.Component {
     super(props)
 
     this.state = {
-      employment: props.employment ? props.employment : null,
-      occupationValue: null
+      employment: props.employment ? props.employment : { description: null },
+      occupationValue: props.employment && props.employment.occupation,
+      editMode: !!props.employment
     }
 
     this.abort = this.abort.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.employment !== this.props.employment) {
+      this.setState({
+        employment: this.props.employment
+      })
+    }
   }
 
   handleDateChange(start_date, end_date, current) {
@@ -276,8 +295,22 @@ class EmploymentsForm extends React.Component {
     this.props.cbRevert()
   }
 
+  handleSubmit(event, values) {
+    const { dispatch } = this.props
+    const employment = Object.assign({}, this.state.employment, values)
+
+    this.state.editMode
+      ? dispatch(updateEmployment(employment))
+      : dispatch(createEmployment(employment))
+
+    this.form && this.form.reset()
+    this.setState({
+      occupationValue: null
+    })
+  }
+
   render() {
-    const { isOpen, cbAddMode, cbRevert } = this.props
+    const { isOpen } = this.props
     const { occupationValue, employment } = this.state
     const defaultDateValues = employment
       ? [employment.start_date, employment.end_date, employment.current]
@@ -286,25 +319,32 @@ class EmploymentsForm extends React.Component {
     return (
       <Collapse isOpen={isOpen}>
         <div className="employments-form mb-3 py-3">
-          <AvForm className="row" model={employment ? employment : null}>
-            <AvGroup className="col-12 col-md-6">
+          <AvForm
+            onValidSubmit={this.handleSubmit}
+            className="row"
+            model={employment ? employment : null}
+            ref={c => (this.form = c)}
+          >
+            <Col xs={12} sm={6}>
               <AvField
                 type="text"
                 name="title"
                 label="Position *"
                 placeholder="Ex. Talent acquisition manager"
+                errorMessage="Detta fält krävs"
                 required
               />
-            </AvGroup>
-            <AvGroup className="col-12 col-md-6">
+            </Col>
+            <Col xs={12} sm={6}>
               <AvField
                 type="text"
                 name="employer"
                 label="Företag *"
                 placeholder="Ex. Workandpassion"
+                errorMessage="Detta fält krävs"
                 required
               />
-            </AvGroup>
+            </Col>
             <AvGroup className="col-12 col-md-6">
               <label>Befattning *</label>
               <Select
@@ -314,6 +354,14 @@ class EmploymentsForm extends React.Component {
                 onChange={value => this.setState({ occupationValue: value })}
                 options={this.setUpOccupations()}
                 placeholder="Välj en befattning"
+                clearable={false}
+              />
+              <AvField
+                type="hidden"
+                name="occupation"
+                value={occupationValue}
+                errorMessage="Detta fält krävs"
+                required
               />
             </AvGroup>
             <StartEndDate
@@ -321,9 +369,20 @@ class EmploymentsForm extends React.Component {
               onChange={this.handleDateChange}
               defaultValues={defaultDateValues}
             />
+            {this.props.employment && (
+              <Col xs={12} dm={6}>
+                <AvField
+                  name="description"
+                  type="textarea"
+                  label="Beskrivning"
+                />
+              </Col>
+            )}
             <Col xs={12}>
-              <Button>{employment ? 'Uppdatera' : 'Lägg till'}</Button>
-              {employment && (
+              <Button type="submit">
+                {this.state.editMode ? 'Uppdatera' : 'Lägg till'}
+              </Button>
+              {this.state.editMode && (
                 <Button className="ml-3" color="primary" onClick={this.abort}>
                   Avbryt
                 </Button>
@@ -337,5 +396,7 @@ class EmploymentsForm extends React.Component {
 }
 
 EmploymentsForm.propTypes = {
-  employment: PropTypes.object
+  employment: PropTypes.object,
+  isOpen: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired
 }

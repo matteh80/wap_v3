@@ -183,7 +183,7 @@
     }
   }
 
-  &:hover {
+  &:hover:not(.fetching) {
     .edit-remove-buttons {
       width: 48px;
       opacity: 1;
@@ -201,7 +201,8 @@
 
   &.inEditMode {
     .addNew {
-      transform: translateY(-60px);
+      transform: translateY(-15px);
+      opacity: 0;
     }
   }
 }

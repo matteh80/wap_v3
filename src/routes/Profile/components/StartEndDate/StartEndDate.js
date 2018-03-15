@@ -148,13 +148,6 @@ class StartEndDate extends React.Component {
             </div>
           </Col>
           <Col xs={12} className="mt-2">
-            <Input
-              type="checkbox"
-              id={start_date + end_date}
-              onChange={this.handleCurrentChange}
-              defaultChecked={current}
-            />{' '}
-            <Label for={start_date + end_date}>Nuvarande</Label>
             <Checkbox
               label="Nuvarande"
               name="hidden"

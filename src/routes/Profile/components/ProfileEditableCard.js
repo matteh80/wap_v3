@@ -43,7 +43,8 @@ class ProfileEditableCard extends React.Component {
         className={classnames(
           'profile-card mb-5',
           addMode && 'inAddMode',
-          inEditMode && 'inEditMode'
+          inEditMode && 'inEditMode',
+          fetching && 'fetching'
         )}
         id={id}
       >
@@ -72,7 +73,7 @@ class ProfileEditableCard extends React.Component {
                 {cardTitle}{' '}
                 <Badge
                   className={classnames('ml-4', isDone && 'isDone')}
-                  color="primary"
+                  color="accent"
                 >
                   Ofullständig
                 </Badge>

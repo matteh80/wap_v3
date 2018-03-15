@@ -196,7 +196,7 @@ class SkillsSlider extends React.Component {
         className="skill-wrapper"
         style={{ zIndex: editMode && 2 }}
       >
-        <h5 className="mb-0">{name}</h5>
+        <h5 className="mb-0 skill-name">{name}</h5>
         <div className="d-flex flex-row">
           <div className="skills-slider">
             <Slider

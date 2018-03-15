@@ -1,6 +1,8 @@
 
 .skill-wrapper {
-
+  .skill-name {
+    text-transform: initial;
+  }
 
 
 }
@@ -12,7 +14,7 @@
 
 .value {
   color: $gray-600;
-  text-transform: uppercase;
+  //text-transform: uppercase;
   font-size: 12px;
 }
 
