@@ -8,6 +8,7 @@ import languages from './languages'
 import occupations from './occupations'
 import locations from './locations'
 import employments from './employments'
+import educations from './educations'
 
 const appReducer = {
   routing: routerReducer,
@@ -17,7 +18,8 @@ const appReducer = {
   languages,
   occupations,
   locations,
-  employments
+  employments,
+  educations
 }
 
 const config = {

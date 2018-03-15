@@ -72,7 +72,6 @@ class EmploymentsCard extends React.Component {
       >
         <EmploymentsForm
           isOpen={addMode}
-          updateFn={this.addEmployment}
           occupations={allOccupations}
           dispatch={dispatch}
         />
@@ -319,76 +318,78 @@ class EmploymentsForm extends React.Component {
     return (
       <Collapse isOpen={isOpen}>
         <div className="employments-form mb-3 py-3">
-          <AvForm
-            onValidSubmit={this.handleSubmit}
-            className="row"
-            model={employment ? employment : null}
-            ref={c => (this.form = c)}
-          >
-            <Col xs={12} sm={6}>
-              <AvField
-                type="text"
-                name="title"
-                label="Position *"
-                placeholder="Ex. Talent acquisition manager"
-                errorMessage="Detta fält krävs"
-                required
-              />
-            </Col>
-            <Col xs={12} sm={6}>
-              <AvField
-                type="text"
-                name="employer"
-                label="Företag *"
-                placeholder="Ex. Workandpassion"
-                errorMessage="Detta fält krävs"
-                required
-              />
-            </Col>
-            <AvGroup className="col-12 col-md-6">
-              <label>Befattning *</label>
-              <Select
-                name="form-field-name"
-                simpleValue
-                value={occupationValue}
-                onChange={value => this.setState({ occupationValue: value })}
-                options={this.setUpOccupations()}
-                placeholder="Välj en befattning"
-                clearable={false}
-              />
-              <AvField
-                type="hidden"
-                name="occupation"
-                value={occupationValue}
-                errorMessage="Detta fält krävs"
-                required
-              />
-            </AvGroup>
-            <StartEndDate
-              withCurrent
-              onChange={this.handleDateChange}
-              defaultValues={defaultDateValues}
-            />
-            {this.props.employment && (
-              <Col xs={12} dm={6}>
+          {isOpen && (
+            <AvForm
+              onValidSubmit={this.handleSubmit}
+              className="row"
+              model={employment ? employment : null}
+              ref={c => (this.form = c)}
+            >
+              <Col xs={12} sm={6}>
                 <AvField
-                  name="description"
-                  type="textarea"
-                  label="Beskrivning"
+                  type="text"
+                  name="title"
+                  label="Position *"
+                  placeholder="Ex. Talent acquisition manager"
+                  errorMessage="Detta fält krävs"
+                  required
                 />
               </Col>
-            )}
-            <Col xs={12}>
-              <Button type="submit">
-                {this.state.editMode ? 'Uppdatera' : 'Lägg till'}
-              </Button>
-              {this.state.editMode && (
-                <Button className="ml-3" color="primary" onClick={this.abort}>
-                  Avbryt
-                </Button>
+              <Col xs={12} sm={6}>
+                <AvField
+                  type="text"
+                  name="employer"
+                  label="Företag *"
+                  placeholder="Ex. Workandpassion"
+                  errorMessage="Detta fält krävs"
+                  required
+                />
+              </Col>
+              <AvGroup className="col-12 col-md-6">
+                <label>Befattning *</label>
+                <Select
+                  name="form-field-name"
+                  simpleValue
+                  value={occupationValue}
+                  onChange={value => this.setState({ occupationValue: value })}
+                  options={this.setUpOccupations()}
+                  placeholder="Välj en befattning"
+                  clearable={false}
+                />
+                <AvField
+                  type="hidden"
+                  name="occupation"
+                  value={occupationValue}
+                  errorMessage="Detta fält krävs"
+                  required
+                />
+              </AvGroup>
+              <StartEndDate
+                withCurrent
+                onChange={this.handleDateChange}
+                defaultValues={defaultDateValues}
+              />
+              {this.props.employment && (
+                <Col xs={12} dm={6}>
+                  <AvField
+                    name="description"
+                    type="textarea"
+                    label="Beskrivning"
+                  />
+                </Col>
               )}
-            </Col>
-          </AvForm>
+              <Col xs={12}>
+                <Button type="submit">
+                  {this.state.editMode ? 'Uppdatera' : 'Lägg till'}
+                </Button>
+                {this.state.editMode && (
+                  <Button className="ml-3" color="primary" onClick={this.abort}>
+                    Avbryt
+                  </Button>
+                )}
+              </Col>
+            </AvForm>
+          )}
         </div>
       </Collapse>
     )
