@@ -7,9 +7,11 @@ import EmploymentsCard from './components/EmploymentsCard/EmploymentsCard'
 import SkillsCard from './components/SkillsCard/SkillsCard'
 import LanguagesCard from './components/LanguagesCard/LanguagesCard'
 import OccupationsCard from './components/OccupationsCard/OccupationsCard'
-import SideNav from './components/SideNav/SideNav'
+// import SideNav from './components/SideNav/SideNav'
 import EducationsCard from './components/EducationsCard/EducationsCard'
 import LicensesCard from './components/LicensesCard/LicensesCard'
+import MotivationsCard from './components/MotivationsCard/MotivationsCard'
+import PersonalitiesCard from './components/PersonalitiesCard/PersonalitiesCard'
 import { setProfileProgress } from '../../store/modules/profile'
 
 class Profile extends React.Component {
@@ -50,6 +52,8 @@ class Profile extends React.Component {
               <SkillsCard />
               <OccupationsCard />
               <LanguagesCard />
+              <PersonalitiesCard />
+              <MotivationsCard />
               <LicensesCard />
             </Col>
           </Row>
@@ -64,7 +68,9 @@ const mapStateToProps = state => ({
   userSkills: state.skills.userSkills,
   userLanguages: state.languages.userLanguages,
   userOccupations: state.occupations.userOccupations,
-  userDrivinglicenses: state.drivinglicenses.userDrivinglicenses
+  userDrivinglicenses: state.drivinglicenses.userDrivinglicenses,
+  userMotivations: state.motivations.userMotivations,
+  userPersonalities: state.personalities.userPersonalities
 })
 
 export default connect(mapStateToProps)(Profile)

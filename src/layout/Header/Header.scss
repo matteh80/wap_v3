@@ -51,6 +51,8 @@ header.header {
       
       #marker {
         color: #fff;
+        width: 20px;
+        height: 20px;
         font-size: 20px;
         position: absolute;
         top: -10px;
@@ -152,11 +154,13 @@ header.header {
   .rc-slider {
     .rc-slider-track {
       background: $secondary;
+      border-radius: 0;
     }
     .rc-slider-dot {
       background-color: $primary;
       opacity: 1 !important;
-      width: 5px;
+      width: 4px;
+      margin-left: -2px;
     }
   }
 

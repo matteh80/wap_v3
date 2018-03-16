@@ -104,12 +104,21 @@
     }
   }
 
+  .badge {
+    font-size: 16px;
+
+    &.disabled {
+      opacity: 0.3;
+    }
+  }
+
   .profile-select-item {
     cursor: pointer;
     background: transparent;
     border: 2px solid $secondary;
     color: $secondary;
     transition: all 250ms;
+    font-size: 13px;
 
     &:hover:not(.selected) {
       background: $accent;
@@ -120,14 +129,6 @@
     &.selected {
       background: $secondary;
       color: #fff;
-    }
-  }
-
-  .badge {
-    font-size: 12px;
-
-    &.disabled {
-      opacity: 0.3;
     }
   }
 }

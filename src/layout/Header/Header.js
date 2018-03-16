@@ -184,11 +184,13 @@ class HeaderProgress extends React.Component {
 
     let holderOffsetLeft = $tooltipHolder.offset().left
     let activeOffsetLeft = $active.offset().left
+    console.log(holderOffsetLeft)
+    console.log(activeOffsetLeft)
     let leftValue =
       holderOffsetLeft -
       activeOffsetLeft -
-      $active.width() / 2 -
-      $marker.outerWidth() / 2
+      $active.width() / 2 +
+      $marker.width() / 2
     $marker.css('left', -leftValue)
   }
 
@@ -205,11 +207,12 @@ class HeaderProgress extends React.Component {
           value={progress.doneItems ? progress.doneItems.length : 0}
           disabled={true}
         />
-        <i className="fas fa-map-marker" id="marker" />
+
         <div className="tooltip-holder d-flex">
+          <i className="fas fa-map-marker" id="marker" />
           <Scrollspy
             items={_.map(this.state.menuItems, 'id')}
-            offset={-80}
+            offset={-300}
             currentClassName="active"
             onUpdate={this.handleUpdate}
           >

@@ -8729,6 +8729,8 @@ header.header > .container .slider-wrapper .tooltip-holder .tooltip-target {
 }
 header.header > .container .slider-wrapper #marker {
   color: #fff;
+  width: 20px;
+  height: 20px;
   font-size: 20px;
   position: absolute;
   top: -10px;
@@ -8805,11 +8807,13 @@ header.header #header-bottom .slider-wrapper .tooltip-holder .tooltip-target {
 }
 header.header .rc-slider .rc-slider-track {
   background: #11ada7;
+  border-radius: 0;
 }
 header.header .rc-slider .rc-slider-dot {
   background-color: #547581;
   opacity: 1 !important;
-  width: 5px;
+  width: 4px;
+  margin-left: -2px;
 }
 header.header.collapsed .navbar-brand {
   margin-top: 5px;
@@ -9438,12 +9442,20 @@ header.header.collapsed .navbar-brand #header--logo {
   }
 }
 
+.profile .badge {
+  font-size: 16px;
+}
+.profile .badge.disabled {
+  opacity: 0.3;
+}
+
 .profile .profile-select-item {
   cursor: pointer;
   background: transparent;
   border: 2px solid #11ada7;
   color: #11ada7;
   transition: all 250ms;
+  font-size: 13px;
 }
 .profile .profile-select-item:hover:not(.selected) {
   background: #e8003b;
@@ -9453,13 +9465,6 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile .profile-select-item.selected {
   background: #11ada7;
   color: #fff;
-}
-
-.profile .badge {
-  font-size: 12px;
-}
-.profile .badge.disabled {
-  opacity: 0.3;
 }
 
 .start-end-date select {

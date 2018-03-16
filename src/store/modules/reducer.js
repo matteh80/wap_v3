@@ -10,6 +10,8 @@ import locations from './locations'
 import employments from './employments'
 import educations from './educations'
 import drivinglicenses from './drivinglicenses'
+import motivations from './motivations'
+import personalities from './personalities'
 
 const appReducer = {
   routing: routerReducer,
@@ -21,7 +23,9 @@ const appReducer = {
   locations,
   employments,
   educations,
-  drivinglicenses
+  drivinglicenses,
+  motivations,
+  personalities
 }
 
 const config = {

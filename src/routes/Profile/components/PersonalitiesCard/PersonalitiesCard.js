@@ -3,15 +3,15 @@ import { connect } from 'react-redux'
 import ProfileEditableCard from '../ProfileEditableCard'
 import { Row, Col, Badge, Collapse } from 'reactstrap'
 import {
-  editUserDrivinglicenses,
-  fetchAllDrivinglicenses,
-  fetchUserDrivinglicenses
-} from '../../../../store/modules/drivinglicenses'
+  editUserPersonalities,
+  fetchAllPersonalities,
+  fetchUserPersonalities
+} from '../../../../store/modules/personalities'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import _ from 'lodash'
 
-class LicensesCard extends React.Component {
+class PersonalitiesCard extends React.Component {
   constructor(props) {
     super(props)
 
@@ -26,8 +26,8 @@ class LicensesCard extends React.Component {
     let { dispatch } = this.props
 
     Promise.all([
-      dispatch(fetchUserDrivinglicenses()),
-      dispatch(fetchAllDrivinglicenses())
+      dispatch(fetchUserPersonalities()),
+      dispatch(fetchAllPersonalities())
     ])
   }
 
@@ -39,28 +39,28 @@ class LicensesCard extends React.Component {
 
   render() {
     const {
-      userDrivinglicenses,
-      allDrivinglicenses,
-      updatingUserDrivinglicenses,
-      fetchingUserDrivinglicenses
+      userPersonalities,
+      allPersonalities,
+      updatingUserPersonalities,
+      fetchingUserPersonalities
     } = this.props
 
     const { addMode } = this.state
 
     return (
       <ProfileEditableCard
-        id="drivinglicenses"
-        cardTitle="Körkort"
+        id="personalities"
+        cardTitle="Personlighet"
         cbAddMode={this.cbAddMode}
-        loading={updatingUserDrivinglicenses}
-        fetching={fetchingUserDrivinglicenses}
-        isDone={userDrivinglicenses.length > 0}
+        loading={updatingUserPersonalities}
+        fetching={fetchingUserPersonalities}
+        isDone={userPersonalities.length > 0}
         noForm
       >
         <Row className="profile-content">
           <Col xs={12}>
-            {userDrivinglicenses &&
-              userDrivinglicenses.map(item => (
+            {userPersonalities &&
+              userPersonalities.map(item => (
                 <Badge
                   pill
                   className={classnames('mr-1', addMode && 'disabled')}
@@ -72,14 +72,14 @@ class LicensesCard extends React.Component {
           <Collapse isOpen={addMode} className="pt-3 col-12">
             <Row className="p-0">
               <Col xs={12}>
-                <h5>Vad har du för kör- och truckkort?</h5>
+                <h5>Vad utmärker din personlighet?</h5>
               </Col>
               {addMode &&
-                allDrivinglicenses &&
-                allDrivinglicenses.map(license => (
-                  <LicenseItem
-                    key={license.id}
-                    license={license}
+                allPersonalities &&
+                allPersonalities.map(personality => (
+                  <PersonalityItem
+                    key={personality.id}
+                    personality={personality}
                     dispatch={this.props.dispatch}
                   />
                 ))}
@@ -92,16 +92,15 @@ class LicensesCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  userDrivinglicenses: state.drivinglicenses.userDrivinglicenses,
-  allDrivinglicenses: state.drivinglicenses.allDrivinglicenses,
-  updatingUserDrivinglicenses:
-    state.drivinglicenses.updatingUserDrivinglicenses,
-  fetchingUserDrivinglicenses: state.drivinglicenses.updatingUserDrivinglicenses
+  userPersonalities: state.personalities.userPersonalities,
+  allPersonalities: state.personalities.allPersonalities,
+  updatingUserPersonalities: state.personalities.updatingUserPersonalities,
+  fetchingUserPersonalities: state.personalities.updatingUserPersonalities
 })
 
-export default connect(mapStateToProps)(LicensesCard)
+export default connect(mapStateToProps)(PersonalitiesCard)
 
-class LicenseItem extends React.Component {
+class PersonalityItem extends React.Component {
   constructor(props) {
     super(props)
 
@@ -114,32 +113,32 @@ class LicenseItem extends React.Component {
   }
 
   addRemove() {
-    const { dispatch, license } = this.props
-    dispatch(editUserDrivinglicenses(license))
+    const { dispatch, personality } = this.props
+    dispatch(editUserPersonalities(personality))
   }
 
-  remove(license) {}
+  remove(personality) {}
 
   render() {
-    const { license } = this.props
+    const { personality } = this.props
     return (
-      <Col xs={12} sm={6} md={4} lg={3} className="mb-1" key={license.id}>
+      <Col xs={12} sm={6} md={4} lg={3} className="mb-1" key={personality.id}>
         <Badge
           pill
           className={classnames(
             'profile-select-item w-100',
-            license.selected && 'selected'
+            personality.selected && 'selected'
           )}
           onClick={this.addRemove}
         >
-          {license.name}
+          {personality.name}
         </Badge>
       </Col>
     )
   }
 }
 
-LicenseItem.propTypes = {
-  license: PropTypes.object.isRequired,
+PersonalityItem.propTypes = {
+  personality: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired
 }

@@ -50,6 +50,18 @@ const EMPTY_STATE = {
         done: false,
         icon: 'fa-comments'
       },
+      personalities: {
+        name: 'Personlighet',
+        id: 'personalities',
+        done: false,
+        icon: 'fa-rocket'
+      },
+      motivations: {
+        name: 'Drivkrafter',
+        id: 'motivations',
+        done: false,
+        icon: 'fa-rocket'
+      },
       drivinglicenses: {
         name: 'Körkort',
         id: 'drivinglicenses',
@@ -170,6 +182,12 @@ export function setProfileProgress() {
     mProgress.items['languages'].done =
       getState().languages.userLanguages &&
       getState().languages.userLanguages.length > 0
+    mProgress.items['personalities'].done =
+      getState().personalities.userPersonalities &&
+      getState().personalities.userPersonalities.length > 0
+    mProgress.items['motivations'].done =
+      getState().motivations.userMotivations &&
+      getState().motivations.userMotivations.length > 0
     mProgress.items['drivinglicenses'].done =
       getState().drivinglicenses.userDrivinglicenses &&
       getState().drivinglicenses.userDrivinglicenses.length > 0
