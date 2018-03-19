@@ -55,6 +55,7 @@ class SkillsCard extends React.Component {
 
   render() {
     const {
+      isDone,
       userSkills,
       allSkills,
       updatingUserSkills,
@@ -65,10 +66,11 @@ class SkillsCard extends React.Component {
       <ProfileEditableCard
         id="skills"
         cardTitle="Kompetenser"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserSkills}
         fetching={fetchingUserSkills}
-        isDone={userSkills.length > 0}
+        isDone={isDone}
       >
         <SkillsForm
           skills={allSkills}
@@ -102,6 +104,7 @@ class SkillsCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.skills.done,
   userSkills: state.skills.userSkills,
   allSkills: state.skills.allSkills,
   updatingUserSkills: state.skills.updatingUserSkills,

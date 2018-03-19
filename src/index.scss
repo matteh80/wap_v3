@@ -11,9 +11,20 @@
 
 @import './layout/CoreLayout/CoreLayout';
 @import './layout/Header/Header';
+@import './layout/Header/components/HeaderProgress/HeaderProgress.scss';
 
 @import './routes/Login/Login';
 @import './routes/Register/Register';
+
+@import './routes/Profile/components/ProfileProgress/ProfileProgress';
+@import './routes/Profile/components/SideNav/SideNav';
+@import './routes/Profile/components/ProfileEditableCard';
+@import './routes/Profile/components/SkillsCard/SkillsCard';
+@import './routes/Profile/components/LanguagesCard/LanguagesCard';
+@import './routes/Profile/components/OccupationsCard/OccupationsCard';
+@import './routes/Profile/components/EmploymentsCard/EmploymentsCard';
+@import './routes/Profile/components/EducationsCard/EducationsCard';
+@import './routes/Profile/components/GeneralCard/GeneralCard.scss';
 @import './routes/Profile/Profile';
 
 @import './components/LoadingButton/LoadingButton';

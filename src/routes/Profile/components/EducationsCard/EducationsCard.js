@@ -51,6 +51,7 @@ class EducationsCard extends React.Component {
     const { addMode, educationsInEditMode } = this.state
     const {
       dispatch,
+      isDone,
       updatingEducations,
       fetchingEducations,
       userEducations,
@@ -60,10 +61,11 @@ class EducationsCard extends React.Component {
       <ProfileEditableCard
         id="educations"
         cardTitle="Utbildningar"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingEducations}
         fetching={fetchingEducations}
-        isDone={userEducations.length > 0}
+        isDone={isDone}
         inEditMode={educationsInEditMode}
       >
         <EducationsForm
@@ -96,6 +98,7 @@ class EducationsCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.educations.done,
   userEducations: state.educations.userEducations,
   updatingEducations: state.educations.updatingEducations,
   fetchingEducations: state.educations.fetchingEducations,

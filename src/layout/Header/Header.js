@@ -20,6 +20,7 @@ import Slider from 'rc-slider'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import Scrollspy from 'react-scrollspy'
+import HeaderProgress from './components/HeaderProgress/HeaderProgress'
 
 class Header extends React.Component {
   constructor(props) {
@@ -128,7 +129,7 @@ const mapStateToProps = state => ({
 
 export default withRouter(connect(mapStateToProps)(Header))
 
-class HeaderProgress extends React.Component {
+class HeaderProgressOld extends React.Component {
   constructor(props) {
     super(props)
 
@@ -224,6 +225,6 @@ class HeaderProgress extends React.Component {
   }
 }
 
-HeaderProgress.propTypes = {
+HeaderProgressOld.propTypes = {
   progress: PropTypes.number.isRequired
 }

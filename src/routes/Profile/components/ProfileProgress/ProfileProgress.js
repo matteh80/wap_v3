@@ -54,9 +54,17 @@ class ProfileProgress extends React.Component {
             percentage={progressPercent}
             initialAnimation
             textForPercentage={null}
-            strokeWidth={10}
+            strokeWidth={8}
           />
         </div>
+
+        <GradientSVG
+          startColor="#fb5217"
+          middleColor="#fbb017"
+          endColor="#47a29f"
+          idCSS="progressGradient"
+          rotation="90"
+        />
       </div>
     )
   }
@@ -68,3 +76,23 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(ProfileProgress)
+
+class GradientSVG extends React.Component {
+  render() {
+    let { startColor, middleColor, endColor, idCSS, rotation } = this.props
+
+    let gradientTransform = `rotate(${rotation})`
+
+    return (
+      <svg style={{ height: 0 }}>
+        <defs>
+          <linearGradient id={idCSS} gradientTransform={gradientTransform}>
+            <stop offset="0%" stopColor={startColor} />
+            <stop offset="35%" stopColor={middleColor} />
+            <stop offset="100%" stopColor={endColor} />
+          </linearGradient>
+        </defs>
+      </svg>
+    )
+  }
+}

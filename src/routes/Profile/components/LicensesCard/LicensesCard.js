@@ -39,6 +39,7 @@ class LicensesCard extends React.Component {
 
   render() {
     const {
+      isDone,
       userDrivinglicenses,
       allDrivinglicenses,
       updatingUserDrivinglicenses,
@@ -51,10 +52,11 @@ class LicensesCard extends React.Component {
       <ProfileEditableCard
         id="drivinglicenses"
         cardTitle="Körkort"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserDrivinglicenses}
         fetching={fetchingUserDrivinglicenses}
-        isDone={userDrivinglicenses.length > 0}
+        isDone={isDone}
         noForm
       >
         <Row className="profile-content">
@@ -92,6 +94,7 @@ class LicensesCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.drivinglicenses.done,
   userDrivinglicenses: state.drivinglicenses.userDrivinglicenses,
   allDrivinglicenses: state.drivinglicenses.allDrivinglicenses,
   updatingUserDrivinglicenses:

@@ -109,6 +109,7 @@ class OccupationsCard extends React.Component {
 
   render() {
     const {
+      isDone,
       allOccupations,
       updatingUserOccupations,
       fetchingUserOccupations
@@ -159,10 +160,11 @@ class OccupationsCard extends React.Component {
       <ProfileEditableCard
         id="occupations"
         cardTitle="Befattningar"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserOccupations}
         fetching={fetchingUserOccupations}
-        isDone={userOccupations.length > 0}
+        isDone={isDone}
       >
         {allLoaded && (
           <OccupationsForm
@@ -196,6 +198,7 @@ class OccupationsCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.occupations.done,
   userOccupations: state.occupations.userOccupations,
   allOccupations: state.occupations.allOccupations,
   updatingUserOccupations: state.occupations.updatingUserOccupations,

@@ -64,6 +64,7 @@ class LanguagesCard extends React.Component {
 
   render() {
     const {
+      isDone,
       userLanguages,
       allLanguages,
       updatingUserLanguages,
@@ -74,10 +75,11 @@ class LanguagesCard extends React.Component {
       <ProfileEditableCard
         id="languages"
         cardTitle="Språk"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserLanguages}
         fetching={fetchingUserLanguages}
-        isDone={userLanguages.length > 0}
+        isDone={isDone}
       >
         {allLoaded && (
           <LanguagesForm
@@ -113,6 +115,7 @@ class LanguagesCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.languages.done,
   userLanguages: state.languages.userLanguages,
   allLanguages: state.languages.allLanguages,
   updatingUserLanguages: state.languages.updatingUserLanguages,

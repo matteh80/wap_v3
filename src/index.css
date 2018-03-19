@@ -8822,6 +8822,130 @@ header.header.collapsed .navbar-brand #header--logo {
   max-height: 40px;
 }
 
+#header-progress {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  width: calc(100% - 60px);
+  z-index: 9;
+}
+@media (min-width: 768px) {
+  #header-progress {
+    left: 195px;
+    width: calc(100% - 150px - 45px);
+  }
+}
+@media (min-width: 992px) {
+  #header-progress {
+    left: 255px;
+  }
+}
+@media (min-width: 1400px) {
+  #header-progress {
+    left: 350px;
+    width: calc(100% - 305px - 45px - 15px);
+  }
+}
+#header-progress #header-progress-step-wrapper {
+  display: flex;
+}
+#header-progress #header-progress-step-wrapper > div {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+#header-progress #header-progress-step-wrapper .progress-step-wrapper {
+  flex: 1;
+  cursor: pointer;
+  margin: 0 2px;
+  display: flex;
+  position: relative;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper:first-of-type
+  .progress-step {
+  border-radius: 5px 0 0 5px;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper:last-of-type
+  .progress-step {
+  border-radius: 0 5px 5px 0;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper
+  .progress-step {
+  background: #adb5bd;
+  height: 10px;
+  width: 100%;
+  transition: box-shadow 500ms ease-in-out;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper
+  .icon-wrapper {
+  position: absolute;
+  left: calc(50% - 24px / 2);
+  top: calc(50% - 24px / 2);
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  transition: all 250ms;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper
+  .icon-wrapper
+  i {
+  position: relative;
+  z-index: 2;
+}
+#header-progress #header-progress-step-wrapper .progress-step-wrapper .arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4.8px 12px 0 12px;
+  border-color: #fff transparent transparent transparent;
+  position: absolute;
+  left: calc(50% - 24px / 2);
+  bottom: 2px;
+  z-index: 0;
+  transition: all 250ms;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.done
+  .progress-step {
+  box-shadow: inset 150px 0 0 #03c16e;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.done
+  .icon-wrapper {
+  color: #027643;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.active
+  .icon-wrapper {
+  top: -28.8px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.active
+  .arrow {
+  border-width: 21.81818px 12px 0 12px;
+}
+
 .login-wrapper .login-container .left-content {
   min-height: 100vh;
 }
@@ -8863,17 +8987,24 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-progress--wrapper .profile-picture {
   transition: all 250ms;
   position: absolute;
-  top: -1px;
+  top: 0;
   padding: 0;
-  z-index: 2;
+  width: 100%;
+  z-index: 1;
 }
 .profile-progress--wrapper .progress-circle {
   position: absolute;
   top: 0;
 }
+@media (min-width: 1400px) {
+  .profile-progress--wrapper .progress-circle {
+    width: 300px;
+    height: 300px;
+  }
+}
 .profile-progress--wrapper .progress-circle .CircularProgressbar {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   transform: scale(0);
   transition: all 250ms;
 }
@@ -8882,7 +9013,12 @@ header.header.collapsed .navbar-brand #header--logo {
   .CircularProgressbar
   .CircularProgressbar-path {
   stroke: #11ada7;
-  stroke-linecap: square;
+}
+.profile-progress--wrapper
+  .progress-circle
+  .CircularProgressbar
+  .CircularProgressbar-path {
+  stroke: url(#progressGradient);
 }
 .profile-progress--wrapper.scrolled .profile-picture {
   border-radius: 50%;
@@ -9015,9 +9151,10 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 .profile-card .loading-progress {
   position: relative;
-  top: 0px;
+  top: 0;
   width: 100%;
-  height: 0;
+  height: 10px;
+  opacity: 0;
   background: linear-gradient(to right, #11ada7 0%, #547581 50%, #11ada7 100%);
   background-size: 50% 100%;
   border-top-left-radius: 15px;
@@ -9026,10 +9163,13 @@ header.header.collapsed .navbar-brand #header--logo {
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  transition: height 250ms;
 }
 .profile-card .loading-progress.visible {
-  height: 10px;
+  opacity: 1;
+}
+.profile-card .loading-progress.error {
+  background: #ff0000;
+  opacity: 1;
 }
 .profile-card .addNew {
   position: absolute;
@@ -9357,11 +9497,60 @@ header.header.collapsed .navbar-brand #header--logo {
   background: #e8003b;
 }
 
+#general .editForm input,
+#general .editForm select {
+  transition: all 250ms;
+}
+
+#general .editForm.viewMode select {
+  appearance: button;
+}
+
+#general .editForm.viewMode input,
+#general .editForm.viewMode select {
+  height: auto;
+  padding: 0 0;
+  border-radius: 0;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #dee2e6;
+  font-family: 'futura-pt', sans-serif;
+  font-size: 18px;
+}
+#general .editForm.viewMode input:-webkit-autofill,
+#general .editForm.viewMode select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+#general .editForm.viewMode input:disabled,
+#general .editForm.viewMode select:disabled {
+  background: #fff;
+}
+#general .editForm.viewMode input:disabled::placeholder,
+#general .editForm.viewMode select:disabled::placeholder {
+  color: transparent;
+}
+#general .editForm.viewMode input + .text-muted,
+#general .editForm.viewMode select + .text-muted {
+  display: none;
+}
+
+#general .editForm #salary_expectations_min {
+  position: relative;
+}
+
+#general #mapWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.profile {
+  padding-bottom: 50vh;
+}
 .profile .left .profile-tips {
   position: fixed;
   z-index: 99;
   transition: all 250ms;
-  top: 450px !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9374,11 +9563,13 @@ header.header.collapsed .navbar-brand #header--logo {
 @media (min-width: 992px) {
   .profile .left .profile-tips {
     width: 210px;
+    top: 360px;
   }
 }
 @media (min-width: 1400px) {
   .profile .left .profile-tips {
     width: 305px;
+    top: 450px;
   }
 }
 .profile .left .profile-tips:after {
@@ -9391,11 +9582,9 @@ header.header.collapsed .navbar-brand #header--logo {
   position: absolute;
   top: -25px;
 }
-
 .profile .left .card .picture-wrapper {
   position: relative;
 }
-
 .profile .left .card .progress-wrapper {
   position: absolute;
   width: 100%;
@@ -9414,16 +9603,13 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile .left .card .progress-wrapper .progress .progress-bar {
   background: #fff;
 }
-
 .profile .left .card .profile-picture {
   transition: height 250ms;
   border-radius: 0;
 }
-
 .profile .left.fixed .card {
   position: fixed;
   z-index: 99;
-  top: 310px;
   transition: all 250ms;
 }
 @media (min-width: 768px) {
@@ -9441,14 +9627,12 @@ header.header.collapsed .navbar-brand #header--logo {
     width: 305px;
   }
 }
-
 .profile .badge {
   font-size: 16px;
 }
 .profile .badge.disabled {
   opacity: 0.3;
 }
-
 .profile .profile-select-item {
   cursor: pointer;
   background: transparent;
@@ -9473,6 +9657,11 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 .start-end-date select.month {
   text-transform: capitalize;
+}
+
+.profile-footer {
+  padding: 50px 0;
+  background: #495057;
 }
 
 .loading-button--wrapper {

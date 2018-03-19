@@ -12,6 +12,7 @@ import EducationsCard from './components/EducationsCard/EducationsCard'
 import LicensesCard from './components/LicensesCard/LicensesCard'
 import MotivationsCard from './components/MotivationsCard/MotivationsCard'
 import PersonalitiesCard from './components/PersonalitiesCard/PersonalitiesCard'
+import GeneralCard from './components/GeneralCard/GeneralCard'
 import { setProfileProgress } from '../../store/modules/profile'
 
 class Profile extends React.Component {
@@ -47,6 +48,7 @@ class Profile extends React.Component {
               <ProfileProgress />
             </Col>
             <Col xs={12} md={9} className="right">
+              <GeneralCard />
               <EmploymentsCard />
               <EducationsCard />
               <SkillsCard />
@@ -58,6 +60,13 @@ class Profile extends React.Component {
             </Col>
           </Row>
         </Container>
+        <div className="profile-footer">
+          <Container>
+            <Row>
+              <Col xs={12}>asdasd</Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     )
   }

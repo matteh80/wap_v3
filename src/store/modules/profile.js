@@ -20,53 +20,68 @@ const EMPTY_STATE = {
     progressPercent: 0,
     doneItems: [],
     items: {
+      general: {
+        name: 'Allmänt',
+        id: 'general',
+        done: false,
+        icon: 'fa-user',
+        level: 1
+      },
       employments: {
         name: 'Anställningar',
         id: 'employments',
         done: false,
-        icon: 'fa-briefcase'
+        icon: 'fa-briefcase',
+        level: 1
       },
       educations: {
         name: 'Utbildningar',
         id: 'educations',
         done: false,
-        icon: 'fa-graduation-cap'
+        icon: 'fa-graduation-cap',
+        level: 1
       },
       skills: {
         name: 'Kompetenser',
         id: 'skills',
         done: false,
-        icon: 'fa-rocket'
+        icon: 'fa-rocket',
+        level: 1
       },
       occupations: {
         name: 'Befattningar',
         id: 'occupations',
         done: false,
-        icon: 'fa-tags'
+        icon: 'fa-tags',
+        level: 2
       },
       languages: {
         name: 'Språk',
         id: 'languages',
         done: false,
-        icon: 'fa-comments'
+        icon: 'fa-comments',
+        level: 2
       },
       personalities: {
         name: 'Personlighet',
         id: 'personalities',
         done: false,
-        icon: 'fa-rocket'
+        icon: 'fa-rocket',
+        level: 2
       },
       motivations: {
         name: 'Drivkrafter',
         id: 'motivations',
         done: false,
-        icon: 'fa-rocket'
+        icon: 'fa-rocket',
+        level: 2
       },
       drivinglicenses: {
         name: 'Körkort',
         id: 'drivinglicenses',
         done: false,
-        icon: 'fa-car'
+        icon: 'fa-car',
+        level: 3
       }
     }
   }
@@ -78,11 +93,13 @@ export default function profile(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
     case FETCH_PROFILE_START:
       return Object.assign({}, state, {
-        fetchingProfile: true
+        fetchingProfile: true,
+        profileError: undefined
       })
     case FETCH_PROFILE_SUCCESS:
       return Object.assign({}, state, {
         fetchingProfile: false,
+        profileError: undefined,
         ...action.profile
       })
     case FETCH_PROFILE_FAIL:
@@ -92,16 +109,19 @@ export default function profile(state = INITIAL_STATE, action = {}) {
       })
     case UPDATE_PROFILE_START:
       return Object.assign({}, state, {
-        updatingProfile: true
+        updatingProfile: true,
+        profileError: undefined
       })
     case UPDATE_PROFILE_SUCCESS:
       return Object.assign({}, state, {
         updatingProfile: false,
+        profileError: undefined,
         ...action.profile
       })
     case UPDATE_PROFILE_FAIL:
       return Object.assign({}, state, {
         fetchingProfile: false,
+        updatingProfile: false,
         profileError: action.error
       })
 
@@ -167,7 +187,7 @@ export function setProfileProgress() {
     if (mProgress !== EMPTY_STATE.progress) {
       mProgress = EMPTY_STATE.progress
     }
-
+    mProgress.items['general'].done = generalDoneCheck(getState().profile)
     mProgress.items['employments'].done =
       getState().employments.userEmployments &&
       getState().employments.userEmployments.length > 0
@@ -202,5 +222,25 @@ export function setProfileProgress() {
       type: SET_PROFILE_PROGRESS,
       progress: mProgress
     })
+  }
+
+  function generalDoneCheck(profile) {
+    let isDone = true
+
+    const required = [
+      'first_name',
+      'last_name',
+      'title',
+      'email',
+      'mobile_phone_number'
+    ]
+
+    required.forEach(item => {
+      if (!profile[item] && isDone) {
+        isDone = false
+      }
+    })
+
+    return isDone
   }
 }

@@ -8,6 +8,6 @@
     "node-sass": "^4.7.2"
   },
   "scripts": {
-    "build": "node-sass-chokidar --include-path scss index.scss -o build/index.css"
+    "build": "node-sass --include-path scss index.scss -o build/index.css"
   }
 }

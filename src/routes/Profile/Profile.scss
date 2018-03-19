@@ -1,14 +1,6 @@
-@import './components/ProfileProgress/ProfileProgress';
-@import './components/SideNav/SideNav';
-@import './components/ProfileEditableCard';
-@import './components/SkillsCard/SkillsCard';
-@import './components/LanguagesCard/LanguagesCard';
-@import './components/OccupationsCard/OccupationsCard';
-@import './components/EmploymentsCard/EmploymentsCard';
-@import './components/EducationsCard/EducationsCard';
-@import './components/LicensesCard/LicensesCard';
-
 .profile {
+  padding-bottom: 50vh;
+
   .left {
     //margin-top: -180px;
 
@@ -16,7 +8,6 @@
       position: fixed;
       z-index: 99;
       transition: all 250ms;
-      top: 450px !important;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,9 +17,11 @@
       }
       @include media-breakpoint-up(lg) {
         width: 210px;
+        top: 360px;
       }
       @include media-breakpoint-up(xl) {
         width: 305px;
+        top: 450px;
       }
 
       &:after {
@@ -84,7 +77,7 @@
       .card {
         position: fixed;
         z-index: 99;
-        top: 310px;
+        //top: 310px;
         transition: all 250ms;
 
         @include media-breakpoint-up(md) {
@@ -142,6 +135,11 @@
       text-transform: capitalize;
     }
   }
+}
+
+.profile-footer {
+  padding: 50px 0;
+  background: $gray-700;
 }
 
 

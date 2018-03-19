@@ -1,40 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Card, CardBody, CardTitle, Row, Col, Badge } from 'reactstrap'
+import { Card, CardBody, CardTitle, Row, Col, Badge, Alert } from 'reactstrap'
 import classnames from 'classnames'
 
 class ProfileEditableCard extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      addMode: false
-    }
+    this.cardTitle = props.cardTitle
 
     this.handleAddNew = this.handleAddNew.bind(this)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.addMode !== this.state.addMode) {
-      this.props.cbAddMode && this.props.cbAddMode(this.state.addMode)
-    }
-
-    if (prevProps.fetching && !this.props.fetching && !this.props.isDone) {
-      this.setState({
-        addMode: true
-      })
-    }
-  }
-
   handleAddNew() {
-    this.setState({
-      addMode: !this.state.addMode
-    })
+    const { cbAddMode, addMode } = this.props
+    cbAddMode(!addMode)
   }
 
   render() {
-    let { addMode } = this.state
     const {
+      addMode,
       children,
       cardTitle,
       loading,
@@ -42,7 +27,9 @@ class ProfileEditableCard extends React.Component {
       id,
       isDone,
       inEditMode,
-      noForm
+      noForm,
+      errors,
+      closeText
     } = this.props
 
     return (
@@ -55,7 +42,13 @@ class ProfileEditableCard extends React.Component {
         )}
         id={id}
       >
-        <div className={classnames('loading-progress', loading && 'visible')} />
+        <div
+          className={classnames(
+            'loading-progress',
+            loading && 'visible',
+            errors && 'error'
+          )}
+        />
         <div
           className={classnames(
             'addNew',
@@ -65,7 +58,9 @@ class ProfileEditableCard extends React.Component {
           onClick={!fetching ? this.handleAddNew : undefined}
         >
           <span className="addNewText">
-            {addMode ? 'Stäng' : noForm ? 'Ändra' : 'Lägg till'}
+            {addMode
+              ? closeText ? closeText : 'Stäng'
+              : noForm ? 'Ändra' : 'Lägg till'}
           </span>
           <div className="addNewIcon">
             {fetching ? (
@@ -82,6 +77,17 @@ class ProfileEditableCard extends React.Component {
           </div>
         </div>
         <CardBody>
+          {errors && (
+            <Row>
+              <Col xs={12}>
+                <Alert color="danger">
+                  {Object.keys(errors).map(function(key) {
+                    return errors[key]
+                  })}
+                </Alert>
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col xs={10}>
               <CardTitle className="mb-4">

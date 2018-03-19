@@ -55,6 +55,7 @@ class EmploymentsCard extends React.Component {
     const { addMode, employmentsInEditMode } = this.state
     const {
       dispatch,
+      isDone,
       updatingEmployments,
       fetchingEmployments,
       userEmployments,
@@ -64,10 +65,11 @@ class EmploymentsCard extends React.Component {
       <ProfileEditableCard
         id="employments"
         cardTitle="Anställningar"
+        addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingEmployments}
         fetching={fetchingEmployments}
-        isDone={userEmployments.length > 0}
+        isDone={isDone}
         inEditMode={employmentsInEditMode}
       >
         <EmploymentsForm
@@ -100,6 +102,7 @@ class EmploymentsCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  isDone: state.profile.progress.items.employments.done,
   userEmployments: state.employments.userEmployments,
   updatingEmployments: state.employments.updatingEmployments,
   fetchingEmployments: state.employments.fetchingEmployments,
