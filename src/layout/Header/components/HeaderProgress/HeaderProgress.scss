@@ -1,6 +1,7 @@
 $iconSize: 24px;
 $smallIconSize: 18px;
-$progressGreen: #03c16e;
+//$progressGreen: #03c16e;
+$progressGreen: $secondary;
 
 #header-progress {
   position: absolute;
@@ -47,12 +48,31 @@ $progressGreen: #03c16e;
           border-radius: 0 5px 5px 0;
         }
       }
+
+      .level-marker {
+        position: absolute;
+        bottom: 20px;
+        right: -30px;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+        color: $gray-500;
+        
+        .number {
+          position: absolute;
+          right: 30%;
+          top: 30%;
+          color: #fff;
+          font-size: 16px;
+          opacity: .6;
+        }
+      }
       
       .progress-step {
         background: $gray-500;
         height: 10px;
         width: 100%;
-        transition: box-shadow 500ms ease-in-out;
+        transition: background 500ms ease-in-out;
       }
 
       .icon-wrapper {
@@ -89,7 +109,16 @@ $progressGreen: #03c16e;
 
       &.done {
         .progress-step {
-          box-shadow: inset 150px 0 0 $progressGreen;
+          background: $secondary;
+
+          & + .level-marker {
+            &.marker-level-1 {
+              color: $secondary;
+            }
+            &.marker-level-2 {
+              color: $accent;
+            }
+          }
         }
 
         .icon-wrapper {
@@ -111,6 +140,26 @@ $progressGreen: #03c16e;
           border-width: $iconSize /  1.1 $iconSize /  2 0 $iconSize / 2;
         }
       }
+
+      &.level-2 {
+        .done {
+          .progress-step {
+            background: inset 150px 0 0 $accent !important;
+          }
+        }
+      }
     }
+  }
+}
+
+.progress-step-wrapper.level-2.done {
+  .progress-step {
+    background: $accent !important;
+  }
+}
+
+.level-2 {
+  &:first-of-type {
+    height: 200px !important;
   }
 }

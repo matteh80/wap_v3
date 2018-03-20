@@ -41,6 +41,12 @@
     }
   }
 
+  .section-title {
+    border-bottom: 3px solid $primary;
+    color: $primary;
+    margin-bottom: 10px;
+  }
+
   .loading-progress {
     position: relative;
     top: 0;

@@ -84,6 +84,9 @@ class GeneralCard extends React.Component {
           className={cn('editForm', !addMode && 'viewMode')}
         >
           <Row className="profile-content">
+            <Col xs={12}>
+              <h5 className="section-title">Personuppgifter</h5>
+            </Col>
             <Col xs={12} md={6} lg={4}>
               <AvField
                 type="text"
@@ -180,31 +183,14 @@ class GeneralCard extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12} lg={6}>
-              <AvField
-                type="text"
-                name="linkedin_url"
-                label="LinkedIn"
-                disabled={!addMode}
-              />
+            <Col xs={12}>
+              <h5 className="section-title">Adress</h5>
             </Col>
-            <Col xs={12} lg={6}>
-              <AvField
-                type="text"
-                name="homepage"
-                label="Hemsida"
-                disabled={!addMode}
-                placeHolder="Ex. http://workandpassion.se"
-                helpMessage="Måste börja med http:// eller https://"
-              />
-            </Col>
-          </Row>
-          <Row>
             <Col xs={12} md={6}>
               <AvField
                 type="text"
                 name="address"
-                label="Adress"
+                label="Gatuadress"
                 disabled={!addMode}
               />
               <Row>
@@ -228,6 +214,29 @@ class GeneralCard extends React.Component {
             </Col>
             <Col md={6} className="d-none d-md-block">
               <GoogleMap profile={profile} />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <h5 className="section-title">Övrigt</h5>
+            </Col>
+            <Col xs={12} lg={6}>
+              <AvField
+                type="text"
+                name="linkedin_url"
+                label="LinkedIn"
+                disabled={!addMode}
+              />
+            </Col>
+            <Col xs={12} lg={6}>
+              <AvField
+                type="text"
+                name="homepage"
+                label="Hemsida"
+                disabled={!addMode}
+                placeHolder="Ex. http://workandpassion.se"
+                helpMessage="Måste börja med http:// eller https://"
+              />
             </Col>
           </Row>
         </AvForm>

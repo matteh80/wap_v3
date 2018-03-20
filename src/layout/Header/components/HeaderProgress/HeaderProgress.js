@@ -28,23 +28,34 @@ class HeaderProgress extends React.Component {
     const { items } = this.props.progress
     let mArray = _.values(items)
 
-    return mArray.map(item => (
-      <div
-        key={item.id}
-        className={cn(
-          'progress-step-wrapper',
-          'level-' + item.level,
-          item.done && 'done'
-        )}
-        onClick={e => this.handleClick(e, `#${item.id}`)}
-      >
-        <div className="icon-wrapper">
-          <i className={cn('fas', item.icon)} />
+    return mArray.map((item, index) => {
+      const nextItem = mArray[index + 1]
+
+      return (
+        <div
+          key={item.id}
+          className={cn(
+            'progress-step-wrapper',
+            'level-' + item.level,
+            item.done && 'done'
+          )}
+          onClick={e => this.handleClick(e, `#${item.id}`)}
+        >
+          <div className="icon-wrapper">
+            <i className={cn('fas', item.icon)} />
+          </div>
+          <div className="arrow" />
+          <div className="progress-step" />
+          {nextItem &&
+            nextItem.level !== item.level && (
+              <div className={cn('level-marker', 'marker-level-' + item.level)}>
+                <i className="fas fa-flag" />
+                <span className="number">{item.level}</span>
+              </div>
+            )}
         </div>
-        <div className="arrow" />
-        <div className="progress-step" />
-      </div>
-    ))
+      )
+    })
   }
 
   render() {
