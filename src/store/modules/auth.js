@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { apiClient } from '../axios.config'
-import { fetchProfile } from './profile'
+import { fetchProfile, updateProfile } from './profile'
 
 const LOGIN_START = 'wap/auth/LOGIN_START'
 const LOGIN_SUCCESS = 'wap/auth/LOGIN_SUCCESS'
@@ -125,7 +125,13 @@ export function logout() {
   }
 }
 
-export function register(email, password) {
+export function register(
+  email,
+  password,
+  first_name,
+  last_name,
+  mobile_phone_number
+) {
   return dispatch => {
     dispatch({ type: REGISTER_START })
 
@@ -139,9 +145,21 @@ export function register(email, password) {
           Authorization: 'Token ' + result.data.token
         }
 
-        return dispatch({
-          type: REGISTER_SUCCESS,
-          token: result.data.token
+        let token = result.data.token
+
+        return dispatch(fetchProfile()).then(result => {
+          const newProfile = Object.assign({}, result.profile, {
+            first_name: first_name,
+            last_name: last_name,
+            mobile_phone_number: mobile_phone_number
+          })
+
+          return dispatch(updateProfile(newProfile)).then(() => {
+            return dispatch({
+              type: REGISTER_SUCCESS,
+              token: token
+            })
+          })
         })
       })
       .catch(error => {

@@ -54,6 +54,7 @@ class EmploymentsCard extends React.Component {
   render() {
     const { addMode, employmentsInEditMode } = this.state
     const {
+      item,
       dispatch,
       isDone,
       updatingEmployments,
@@ -63,14 +64,12 @@ class EmploymentsCard extends React.Component {
     } = this.props
     return (
       <ProfileEditableCard
-        id="employments"
-        cardTitle="Anställningar"
         addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingEmployments}
         fetching={fetchingEmployments}
-        isDone={isDone}
         inEditMode={employmentsInEditMode}
+        item={item}
       >
         <EmploymentsForm
           isOpen={addMode}

@@ -24,23 +24,15 @@ class Register extends React.Component {
 
     let { dispatch } = this.props
 
-    dispatch(register(values.email, values.password)).then(() => {
-      dispatch(
-        updateProfile({
-          first_name: values.first_name,
-          last_name: values.last_name,
-          address: null,
-          care_of: null,
-          zip_code: null,
-          city: null,
-          phone_number: null,
-          mobile_phone_number: values.mobile_phone_number,
-          title: null,
-          personal_info: null,
-          linkedin_url: null
-        })
+    dispatch(
+      register(
+        values.email,
+        values.password,
+        values.first_name,
+        values.last_name,
+        values.mobile_phone_number
       )
-    })
+    )
   }
 
   render() {

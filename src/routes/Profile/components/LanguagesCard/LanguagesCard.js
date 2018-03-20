@@ -64,6 +64,7 @@ class LanguagesCard extends React.Component {
 
   render() {
     const {
+      item,
       isDone,
       userLanguages,
       allLanguages,
@@ -73,13 +74,11 @@ class LanguagesCard extends React.Component {
     const { allLoaded, addMode, languagesInEditMode } = this.state
     return (
       <ProfileEditableCard
-        id="languages"
-        cardTitle="Språk"
         addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserLanguages}
         fetching={fetchingUserLanguages}
-        isDone={isDone}
+        item={item}
       >
         {allLoaded && (
           <LanguagesForm

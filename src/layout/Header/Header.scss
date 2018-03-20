@@ -1,7 +1,8 @@
 
 
 header.header {
-  background: url('layout/Header/headerBg.jpg');
+  //background: url('layout/Header/headerBg.jpg');
+  background: linear-gradient(to right, #132b41 0% , #075170 50%, #132b41 100%);
   background-size: cover;
   background-position: center;
   position: fixed;

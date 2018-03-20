@@ -33,3 +33,18 @@ body {
   z-index: 99;
 }
 
+.fg_primary {
+  color: $primary !important;
+}
+
+.fg_secondary {
+  color: $secondary !important;
+}
+
+.fg_accent {
+  color: $accent !important;
+}
+
+.fg_red {
+  color: #be0000 !important;
+}

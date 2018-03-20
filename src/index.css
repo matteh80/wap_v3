@@ -8169,6 +8169,22 @@ body.fixed .main-content {
   z-index: 99;
 }
 
+.fg_primary {
+  color: #547581 !important;
+}
+
+.fg_secondary {
+  color: #11ada7 !important;
+}
+
+.fg_accent {
+  color: #e8003b !important;
+}
+
+.fg_red {
+  color: #be0000 !important;
+}
+
 input.av-invalid ~ .invalid-feedback {
   display: block;
   margin-top: 0;
@@ -8570,6 +8586,10 @@ input[type='checkbox']:checked + label:before {
 .card {
   border: none;
   border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.card:hover {
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
 }
 .card .card-title {
   color: #547581;
@@ -8597,7 +8617,7 @@ input[type='checkbox']:checked + label:before {
 }
 
 .main-content {
-  background-color: #adb5bd;
+  background-color: #f0f4f8;
   padding-top: 300px;
 }
 .main-content .clouds-wrapper {
@@ -8676,7 +8696,7 @@ input[type='checkbox']:checked + label:before {
 }
 
 header.header {
-  background: url('layout/Header/headerBg.jpg');
+  background: linear-gradient(to right, #132b41 0%, #075170 50%, #132b41 100%);
   background-size: cover;
   background-position: center;
   position: fixed;
@@ -9237,6 +9257,21 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-card .card-body .badge.isDone {
   transform: scale(0);
 }
+.profile-card .card-title {
+  border-bottom: 1px solid #adb5bd;
+  padding-bottom: 15px;
+}
+.profile-card .card-title .title-icon {
+  background: #ced4da;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #adb5bd;
+  font-size: 15px;
+  margin-right: 0.5rem;
+}
 .profile-card .section-title {
   border-bottom: 3px solid #547581;
   color: #547581;
@@ -9267,8 +9302,8 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-card .addNew {
   position: absolute;
   z-index: 1;
-  top: 20px;
-  right: 10px;
+  top: 30px;
+  right: 45px;
   display: flex;
   align-items: center;
   height: 30px;
@@ -9637,10 +9672,7 @@ header.header.collapsed .navbar-brand #header--logo {
   height: 100%;
 }
 
-.profile {
-  padding-bottom: 50vh;
-}
-.profile .left .profile-tips {
+.profile-tips {
   position: fixed;
   z-index: 99;
   transition: all 250ms;
@@ -9649,23 +9681,23 @@ header.header.collapsed .navbar-brand #header--logo {
   align-items: center;
 }
 @media (min-width: 768px) {
-  .profile .left .profile-tips {
+  .profile-tips {
     width: 150px;
   }
 }
 @media (min-width: 992px) {
-  .profile .left .profile-tips {
+  .profile-tips {
     width: 210px;
     top: 360px;
   }
 }
 @media (min-width: 1400px) {
-  .profile .left .profile-tips {
+  .profile-tips {
     width: 305px;
     top: 450px;
   }
 }
-.profile .left .profile-tips:after {
+.profile-tips:after {
   content: '';
   width: 0;
   height: 0;
@@ -9674,6 +9706,16 @@ header.header.collapsed .navbar-brand #header--logo {
   border-color: transparent transparent #ffffff transparent;
   position: absolute;
   top: -25px;
+}
+.profile-tips .card-body {
+  width: 100%;
+}
+.profile-tips .message > div {
+  width: 100%;
+}
+
+.profile {
+  padding-bottom: 50vh;
 }
 .profile .left .card .picture-wrapper {
   position: relative;

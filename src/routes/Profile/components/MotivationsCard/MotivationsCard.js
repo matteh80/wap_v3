@@ -39,7 +39,7 @@ class MotivationsCard extends React.Component {
 
   render() {
     const {
-      isDone,
+      item,
       userMotivations,
       allMotivations,
       updatingUserMotivations,
@@ -50,14 +50,12 @@ class MotivationsCard extends React.Component {
 
     return (
       <ProfileEditableCard
-        id="motivations"
-        cardTitle="Drivkrafter"
         addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserMotivations}
         fetching={fetchingUserMotivations}
-        isDone={isDone}
         noForm
+        item={item}
       >
         <Row className="profile-content">
           <Col xs={12}>

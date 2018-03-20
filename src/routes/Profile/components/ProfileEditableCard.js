@@ -21,15 +21,13 @@ class ProfileEditableCard extends React.Component {
     const {
       addMode,
       children,
-      cardTitle,
       loading,
       fetching,
-      id,
-      isDone,
       inEditMode,
       noForm,
       errors,
-      closeText
+      closeText,
+      item
     } = this.props
 
     return (
@@ -40,7 +38,7 @@ class ProfileEditableCard extends React.Component {
           inEditMode && 'inEditMode',
           fetching && 'fetching'
         )}
-        id={id}
+        id={item && item.id}
       >
         <div
           className={classnames(
@@ -89,11 +87,14 @@ class ProfileEditableCard extends React.Component {
             </Row>
           )}
           <Row>
-            <Col xs={10}>
+            <Col xs={12}>
               <CardTitle className="mb-4">
-                {cardTitle}{' '}
+                <i
+                  className={classnames('title-icon fas', item && item.icon)}
+                />
+                {item && item.name}{' '}
                 <Badge
-                  className={classnames('ml-4', isDone && 'isDone')}
+                  className={classnames('ml-4', item && item.done && 'isDone')}
                   color="accent"
                 >
                   Ofullständig
@@ -111,11 +112,10 @@ class ProfileEditableCard extends React.Component {
 export default ProfileEditableCard
 
 ProfileEditableCard.propTypes = {
-  cardTitle: PropTypes.string,
   cbAddMode: PropTypes.func,
   loading: PropTypes.bool.isRequired,
   fetching: PropTypes.bool,
-  isDone: PropTypes.bool.isRequired,
   inEditMode: PropTypes.bool,
-  noForm: PropTypes.bool
+  noForm: PropTypes.bool,
+  item: PropTypes.object.isRequired
 }

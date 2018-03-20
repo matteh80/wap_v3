@@ -109,7 +109,7 @@ class OccupationsCard extends React.Component {
 
   render() {
     const {
-      isDone,
+      item,
       allOccupations,
       updatingUserOccupations,
       fetchingUserOccupations
@@ -158,13 +158,11 @@ class OccupationsCard extends React.Component {
 
     return (
       <ProfileEditableCard
-        id="occupations"
-        cardTitle="Befattningar"
         addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingUserOccupations}
         fetching={fetchingUserOccupations}
-        isDone={isDone}
+        item={item}
       >
         {allLoaded && (
           <OccupationsForm

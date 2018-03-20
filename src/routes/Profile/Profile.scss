@@ -4,38 +4,6 @@
   .left {
     //margin-top: -180px;
 
-    .profile-tips {
-      position: fixed;
-      z-index: 99;
-      transition: all 250ms;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      @include media-breakpoint-up(md) {
-        width: 150px;
-      }
-      @include media-breakpoint-up(lg) {
-        width: 210px;
-        top: 360px;
-      }
-      @include media-breakpoint-up(xl) {
-        width: 305px;
-        top: 450px;
-      }
-
-      &:after {
-        content: '';
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 25px 25px 25px;
-        border-color: transparent transparent #ffffff transparent;
-        position: absolute;
-        top: -25px;
-      }
-    }
-
     .card {
       .picture-wrapper {
         position: relative;

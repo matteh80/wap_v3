@@ -1,3 +1,5 @@
+$title-icon-size: 30px;
+
 .profile-card {
   position: relative;
   //padding-top: 60px;
@@ -41,6 +43,22 @@
     }
   }
 
+  .card-title {
+    border-bottom: 1px solid $gray-500;
+    padding-bottom: 15px;
+    .title-icon {
+      background: $gray-400;
+      height: $title-icon-size;
+      width: $title-icon-size;
+      line-height: $title-icon-size;
+      border-radius: $title-icon-size / 2;
+      text-align: center;
+      color: $gray-500;
+      font-size: $title-icon-size / 2;
+      margin-right: .5rem;
+    }
+  }
+
   .section-title {
     border-bottom: 3px solid $primary;
     color: $primary;
@@ -76,8 +94,8 @@
   .addNew {
     position: absolute;
     z-index: 1;
-    top: 20px;
-    right: 10px;
+    top: 30px;
+    right: 45px;
     display: flex;
     align-items: center;
     height: 30px;

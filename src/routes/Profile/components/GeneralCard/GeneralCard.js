@@ -58,22 +58,21 @@ class GeneralCard extends React.Component {
       profile,
       fetchingProfile,
       updatingProfile,
-      errors
+      errors,
+      item
     } = this.props
     const { addMode } = this.state
 
     return (
       <ProfileEditableCard
-        id="general"
-        cardTitle="Allmänt"
         addMode={addMode}
         cbAddMode={this.cbAddMode}
         loading={updatingProfile}
         fetching={fetchingProfile}
-        isDone={isDone}
         noForm
         errors={errors}
         closeText="Spara & stäng"
+        item={item}
       >
         <AvForm
           onValidSubmit={this.handleValidSubmit}
@@ -297,27 +296,30 @@ class GoogleMap extends React.Component {
 
   geoCodeDestination(address) {
     let _self = this
-    let geocoder = new maps.Geocoder()
-    geocoder.geocode({ address: address }, function(results, status) {
-      if (status === maps.GeocoderStatus.OK) {
-        _self.setState({
-          center: {
+
+    if (maps) {
+      let geocoder = new maps.Geocoder()
+      geocoder.geocode({ address: address }, function(results, status) {
+        if (status === maps.GeocoderStatus.OK) {
+          _self.setState({
+            center: {
+              lat: results[0].geometry.location.lat(),
+              lng: results[0].geometry.location.lng()
+            }
+          })
+          map.setCenter({
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng()
-          }
-        })
-        map.setCenter({
-          lat: results[0].geometry.location.lat(),
-          lng: results[0].geometry.location.lng()
-        })
-        $('#mapWrapper > img').fadeOut('slow')
-        $('#mapWrapper > div').fadeIn('slow')
-      } else {
-        // alert('The address could not be found for the following reason: ' + status)
-        $('#mapWrapper > div').fadeOut('slow')
-        $('#mapWrapper > img').fadeIn('slow')
-      }
-    })
+          })
+          $('#mapWrapper > img').fadeOut('slow')
+          $('#mapWrapper > div').fadeIn('slow')
+        } else {
+          // alert('The address could not be found for the following reason: ' + status)
+          $('#mapWrapper > div').fadeOut('slow')
+          $('#mapWrapper > img').fadeIn('slow')
+        }
+      })
+    }
   }
 
   setMap(apiMap, apiMaps) {

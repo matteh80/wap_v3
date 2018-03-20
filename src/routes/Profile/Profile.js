@@ -1,19 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Container, Row, Col, Card, CardBody, CardTitle } from 'reactstrap'
+import { Container, Row, Col } from 'reactstrap'
 import $ from 'jquery'
 import ProfileProgress from './components/ProfileProgress/ProfileProgress'
-import EmploymentsCard from './components/EmploymentsCard/EmploymentsCard'
-import SkillsCard from './components/SkillsCard/SkillsCard'
-import LanguagesCard from './components/LanguagesCard/LanguagesCard'
-import OccupationsCard from './components/OccupationsCard/OccupationsCard'
-// import SideNav from './components/SideNav/SideNav'
-import EducationsCard from './components/EducationsCard/EducationsCard'
-import LicensesCard from './components/LicensesCard/LicensesCard'
-import MotivationsCard from './components/MotivationsCard/MotivationsCard'
-import PersonalitiesCard from './components/PersonalitiesCard/PersonalitiesCard'
-import GeneralCard from './components/GeneralCard/GeneralCard'
 import { setProfileProgress } from '../../store/modules/profile'
+import EmploymentsCard from '../../routes/Profile/components/EmploymentsCard/EmploymentsCard'
+import SkillsCard from '../../routes/Profile/components/SkillsCard/SkillsCard'
+import LanguagesCard from '../../routes/Profile/components/LanguagesCard/LanguagesCard'
+import OccupationsCard from '../../routes/Profile/components/OccupationsCard/OccupationsCard'
+import EducationsCard from '../../routes/Profile/components/EducationsCard/EducationsCard'
+import LicensesCard from '../../routes/Profile/components/LicensesCard/LicensesCard'
+import MotivationsCard from '../../routes/Profile/components/MotivationsCard/MotivationsCard'
+import PersonalitiesCard from '../../routes/Profile/components/PersonalitiesCard/PersonalitiesCard'
+import GeneralCard from '../../routes/Profile/components/GeneralCard/GeneralCard'
+// import SideNav from './components/SideNav/SideNav'
+import ProfileTips from './components/ProfileTips/ProfileTips'
+import _ from 'lodash'
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -28,35 +30,53 @@ class Profile extends React.Component {
     }
   }
 
+  getComponent(item) {
+    switch (item.id) {
+      case 'general':
+        return <GeneralCard item={item} />
+      case 'employments':
+        return <EmploymentsCard item={item} />
+      case 'educations':
+        return <EducationsCard item={item} />
+      case 'skills':
+        return <SkillsCard item={item} />
+      case 'languages':
+        return <LanguagesCard item={item} />
+      case 'occupations':
+        return <OccupationsCard item={item} />
+      case 'drivinglicenses':
+        return <LicensesCard item={item} />
+      case 'motivations':
+        return <MotivationsCard item={item} />
+      case 'personalities':
+        return <PersonalitiesCard item={item} />
+      default:
+        return (
+          <div className="card">
+            <div className="card-body">Error?</div>
+          </div>
+        )
+    }
+  }
+
   render() {
+    const { items } = this.props
+    const mItems = _.values(items)
+
     return (
       <div>
         {/*<SideNav />*/}
         <Container className="profile">
           <Row>
             <Col xs={12} md={3} className="left fixed d-none d-md-block">
-              <Card className="profile-tips">
-                <CardBody>
-                  <CardTitle>Tips</CardTitle>
-                  Bacon ipsum dolor amet alcatra pork loin strip steak tail
-                  turducken swine drumstick pork chop t-bone. Tail ham
-                  burgdoggen filet mignon. Bacon flank meatloaf kielbasa.
-                  Kielbasa picanha burgdoggen hamburger kevin chuck ham
-                  drumstick sirloin rump capicola cow.
-                </CardBody>
-              </Card>
+              <ProfileTips />
               <ProfileProgress />
             </Col>
             <Col xs={12} md={9} className="right">
-              <GeneralCard />
-              <EmploymentsCard />
-              <EducationsCard />
-              <SkillsCard />
-              <OccupationsCard />
-              <LanguagesCard />
-              <PersonalitiesCard />
-              <MotivationsCard />
-              <LicensesCard />
+              {mItems &&
+                mItems.map(item => {
+                  return this.getComponent(item)
+                })}
             </Col>
           </Row>
         </Container>
@@ -79,7 +99,8 @@ const mapStateToProps = state => ({
   userOccupations: state.occupations.userOccupations,
   userDrivinglicenses: state.drivinglicenses.userDrivinglicenses,
   userMotivations: state.motivations.userMotivations,
-  userPersonalities: state.personalities.userPersonalities
+  userPersonalities: state.personalities.userPersonalities,
+  items: state.profile.progress.items
 })
 
 export default connect(mapStateToProps)(Profile)

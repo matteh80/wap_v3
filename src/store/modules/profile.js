@@ -19,6 +19,7 @@ const EMPTY_STATE = {
   progress: {
     progressPercent: 0,
     doneItems: [],
+    onLevel: 0,
     items: {
       general: {
         name: 'Allmänt',
@@ -217,6 +218,7 @@ export function setProfileProgress() {
     })
     mProgress.doneItems = doneItems
     mProgress.progressPercent = doneItems.length / _.size(mProgress.items) * 100
+    mProgress.onLevel = setLevel(mProgress.items)
 
     return dispatch({
       type: SET_PROFILE_PROGRESS,
@@ -242,5 +244,11 @@ export function setProfileProgress() {
     })
 
     return isDone
+  }
+
+  function setLevel(items) {
+    // let mItems = _.values(items)
+    let unDoneItems = _.find(items, { done: false })
+    return unDoneItems.level - 1
   }
 }

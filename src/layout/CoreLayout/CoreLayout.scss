@@ -1,5 +1,5 @@
 .main-content {
-  background-color: $gray-500;
+  background-color: #f0f4f8;
   padding-top: 300px;
 
   .clouds-wrapper {
@@ -14,46 +14,46 @@
   }
 
   .clouds {
-    position: absolute;
-    bottom: 0;
-    opacity: 0;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in;
-    animation-name: cloud1;
-    animation-duration: 10s;
+     position: absolute;
+     bottom: 0;
+     opacity: 0;
+     animation-iteration-count: infinite;
+     animation-timing-function: ease-in;
+     animation-name: cloud1;
+     animation-duration: 10s;
 
-    &#cloud1 {
-      animation-delay: -7s;
-      animation-name: cloud2;
-    }
+     &#cloud1 {
+       animation-delay: -7s;
+       animation-name: cloud2;
+     }
 
-    &#cloud2 {
-      animation-delay: -5s;
-      animation-name: cloud2;
-    }
+     &#cloud2 {
+       animation-delay: -5s;
+       animation-name: cloud2;
+     }
 
-    &#cloud3 {
-      animation-delay: -3s;
+     &#cloud3 {
+       animation-delay: -3s;
 
-    }
+     }
 
-    &#cloud4 {
-      transform: scaleX(-1);
-      animation-delay: -1s;
-      animation-name: cloud2;
-    }
+     &#cloud4 {
+       transform: scaleX(-1);
+       animation-delay: -1s;
+       animation-name: cloud2;
+     }
 
-    &#cloud5 {
-      transform: scaleX(-1);
-      animation-delay: 1s;
-      animation-name: cloud2;
-    }
+     &#cloud5 {
+       transform: scaleX(-1);
+       animation-delay: 1s;
+       animation-name: cloud2;
+     }
 
-    &#cloud6 {
-      transform: scaleX(-1);
-      animation-delay: 3s;
-    }
-  }
+     &#cloud6 {
+       transform: scaleX(-1);
+       animation-delay: 3s;
+     }
+   }
 }
 
 @keyframes cloud1 {
