@@ -46,13 +46,6 @@ class HeaderProgress extends React.Component {
           </div>
           <div className="arrow" />
           <div className="progress-step" />
-          {nextItem &&
-            nextItem.level !== item.level && (
-              <div className={cn('level-marker', 'marker-level-' + item.level)}>
-                <i className="fas fa-flag" />
-                <span className="number">{item.level}</span>
-              </div>
-            )}
         </div>
       )
     })
