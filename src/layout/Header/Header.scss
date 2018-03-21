@@ -1,4 +1,23 @@
+$level0_color: $primary;
+$level1_color: $accent;
+$level2_color: $secondary;
+$level3_color: #00e30e;
 
+.fg_level0 {
+  color: $level0_color !important;
+}
+
+.fg_level1 {
+  color: $level1_color !important;
+}
+
+.fg_level2 {
+  color: $level2_color !important;
+}
+
+.fg_level3 {
+  color: $level3_color !important;
+}
 
 header.header {
   //background: url('layout/Header/headerBg.jpg');
@@ -124,7 +143,17 @@ header.header {
       font-style: italic;
       font-weight: 100;
       margin-top: -10px;
-      margin-bottom: 15px;
+      //margin-bottom: 15px;
+    }
+
+    .profile-stats {
+      color: #fff;
+      font-size: 30px;
+      text-align: end;
+
+      small {
+        font-size: 12px;
+      }
     }
 
     .progress {

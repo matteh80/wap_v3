@@ -9,6 +9,7 @@ const UPDATE_PROFILE_START = 'wap/profile/UPDATE_PROFILE_START'
 const UPDATE_PROFILE_SUCCESS = 'wap/profile/UPDATE_PROFILE_SUCCESS'
 const UPDATE_PROFILE_FAIL = 'wap/profile/UPDATE_PROFILE_FAIL'
 
+const SET_PROFILE_PROGRESS_SUCCESS = 'wap/profile/SET_PROFILE_PROGRESS_SUCCESS'
 const SET_PROFILE_PROGRESS = 'wap/profile/SET_PROFILE_PROGRESS'
 
 const EMPTY_STATE = {
@@ -67,14 +68,14 @@ const EMPTY_STATE = {
         name: 'Personlighet',
         id: 'personalities',
         done: false,
-        icon: 'fa-rocket',
+        icon: 'fa-lightbulb',
         level: 2
       },
       motivations: {
         name: 'Drivkrafter',
         id: 'motivations',
         done: false,
-        icon: 'fa-rocket',
+        icon: 'fa-bolt',
         level: 2
       },
       drivinglicenses: {
@@ -127,10 +128,14 @@ export default function profile(state = INITIAL_STATE, action = {}) {
       })
 
     case SET_PROFILE_PROGRESS:
-      return {
-        ...state,
+      return Object.assign({}, state, {
+        updatingProgress: true
+      })
+    case SET_PROFILE_PROGRESS_SUCCESS:
+      return Object.assign({}, state, {
+        updatingProgress: false,
         progress: action.progress
-      }
+      })
 
     default:
       return state
@@ -184,6 +189,10 @@ export function updateProfile(profile) {
 
 export function setProfileProgress() {
   return (dispatch, getState) => {
+    dispatch({
+      type: SET_PROFILE_PROGRESS
+    })
+
     let mProgress = Object.assign({}, getState().profile.progress)
     if (mProgress !== EMPTY_STATE.progress) {
       mProgress = EMPTY_STATE.progress
@@ -221,7 +230,7 @@ export function setProfileProgress() {
     mProgress.onLevel = setLevel(mProgress.items)
 
     return dispatch({
-      type: SET_PROFILE_PROGRESS,
+      type: SET_PROFILE_PROGRESS_SUCCESS,
       progress: mProgress
     })
   }
@@ -249,6 +258,6 @@ export function setProfileProgress() {
   function setLevel(items) {
     // let mItems = _.values(items)
     let unDoneItems = _.find(items, { done: false })
-    return unDoneItems.level - 1
+    return unDoneItems ? unDoneItems.level - 1 : 3
   }
 }

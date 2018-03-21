@@ -24,14 +24,19 @@ class Checkbox extends React.Component {
 
   render() {
     const { checked } = this.state
-    const { label, helpText, name } = this.props
+    const { label, helpText, name, disabled } = this.props
     return (
       <FormGroup
         check
         className={classnames('custom-checkbox', checked && 'checked')}
       >
         <Label check>
-          <Input type="checkbox" name={name} onChange={this.onChange} />
+          <Input
+            type="checkbox"
+            name={name}
+            onChange={this.onChange}
+            disabled={disabled}
+          />
           <i
             className={classnames(
               'mr-2',
@@ -50,8 +55,9 @@ Checkbox.propTypes = {
   defaultChecked: PropTypes.bool,
   label: PropTypes.string,
   helpText: PropTypes.string,
-  onChange: PropTypes.func,
-  name: PropTypes.string.isRequired
+  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  disabled: PropTypes.bool
 }
 
 export default Checkbox

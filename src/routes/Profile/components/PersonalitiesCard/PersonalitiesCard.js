@@ -9,8 +9,8 @@ import {
 } from '../../../../store/modules/personalities'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
-import _ from 'lodash'
 
+const max = 5
 class PersonalitiesCard extends React.Component {
   constructor(props) {
     super(props)
@@ -47,6 +47,8 @@ class PersonalitiesCard extends React.Component {
     } = this.props
 
     const { addMode } = this.state
+    const count = userPersonalities.length
+    const maxReached = count >= max
 
     return (
       <ProfileEditableCard
@@ -72,7 +74,9 @@ class PersonalitiesCard extends React.Component {
           <Collapse isOpen={addMode} className="pt-3 col-12">
             <Row className="p-0">
               <Col xs={12}>
-                <h5>Vad utmärker din personlighet?</h5>
+                <h5>
+                  Vad utmärker din personlighet? ({count} av {max} valda)
+                </h5>
               </Col>
               {addMode &&
                 allPersonalities &&
@@ -81,6 +85,7 @@ class PersonalitiesCard extends React.Component {
                     key={personality.id}
                     personality={personality}
                     dispatch={this.props.dispatch}
+                    disabled={maxReached && !personality.selected}
                   />
                 ))}
             </Row>
@@ -110,20 +115,24 @@ class PersonalityItem extends React.Component {
     }
 
     this.addRemove = this.addRemove.bind(this)
-    this.remove = this.remove.bind(this)
   }
 
   addRemove() {
-    const { dispatch, personality } = this.props
-    dispatch(editUserPersonalities(personality))
+    const { dispatch, personality, disabled } = this.props
+    !disabled && dispatch(editUserPersonalities(personality))
   }
 
-  remove(personality) {}
-
   render() {
-    const { personality } = this.props
+    const { personality, disabled } = this.props
     return (
-      <Col xs={12} sm={6} md={4} lg={3} className="mb-1" key={personality.id}>
+      <Col
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        className={classnames('mb-1', disabled && 'disabled')}
+        key={personality.id}
+      >
         <Badge
           pill
           className={classnames(
@@ -141,5 +150,6 @@ class PersonalityItem extends React.Component {
 
 PersonalityItem.propTypes = {
   personality: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired
 }

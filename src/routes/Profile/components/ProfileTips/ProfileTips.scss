@@ -6,6 +6,10 @@
   justify-content: center;
   align-items: center;
 
+  a {
+    text-decoration: underline;
+  }
+
   @include media-breakpoint-up(md) {
     width: 150px;
   }
@@ -31,6 +35,8 @@
 
   .card-body {
     width: 100%;
+    line-height: 1.2;
+
   }
 
   .message {

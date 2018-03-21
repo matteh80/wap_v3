@@ -16,6 +16,7 @@
 @import './routes/Login/Login';
 @import './routes/Register/Register';
 
+@import './routes/Profile/Profile';
 @import './routes/Profile/components/ProfileProgress/ProfileProgress';
 @import './routes/Profile/components/SideNav/SideNav';
 @import './routes/Profile/components/ProfileEditableCard';
@@ -26,7 +27,7 @@
 @import './routes/Profile/components/EducationsCard/EducationsCard';
 @import './routes/Profile/components/GeneralCard/GeneralCard.scss';
 @import './routes/Profile/components/ProfileTips/ProfileTips.scss';
-@import './routes/Profile/Profile';
+
 
 @import './components/LoadingButton/LoadingButton';
 @import './components/Checkbox/Checkbox';

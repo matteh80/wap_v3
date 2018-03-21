@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CircularProgressbar from 'react-circular-progressbar'
 import $ from 'jquery'
 import classnames from 'classnames'
-import noPicFemale from './noPicFemale.png'
+import noPic from './noPic.png'
 
 class ProfileProgress extends React.Component {
   constructor(props) {
@@ -39,13 +39,13 @@ class ProfileProgress extends React.Component {
 
   onError() {
     this.setState({
-      pictureUrl: noPicFemale
+      pictureUrl: noPic
     })
   }
 
   render() {
     let { scrolled, pictureUrl } = this.state
-    const { profileId, progressPercent } = this.props
+    const { progressPercent, profileLevel } = this.props
 
     return (
       <div
@@ -59,18 +59,23 @@ class ProfileProgress extends React.Component {
           className="img-fluid profile-picture"
           onError={this.onError}
         />
-        <div className="progress-circle">
+        <div
+          className={classnames(
+            'progress-circle',
+            'profile-level-' + profileLevel
+          )}
+        >
           <CircularProgressbar
-            percentage={100}
+            percentage={progressPercent}
             initialAnimation
             textForPercentage={null}
             strokeWidth={8}
-            rotation="180"
+            rotation={65}
           />
         </div>
 
         <GradientSVG
-          startColor="#fb5217"
+          startColor="#64ebe7"
           middleColor="#fbb017"
           endColor="#47a29f"
           idCSS="progressGradient"
@@ -81,6 +86,7 @@ class ProfileProgress extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  profileLevel: state.profile.progress.onLevel,
   profileId: state.profile.id,
   progressPercent: state.profile.progress.progressPercent
 })
@@ -91,12 +97,12 @@ class GradientSVG extends React.Component {
   render() {
     let { startColor, middleColor, endColor, idCSS, rotation } = this.props
 
-    let gradientTransform = `rotate(${rotation})`
+    // let gradientTransform = `rotate(${parseInt(rotation)})`
 
     return (
       <svg style={{ height: 0 }}>
         <defs>
-          <linearGradient id={idCSS} gradientTransform={gradientTransform}>
+          <linearGradient id={idCSS} gradientTransform="rotate(90)">
             <stop offset="0%" stopColor={startColor} />
             {/*<stop offset="35%" stopColor={middleColor} />*/}
             <stop offset="100%" stopColor={endColor} />

@@ -32,6 +32,7 @@
   .progress-circle {
     position: absolute;
     top: 0;
+    border-radius: 50%;
 
     @include media-breakpoint-up(xl) {
       width: 300px;
@@ -47,13 +48,32 @@
 
 
       .CircularProgressbar-path {
-        stroke: $secondary;
+        stroke: $level0_color;
         //stroke-linecap: square;
       }
     }
 
     .CircularProgressbar .CircularProgressbar-path {
-      stroke: url(#progressGradient);
+      //stroke: url(#progressGradient);
+    }
+
+    &.profile-level-1 {
+       .CircularProgressbar-path {
+         stroke: $level1_color;
+         //stroke-linecap: square;
+       }
+     }
+    &.profile-level-2 {
+      .CircularProgressbar-path {
+        stroke: $level2_color;
+        //stroke-linecap: square;
+      }
+    }
+    &.profile-level-3 {
+      .CircularProgressbar-path {
+        stroke: $level3_color;
+        //stroke-linecap: square;
+      }
     }
   }
 
@@ -89,4 +109,48 @@
   50%  { transform: scale(1.05); }
   80%  { transform: scale(.95); }
   100% { transform: scale(1); }
+}
+
+.changeLevel {
+  &.level-0 {
+    .progress-circle {
+      animation: changeLevelProgressCircle-0 1s;
+    }
+  }
+  &.level-1 {
+    .progress-circle {
+      animation: changeLevelProgressCircle-1 1s;
+    }
+  }
+  &.level-2 {
+    .progress-circle {
+      animation: changeLevelProgressCircle-2 1s;
+    }
+  }
+  &.level-3 {
+    .progress-circle {
+      animation: changeLevelProgressCircle-3 1s;
+    }
+  }
+}
+
+@keyframes changeLevelProgressCircle-0 {
+  0% { box-shadow: 0 0 0 $level0_color; }
+  50% { box-shadow: 0 0 40px $level0_color; }
+  100% { box-shadow: 0 0 0 $level0_color; }
+}
+@keyframes changeLevelProgressCircle-1 {
+  0% { box-shadow: 0 0 0 $level1_color; }
+  50% { box-shadow: 0 0 40px $level1_color; }
+  100% { box-shadow: 0 0 0 $level1_color; }
+}
+@keyframes changeLevelProgressCircle-2 {
+  0% { box-shadow: 0 0 0 $level2_color; }
+  50% { box-shadow: 0 0 40px $level2_color; }
+  100% { box-shadow: 0 0 0 $level2_color; }
+}
+@keyframes changeLevelProgressCircle-3 {
+  0% { box-shadow: 0 0 0 $level3_color; }
+  50% { box-shadow: 0 0 40px $level3_color; }
+  100% { box-shadow: 0 0 0 $level3_color; }
 }

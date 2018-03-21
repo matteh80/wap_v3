@@ -8695,6 +8695,22 @@ input[type='checkbox']:checked + label:before {
   }
 }
 
+.fg_level0 {
+  color: #547581 !important;
+}
+
+.fg_level1 {
+  color: #e8003b !important;
+}
+
+.fg_level2 {
+  color: #11ada7 !important;
+}
+
+.fg_level3 {
+  color: #00e30e !important;
+}
+
 header.header {
   background: linear-gradient(to right, #132b41 0%, #075170 50%, #132b41 100%);
   background-size: cover;
@@ -8802,7 +8818,14 @@ header.header #header-bottom .candidate-subtitle {
   font-style: italic;
   font-weight: 100;
   margin-top: -10px;
-  margin-bottom: 15px;
+}
+header.header #header-bottom .profile-stats {
+  color: #fff;
+  font-size: 30px;
+  text-align: end;
+}
+header.header #header-bottom .profile-stats small {
+  font-size: 12px;
 }
 header.header #header-bottom .progress {
   max-width: 50%;
@@ -8881,8 +8904,20 @@ header.header.collapsed .navbar-brand #header--logo {
   position: relative;
   padding: 5px 2px;
 }
-#header-progress #header-progress-step-wrapper .progress-step-wrapper.level-1 {
-  background: rgba(232, 0, 59, 0.25);
+#header-progress #header-progress-step-wrapper .progress-step-wrapper:before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.25;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.level-1:before {
+  background: #e8003b;
 }
 #header-progress
   #header-progress-step-wrapper
@@ -8890,8 +8925,10 @@ header.header.collapsed .navbar-brand #header--logo {
   .progress-step {
   background: #e8003b;
 }
-#header-progress #header-progress-step-wrapper .progress-step-wrapper.level-2 {
-  background: rgba(17, 173, 167, 0.25);
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.level-2:before {
+  background: #11ada7;
 }
 #header-progress
   #header-progress-step-wrapper
@@ -8899,20 +8936,27 @@ header.header.collapsed .navbar-brand #header--logo {
   .progress-step {
   background: #11ada7;
 }
-#header-progress #header-progress-step-wrapper .progress-step-wrapper.level-3 {
-  background: rgba(143, 205, 0, 0.25);
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper.level-3:before {
+  background: #00e30e;
 }
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper.level-3.done
   .progress-step {
-  background: #8fcd00;
+  background: #00e30e;
 }
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper:first-of-type {
   border-radius: 10px 0 0 10px;
   padding-left: 5px;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper:first-of-type:before {
+  border-radius: 10px 0 0 10px;
 }
 #header-progress
   #header-progress-step-wrapper
@@ -8925,6 +8969,11 @@ header.header.collapsed .navbar-brand #header--logo {
   .progress-step-wrapper:last-of-type {
   border-radius: 0 10px 10px 0;
   padding-right: 5px;
+}
+#header-progress
+  #header-progress-step-wrapper
+  .progress-step-wrapper:last-of-type:before {
+  border-radius: 0 10px 10px 0;
 }
 #header-progress
   #header-progress-step-wrapper
@@ -8960,7 +9009,7 @@ header.header.collapsed .navbar-brand #header--logo {
   #header-progress-step-wrapper
   .progress-step-wrapper
   .progress-step {
-  background: #adb5bd;
+  background: rgba(255, 255, 255, 0.1);
   height: 10px;
   width: 100%;
   transition: background 500ms ease-in-out;
@@ -9046,6 +9095,98 @@ header.header.collapsed .navbar-brand #header--logo {
   max-width: 120px;
 }
 
+.profile {
+  padding-bottom: 50vh;
+}
+.profile .left .card .picture-wrapper {
+  position: relative;
+}
+.profile .left .card .progress-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10px 15px;
+}
+.profile .left .card .progress-wrapper .progress {
+  background-color: rgba(255, 255, 255, 0.75);
+  transform: scale(0);
+  transition: all 250ms;
+}
+.profile .left .card .progress-wrapper .progress.visible {
+  transform: scale(1);
+}
+.profile .left .card .progress-wrapper .progress .progress-bar {
+  background: #fff;
+}
+.profile .left .card .profile-picture {
+  transition: height 250ms;
+  border-radius: 0;
+}
+.profile .left.fixed .card {
+  position: fixed;
+  z-index: 99;
+  transition: all 250ms;
+}
+@media (min-width: 768px) {
+  .profile .left.fixed .card {
+    width: 150px;
+  }
+}
+@media (min-width: 992px) {
+  .profile .left.fixed .card {
+    width: 210px;
+  }
+}
+@media (min-width: 1400px) {
+  .profile .left.fixed .card {
+    width: 305px;
+  }
+}
+.profile .badge {
+  font-size: 16px;
+}
+.profile .badge.disabled {
+  opacity: 0.3;
+}
+.profile .profile-select-item {
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid #11ada7;
+  color: #11ada7;
+  transition: all 250ms;
+  font-size: 13px;
+}
+.profile .profile-select-item:hover:not(.selected) {
+  background: #e8003b;
+  border: 2px solid #e8003b;
+  color: #fff;
+}
+.profile .profile-select-item.selected {
+  background: #11ada7;
+  color: #fff;
+}
+
+.start-end-date select {
+  width: auto;
+  margin-right: 5px;
+}
+.start-end-date select.month {
+  text-transform: capitalize;
+}
+
+.profile-footer {
+  padding: 50px 0;
+  background: #495057;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+.disabled .badge {
+  cursor: not-allowed;
+}
+
 .profile-progress--wrapper {
   position: fixed;
   z-index: 99;
@@ -9082,6 +9223,7 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-progress--wrapper .progress-circle {
   position: absolute;
   top: 0;
+  border-radius: 50%;
 }
 @media (min-width: 1400px) {
   .profile-progress--wrapper .progress-circle {
@@ -9099,13 +9241,22 @@ header.header.collapsed .navbar-brand #header--logo {
   .progress-circle
   .CircularProgressbar
   .CircularProgressbar-path {
+  stroke: #547581;
+}
+.profile-progress--wrapper
+  .progress-circle.profile-level-1
+  .CircularProgressbar-path {
+  stroke: #e8003b;
+}
+.profile-progress--wrapper
+  .progress-circle.profile-level-2
+  .CircularProgressbar-path {
   stroke: #11ada7;
 }
 .profile-progress--wrapper
-  .progress-circle
-  .CircularProgressbar
+  .progress-circle.profile-level-3
   .CircularProgressbar-path {
-  stroke: url(#progressGradient);
+  stroke: #00e30e;
 }
 .profile-progress--wrapper.scrolled .profile-picture {
   border-radius: 50%;
@@ -9150,6 +9301,70 @@ header.header.collapsed .navbar-brand #header--logo {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+.changeLevel.level-0 .progress-circle {
+  animation: changeLevelProgressCircle-0 1s;
+}
+
+.changeLevel.level-1 .progress-circle {
+  animation: changeLevelProgressCircle-1 1s;
+}
+
+.changeLevel.level-2 .progress-circle {
+  animation: changeLevelProgressCircle-2 1s;
+}
+
+.changeLevel.level-3 .progress-circle {
+  animation: changeLevelProgressCircle-3 1s;
+}
+
+@keyframes changeLevelProgressCircle-0 {
+  0% {
+    box-shadow: 0 0 0 #547581;
+  }
+  50% {
+    box-shadow: 0 0 40px #547581;
+  }
+  100% {
+    box-shadow: 0 0 0 #547581;
+  }
+}
+
+@keyframes changeLevelProgressCircle-1 {
+  0% {
+    box-shadow: 0 0 0 #e8003b;
+  }
+  50% {
+    box-shadow: 0 0 40px #e8003b;
+  }
+  100% {
+    box-shadow: 0 0 0 #e8003b;
+  }
+}
+
+@keyframes changeLevelProgressCircle-2 {
+  0% {
+    box-shadow: 0 0 0 #11ada7;
+  }
+  50% {
+    box-shadow: 0 0 40px #11ada7;
+  }
+  100% {
+    box-shadow: 0 0 0 #11ada7;
+  }
+}
+
+@keyframes changeLevelProgressCircle-3 {
+  0% {
+    box-shadow: 0 0 0 #00e30e;
+  }
+  50% {
+    box-shadow: 0 0 40px #00e30e;
+  }
+  100% {
+    box-shadow: 0 0 0 #00e30e;
   }
 }
 
@@ -9320,7 +9535,7 @@ header.header.collapsed .navbar-brand #header--logo {
   font-size: 16px;
   text-align: center;
   border-radius: 15px;
-  background: #dee2e6;
+  background: #98b3bc;
   color: #fff;
   position: relative;
   z-index: 2;
@@ -9680,6 +9895,9 @@ header.header.collapsed .navbar-brand #header--logo {
   justify-content: center;
   align-items: center;
 }
+.profile-tips a {
+  text-decoration: underline;
+}
 @media (min-width: 768px) {
   .profile-tips {
     width: 150px;
@@ -9709,94 +9927,10 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 .profile-tips .card-body {
   width: 100%;
+  line-height: 1.2;
 }
 .profile-tips .message > div {
   width: 100%;
-}
-
-.profile {
-  padding-bottom: 50vh;
-}
-.profile .left .card .picture-wrapper {
-  position: relative;
-}
-.profile .left .card .progress-wrapper {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  padding: 10px 15px;
-}
-.profile .left .card .progress-wrapper .progress {
-  background-color: rgba(255, 255, 255, 0.75);
-  transform: scale(0);
-  transition: all 250ms;
-}
-.profile .left .card .progress-wrapper .progress.visible {
-  transform: scale(1);
-}
-.profile .left .card .progress-wrapper .progress .progress-bar {
-  background: #fff;
-}
-.profile .left .card .profile-picture {
-  transition: height 250ms;
-  border-radius: 0;
-}
-.profile .left.fixed .card {
-  position: fixed;
-  z-index: 99;
-  transition: all 250ms;
-}
-@media (min-width: 768px) {
-  .profile .left.fixed .card {
-    width: 150px;
-  }
-}
-@media (min-width: 992px) {
-  .profile .left.fixed .card {
-    width: 210px;
-  }
-}
-@media (min-width: 1400px) {
-  .profile .left.fixed .card {
-    width: 305px;
-  }
-}
-.profile .badge {
-  font-size: 16px;
-}
-.profile .badge.disabled {
-  opacity: 0.3;
-}
-.profile .profile-select-item {
-  cursor: pointer;
-  background: transparent;
-  border: 2px solid #11ada7;
-  color: #11ada7;
-  transition: all 250ms;
-  font-size: 13px;
-}
-.profile .profile-select-item:hover:not(.selected) {
-  background: #e8003b;
-  border: 2px solid #e8003b;
-  color: #fff;
-}
-.profile .profile-select-item.selected {
-  background: #11ada7;
-  color: #fff;
-}
-
-.start-end-date select {
-  width: auto;
-  margin-right: 5px;
-}
-.start-end-date select.month {
-  text-transform: capitalize;
-}
-
-.profile-footer {
-  padding: 50px 0;
-  background: #495057;
 }
 
 .loading-button--wrapper {
@@ -9863,3 +9997,5 @@ header.header.collapsed .navbar-brand #header--logo {
   color: #11ada7;
   transform: rotateY(360deg) scale(1.3);
 }
+
+/*# sourceMappingURL=index.css.map */

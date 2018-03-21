@@ -11,6 +11,7 @@ import {
 } from '../../../../store/modules/profile'
 import GoogleMapReact from 'google-map-react'
 import $ from 'jquery'
+import Checkbox from '../../../../components/Checkbox/Checkbox'
 // import Slider, { Range } from 'rc-slider'
 
 class GeneralCard extends React.Component {
@@ -18,11 +19,13 @@ class GeneralCard extends React.Component {
     super(props)
 
     this.state = {
-      addMode: false
+      addMode: false,
+      tmpProfile: {}
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
     this.handleValidSubmit = this.handleValidSubmit.bind(this)
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
   }
 
   componentDidMount() {
@@ -41,9 +44,18 @@ class GeneralCard extends React.Component {
     }
   }
 
+  handleCheckboxChange(name) {
+    this.setState({
+      tmpProfile: {
+        [name]: !this.state.tmpProfile[name]
+      }
+    })
+  }
+
   handleValidSubmit(event, values) {
     const { dispatch, profile } = this.props
-    const newProfile = Object.assign({}, profile, values)
+    const { tmpProfile } = this.state
+    const newProfile = Object.assign({}, profile, tmpProfile, values)
     dispatch(updateProfile(newProfile)).then(() => {
       this.props.dispatch(setProfileProgress())
       this.setState({
@@ -238,6 +250,26 @@ class GeneralCard extends React.Component {
               />
             </Col>
           </Row>
+          <Row>
+            <Col xs={12} md={6} lg={4}>
+              <Checkbox
+                name="student"
+                label="Student"
+                defaultChecked={profile.student}
+                onChange={this.handleCheckboxChange}
+                disabled={!addMode}
+              />
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Checkbox
+                name="actively_searching"
+                label="Aktivt sökande"
+                defaultChecked={profile.actively_searching}
+                onChange={this.handleCheckboxChange}
+                disabled={!addMode}
+              />
+            </Col>
+          </Row>
         </AvForm>
       </ProfileEditableCard>
     )
@@ -260,8 +292,8 @@ class GoogleMap extends React.Component {
     super(props)
 
     this.state = {
-      center: { lat: 59.95, lng: 30.33 },
-      zoom: 11
+      center: { lat: 59.334591, lng: 18.06324 },
+      zoom: 2
     }
 
     // this._resizeMapWrapper = this._resizeMapWrapper.bind(this)
@@ -290,6 +322,7 @@ class GoogleMap extends React.Component {
       const { profile } = this.props
       let newAddress =
         profile.address + ' ' + profile.zip_code + ' ' + profile.city
+
       this.geoCodeDestination(newAddress)
     }
   }
@@ -305,18 +338,15 @@ class GoogleMap extends React.Component {
             center: {
               lat: results[0].geometry.location.lat(),
               lng: results[0].geometry.location.lng()
-            }
+            },
+            zoom: 11
           })
           map.setCenter({
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng()
           })
-          $('#mapWrapper > img').fadeOut('slow')
-          $('#mapWrapper > div').fadeIn('slow')
         } else {
           // alert('The address could not be found for the following reason: ' + status)
-          $('#mapWrapper > div').fadeOut('slow')
-          $('#mapWrapper > img').fadeIn('slow')
         }
       })
     }
@@ -326,9 +356,10 @@ class GoogleMap extends React.Component {
     let { profile } = this.props
     map = apiMap
     maps = apiMaps
-    this.geoCodeDestination(
-      profile.address + ' ' + profile.zip_code + ' ' + profile.city
-    )
+    profile.address &&
+      this.geoCodeDestination(
+        profile.address + ' ' + profile.zip_code + ' ' + profile.city
+      )
   }
 
   createMapOptions(maps) {
@@ -371,12 +402,15 @@ class GoogleMap extends React.Component {
           }}
           center={this.state.center}
           defaultZoom={this.state.zoom}
+          zoom={this.state.zoom}
           options={this.createMapOptions}
         >
-          <MarkerComponent
-            lat={this.state.center.lat}
-            lng={this.state.center.lng}
-          />
+          {this.props.profile.address && (
+            <MarkerComponent
+              lat={this.state.center.lat}
+              lng={this.state.center.lng}
+            />
+          )}
         </GoogleMapReact>
       </div>
     )

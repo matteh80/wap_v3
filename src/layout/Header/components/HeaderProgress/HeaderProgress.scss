@@ -38,27 +38,44 @@ $progressGreen: $secondary;
       position: relative;
       padding: 5px 2px;
 
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: .25;
+      }
+
       &.level-1 {
-        background: rgba(232,0,59,0.25);
+        &:before {
+          background: $level1_color;
+        }
         &.done {
           .progress-step {
-            background: $accent;
+            background: $level1_color;
           }
         }
       }
       &.level-2 {
-        background: rgba(17,173,167,0.25);
+        &:before {
+          background: $level2_color;
+        }
         &.done {
           .progress-step {
-            background: $secondary;
+            background: $level2_color;
           }
         }
       }
       &.level-3 {
-        background: rgba(143, 205, 0, 0.25);
+        &:before {
+          background: $level3_color;
+        }
         &.done {
           .progress-step {
-            background: rgba(143, 205, 0, 1);
+            background: $level3_color;
           }
         }
       }
@@ -66,6 +83,10 @@ $progressGreen: $secondary;
       &:first-of-type {
         border-radius: 10px 0 0 10px;
         padding-left: 5px;
+
+        &:before {
+          border-radius: 10px 0 0 10px;
+        }
         .progress-step {
           border-radius: 5px 0 0 5px;
         }
@@ -74,6 +95,10 @@ $progressGreen: $secondary;
       &:last-of-type {
         border-radius: 0 10px 10px 0;
         padding-right: 5px;
+
+        &:before {
+          border-radius: 0 10px 10px 0;
+        }
         .progress-step {
           border-radius: 0 5px 5px 0;
         }
@@ -99,7 +124,7 @@ $progressGreen: $secondary;
       }
       
       .progress-step {
-        background: $gray-500;
+        background: rgba(255,255,255,0.1);
         height: 10px;
         width: 100%;
         transition: background 500ms ease-in-out;

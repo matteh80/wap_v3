@@ -110,5 +110,12 @@
   background: $gray-700;
 }
 
+.disabled {
+  cursor: not-allowed;
+  .badge {
+    cursor: not-allowed;
+  }
+}
+
 
 

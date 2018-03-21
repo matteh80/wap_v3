@@ -103,13 +103,25 @@ class Header extends React.Component {
           </Navbar>
           <div id="header-bottom">
             <Container className="h-100 pb-5">
-              <Row className="h-100 align-items-end">
-                <Col xs={12} md={{ size: 9, offset: 3 }} className="mb-2 mb-3">
+              <Row className="h-100 align-items-center">
+                <Col xs={12} md={{ size: 6, offset: 3 }} className="">
                   <h1 className="candidate-name mb-0">
                     {profile.first_name + ' ' + profile.last_name}
                   </h1>
                   <h3 className="candidate-subtitle">{profile.title}</h3>
                   {/*<Progress value={50} />*/}
+                </Col>
+                <Col xs={12} md={3} className="profile-stats">
+                  <Row>
+                    <Col xs={6} className="profile-stats-icon">
+                      <i className="fas fa-dollar-sign mr-2" />
+                      900
+                    </Col>
+                    <Col xs={6} className="profile-stats-icon">
+                      <i className="fas fa-eye mr-2" />
+                      23
+                    </Col>
+                  </Row>
                 </Col>
               </Row>
             </Container>

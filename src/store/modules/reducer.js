@@ -41,7 +41,7 @@ export const rootReducer = (state, action) => {
   // purgeStoredState(config)
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
-    purgeStoredState(config)
+    // purgeStoredState(config)
     state = {
       routing: state.routing
     }

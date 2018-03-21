@@ -94,6 +94,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = state => ({
   userEmployments: state.employments.userEmployments,
+  userEducations: state.educations.userEducations,
   userSkills: state.skills.userSkills,
   userLanguages: state.languages.userLanguages,
   userOccupations: state.occupations.userOccupations,

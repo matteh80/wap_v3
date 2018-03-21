@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import _ from 'lodash'
 
+const max = 3
 class MotivationsCard extends React.Component {
   constructor(props) {
     super(props)
@@ -47,6 +48,8 @@ class MotivationsCard extends React.Component {
     } = this.props
 
     const { addMode } = this.state
+    const count = userMotivations.length
+    const maxReached = count >= max
 
     return (
       <ProfileEditableCard
@@ -72,7 +75,10 @@ class MotivationsCard extends React.Component {
           <Collapse isOpen={addMode} className="pt-3 col-12">
             <Row className="p-0">
               <Col xs={12}>
-                <h5>Vad är det som driver dig framåt i arbetslivet?</h5>
+                <h5>
+                  Vad är det som driver dig framåt i arbetslivet? ({count} av{' '}
+                  {max} valda)
+                </h5>
               </Col>
               {addMode &&
                 allMotivations &&
@@ -81,6 +87,7 @@ class MotivationsCard extends React.Component {
                     key={motivation.id}
                     motivation={motivation}
                     dispatch={this.props.dispatch}
+                    disabled={maxReached && !motivation.selected}
                   />
                 ))}
             </Row>
@@ -114,16 +121,23 @@ class MotivationItem extends React.Component {
   }
 
   addRemove() {
-    const { dispatch, motivation } = this.props
-    dispatch(editUserMotivations(motivation))
+    const { dispatch, motivation, disabled } = this.props
+    !disabled && dispatch(editUserMotivations(motivation))
   }
 
   remove(motivation) {}
 
   render() {
-    const { motivation } = this.props
+    const { motivation, disabled } = this.props
     return (
-      <Col xs={12} sm={6} md={4} lg={3} className="mb-1" key={motivation.id}>
+      <Col
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        className={classnames('mb-1', disabled && 'disabled')}
+        key={motivation.id}
+      >
         <Badge
           pill
           className={classnames(
@@ -141,5 +155,6 @@ class MotivationItem extends React.Component {
 
 MotivationItem.propTypes = {
   motivation: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired
 }

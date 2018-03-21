@@ -2,6 +2,7 @@ $title-icon-size: 30px;
 
 .profile-card {
   position: relative;
+
   //padding-top: 60px;
   //overflow: hidden;
   
@@ -26,6 +27,8 @@ $title-icon-size: 30px;
   //    border-color: $accent transparent transparent transparent;
   //  }
   //}
+
+
 
   .card-body {
     @include media-breakpoint-up(md) {
@@ -112,7 +115,7 @@ $title-icon-size: 30px;
       font-size: 16px;
       text-align: center;
       border-radius: 15px;
-      background: $gray-300;
+      background: lighten($primary, 25%);
       color: #fff;
       position: relative;
       z-index: 2;
@@ -233,6 +236,12 @@ $title-icon-size: 30px;
     .addNew {
       transform: translateY(-15px);
       opacity: 0;
+    }
+  }
+
+  &.level-1 {
+    label {
+      //color: $level1_color;
     }
   }
 }

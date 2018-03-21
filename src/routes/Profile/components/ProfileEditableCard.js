@@ -34,6 +34,7 @@ class ProfileEditableCard extends React.Component {
       <Card
         className={classnames(
           'profile-card mb-5',
+          'level-' + item.level,
           addMode && 'inAddMode',
           inEditMode && 'inEditMode',
           fetching && 'fetching'
