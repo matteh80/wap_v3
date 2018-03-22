@@ -8185,6 +8185,34 @@ body.fixed .main-content {
   color: #be0000 !important;
 }
 
+.media-wrapper {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  padding-bottom: 56.25%;
+}
+.media-wrapper .video-placeholder {
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+}
+.media-wrapper iframe,
+.media-wrapper .video-placeholder {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
 input.av-invalid ~ .invalid-feedback {
   display: block;
   margin-top: 0;
@@ -9095,98 +9123,6 @@ header.header.collapsed .navbar-brand #header--logo {
   max-width: 120px;
 }
 
-.profile {
-  padding-bottom: 50vh;
-}
-.profile .left .card .picture-wrapper {
-  position: relative;
-}
-.profile .left .card .progress-wrapper {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  padding: 10px 15px;
-}
-.profile .left .card .progress-wrapper .progress {
-  background-color: rgba(255, 255, 255, 0.75);
-  transform: scale(0);
-  transition: all 250ms;
-}
-.profile .left .card .progress-wrapper .progress.visible {
-  transform: scale(1);
-}
-.profile .left .card .progress-wrapper .progress .progress-bar {
-  background: #fff;
-}
-.profile .left .card .profile-picture {
-  transition: height 250ms;
-  border-radius: 0;
-}
-.profile .left.fixed .card {
-  position: fixed;
-  z-index: 99;
-  transition: all 250ms;
-}
-@media (min-width: 768px) {
-  .profile .left.fixed .card {
-    width: 150px;
-  }
-}
-@media (min-width: 992px) {
-  .profile .left.fixed .card {
-    width: 210px;
-  }
-}
-@media (min-width: 1400px) {
-  .profile .left.fixed .card {
-    width: 305px;
-  }
-}
-.profile .badge {
-  font-size: 16px;
-}
-.profile .badge.disabled {
-  opacity: 0.3;
-}
-.profile .profile-select-item {
-  cursor: pointer;
-  background: transparent;
-  border: 2px solid #11ada7;
-  color: #11ada7;
-  transition: all 250ms;
-  font-size: 13px;
-}
-.profile .profile-select-item:hover:not(.selected) {
-  background: #e8003b;
-  border: 2px solid #e8003b;
-  color: #fff;
-}
-.profile .profile-select-item.selected {
-  background: #11ada7;
-  color: #fff;
-}
-
-.start-end-date select {
-  width: auto;
-  margin-right: 5px;
-}
-.start-end-date select.month {
-  text-transform: capitalize;
-}
-
-.profile-footer {
-  padding: 50px 0;
-  background: #495057;
-}
-
-.disabled {
-  cursor: not-allowed;
-}
-.disabled .badge {
-  cursor: not-allowed;
-}
-
 .profile-progress--wrapper {
   position: fixed;
   z-index: 99;
@@ -9498,14 +9434,9 @@ header.header.collapsed .navbar-brand #header--logo {
   width: 100%;
   height: 10px;
   opacity: 0;
-  background: linear-gradient(to right, #11ada7 0%, #547581 50%, #11ada7 100%);
-  background-size: 50% 100%;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  animation-name: moving-gradient;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  overflow: hidden;
 }
 .profile-card .loading-progress.visible {
   opacity: 1;
@@ -9513,6 +9444,15 @@ header.header.collapsed .navbar-brand #header--logo {
 .profile-card .loading-progress.error {
   background: #ff0000;
   opacity: 1;
+}
+.profile-card .loading-progress .loading-progressbar {
+  height: 10px;
+  background: linear-gradient(to right, #11ada7 0%, #547581 50%, #11ada7 100%);
+  background-size: 50% 100%;
+  animation-name: moving-gradient;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 .profile-card .addNew {
   position: absolute;
@@ -9933,6 +9873,115 @@ header.header.collapsed .navbar-brand #header--logo {
   width: 100%;
 }
 
+.dropzone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ced4da;
+  border: none;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+}
+.dropzone .upload-icon {
+  font-size: 40px;
+}
+
+.profile {
+  padding-bottom: 50vh;
+}
+.profile .left .card .picture-wrapper {
+  position: relative;
+}
+.profile .left .card .progress-wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10px 15px;
+}
+.profile .left .card .progress-wrapper .progress {
+  background-color: rgba(255, 255, 255, 0.75);
+  transform: scale(0);
+  transition: all 250ms;
+}
+.profile .left .card .progress-wrapper .progress.visible {
+  transform: scale(1);
+}
+.profile .left .card .progress-wrapper .progress .progress-bar {
+  background: #fff;
+}
+.profile .left .card .profile-picture {
+  transition: height 250ms;
+  border-radius: 0;
+}
+.profile .left.fixed .card {
+  position: fixed;
+  z-index: 99;
+  transition: all 250ms;
+}
+@media (min-width: 768px) {
+  .profile .left.fixed .card {
+    width: 150px;
+  }
+}
+@media (min-width: 992px) {
+  .profile .left.fixed .card {
+    width: 210px;
+  }
+}
+@media (min-width: 1400px) {
+  .profile .left.fixed .card {
+    width: 305px;
+  }
+}
+.profile .badge {
+  font-size: 16px;
+}
+.profile .badge.disabled {
+  opacity: 0.3;
+}
+.profile .profile-select-item {
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid #11ada7;
+  color: #11ada7;
+  transition: all 250ms;
+  font-size: 13px;
+}
+.profile .profile-select-item:hover:not(.selected) {
+  background: #e8003b;
+  border: 2px solid #e8003b;
+  color: #fff;
+}
+.profile .profile-select-item.selected {
+  background: #11ada7;
+  color: #fff;
+}
+
+.start-end-date select {
+  width: auto;
+  margin-right: 5px;
+}
+.start-end-date select.month {
+  text-transform: capitalize;
+}
+
+.profile-footer {
+  padding: 50px 0;
+  background: #495057;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+.disabled .badge {
+  cursor: not-allowed;
+}
+
 .loading-button--wrapper {
   position: relative;
   overflow: hidden;
@@ -9980,7 +10029,7 @@ header.header.collapsed .navbar-brand #header--logo {
   font-size: initial;
   text-transform: initial;
   display: flex;
-  align-items: start;
+  align-items: center;
 }
 
 .custom-checkbox input[type='checkbox'] {

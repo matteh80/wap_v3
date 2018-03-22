@@ -84,6 +84,20 @@ const EMPTY_STATE = {
         done: false,
         icon: 'fa-car',
         level: 3
+      },
+      wapfilm: {
+        name: 'Wap-film',
+        id: 'wapfilm',
+        done: false,
+        icon: 'fa-video',
+        level: 3
+      },
+      personalitytest: {
+        name: 'Personlighetstest (TQ)',
+        id: 'personalitytest',
+        done: false,
+        icon: 'fa-chart-pie',
+        level: 3
       }
     }
   }
@@ -221,6 +235,7 @@ export function setProfileProgress() {
     mProgress.items['drivinglicenses'].done =
       getState().drivinglicenses.userDrivinglicenses &&
       getState().drivinglicenses.userDrivinglicenses.length > 0
+    mProgress.items['wapfilm'].done = getState().wapfilm.wapfilm.length > 0
 
     const doneItems = _.filter(mProgress.items, item => {
       return item.done

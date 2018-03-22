@@ -22,6 +22,7 @@ class ProfileEditableCard extends React.Component {
       addMode,
       children,
       loading,
+      loadingPercent,
       fetching,
       inEditMode,
       noForm,
@@ -41,12 +42,10 @@ class ProfileEditableCard extends React.Component {
         )}
         id={item && item.id}
       >
-        <div
-          className={classnames(
-            'loading-progress',
-            loading && 'visible',
-            errors && 'error'
-          )}
+        <LoadingProgress
+          loading={loading}
+          loadingPercent={loadingPercent}
+          errors={errors}
         />
         <div
           className={classnames(
@@ -115,8 +114,27 @@ export default ProfileEditableCard
 ProfileEditableCard.propTypes = {
   cbAddMode: PropTypes.func,
   loading: PropTypes.bool.isRequired,
+  loadingPercent: PropTypes.number,
   fetching: PropTypes.bool,
   inEditMode: PropTypes.bool,
   noForm: PropTypes.bool,
   item: PropTypes.object.isRequired
+}
+
+const LoadingProgress = props => {
+  const { loading, loadingPercent, errors } = props
+  const width = loadingPercent ? loadingPercent + '%' : '100%'
+  const visible = loading || loadingPercent
+
+  return (
+    <div
+      className={classnames(
+        'loading-progress',
+        visible && 'visible',
+        errors && 'error'
+      )}
+    >
+      <div className="loading-progressbar" style={{ width: width }} />
+    </div>
+  )
 }

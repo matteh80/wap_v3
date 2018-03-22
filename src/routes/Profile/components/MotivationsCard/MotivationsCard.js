@@ -65,6 +65,7 @@ class MotivationsCard extends React.Component {
             {userMotivations &&
               userMotivations.map(item => (
                 <Badge
+                  key={item.id}
                   pill
                   className={classnames('mr-1', addMode && 'disabled')}
                 >

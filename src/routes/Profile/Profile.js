@@ -13,6 +13,7 @@ import LicensesCard from '../../routes/Profile/components/LicensesCard/LicensesC
 import MotivationsCard from '../../routes/Profile/components/MotivationsCard/MotivationsCard'
 import PersonalitiesCard from '../../routes/Profile/components/PersonalitiesCard/PersonalitiesCard'
 import GeneralCard from '../../routes/Profile/components/GeneralCard/GeneralCard'
+import WapfilmCard from '../../routes/Profile/components/WapfilmCard/WapfilmCard'
 // import SideNav from './components/SideNav/SideNav'
 import ProfileTips from './components/ProfileTips/ProfileTips'
 import _ from 'lodash'
@@ -50,6 +51,8 @@ class Profile extends React.Component {
         return <MotivationsCard item={item} />
       case 'personalities':
         return <PersonalitiesCard item={item} />
+      case 'wapfilm':
+        return <WapfilmCard item={item} />
       default:
         return (
           <div className="card">
@@ -101,6 +104,7 @@ const mapStateToProps = state => ({
   userDrivinglicenses: state.drivinglicenses.userDrivinglicenses,
   userMotivations: state.motivations.userMotivations,
   userPersonalities: state.personalities.userPersonalities,
+  wapFilm: state.wapfilm,
   items: state.profile.progress.items
 })
 

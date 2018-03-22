@@ -12,6 +12,7 @@ import educations from './educations'
 import drivinglicenses from './drivinglicenses'
 import motivations from './motivations'
 import personalities from './personalities'
+import wapfilm from './wapfilm'
 
 const appReducer = {
   routing: routerReducer,
@@ -25,7 +26,8 @@ const appReducer = {
   educations,
   drivinglicenses,
   motivations,
-  personalities
+  personalities,
+  wapfilm
 }
 
 const config = {

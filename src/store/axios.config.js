@@ -22,9 +22,12 @@ instance.defaults.timeout = 60000
 // }
 
 instance.interceptors.request.use(config => {
-  if (config.url[config.url.length - 1] !== '/' && !config.noSlash) {
-    config.url += '/'
+  if (config.url.indexOf('download/videos') === -1) {
+    if (config.url[config.url.length - 1] !== '/' && !config.noSlash) {
+      config.url += '/'
+    }
   }
+
   return config
 })
 

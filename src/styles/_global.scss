@@ -48,3 +48,32 @@ body {
 .fg_red {
   color: #be0000 !important;
 }
+
+.media-wrapper {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  padding-bottom: 56.25%;
+
+  .video-placeholder {
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  iframe, .video-placeholder {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}
