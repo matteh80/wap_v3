@@ -10,7 +10,14 @@ class LoadingButton extends React.Component {
   }
 
   render() {
-    let { loading, text, loadingText, totSteps, finishedStep } = this.props
+    let {
+      loading,
+      text,
+      loadingText,
+      totSteps,
+      finishedStep,
+      onClick
+    } = this.props
     return (
       <div className="loading-button--wrapper">
         <div className={classnames('loading-progress', loading && 'visible')} />
@@ -24,6 +31,7 @@ class LoadingButton extends React.Component {
         <Button
           className={classnames('loading-button--btn')}
           disabled={loading}
+          onClick={onClick}
         >
           {loading ? (loadingText ? loadingText : text) : text}
           {loading && <i className="fa fa-spinner fa-spin ml-2" />}
@@ -40,5 +48,6 @@ LoadingButton.propTypes = {
   text: PropTypes.string.isRequired,
   loadingText: PropTypes.string,
   totSteps: PropTypes.number,
-  finishedStep: PropTypes.number
+  finishedStep: PropTypes.number,
+  onClick: PropTypes.func
 }

@@ -16,7 +16,7 @@
     width: 210px;
   }
   @include media-breakpoint-up(xl) {
-    width: 305px;
+    width: 300px;
   }
 
   .profile-picture {
@@ -27,12 +27,18 @@
     width: 100%;
     z-index: 1;
     transform: scale(1);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
   }
 
   .progress-circle {
     position: absolute;
     top: 0;
     border-radius: 50%;
+    pointer-events: none;
 
     @include media-breakpoint-up(xl) {
       width: 300px;
@@ -80,10 +86,14 @@
   &.scrolled {
     .profile-picture {
       border-radius: 50%;
-      padding: 8%;
       animation-name: showProgressImg;
       animation-duration: .5s;
       animation-fill-mode: forwards;
+      padding: 8%;
+
+      img {
+        border-radius: 50%;
+      }
     }
 
     .CircularProgressbar {

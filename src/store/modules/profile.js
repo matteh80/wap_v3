@@ -1,5 +1,6 @@
 import { apiClient } from '../axios.config'
 import _ from 'lodash'
+import moment from 'moment'
 
 const FETCH_PROFILE_START = 'wap/profile/FETCH_PROFILE_START'
 const FETCH_PROFILE_SUCCESS = 'wap/profile/FETCH_PROFILE_SUCCESS'
@@ -9,6 +10,10 @@ const UPDATE_PROFILE_START = 'wap/profile/UPDATE_PROFILE_START'
 const UPDATE_PROFILE_SUCCESS = 'wap/profile/UPDATE_PROFILE_SUCCESS'
 const UPDATE_PROFILE_FAIL = 'wap/profile/UPDATE_PROFILE_FAIL'
 
+const UPLOAD_PICTURE_START = 'wap/profile/UPLOAD_PICTURE_START'
+const UPLOAD_PICTURE_SUCCESS = 'wap/profile/UPLOAD_PICTURE_SUCCESS'
+const UPLOAD_PICTURE_FAIL = 'wap/profile/UPLOAD_PICTURE_FAIL'
+
 const SET_PROFILE_PROGRESS_SUCCESS = 'wap/profile/SET_PROFILE_PROGRESS_SUCCESS'
 const SET_PROFILE_PROGRESS = 'wap/profile/SET_PROFILE_PROGRESS'
 
@@ -17,6 +22,7 @@ const EMPTY_STATE = {
   profile: undefined,
   profileError: undefined,
   updatingProfile: false,
+  uploadingPicture: false,
   progress: {
     progressPercent: 0,
     doneItems: [],
@@ -140,6 +146,23 @@ export default function profile(state = INITIAL_STATE, action = {}) {
         updatingProfile: false,
         profileError: action.error
       })
+    case UPLOAD_PICTURE_START:
+      return Object.assign({}, state, {
+        uploadingPicture: true,
+        profilepicture: undefined,
+        profileError: undefined
+      })
+    case UPLOAD_PICTURE_SUCCESS:
+      return Object.assign({}, state, {
+        uploadingPicture: false,
+        profilepicture: action.profilepicture,
+        profileError: undefined
+      })
+    case UPLOAD_PICTURE_FAIL:
+      return Object.assign({}, state, {
+        uploadingPicture: false,
+        profileError: action.error
+      })
 
     case SET_PROFILE_PROGRESS:
       return Object.assign({}, state, {
@@ -164,10 +187,32 @@ export function fetchProfile() {
     return apiClient
       .get('me/')
       .then(result => {
-        return dispatch({
-          type: FETCH_PROFILE_SUCCESS,
-          profile: result.data
-        })
+        let hasPic = true
+        let request = new XMLHttpRequest()
+        let picurl = apiClient.baseURL
+          ? apiClient.baseURL + 'profiles/' + result.data.id + '/picture/500'
+          : 'https://api.wapcard.se/api/v1/' +
+            'profiles/' +
+            result.data.id +
+            '/picture/500?' +
+            moment().milliseconds()
+
+        request.open('GET', picurl, true)
+        request.onreadystatechange = function() {
+          if (request.readyState === 4) {
+            if (request.status === 404) {
+              hasPic = false
+            }
+
+            return dispatch({
+              type: FETCH_PROFILE_SUCCESS,
+              profile: Object.assign({}, result.data, {
+                profilepicture: hasPic ? picurl : undefined
+              })
+            })
+          }
+        }
+        request.send()
       })
       .catch(error => {
         console.log(error)
@@ -195,6 +240,39 @@ export function updateProfile(profile) {
         console.log(error)
         return dispatch({
           type: UPDATE_PROFILE_FAIL,
+          error: error.response.data
+        })
+      })
+  }
+}
+
+export function uploadProfilePic(data) {
+  return (dispatch, getState) => {
+    dispatch({ type: UPLOAD_PICTURE_START })
+
+    return apiClient
+      .post('me/picture/', data)
+      .then(result => {
+        let picurl = apiClient.baseURL
+          ? apiClient.baseURL +
+            'profiles/' +
+            getState().profile.id +
+            '/picture/500?' +
+            moment().milliseconds()
+          : 'https://api.wapcard.se/api/v1/' +
+            'profiles/' +
+            getState().profile.id +
+            '/picture/500?' +
+            moment().milliseconds()
+
+        return dispatch({
+          type: UPLOAD_PICTURE_SUCCESS,
+          profilepicture: picurl
+        })
+      })
+      .catch(function(error) {
+        return dispatch({
+          type: UPLOAD_PICTURE_FAIL,
           error: error.response.data
         })
       })

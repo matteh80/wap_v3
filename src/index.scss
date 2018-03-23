@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 
 @import '~react-select/dist/react-select.css';
+@import '~cropperjs/dist/cropper.css';
 @import './styles/global';
 @import './styles/form';
 @import './styles/slider';
@@ -27,9 +28,10 @@
 @import './routes/Profile/components/GeneralCard/GeneralCard.scss';
 @import './routes/Profile/components/ProfileTips/ProfileTips.scss';
 @import './routes/Profile/components/WapfilmCard/WapfilmCard.scss';
-@import './routes/Profile/Profile';
-
 
 @import './components/LoadingButton/LoadingButton';
 @import './components/Checkbox/Checkbox';
+@import './components/ProfilePicture/ProfilePicture';
+
+@import './routes/Profile/Profile';
 

@@ -36,9 +36,7 @@ class ProfileTips extends React.Component {
 
     if (this.props.progressPercent !== prevProps.progressPercent) {
       $('.message').fadeOut(250, function() {
-        _this.setState({
-          availableTips: _this.getTips(_this.props.profile)
-        })
+        _this.getTips(_this.props.profile)
         counter = null
       })
     }
@@ -132,20 +130,20 @@ class ProfileTips extends React.Component {
 
   getTips(profile) {
     const level = profile.progress.onLevel
-    const missingPic =
-      $('.profile-picture')
-        .attr('src')
-        .indexOf('noPic') !== -1
-
     const tips = []
 
-    if (missingPic)
-      tips.push(
-        <div>
-          Företag är mer benägna att köpa profiler som har en profilbild. Ladda
-          upp en nu!
-        </div>
-      )
+    // const missingPic =
+    //   $('.profile-picture')
+    //     .attr('src')
+    //     .indexOf('noPic') !== -1
+    //
+    // if (missingPic)
+    //   tips.push(
+    //     <div>
+    //       Företag är mer benägna att köpa profiler som har en profilbild. Ladda
+    //       upp en nu!
+    //     </div>
+    //   )
 
     // Level 0
     if (level === 0) {

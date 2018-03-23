@@ -3,21 +3,15 @@ import { connect } from 'react-redux'
 import CircularProgressbar from 'react-circular-progressbar'
 import $ from 'jquery'
 import classnames from 'classnames'
-import noPic from './noPic.png'
+import ProfilePicture from '../../../../components/ProfilePicture/ProfilePicture'
 
 class ProfileProgress extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      scrolled: false,
-      pictureUrl:
-        'https://api.wapcard.se/api/v1/profiles/' +
-        props.profileId +
-        '/picture/500'
+      scrolled: false
     }
-
-    this.onError = this.onError.bind(this)
   }
 
   componentDidMount() {
@@ -37,15 +31,9 @@ class ProfileProgress extends React.Component {
     })
   }
 
-  onError() {
-    this.setState({
-      pictureUrl: noPic
-    })
-  }
-
   render() {
-    let { scrolled, pictureUrl } = this.state
-    const { progressPercent, profileLevel } = this.props
+    let { scrolled } = this.state
+    const { progressPercent, profileLevel, profilepicture } = this.props
 
     return (
       <div
@@ -54,11 +42,6 @@ class ProfileProgress extends React.Component {
           scrolled ? 'scrolled' : 'notScrolled'
         )}
       >
-        <img
-          src={pictureUrl}
-          className="img-fluid profile-picture"
-          onError={this.onError}
-        />
         <div
           className={classnames(
             'progress-circle',
@@ -80,6 +63,7 @@ class ProfileProgress extends React.Component {
           endColor="#47a29f"
           idCSS="progressGradient"
         />
+        <ProfilePicture />
       </div>
     )
   }
@@ -88,7 +72,8 @@ class ProfileProgress extends React.Component {
 const mapStateToProps = state => ({
   profileLevel: state.profile.progress.onLevel,
   profileId: state.profile.id,
-  progressPercent: state.profile.progress.progressPercent
+  progressPercent: state.profile.progress.progressPercent,
+  profilepicture: state.profile.profilepicture
 })
 
 export default connect(mapStateToProps)(ProfileProgress)

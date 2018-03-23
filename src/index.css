@@ -7,6 +7,7 @@
 @import url('https://use.typekit.net/ytn6jcj.css');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 @import url(~react-select/dist/react-select.css);
+@import url(~cropperjs/dist/cropper.css);
 @import url(~react-circular-progressbar/dist/styles.css);
 :root {
   --blue: #007bff;
@@ -9144,7 +9145,7 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 @media (min-width: 1400px) {
   .profile-progress--wrapper {
-    width: 305px;
+    width: 300px;
   }
 }
 .profile-progress--wrapper .profile-picture {
@@ -9155,11 +9156,16 @@ header.header.collapsed .navbar-brand #header--logo {
   width: 100%;
   z-index: 1;
   transform: scale(1);
+  overflow: hidden;
+}
+.profile-progress--wrapper .profile-picture img {
+  width: 100%;
 }
 .profile-progress--wrapper .progress-circle {
   position: absolute;
   top: 0;
   border-radius: 50%;
+  pointer-events: none;
 }
 @media (min-width: 1400px) {
   .profile-progress--wrapper .progress-circle {
@@ -9196,10 +9202,13 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 .profile-progress--wrapper.scrolled .profile-picture {
   border-radius: 50%;
-  padding: 8%;
   animation-name: showProgressImg;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
+  padding: 8%;
+}
+.profile-progress--wrapper.scrolled .profile-picture img {
+  border-radius: 50%;
 }
 .profile-progress--wrapper.scrolled .CircularProgressbar {
   animation-name: showProgress;
@@ -9893,6 +9902,108 @@ header.header.collapsed .navbar-brand #header--logo {
   font-size: 40px;
 }
 
+.loading-button--wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.loading-button--wrapper .loading-progress {
+  position: absolute;
+  top: 0;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to right, #547581 0%, #b7cad0 50%, #547581 100%);
+  background-size: 50% 100%;
+  animation-name: moving-gradient;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transition: height 250ms;
+}
+.loading-button--wrapper .loading-progress.visible {
+  height: 5px;
+}
+.loading-button--wrapper .loading-button--loader {
+  position: absolute;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  width: 0;
+  transition: width 250ms;
+}
+.loading-button--wrapper .loading-button--btn {
+  width: 100%;
+  color: #fff;
+}
+
+@keyframes moving-gradient {
+  0% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right bottom;
+  }
+}
+
+.custom-checkbox label {
+  font-size: initial;
+  text-transform: initial;
+  display: flex;
+  align-items: center;
+}
+
+.custom-checkbox input[type='checkbox'] {
+  display: none;
+}
+
+.custom-checkbox i {
+  margin-left: -1.25rem;
+  font-size: 18px;
+  transition: all 500ms;
+}
+
+.custom-checkbox.checked i {
+  color: #11ada7;
+  transform: rotateY(360deg) scale(1.3);
+}
+
+.profile-picture {
+  overflow: hidden;
+  position: relative;
+}
+.profile-picture .dropzone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background: transparent;
+  z-index: 99;
+}
+.profile-picture .upload-icon {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(232, 10, 0, 0.5) 0%,
+    rgba(7, 146, 180, 0.5) 100%
+  );
+  transition: all 250ms;
+}
+.profile-picture:hover .upload-icon {
+  opacity: 1;
+}
+
 .profile {
   padding-bottom: 50vh;
 }
@@ -9983,71 +10094,6 @@ header.header.collapsed .navbar-brand #header--logo {
 }
 .disabled .badge {
   cursor: not-allowed;
-}
-
-.loading-button--wrapper {
-  position: relative;
-  overflow: hidden;
-}
-.loading-button--wrapper .loading-progress {
-  position: absolute;
-  top: 0;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  width: 100%;
-  height: 0;
-  background: linear-gradient(to right, #547581 0%, #b7cad0 50%, #547581 100%);
-  background-size: 50% 100%;
-  animation-name: moving-gradient;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  transition: height 250ms;
-}
-.loading-button--wrapper .loading-progress.visible {
-  height: 5px;
-}
-.loading-button--wrapper .loading-button--loader {
-  position: absolute;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  width: 0;
-  transition: width 250ms;
-}
-.loading-button--wrapper .loading-button--btn {
-  width: 100%;
-  color: #fff;
-}
-
-@keyframes moving-gradient {
-  0% {
-    background-position: left bottom;
-  }
-  100% {
-    background-position: right bottom;
-  }
-}
-
-.custom-checkbox label {
-  font-size: initial;
-  text-transform: initial;
-  display: flex;
-  align-items: center;
-}
-
-.custom-checkbox input[type='checkbox'] {
-  display: none;
-}
-
-.custom-checkbox i {
-  margin-left: -1.25rem;
-  font-size: 18px;
-  transition: all 500ms;
-}
-
-.custom-checkbox.checked i {
-  color: #11ada7;
-  transform: rotateY(360deg) scale(1.3);
 }
 
 /*# sourceMappingURL=index.css.map */
