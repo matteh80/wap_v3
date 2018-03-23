@@ -9506,6 +9506,9 @@ header.header.collapsed .navbar-brand #header--logo {
   background: #ff698f;
   transform: translateX(0px);
 }
+.profile-card .addNew.hidden {
+  display: none;
+}
 .profile-card .profile-content {
   position: relative;
 }

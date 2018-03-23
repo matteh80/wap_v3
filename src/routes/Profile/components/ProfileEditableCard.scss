@@ -161,6 +161,10 @@ $title-icon-size: 30px;
         transform: translateX(0px);
       }
     }
+    
+    &.hidden {
+      display: none;
+    }
   }
 
   .profile-content {

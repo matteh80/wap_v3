@@ -13,6 +13,7 @@ import drivinglicenses from './drivinglicenses'
 import motivations from './motivations'
 import personalities from './personalities'
 import wapfilm from './wapfilm'
+import talentq from './talentq'
 
 const appReducer = {
   routing: routerReducer,
@@ -27,7 +28,8 @@ const appReducer = {
   drivinglicenses,
   motivations,
   personalities,
-  wapfilm
+  wapfilm,
+  talentq
 }
 
 const config = {
@@ -43,7 +45,7 @@ export const rootReducer = (state, action) => {
   // purgeStoredState(config)
   if (action.type === 'wap/auth/LOGOUT') {
     // state = undefined
-    // purgeStoredState(config)
+    purgeStoredState(config)
     state = {
       routing: state.routing
     }

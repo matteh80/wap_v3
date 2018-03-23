@@ -14,7 +14,7 @@ import MotivationsCard from '../../routes/Profile/components/MotivationsCard/Mot
 import PersonalitiesCard from '../../routes/Profile/components/PersonalitiesCard/PersonalitiesCard'
 import GeneralCard from '../../routes/Profile/components/GeneralCard/GeneralCard'
 import WapfilmCard from '../../routes/Profile/components/WapfilmCard/WapfilmCard'
-// import SideNav from './components/SideNav/SideNav'
+import TalentQCard from '../../routes/Profile/components/TalentQCard/TalentQCard'
 import ProfileTips from './components/ProfileTips/ProfileTips'
 import _ from 'lodash'
 
@@ -53,6 +53,8 @@ class Profile extends React.Component {
         return <PersonalitiesCard item={item} />
       case 'wapfilm':
         return <WapfilmCard item={item} />
+      case 'talentq':
+        return <TalentQCard item={item} />
       default:
         return (
           <div className="card">

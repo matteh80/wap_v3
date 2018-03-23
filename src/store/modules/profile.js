@@ -92,9 +92,9 @@ const EMPTY_STATE = {
         icon: 'fa-video',
         level: 3
       },
-      personalitytest: {
+      talentq: {
         name: 'Personlighetstest (TQ)',
-        id: 'personalitytest',
+        id: 'talentq',
         done: false,
         icon: 'fa-chart-pie',
         level: 3
@@ -236,6 +236,7 @@ export function setProfileProgress() {
       getState().drivinglicenses.userDrivinglicenses &&
       getState().drivinglicenses.userDrivinglicenses.length > 0
     mProgress.items['wapfilm'].done = getState().wapfilm.wapfilm.length > 0
+    mProgress.items['talentq'].done = getState().talentq.test.completed
 
     const doneItems = _.filter(mProgress.items, item => {
       return item.done

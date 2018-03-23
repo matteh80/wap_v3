@@ -28,7 +28,9 @@ class ProfileEditableCard extends React.Component {
       noForm,
       errors,
       closeText,
-      item
+      item,
+      plainCard,
+      ongoing
     } = this.props
 
     return (
@@ -51,7 +53,8 @@ class ProfileEditableCard extends React.Component {
           className={classnames(
             'addNew',
             addMode && 'addMode',
-            fetching && 'fetching'
+            fetching && 'fetching',
+            plainCard && 'hidden'
           )}
           onClick={!fetching ? this.handleAddNew : undefined}
         >
@@ -93,12 +96,27 @@ class ProfileEditableCard extends React.Component {
                   className={classnames('title-icon fas', item && item.icon)}
                 />
                 {item && item.name}{' '}
-                <Badge
-                  className={classnames('ml-4', item && item.done && 'isDone')}
-                  color="accent"
-                >
-                  Ofullständig
-                </Badge>
+                {ongoing ? (
+                  <Badge
+                    className={classnames(
+                      'ml-4',
+                      item && item.done && 'isDone'
+                    )}
+                    color="primary"
+                  >
+                    Pågående
+                  </Badge>
+                ) : (
+                  <Badge
+                    className={classnames(
+                      'ml-4',
+                      item && item.done && 'isDone'
+                    )}
+                    color="accent"
+                  >
+                    Ofullständig
+                  </Badge>
+                )}
               </CardTitle>
             </Col>
           </Row>
@@ -118,7 +136,8 @@ ProfileEditableCard.propTypes = {
   fetching: PropTypes.bool,
   inEditMode: PropTypes.bool,
   noForm: PropTypes.bool,
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
+  plainCard: PropTypes.bool
 }
 
 const LoadingProgress = props => {
