@@ -371,15 +371,13 @@ class EmploymentsForm extends React.Component {
                 onChange={this.handleDateChange}
                 defaultValues={defaultDateValues}
               />
-              {this.props.employment && (
-                <Col xs={12} dm={6}>
-                  <AvField
-                    name="description"
-                    type="textarea"
-                    label="Beskrivning"
-                  />
-                </Col>
-              )}
+              <Col xs={12} dm={6}>
+                <AvField
+                  name="description"
+                  type="textarea"
+                  label="Beskrivning"
+                />
+              </Col>
               <Col xs={12}>
                 <Button type="submit">
                   {this.state.editMode ? 'Uppdatera' : 'Lägg till'}
