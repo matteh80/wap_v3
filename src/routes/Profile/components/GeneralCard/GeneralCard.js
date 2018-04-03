@@ -126,7 +126,7 @@ class GeneralCard extends React.Component {
                 disabled={!addMode}
                 required
                 errorMessage="Titel krävs"
-                placeHolder="Ex. Ekonomiassistent"
+                placeholder="Ex. Ekonomiassistent"
               />
             </Col>
             <Col xs={12} md={6} lg={4}>
@@ -137,7 +137,7 @@ class GeneralCard extends React.Component {
                 disabled={!addMode}
                 required
                 errorMessage="Epost krävs"
-                placeHolder="Ex. anna@workandpassion.se"
+                placeholder="Ex. anna@workandpassion.se"
               />
             </Col>
             <Col xs={12} md={6} lg={4}>
@@ -148,7 +148,7 @@ class GeneralCard extends React.Component {
                 disabled={!addMode}
                 required
                 errorMessage="Telefon krävs"
-                placeHolder="Ex. 0701234567"
+                placeholder="Ex. 0701234567"
                 helpMessage="Enbart siffror, inga mellanslag, prefix eller '-'"
               />
             </Col>
@@ -158,6 +158,7 @@ class GeneralCard extends React.Component {
                 name="birthday"
                 label="Födelsedatum"
                 disabled={!addMode}
+                required
                 helpMessage="Ange ditt födelsedatum YYYY-MM-DD"
               />
             </Col>
@@ -167,6 +168,7 @@ class GeneralCard extends React.Component {
                 name="gender"
                 label="Kön"
                 disabled={!addMode}
+                value="female"
               >
                 <option value="female">Kvinna</option>
                 <option value="male">Man</option>
@@ -180,6 +182,7 @@ class GeneralCard extends React.Component {
                   <AvField
                     type="number"
                     name="salary_expectations_min"
+                    placeholder="Från"
                     disabled={!addMode}
                   />
                 </Col>
@@ -187,6 +190,7 @@ class GeneralCard extends React.Component {
                   <AvField
                     type="number"
                     name="salary_expectations_max"
+                    placeholder="Till"
                     disabled={!addMode}
                   />
                 </Col>
@@ -245,7 +249,7 @@ class GeneralCard extends React.Component {
                 name="homepage"
                 label="Hemsida"
                 disabled={!addMode}
-                placeHolder="Ex. http://workandpassion.se"
+                placeholder="Ex. http://workandpassion.se"
                 helpMessage="Måste börja med http:// eller https://"
               />
             </Col>

@@ -63,6 +63,7 @@ export default function drivinglicenses(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERDRIVINGLICENSES_FAIL:
       return Object.assign({}, state, {
+        updatingUserDrivinglicenses: false,
         drivinglicensesError: action.error
       })
 
@@ -103,7 +104,7 @@ export function fetchUserDrivinglicenses() {
         console.log(error)
         return dispatch({
           type: FETCH_USERDRIVINGLICENSES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -137,7 +138,7 @@ export function editUserDrivinglicenses(license) {
         console.log(error)
         return dispatch({
           type: EDIT_USERDRIVINGLICENSES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -162,7 +163,7 @@ export function fetchAllDrivinglicenses() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLDRIVINGLICENSES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

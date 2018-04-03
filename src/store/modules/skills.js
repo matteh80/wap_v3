@@ -51,6 +51,7 @@ export default function skills(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERSKILLS_FAIL:
       return Object.assign({}, state, {
+        updatingUserSkills: false,
         skillsError: action.error
       })
 
@@ -91,7 +92,7 @@ export function fetchUserSkills() {
         console.log(error)
         return dispatch({
           type: FETCH_USERSKILLS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -113,7 +114,7 @@ export function editUserSkills(skills) {
         console.log(error)
         return dispatch({
           type: EDIT_USERSKILLS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -135,7 +136,7 @@ export function fetchAllSkills() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLSKILLS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

@@ -63,6 +63,7 @@ export default function personalities(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERPERSONALITIES_FAIL:
       return Object.assign({}, state, {
+        updatingUserPersonalities: false,
         personalitiesError: action.error
       })
 
@@ -103,7 +104,7 @@ export function fetchUserPersonalities() {
         console.log(error)
         return dispatch({
           type: FETCH_USERPERSONALITIES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -137,7 +138,7 @@ export function editUserPersonalities(personality) {
         console.log(error)
         return dispatch({
           type: EDIT_USERPERSONALITIES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -165,7 +166,7 @@ export function fetchAllPersonalities() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLPERSONALITIES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

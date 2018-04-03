@@ -55,6 +55,7 @@ export default function occupations(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USEROCCUPATIONS_FAIL:
       return Object.assign({}, state, {
+        updatingUserOccupations: false,
         occupationsError: action.error
       })
 
@@ -95,7 +96,7 @@ export function fetchUserOccupations() {
         console.log(error)
         return dispatch({
           type: FETCH_USEROCCUPATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -117,7 +118,7 @@ export function editUserOccupations(occupations) {
         console.log(error)
         return dispatch({
           type: EDIT_USEROCCUPATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -139,7 +140,7 @@ export function fetchAllOccupations() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLOCCUPATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

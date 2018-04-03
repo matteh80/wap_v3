@@ -31,6 +31,10 @@ class ProfileTips extends React.Component {
     }, 7500)
   }
 
+  componentWillUnmount() {
+    clearInterval(tipFunc)
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const _this = this
 
@@ -160,12 +164,8 @@ class ProfileTips extends React.Component {
           Du har{' '}
           {missingOnLevel.map((item, index) => {
             return (
-              <span>
-                <a
-                  key={item.id}
-                  href="#"
-                  onClick={e => this.handleClick(e, `#${item.id}`)}
-                >
+              <span key={item.id}>
+                <a href="#" onClick={e => this.handleClick(e, `#${item.id}`)}>
                   {item.name.toLowerCase()}
                 </a>
                 {index < missingOnLevel.length - 1 &&

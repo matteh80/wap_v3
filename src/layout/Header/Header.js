@@ -21,6 +21,7 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import Scrollspy from 'react-scrollspy'
 import HeaderProgress from './components/HeaderProgress/HeaderProgress'
+import cn from 'classnames'
 
 class Header extends React.Component {
   constructor(props) {
@@ -72,9 +73,11 @@ class Header extends React.Component {
   }
 
   render() {
-    let { profile, progress } = this.props
+    const { profile, progress } = this.props
+    const path = this.props.pathname.replace('/', '')
+
     return (
-      <header className="header">
+      <header className={cn('header', 'header-' + path)}>
         <Container>
           <Navbar color="faded" dark expand="lg">
             <NavbarBrand href="/">
@@ -85,7 +88,7 @@ class Header extends React.Component {
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   <NavLink to="/account" className="nav-link">
-                    Konto
+                    Mitt konto
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -102,9 +105,15 @@ class Header extends React.Component {
             </Collapse>
           </Navbar>
           <div id="header-bottom">
-            <Container className="h-100 pb-5">
+            <Container className="h-100">
               <Row className="h-100 align-items-center">
-                <Col xs={12} md={{ size: 6, offset: 3 }} className="">
+                <Col
+                  xs={12}
+                  md={{
+                    size: path === 'account' ? 9 : 6,
+                    offset: path !== 'account' && 3
+                  }}
+                >
                   <h1 className="candidate-name mb-0">
                     {profile.first_name + ' ' + profile.last_name}
                   </h1>
@@ -115,7 +124,7 @@ class Header extends React.Component {
                   <Row>
                     <Col xs={6} className="profile-stats-icon">
                       <i className="fas fa-dollar-sign mr-2" />
-                      900
+                      4200
                     </Col>
                     <Col xs={6} className="profile-stats-icon">
                       <i className="fas fa-eye mr-2" />
@@ -136,7 +145,8 @@ class Header extends React.Component {
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile,
-  progress: state.profile.progress
+  progress: state.profile.progress,
+  pathname: state.routing.location.pathname
 })
 
 export default withRouter(connect(mapStateToProps)(Header))

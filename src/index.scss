@@ -11,11 +11,12 @@
 @import './styles/progress';
 
 @import './layout/CoreLayout/CoreLayout';
-@import './layout/Header/Header';
+@import 'layout/Header/header';
 @import './layout/Header/components/HeaderProgress/HeaderProgress.scss';
 
 @import './routes/Login/Login';
 @import './routes/Register/Register';
+@import './routes/Account/account';
 
 @import './routes/Profile/components/ProfileProgress/ProfileProgress';
 @import './routes/Profile/components/SideNav/SideNav';

@@ -34,27 +34,27 @@ class Profile extends React.Component {
   getComponent(item) {
     switch (item.id) {
       case 'general':
-        return <GeneralCard item={item} />
+        return <GeneralCard key={item.id} item={item} />
       case 'employments':
-        return <EmploymentsCard item={item} />
+        return <EmploymentsCard key={item.id} item={item} />
       case 'educations':
-        return <EducationsCard item={item} />
+        return <EducationsCard key={item.id} item={item} />
       case 'skills':
-        return <SkillsCard item={item} />
+        return <SkillsCard key={item.id} item={item} />
       case 'languages':
-        return <LanguagesCard item={item} />
+        return <LanguagesCard key={item.id} item={item} />
       case 'occupations':
-        return <OccupationsCard item={item} />
+        return <OccupationsCard key={item.id} item={item} />
       case 'drivinglicenses':
-        return <LicensesCard item={item} />
+        return <LicensesCard key={item.id} item={item} />
       case 'motivations':
-        return <MotivationsCard item={item} />
+        return <MotivationsCard key={item.id} item={item} />
       case 'personalities':
-        return <PersonalitiesCard item={item} />
+        return <PersonalitiesCard key={item.id} item={item} />
       case 'wapfilm':
-        return <WapfilmCard item={item} />
+        return <WapfilmCard key={item.id} item={item} />
       case 'talentq':
-        return <TalentQCard item={item} />
+        return <TalentQCard key={item.id} item={item} />
       default:
         return (
           <div className="card">

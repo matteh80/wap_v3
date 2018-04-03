@@ -1,6 +1,7 @@
 import { routerReducer } from 'react-router-redux'
 import storage from 'redux-persist/es/storage'
 import { persistCombineReducers, purgeStoredState } from 'redux-persist'
+import { reducer as notifications } from 'react-notification-system-redux'
 import auth from './auth'
 import profile, { setProfileProgress } from './profile'
 import skills from './skills'
@@ -17,6 +18,7 @@ import talentq from './talentq'
 
 const appReducer = {
   routing: routerReducer,
+  notifications,
   auth: auth,
   profile,
   skills,

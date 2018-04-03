@@ -139,7 +139,7 @@ export function fetchEmployments() {
         console.log(error)
         return dispatch({
           type: FETCH_EMPLOYMENTS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -162,7 +162,7 @@ export function updateEmployment(employment) {
       .catch(error => {
         return dispatch({
           type: UPDATE_EMPLOYMENT_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -185,7 +185,7 @@ export function removeEmployment(employment) {
       .catch(error => {
         return dispatch({
           type: REMOVE_EMPLOYMENT_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -208,7 +208,7 @@ export function createEmployment(employment) {
       .catch(error => {
         return dispatch({
           type: CREATE_EMPLOYMENT_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

@@ -21,27 +21,21 @@ class LanguagesCard extends React.Component {
 
     this.state = {
       languagesInEditMode: false,
-      addMode: false,
-      userLanguages: []
+      addMode: false
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
     this.cbEditMode = this.cbEditMode.bind(this)
     this.updateLanguages = this.updateLanguages.bind(this)
+
+    this._isMounted = false
   }
 
   componentDidMount() {
+    this._isMounted = true
     let { dispatch } = this.props
 
-    Promise.all([
-      dispatch(fetchUserLanguages()),
-      dispatch(fetchAllLanguages())
-    ]).then(() => {
-      this.setState({
-        allLoaded: true,
-        userLanguages: this.props.userLanguages
-      })
-    })
+    Promise.all([dispatch(fetchUserLanguages()), dispatch(fetchAllLanguages())])
   }
 
   cbEditMode(editMode) {
@@ -71,7 +65,7 @@ class LanguagesCard extends React.Component {
       updatingUserLanguages,
       fetchingUserLanguages
     } = this.props
-    const { allLoaded, addMode, languagesInEditMode } = this.state
+    const { addMode, languagesInEditMode } = this.state
     return (
       <ProfileEditableCard
         addMode={addMode}
@@ -80,14 +74,16 @@ class LanguagesCard extends React.Component {
         fetching={fetchingUserLanguages}
         item={item}
       >
-        {allLoaded && (
-          <LanguagesForm
-            languages={allLanguages}
-            userLanguages={userLanguages}
-            isOpen={addMode}
-            updateFn={this.updateLanguages}
-          />
-        )}
+        {userLanguages &&
+          allLanguages &&
+          !fetchingUserLanguages && (
+            <LanguagesForm
+              languages={allLanguages}
+              userLanguages={userLanguages}
+              isOpen={addMode}
+              updateFn={this.updateLanguages}
+            />
+          )}
         <Row className="profile-content">
           <div
             className={classnames(
@@ -334,13 +330,8 @@ class LanguagesForm extends React.Component {
   }
 
   render() {
-    let { value, languages, spoken, options } = this.state
-    const { isOpen, cbAddMode } = this.props
-    const inputProps = {
-      placeholder: 'Skriv in en språk',
-      value,
-      onChange: this.onChange
-    }
+    let { value, languages, spoken } = this.state
+    const { isOpen } = this.props
 
     return (
       <Collapse isOpen={isOpen}>

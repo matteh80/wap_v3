@@ -34,8 +34,7 @@ class OccupationsCard extends React.Component {
 
     this.state = {
       occupationsInEditMode: false,
-      addMode: false,
-      userOccupations: []
+      addMode: false
     }
 
     this.cbAddMode = this.cbAddMode.bind(this)
@@ -50,12 +49,7 @@ class OccupationsCard extends React.Component {
     Promise.all([
       dispatch(fetchUserOccupations()),
       dispatch(fetchAllOccupations())
-    ]).then(() => {
-      this.setState({
-        allLoaded: true,
-        userOccupations: this.props.userOccupations
-      })
-    })
+    ])
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -111,15 +105,11 @@ class OccupationsCard extends React.Component {
     const {
       item,
       allOccupations,
+      userOccupations,
       updatingUserOccupations,
       fetchingUserOccupations
     } = this.props
-    const {
-      allLoaded,
-      addMode,
-      occupationsInEditMode,
-      userOccupations
-    } = this.state
+    const { allLoaded, addMode, occupationsInEditMode } = this.state
 
     const DragHandle = SortableHandle(({ mIndex }) => (
       <div className="index">
@@ -164,14 +154,16 @@ class OccupationsCard extends React.Component {
         fetching={fetchingUserOccupations}
         item={item}
       >
-        {allLoaded && (
-          <OccupationsForm
-            occupations={allOccupations}
-            userOccupations={userOccupations}
-            isOpen={addMode}
-            updateFn={this.updateOccupations}
-          />
-        )}
+        {allOccupations &&
+          userOccupations &&
+          !fetchingUserOccupations && (
+            <OccupationsForm
+              occupations={allOccupations}
+              userOccupations={userOccupations}
+              isOpen={addMode}
+              updateFn={this.updateOccupations}
+            />
+          )}
         <Row className="profile-content">
           <div
             className={classnames(

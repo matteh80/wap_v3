@@ -1,6 +1,11 @@
 $primary: #547581;
 $secondary: #11ada7;
 $accent: #e8003b;
+
+$theme-colors: (
+        "accent": $accent
+);
+
 $grid-breakpoints: (
   // Extra small screen / phone
         xs: 0,

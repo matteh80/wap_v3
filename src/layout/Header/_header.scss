@@ -87,7 +87,7 @@ header.header {
     margin-top: 15px;
     transition: all 250ms;
     #header--logo {
-      max-height: 45px;
+      max-height: 35px;
       transition: inherit;
     }
   }
@@ -114,6 +114,14 @@ header.header {
 
     .nav-item {
       text-align: right;
+      cursor: pointer;
+
+      .nav-link {
+        &.active {
+          box-shadow: inset 0 -4px 0 rgba(255,255,255,0.65);
+          background: rgba(255,255,255,0.1);
+        }
+      }
     }
 
     .profile-picture {
@@ -128,6 +136,10 @@ header.header {
     height: 180px;
     color: #fff;
     min-height: 40px;
+
+    >.container {
+      padding-bottom: 3rem;
+    }
 
     @include media-breakpoint-up(md) {
       //min-height: 0;
@@ -202,6 +214,25 @@ header.header {
       #header--logo {
         max-height: 40px;
       }
+    }
+  }
+  
+  &.header-account {
+    #header-bottom {
+      height: auto;
+
+      >.container {
+        padding-bottom: .5rem;
+        padding-top: 1rem;
+      }
+    }
+    #header-progress {
+      display: none;
+      height: auto;
+    }
+
+    & + .main-content {
+      padding-top: 180px;
     }
   }
 }

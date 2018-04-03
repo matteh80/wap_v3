@@ -51,6 +51,7 @@ export default function languages(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERLANGUAGES_FAIL:
       return Object.assign({}, state, {
+        updatingUserLanguages: false,
         languagesError: action.error
       })
 
@@ -91,7 +92,7 @@ export function fetchUserLanguages() {
         console.log(error)
         return dispatch({
           type: FETCH_USERLANGUAGES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -113,7 +114,7 @@ export function editUserLanguages(languages) {
         console.log(error)
         return dispatch({
           type: EDIT_USERLANGUAGES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -135,7 +136,7 @@ export function fetchAllLanguages() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLLANGUAGES_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

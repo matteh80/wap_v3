@@ -5,6 +5,14 @@
       .register-logo {
         max-width: 120px;
       }
+
+      .custom-checkbox {
+        span {
+          a {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 }

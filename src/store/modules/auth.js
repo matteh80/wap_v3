@@ -25,16 +25,16 @@ export default function auth(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
     case LOGIN_START:
       return Object.assign({}, state, {
-        logginIn: true
+        loggingIn: true
       })
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        logginIn: false,
+        loggingIn: false,
         token: action.token
       })
     case LOGIN_FAIL:
       return Object.assign({}, state, {
-        logginIn: false,
+        loggingIn: false,
         loginError: action.error
       })
     case LOGOUT:
@@ -65,12 +65,15 @@ export function login(email, password) {
   return dispatch => {
     dispatch({ type: LOGIN_START })
 
+    let token = null
+
     return axios
-      .post('https://api.wapcard.se/api/v1/token/', {
+      .post(apiClient.defaults.baseURL + 'token/', {
         username: email,
         password: password
       })
       .then(result => {
+        token = result.data.token
         apiClient.defaults.headers = {
           Authorization: 'Token ' + result.data.token
         }
@@ -86,7 +89,7 @@ export function login(email, password) {
         console.log(error)
         return dispatch({
           type: LOGIN_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -102,7 +105,7 @@ export function socialLogin(data) {
         console.log(error)
         return dispatch({
           type: LOGIN_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
       .then(result => {
@@ -125,14 +128,8 @@ export function logout() {
   }
 }
 
-export function register(
-  email,
-  password,
-  first_name,
-  last_name,
-  mobile_phone_number
-) {
-  return dispatch => {
+export function register(email, password, profile) {
+  return (dispatch, getState) => {
     dispatch({ type: REGISTER_START })
 
     return apiClient
@@ -146,19 +143,10 @@ export function register(
         }
 
         let token = result.data.token
-
-        return dispatch(fetchProfile()).then(result => {
-          const newProfile = Object.assign({}, result.profile, {
-            first_name: first_name,
-            last_name: last_name,
-            mobile_phone_number: mobile_phone_number
-          })
-
-          return dispatch(updateProfile(newProfile)).then(() => {
-            return dispatch({
-              type: REGISTER_SUCCESS,
-              token: token
-            })
+        return dispatch(updateProfile(profile)).then(() => {
+          return dispatch({
+            type: REGISTER_SUCCESS,
+            token: token
           })
         })
       })
@@ -166,7 +154,7 @@ export function register(
         console.log(error)
         return dispatch({
           type: REGISTER_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

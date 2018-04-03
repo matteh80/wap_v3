@@ -1,51 +1,58 @@
 import axios from 'axios'
-import { setProfileProgress } from './modules/profile'
+import Notifications from 'react-notification-system-redux'
 
+const notificationOpts = {
+  // uid: 'once-please', // you can specify your own uid if required
+  title: "Hey, it's good to see you!",
+  message: 'Now you can see how easy it is to use notifications in React!',
+  position: 'tr',
+  autoDismiss: 0,
+  action: {
+    label: 'Click me!!',
+    callback: () => alert('clicked!')
+  }
+}
+
+let mStore
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
-  // instance.defaults.baseURL = 'https://assignments.workandpassion.bid/api/v1/'
+  // instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 } else {
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 }
 
-instance.defaults.timeout = 60000
+instance.defaults.timeout = 15000
 
-// const store = getStore()
-// store.subscribe(listener)
-//
-// function listener () {
-//   let token = store.getState().auth.token
-//   instance.defaults.headers = {
-//     'Authorization': 'Token ' + token
-//   }
-// }
-
-instance.interceptors.request.use(config => {
-  if (config.url.indexOf('download/videos') === -1) {
-    if (config.url[config.url.length - 1] !== '/' && !config.noSlash) {
-      config.url += '/'
+instance.interceptors.response.use(
+  response => {
+    return response
+  },
+  error => {
+    console.log(`error ${error}`)
+    if (!error.status) {
+      // network error
+      console.log('Network error!')
+      mStore.dispatch(
+        Notifications.error({
+          uid: 'network-error',
+          title: 'Nätverksproblem',
+          message:
+            'Det är problem med nätverksuppkopplingen, säkerställ att du har internetuppkoppling och försök igen.',
+          position: 'br',
+          autoDismiss: 15
+        })
+      )
     }
+    return Promise.reject(error)
   }
-
-  return config
-})
-
-// instance.interceptors.response.use(
-//   response => {
-//     dispatch(setProfileProgress())
-//     return response
-//   },
-//   error => {
-//     console.log(`error ${error}`)
-//     return Promise.reject(error)
-//   }
-// )
+)
 
 export const apiClient = instance
 
 export default function setListener(store) {
   if (store) {
+    mStore = store
     store.subscribe(listener)
 
     function listener() {

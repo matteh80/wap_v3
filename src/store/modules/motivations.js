@@ -58,6 +58,7 @@ export default function motivations(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERMOTIVATIONS_FAIL:
       return Object.assign({}, state, {
+        updatingUserMotivations: false,
         motivationsError: action.error
       })
 
@@ -98,7 +99,7 @@ export function fetchUserMotivations() {
         console.log(error)
         return dispatch({
           type: FETCH_USERMOTIVATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -132,7 +133,7 @@ export function editUserMotivations(motivation) {
         console.log(error)
         return dispatch({
           type: EDIT_USERMOTIVATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -157,7 +158,7 @@ export function fetchAllMotivations() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLMOTIVATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

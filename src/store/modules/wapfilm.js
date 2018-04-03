@@ -70,7 +70,7 @@ export function fetchWapfilm() {
       .catch(error => {
         return dispatch({
           type: FETCH_WAPFILM_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -88,7 +88,7 @@ export function deleteVideo(videoId) {
       .catch(error => {
         return dispatch({
           type: DELETE_WAPFILM_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

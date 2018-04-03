@@ -187,6 +187,7 @@ export function fetchProfile() {
     return apiClient
       .get('me/')
       .then(result => {
+        const profileData = result.data
         let hasPic = true
         let request = new XMLHttpRequest()
         let picurl = apiClient.baseURL
@@ -206,7 +207,7 @@ export function fetchProfile() {
 
             return dispatch({
               type: FETCH_PROFILE_SUCCESS,
-              profile: Object.assign({}, result.data, {
+              profile: Object.assign({}, profileData, {
                 profilepicture: hasPic ? picurl : undefined
               })
             })
@@ -218,7 +219,7 @@ export function fetchProfile() {
         console.log(error)
         return dispatch({
           type: FETCH_PROFILE_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -240,7 +241,7 @@ export function updateProfile(profile) {
         console.log(error)
         return dispatch({
           type: UPDATE_PROFILE_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -273,7 +274,7 @@ export function uploadProfilePic(data) {
       .catch(function(error) {
         return dispatch({
           type: UPLOAD_PICTURE_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

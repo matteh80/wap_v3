@@ -50,7 +50,7 @@ export function getTestStatus() {
       .catch(error => {
         return dispatch({
           type: FETCH_TQ_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -73,7 +73,7 @@ export function initiateTest(lang) {
       .catch(error => {
         return dispatch({
           type: FETCH_TQ_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

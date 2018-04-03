@@ -139,7 +139,7 @@ export function fetchEducations() {
         console.log(error)
         return dispatch({
           type: FETCH_EDUCATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -162,7 +162,7 @@ export function updateEducation(education) {
       .catch(error => {
         return dispatch({
           type: UPDATE_EDUCATION_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -185,7 +185,7 @@ export function removeEducation(education) {
       .catch(error => {
         return dispatch({
           type: REMOVE_EDUCATION_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -208,7 +208,7 @@ export function createEducation(education) {
       .catch(error => {
         return dispatch({
           type: CREATE_EDUCATION_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }

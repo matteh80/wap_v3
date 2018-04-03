@@ -61,7 +61,7 @@ class SkillsCard extends React.Component {
       updatingUserSkills,
       fetchingUserSkills
     } = this.props
-    const { allLoaded, addMode, skillsInEditMode } = this.state
+    const { addMode, skillsInEditMode } = this.state
     return (
       <ProfileEditableCard
         addMode={addMode}
@@ -70,12 +70,16 @@ class SkillsCard extends React.Component {
         fetching={fetchingUserSkills}
         item={item}
       >
-        <SkillsForm
-          skills={allSkills}
-          userSkills={userSkills}
-          isOpen={addMode}
-          updateFn={this.updateSkills}
-        />
+        {allSkills &&
+          userSkills &&
+          !fetchingUserSkills && (
+            <SkillsForm
+              skills={allSkills}
+              userSkills={userSkills}
+              isOpen={addMode}
+              updateFn={this.updateSkills}
+            />
+          )}
         <Row className="profile-content">
           <div
             className={classnames(

@@ -2,56 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AvForm, AvGroup, AvField } from 'availity-reactstrap-validation'
-import { Container, Row, Col, Button } from 'reactstrap'
+import { Container, Row, Col, Alert } from 'reactstrap'
 import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
-import { fetchProfile } from '../../store/modules/profile'
-import login_bg from './login_bg.jpg'
 import moln_flat from './moln_flat.jpg'
-import { fetchEmployments } from '../../store/modules/employments'
-import { fetchUserSkills } from '../../store/modules/skills'
-import { fetchUserLanguages } from '../../store/modules/languages'
-import { fetchUserLocations } from '../../store/modules/locations'
 
 class Login extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      loading: false,
-      loadingStep: 0
-    }
-
     this.handleValidSubmit = this.handleValidSubmit.bind(this)
   }
 
   handleValidSubmit(event, values) {
-    this.setState({ loading: true })
-
-    // let fnArray = [
-    //   fetchProfile(),
-    //   fetchEmployments(),
-    //   fetchUserSkills(),
-    //   fetchUserLanguages(),
-    //   fetchUserLocations()
-    // ]
-
-    let { dispatch } = this.props
-    dispatch(login(values.email, values.password)).then(() => {
-      // fnArray.map((fn, index) => {
-      //   dispatch(fn).then(() => {
-      //     this.setState({
-      //       loadingStep: this.state.loadingStep + 1
-      //     })
-      //   })
-      // })
-      // dispatch(fetchProfile())
-    })
+    let { login } = this.props
+    login(values.email, values.password)
   }
 
   render() {
-    let { loading, loadingStep } = this.state
+    const { loggingIn, loginError } = this.props
     return (
       <div
         className="login-wrapper h-100"
@@ -73,6 +43,11 @@ class Login extends React.Component {
                   <SocialLogin />
                 </Col>
                 <Col xs={12} className="mt-5">
+                  {loginError && (
+                    <Alert color="danger">
+                      Det gick inte att logga in med de här uppgifterna.
+                    </Alert>
+                  )}
                   <AvForm onValidSubmit={this.handleValidSubmit}>
                     <AvGroup>
                       <AvField
@@ -91,11 +66,9 @@ class Login extends React.Component {
                       errorMessage="Lösenord måste bestå av minst 6 tecken"
                     />
                     <LoadingButton
-                      loading={loading}
+                      loading={loggingIn}
                       text="Logga in"
                       loadingText="Loggar in..."
-                      totSteps={9}
-                      finishedStep={loadingStep}
                     />
                   </AvForm>
                 </Col>
@@ -124,9 +97,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  loggingIn: state.auth.loggingIn,
+  loginError: state.auth.loginError
 })
 
-export default connect(mapStateToProps)(Login)
-
-Login.propTypes = {}
+export default connect(mapStateToProps, { login })(Login)

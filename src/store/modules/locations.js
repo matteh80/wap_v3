@@ -51,6 +51,7 @@ export default function locations(state = INITIAL_STATE, action = {}) {
       })
     case EDIT_USERLOCATIONS_FAIL:
       return Object.assign({}, state, {
+        addingUserLocation: false,
         locationsError: action.error
       })
 
@@ -90,7 +91,7 @@ export function fetchUserLocations() {
         console.log(error)
         return dispatch({
           type: FETCH_USERLOCATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -112,7 +113,7 @@ export function editUserLocations(locations) {
         console.log(error)
         return dispatch({
           type: EDIT_USERLOCATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
@@ -134,7 +135,7 @@ export function fetchAllLocations() {
         console.log(error)
         return dispatch({
           type: FETCH_ALLLOCATIONS_FAIL,
-          error: error.response.data
+          error: error.response && error.response.data && error.response.data
         })
       })
   }
