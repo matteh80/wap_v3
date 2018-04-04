@@ -15,7 +15,6 @@ import PersonalitiesCard from '../../routes/Profile/components/PersonalitiesCard
 import GeneralCard from '../../routes/Profile/components/GeneralCard/GeneralCard'
 import WapfilmCard from '../../routes/Profile/components/WapfilmCard/WapfilmCard'
 import TalentQCard from '../../routes/Profile/components/TalentQCard/TalentQCard'
-import ProfileTips from './components/ProfileTips/ProfileTips'
 import _ from 'lodash'
 
 class Profile extends React.Component {
@@ -74,7 +73,6 @@ class Profile extends React.Component {
         <Container className="profile">
           <Row>
             <Col xs={12} md={3} className="left fixed d-none d-md-block">
-              <ProfileTips />
               <ProfileProgress />
             </Col>
             <Col xs={12} md={9} className="right">

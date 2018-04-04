@@ -4,22 +4,6 @@ $smallIconSize: 18px;
 $progressGreen: $secondary;
 
 #header-progress {
-  position: absolute;
-  bottom: 20px;
-  left: 30px;
-  width: calc(100% - 60px);
-  z-index: 9;
-  @include media-breakpoint-up(md) {
-    left: 150px + 45px;
-    width: calc(100% - 150px - 45px);
-  }
-  @include media-breakpoint-up(lg) {
-    left: 210px + 45px;
-  }
-  @include media-breakpoint-up(xl) {
-    left: 305px + 45px;
-    width: calc(100% - 305px - 45px - 15px);
-  }
 
   #header-progress-step-wrapper {
     display: flex;
@@ -131,6 +115,10 @@ $progressGreen: $secondary;
       }
 
       .icon-wrapper {
+        display: none;
+        @include media-breakpoint-up(sm) {
+          display: block;
+        }
         position: absolute;
         left: calc(50% - #{$iconSize} / 2);
         top: calc(50% - #{$iconSize} / 2);
@@ -150,6 +138,10 @@ $progressGreen: $secondary;
       }
 
       .arrow {
+        display: none;
+        @include media-breakpoint-up(sm) {
+          display: block;
+        }
         width: 0;
         height: 0;
         border-style: solid;

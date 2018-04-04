@@ -10,6 +10,16 @@ class TermsOfService extends React.Component {
     this.state = {
       isOpen: this.props.isCollapsed ? !this.props.isCollapsed : false
     }
+
+    this.toggle = this.toggle.bind(this)
+  }
+
+  toggle(e) {
+    e.preventDefault()
+
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
   }
 
   render() {
@@ -54,10 +64,7 @@ class TermsOfService extends React.Component {
           label={
             <span>
               Jag godkänner{' '}
-              <a
-                href="#"
-                onClick={() => this.setState({ isOpen: !this.state.isOpen })}
-              >
+              <a href="#" onClick={this.toggle}>
                 användaravtalet
               </a>
             </span>

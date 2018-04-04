@@ -35,27 +35,32 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
-    let $window = $(window)
-    let $header = $('.header')
-    let $headerBottom = $('#header-bottom')
-    let $profileProgress = $('.progress-wrapper .progress')
+    const $window = $(window)
+    const $header = $('.header')
+    const $headerBottom = $('#header-bottom')
+    const $shouldFade = $('.shouldFade')
 
     $window.scroll(function() {
-      $headerBottom.css({
-        height: 180 - $window.scrollTop(),
-        opacity: 1 - $window.scrollTop() / 100
-      })
+      let minHeight = parseInt(
+        $headerBottom.css('min-height').replace('px', '')
+      )
+      let max = -$headerBottom.outerHeight() + minHeight
+      let newMargin = -$window.scrollTop()
 
-      if ($window.scrollTop() > 180) {
-        $profileProgress.addClass('visible')
-      } else {
-        $profileProgress.removeClass('visible')
+      if (max > newMargin) {
+        newMargin = max
       }
 
-      if ($headerBottom.height() < 10) {
-        $header.addClass('collapsed')
+      $headerBottom.css({
+        marginTop: newMargin
+      })
+
+      $shouldFade.css({ opacity: 1 - $window.scrollTop() / 60 })
+
+      if ($window.scrollTop() > 200) {
+        $headerBottom.addClass('collapsed')
       } else {
-        $header.removeClass('collapsed')
+        $headerBottom.removeClass('collapsed')
       }
     })
   }
@@ -106,14 +111,8 @@ class Header extends React.Component {
           </Navbar>
           <div id="header-bottom">
             <Container className="h-100">
-              <Row className="h-100 align-items-center">
-                <Col
-                  xs={12}
-                  md={{
-                    size: path === 'account' ? 9 : 6,
-                    offset: path !== 'account' && 3
-                  }}
-                >
+              <Row className="h-100 align-items-center shouldFade">
+                <Col xs={12} md={9}>
                   <h1 className="candidate-name mb-0">
                     {profile.first_name + ' ' + profile.last_name}
                   </h1>
@@ -123,19 +122,19 @@ class Header extends React.Component {
                 <Col xs={12} md={3} className="profile-stats">
                   <Row>
                     <Col xs={6} className="profile-stats-icon">
-                      <i className="fas fa-dollar-sign mr-2" />
+                      <i className="fas fa-dollar-sign mr-xl-2" />
                       4200
                     </Col>
                     <Col xs={6} className="profile-stats-icon">
-                      <i className="fas fa-eye mr-2" />
+                      <i className="fas fa-eye mr-xl-2" />
                       23
                     </Col>
                   </Row>
                 </Col>
               </Row>
+              <HeaderProgress progress={progress} />
             </Container>
           </div>
-          <HeaderProgress progress={progress} />
         </Container>
       </header>
     )

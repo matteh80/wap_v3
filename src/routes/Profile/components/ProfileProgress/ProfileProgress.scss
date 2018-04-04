@@ -4,19 +4,25 @@
   position: fixed;
   z-index: 99;
   transition: all 250ms;
-  top: 110px;
+  top: 80px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
 
-  @include media-breakpoint-up(md) {
-    width: 150px;
-  }
-  @include media-breakpoint-up(lg) {
-    width: 210px;
-  }
-  @include media-breakpoint-up(xl) {
-    width: 300px;
+  .picture-wrapper {
+    @include media-breakpoint-up(md) {
+      width: 150px;
+      height: 150px;
+    }
+    @include media-breakpoint-up(lg) {
+      width: 210px;
+      height: 210px;
+    }
+    @include media-breakpoint-up(xl) {
+      width: 300px;
+      height: 300px;
+    }
   }
 
   .profile-picture {
@@ -84,6 +90,8 @@
   }
 
   &.scrolled {
+    top: 120px;
+
     .profile-picture {
       border-radius: 50%;
       animation-name: showProgressImg;

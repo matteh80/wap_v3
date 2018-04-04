@@ -1,7 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
 import URLSearchParams from 'url-search-params'
-import './SocialLogin.css'
 import { connect } from 'react-redux'
 import { socialLogin } from '../../store/modules/auth'
 

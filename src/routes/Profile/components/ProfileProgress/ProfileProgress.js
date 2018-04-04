@@ -4,6 +4,7 @@ import CircularProgressbar from 'react-circular-progressbar'
 import $ from 'jquery'
 import classnames from 'classnames'
 import ProfilePicture from '../../../../components/ProfilePicture/ProfilePicture'
+import ProfileTips from '../ProfileTips/ProfileTips'
 
 class ProfileProgress extends React.Component {
   constructor(props) {
@@ -38,32 +39,35 @@ class ProfileProgress extends React.Component {
     return (
       <div
         className={classnames(
-          'profile-progress--wrapper',
+          'profile-progress--wrapper h-100',
           scrolled ? 'scrolled' : 'notScrolled'
         )}
       >
-        <div
-          className={classnames(
-            'progress-circle',
-            'profile-level-' + profileLevel
-          )}
-        >
-          <CircularProgressbar
-            percentage={progressPercent}
-            initialAnimation
-            textForPercentage={null}
-            strokeWidth={8}
-            rotation={65}
-          />
-        </div>
+        <div className="picture-wrapper position-relative">
+          <div
+            className={classnames(
+              'progress-circle',
+              'profile-level-' + profileLevel
+            )}
+          >
+            <CircularProgressbar
+              percentage={progressPercent}
+              initialAnimation
+              textForPercentage={null}
+              strokeWidth={8}
+              rotation={65}
+            />
+          </div>
 
-        <GradientSVG
-          startColor="#64ebe7"
-          middleColor="#fbb017"
-          endColor="#47a29f"
-          idCSS="progressGradient"
-        />
-        <ProfilePicture />
+          <GradientSVG
+            startColor="#64ebe7"
+            middleColor="#fbb017"
+            endColor="#47a29f"
+            idCSS="progressGradient"
+          />
+          <ProfilePicture />
+        </div>
+        <ProfileTips />
       </div>
     )
   }

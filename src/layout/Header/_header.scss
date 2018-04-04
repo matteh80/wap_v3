@@ -30,57 +30,6 @@ header.header {
 
   >.container {
     position: relative;
-
-    .slider-wrapper {
-      position: absolute;
-      bottom: 15px;
-      left: 30px;
-      width: calc(100% - 60px);
-      z-index: 9;
-      @include media-breakpoint-up(md) {
-        left: 150px + 45px;
-        width: 50%;
-      }
-      @include media-breakpoint-up(lg) {
-        left: 210px + 45px;
-      }
-      @include media-breakpoint-up(xl) {
-        left: 305px + 45px;
-      }
-
-      .tooltip-holder {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        //padding: 0 15px;
-        display: flex;
-
-        > ul {
-          display: flex;
-          width: 100%;
-          padding: 0;
-          margin: 0;
-        }
-
-        .tooltip-target {
-          flex: 1;
-          cursor: pointer;
-          //position: relative;
-        }
-      }
-      
-      #marker {
-        color: #fff;
-        width: 20px;
-        height: 20px;
-        font-size: 20px;
-        position: absolute;
-        top: -10px;
-        transition: left 500ms ease-in-out;
-      }
-    }
   }
 
   .navbar-brand {
@@ -133,21 +82,37 @@ header.header {
   }
 
   #header-bottom {
-    height: 180px;
+    position: relative;
+    height: auto;
     color: #fff;
-    min-height: 40px;
+    min-height: 50px;
+    transition: all 250ms ease;
 
     >.container {
-      padding-bottom: 3rem;
+      padding-bottom: 1rem;
     }
 
-    @include media-breakpoint-up(md) {
-      //min-height: 0;
+    .shouldFade {
+      padding-top: 1rem;
+      margin-bottom: 2rem;
+      transition: all 250ms ease-in-out;
     }
-    //transition: all 250ms;
 
     .candidate-name {
       font-weight: bold;
+      font-size: 1.9rem;
+      @include media-breakpoint-up(sm) {
+        font-size: 1.75rem;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 2rem;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 2.25rem;
+      }
+      @include media-breakpoint-up(sm) {
+        font-size: 2.5rem;
+      }
     }
 
     .candidate-subtitle {
@@ -155,13 +120,31 @@ header.header {
       font-style: italic;
       font-weight: 100;
       margin-top: -10px;
-      //margin-bottom: 15px;
+      margin-bottom: 0;
+      font-size: 1.5rem;
+      @include media-breakpoint-up(sm) {
+        font-size: 1.55rem;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 1.8rem;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 2.05rem;
+      }
+      @include media-breakpoint-up(sm) {
+        font-size: 2.3rem;
+      }
     }
 
     .profile-stats {
       color: #fff;
-      font-size: 30px;
       text-align: end;
+      font-size: 2rem;
+      display: none;
+      
+      @include media-breakpoint-up(xl) {
+        display: block;
+      }
 
       small {
         font-size: 12px;
@@ -216,10 +199,25 @@ header.header {
       }
     }
   }
+
+  &.header-profile {
+    #header-bottom:not(.collapsed) {
+      @include media-breakpoint-up(md) {
+        padding-left: 150px + 15px;
+        //width: calc(100% - 150px - 45px);
+      }
+      @include media-breakpoint-up(lg) {
+        padding-left: 210px + 15px;
+      }
+      @include media-breakpoint-up(xl) {
+        padding-left: 305px + 15px;
+        //width: calc(100% - 305px - 45px - 15px);
+      }
+    }
+  }
   
   &.header-account {
     #header-bottom {
-      height: auto;
 
       >.container {
         padding-bottom: .5rem;
@@ -232,7 +230,7 @@ header.header {
     }
 
     & + .main-content {
-      padding-top: 180px;
+      //padding-top: 180px;
     }
   }
 }

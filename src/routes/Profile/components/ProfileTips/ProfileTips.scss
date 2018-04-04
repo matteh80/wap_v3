@@ -1,26 +1,27 @@
 .profile-tips {
-  position: fixed;
+  //position: fixed;
   z-index: 99;
   transition: all 250ms;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 
   a {
     text-decoration: underline;
   }
 
-  @include media-breakpoint-up(md) {
-    width: 150px;
-  }
-  @include media-breakpoint-up(lg) {
-    width: 210px;
-    top: 360px;
-  }
-  @include media-breakpoint-up(xl) {
-    width: 305px;
-    top: 450px;
-  }
+  //@include media-breakpoint-up(md) {
+  //  width: 150px;
+  //}
+  //@include media-breakpoint-up(lg) {
+  //  width: 210px;
+  //  top: 360px;
+  //}
+  //@include media-breakpoint-up(xl) {
+  //  width: 305px;
+  //  top: 450px;
+  //}
 
   &:after {
     content: '';
@@ -37,6 +38,14 @@
     width: 100%;
     line-height: 1.2;
 
+    @include media-breakpoint-down(md) {
+      .card-title {
+        font-size: 1.2rem;
+      }
+      .card-subtitle {
+        font-size: .9rem;
+      }
+    }
   }
 
   .message {

@@ -90,7 +90,12 @@ class Register extends React.Component {
       >
         <Container fluid className="register-container h-100">
           <Row className="h-100">
-            <Col xs={12} lg={5} xl={4} className="left-content p-5 bg-white">
+            <Col
+              xs={12}
+              lg={5}
+              xl={4}
+              className="left-content p-4 p-sm-5 bg-white"
+            >
               <Row>
                 <Col xs={12} className="text-center">
                   <img
