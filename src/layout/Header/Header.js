@@ -123,11 +123,11 @@ class Header extends React.Component {
                   <Row>
                     <Col xs={6} className="profile-stats-icon">
                       <i className="fas fa-dollar-sign mr-xl-2" />
-                      4200
+                      0
                     </Col>
                     <Col xs={6} className="profile-stats-icon">
                       <i className="fas fa-eye mr-xl-2" />
-                      23
+                      0
                     </Col>
                   </Row>
                 </Col>
