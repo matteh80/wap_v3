@@ -14,6 +14,10 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      bgImage: this.getBgImage(Math.floor(Math.random() * 3 + 1))
+    }
+
     this.handleValidSubmit = this.handleValidSubmit.bind(this)
   }
 
@@ -35,13 +39,13 @@ class Login extends React.Component {
 
   render() {
     const { loggingIn, loginError } = this.props
+    const { bgImage } = this.state
 
     return (
       <div
         className="login-wrapper h-100"
         style={{
-          background:
-            'url("' + this.getBgImage(Math.floor(Math.random() * 3 + 1)) + '")'
+          background: 'url("' + bgImage + '")'
         }}
       >
         <Container fluid className="login-container h-100">

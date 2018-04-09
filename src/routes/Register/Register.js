@@ -19,7 +19,8 @@ class Register extends React.Component {
     this.state = {
       loading: false,
       cityValue: undefined,
-      tosAccepted: false
+      tosAccepted: false,
+      bgImage: this.getBgImage(Math.floor(Math.random() * 3 + 1))
     }
 
     this.handleValidSubmit = this.handleValidSubmit.bind(this)
@@ -91,15 +92,14 @@ class Register extends React.Component {
   }
 
   render() {
-    const { cityValue } = this.state
+    const { cityValue, bgImage } = this.state
     const { registerError, registering } = this.props
 
     return (
       <div
         className="register-wrapper h-100"
         style={{
-          backgroundImage:
-            'url("' + this.getBgImage(Math.floor(Math.random() * 3 + 1)) + '")',
+          backgroundImage: 'url("' + bgImage + '")',
           backgroundSize: 'cover'
         }}
       >
