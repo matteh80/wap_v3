@@ -24,21 +24,21 @@ class Account extends React.Component {
                     <h5>
                       <div className="stats-icon">
                         <i className="fas fa-eye" />
-                      </div>Visningar: 23
+                      </div>Visningar: 0
                     </h5>
                   </Col>
                   <Col xs={12}>
                     <h5>
                       <div className="stats-icon">
                         <i className="fas fa-shopping-cart" />
-                      </div>Köp: 4
+                      </div>Köp: 0
                     </h5>
                   </Col>
                   <Col xs={12}>
                     <h5>
                       <div className="stats-icon">
                         <i className="fas fa-comments" />
-                      </div>Intervjuer: 1
+                      </div>Intervjuer: 0
                     </h5>
                   </Col>
                 </Row>
