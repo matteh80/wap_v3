@@ -143,15 +143,16 @@ class Register extends React.Component {
                       type="password"
                       name="password"
                       label="Lösenord"
+                      minLength={8}
                       required
-                      errorMessage="Du måste ange ett lösenord (minst 6 tecken)"
+                      errorMessage="Du måste ange ett lösenord (minst 8 tecken)"
                     />
                     <AvField
                       type="password"
                       name="confirm_password"
                       label="Bekräfta lösenord"
                       required
-                      validate={{ match: { value: 'password' } }}
+                      validate={{ match: { value: 'password' }, minLength: 8 }}
                       errorMessage="Lösenorden matchar inte"
                     />
                     <AvField
@@ -178,8 +179,8 @@ class Register extends React.Component {
                           name="zip_code"
                           label="Postnummer"
                           required
-                          minlength={5}
-                          maxlength={5}
+                          minLength={5}
+                          maxLength={5}
                           onBlur={this.onZipChange}
                           errorMessage="Du måste skriva in ditt postnummer (5 siffror)"
                         />

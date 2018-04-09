@@ -263,7 +263,7 @@ class SocialLogin extends React.Component {
 
   render() {
     return (
-      <div className="container social-login">
+      <div className="container social-login d-none">
         <iframe
           height="1"
           width="1"
