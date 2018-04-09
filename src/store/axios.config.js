@@ -1,23 +1,11 @@
 import axios from 'axios'
 import Notifications from 'react-notification-system-redux'
 
-const notificationOpts = {
-  // uid: 'once-please', // you can specify your own uid if required
-  title: "Hey, it's good to see you!",
-  message: 'Now you can see how easy it is to use notifications in React!',
-  position: 'tr',
-  autoDismiss: 0,
-  action: {
-    label: 'Click me!!',
-    callback: () => alert('clicked!')
-  }
-}
-
 let mStore
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
-  instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
-  // instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
+  // instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
+  instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 } else {
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 }

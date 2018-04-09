@@ -178,7 +178,7 @@ class Register extends React.Component {
                           name="zip_code"
                           label="Postnummer"
                           required
-                          minLength={5}
+                          minlength={5}
                           maxlength={5}
                           onBlur={this.onZipChange}
                           errorMessage="Du måste skriva in ditt postnummer (5 siffror)"
