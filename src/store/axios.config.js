@@ -16,8 +16,8 @@ const notificationOpts = {
 let mStore
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
-  // instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
-  instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
+  instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
+  // instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 } else {
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 }
@@ -30,9 +30,8 @@ instance.interceptors.response.use(
   },
   error => {
     console.log(`error ${error}`)
-    if (!error.status) {
+    if (!error === 'Network Error') {
       // network error
-      console.log('Network error!')
       mStore.dispatch(
         Notifications.error({
           uid: 'network-error',

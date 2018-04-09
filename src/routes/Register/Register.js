@@ -5,10 +5,12 @@ import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { connect } from 'react-redux'
 import { register } from '../../store/modules/auth'
-import register_bg from './register_bg.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import TermsOfService from '../../components/TermsOfService'
+import register_bg from './register_bg.jpg'
+import register_bg_2 from './register_bg_2.jpg'
+import register_bg_3 from './register_bg_3.jpg'
 
 class Register extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class Register extends React.Component {
         values.email,
         values.password,
         Object.assign({}, defaultProfile, {
+          email: values.email,
           first_name: values.first_name,
           last_name: values.last_name,
           mobile_phone_number: values.mobile_phone_number,
@@ -76,6 +79,17 @@ class Register extends React.Component {
     }
   }
 
+  getBgImage(number) {
+    switch (number) {
+      case 2:
+        return register_bg_2
+      case 3:
+        return register_bg_3
+      default:
+        return register_bg
+    }
+  }
+
   render() {
     const { cityValue } = this.state
     const { registerError, registering } = this.props
@@ -84,7 +98,8 @@ class Register extends React.Component {
       <div
         className="register-wrapper h-100"
         style={{
-          backgroundImage: 'url("' + register_bg + '")',
+          backgroundImage:
+            'url("' + this.getBgImage(Math.floor(Math.random() * 3 + 1)) + '")',
           backgroundSize: 'cover'
         }}
       >
@@ -205,7 +220,23 @@ class Register extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col className="d-none d-lg-block" />
+            <Col className="right-content d-none d-lg-block">
+              <div className="d-flex flex-column h-100 justify-content-center fg-white p-5">
+                <h1 className="display-3 font-weight-bold title">
+                  Att söka jobb är ett jobb i sig.<br /> Och jobb ska man få
+                  betalt för.
+                </h1>
+                <h3 className="subtitle">
+                  Matching värd vaje krona och sekund
+                </h3>
+                <span className="py-5">
+                  Genom oss matchas du med seriösa arbetsgivare och tjänar
+                  pengar på kuppen. Ju mer information de vill ha om dig, desto
+                  mer betalt får du. Och skulle du bli kallad till intervju
+                  eller rent utav få drömjobbet, då väntar en bonus. Bra va?
+                </span>
+              </div>
+            </Col>
           </Row>
         </Container>
       </div>

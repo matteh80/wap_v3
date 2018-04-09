@@ -6,7 +6,9 @@ import { Container, Row, Col, Alert } from 'reactstrap'
 import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
-import moln_flat from './moln_flat.jpg'
+import login_bg from './login_bg.jpg'
+import login_bg_2 from './login_bg_2.jpg'
+import login_bg_3 from './login_bg_3.jpg'
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,12 +22,27 @@ class Login extends React.Component {
     login(values.email, values.password)
   }
 
+  getBgImage(number) {
+    switch (number) {
+      case 2:
+        return login_bg_2
+      case 3:
+        return login_bg_3
+      default:
+        return login_bg
+    }
+  }
+
   render() {
     const { loggingIn, loginError } = this.props
+
     return (
       <div
         className="login-wrapper h-100"
-        style={{ background: 'url("' + moln_flat + '")' }}
+        style={{
+          background:
+            'url("' + this.getBgImage(Math.floor(Math.random() * 3 + 1)) + '")'
+        }}
       >
         <Container fluid className="login-container h-100">
           <Row className="h-100">
@@ -77,6 +94,13 @@ class Login extends React.Component {
                     />
                   </AvForm>
                 </Col>
+                <Col xs={12}>
+                  <small>
+                    <a href="https://app.workandpassion.se/password/reset/">
+                      Glömt ditt lösenord?
+                    </a>
+                  </small>
+                </Col>
               </Row>
               <Row className="my-5">
                 <Col xs={12}>
@@ -93,7 +117,23 @@ class Login extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col className="d-none d-lg-block" />
+            <Col className="right-content d-none d-lg-block">
+              <div className="d-flex flex-column h-100 justify-content-center fg-white p-5">
+                <h1 className="display-3 font-weight-bold title">
+                  Att söka jobb är ett jobb i sig.<br /> Och jobb ska man få
+                  betalt för.
+                </h1>
+                <h3 className="subtitle">
+                  Matching värd vaje krona och sekund
+                </h3>
+                <span className="py-5">
+                  Genom oss matchas du med seriösa arbetsgivare och tjänar
+                  pengar på kuppen. Ju mer information de vill ha om dig, desto
+                  mer betalt får du. Och skulle du bli kallad till intervju
+                  eller rent utav få drömjobbet, då väntar en bonus. Bra va?
+                </span>
+              </div>
+            </Col>
           </Row>
         </Container>
       </div>

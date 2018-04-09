@@ -8329,6 +8329,10 @@ body.fixed .main-content {
   color: #be0000 !important;
 }
 
+.fg-white {
+  color: #fff !important;
+}
+
 .media-wrapper {
   display: block;
   height: 0;
@@ -8907,6 +8911,7 @@ header.header .navbar-brand #header--logo {
 }
 header.header .navbar {
   position: relative;
+  z-index: 1;
 }
 header.header .navbar > .container {
   position: relative;
@@ -9344,6 +9349,12 @@ header.header.header-account #header-progress {
   max-width: 120px;
 }
 
+.login-wrapper .login-container .right-content .subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 40px;
+}
+
 .register-wrapper .register-container .left-content {
   min-height: 100vh;
 }
@@ -9352,6 +9363,12 @@ header.header.header-account #header-progress {
 }
 .register-wrapper .register-container .left-content .custom-checkbox span a {
   text-decoration: underline;
+}
+
+.register-wrapper .register-container .right-content .subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 40px;
 }
 
 .account-stats .stats-icon {

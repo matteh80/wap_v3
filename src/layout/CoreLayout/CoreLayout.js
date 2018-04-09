@@ -70,7 +70,35 @@ class CoreLayout extends React.Component {
           <ModalHeader>
             Innan du kan använda WAP måste du godkänna användaravtalen
           </ModalHeader>
-          <ModalBody>Lorem Ipsum</ModalBody>
+          <ModalBody>
+            De uppgifter som du uppger i din profil lagras i vår databas för att
+            vi i Maxkompetens koncernen (nedan företaget) ska kunna administrera
+            din profil och matcha det mot lämpliga karriärsutmaningar.
+            Uppgifterna kan förekomma skriftligen, muntligen eller som bild,
+            film- eller ljudinspelning. Vi garanterar att dina uppgifter inte
+            kommer att användas i andra sammanhang eller av andra företag utan
+            ditt medgivande. Vårt dataregister samkörs inte med register från
+            tredje part. Upphovsrätt, under förutsättning att du har överlämnat
+            eller laddat upp meterial såsom bilder, film- eller ljudinspelningar
+            till företaget, alternativt på annat sätt registrerat dem i
+            företagets system, överlåter du genom godkännande av
+            integritetsvillkoren samtliga dina eventuella rättigheter av
+            material till företaget. Du kan när som helst ändra eller radera
+            dina uppgifter i din profil. Efter 24 månader av inaktivitet kommer
+            din profil raderas automatiskt. Du ansvarar själv för att innehållet
+            är aktuellt och återspeglar din status. All insamling och behandling
+            av personuppgifter sker i enlighet med bestämmelserna i
+            dataskyddsförordningen - GDPR. Med personuppgifter avses alla
+            uppgifter som kan användas för att identifiera en person, till
+            exempel namn, hemadress och e-postadress. Med behandling av
+            personuppgifter avses alla åtgärder som vidtas med personuppgifter
+            såsom exempelvis insamling, lagring och bearbetning. Vill du veta
+            mer om dataskyddsförordningen – GDPR, läs vidare på
+            www.datainspektionen.se. Enligt dataskyddsförordningen - GDPR får
+            ingen registrering ske utan personens medgivande. Om du samtycker
+            till att dina uppgifter lagras så måste du markera kryssrutan för
+            godkännande innan du kommer vidare.
+          </ModalBody>
           <ModalFooter>
             <Button onClick={() => this.tosAccepted(true)}>
               Jag godkänner
