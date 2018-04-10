@@ -93,7 +93,7 @@ class Register extends React.Component {
   }
 
   render() {
-    const { cityValue, bgImage } = this.state
+    const { cityValue, bgImage, tosAccepted } = this.state
     const { registerError, registering } = this.props
 
     return (
@@ -199,6 +199,7 @@ class Register extends React.Component {
                       loading={registering}
                       text="Registrera"
                       loadingText="Registrerar dig..."
+                      disabled={!tosAccepted}
                     />
                   </AvForm>
                 </Col>

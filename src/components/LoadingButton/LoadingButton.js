@@ -16,7 +16,8 @@ class LoadingButton extends React.Component {
       loadingText,
       totSteps,
       finishedStep,
-      onClick
+      onClick,
+      disabled
     } = this.props
     return (
       <div className="loading-button--wrapper">
@@ -30,7 +31,7 @@ class LoadingButton extends React.Component {
         />
         <Button
           className={classnames('loading-button--btn')}
-          disabled={loading}
+          disabled={loading || disabled}
           onClick={onClick}
         >
           {loading ? (loadingText ? loadingText : text) : text}
@@ -49,5 +50,6 @@ LoadingButton.propTypes = {
   loadingText: PropTypes.string,
   totSteps: PropTypes.number,
   finishedStep: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool
 }

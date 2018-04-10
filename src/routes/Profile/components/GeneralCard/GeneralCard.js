@@ -94,195 +94,197 @@ class GeneralCard extends React.Component {
         closeText="Spara & stäng"
         item={item}
       >
-        <AvForm
-          onValidSubmit={this.handleValidSubmit}
-          ref={c => {
-            this.form = c
-          }}
-          model={!fetchingProfile ? profile : {}}
-          className={cn('editForm', !addMode && 'viewMode')}
-        >
-          <Row className="profile-content">
-            <Col xs={12}>
-              <h5 className="section-title">Personuppgifter</h5>
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="text"
-                name="first_name"
-                label="Förnamn *"
-                disabled={!addMode}
-                required
-                errorMessage="Förnamn krävs"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="text"
-                name="last_name"
-                label="Efternamn *"
-                disabled={!addMode}
-                required
-                errorMessage="Efternamn krävs"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="text"
-                name="title"
-                label={addMode ? 'Titel *' : 'Titel'}
-                disabled={!addMode}
-                required
-                errorMessage="Titel krävs"
-                placeholder="Ex. Ekonomiassistent"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="email"
-                name="email"
-                label="Epost *"
-                disabled={!addMode}
-                required
-                errorMessage="Epost krävs"
-                placeholder="Ex. anna@workandpassion.se"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="text"
-                name="mobile_phone_number"
-                label="Telefon *"
-                disabled={!addMode}
-                required
-                errorMessage="Telefon krävs"
-                placeholder="Ex. 0701234567"
-                helpMessage="Enbart siffror, inga mellanslag, prefix eller '-'"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="date"
-                name="birthday"
-                label="Födelsedatum"
-                disabled={!addMode}
-                required
-                helpMessage="Ange ditt födelsedatum YYYY-MM-DD"
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <AvField
-                type="select"
-                name="gender"
-                label="Kön"
-                disabled={!addMode}
-                value="female"
-              >
-                <option value="female">Kvinna</option>
-                <option value="male">Man</option>
-                <option value="male">Annat / okänt</option>
-              </AvField>
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <label>Lönespann</label>
-              <Row>
-                <Col xs={6} id="salary_expectations_min">
-                  <AvField
-                    type="number"
-                    name="salary_expectations_min"
-                    placeholder="Från"
-                    disabled={!addMode}
-                  />
-                </Col>
-                <Col xs={6}>
-                  <AvField
-                    type="number"
-                    name="salary_expectations_max"
-                    placeholder="Till"
-                    disabled={!addMode}
-                  />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <h5 className="section-title">Adress</h5>
-            </Col>
-            <Col xs={12} md={6}>
-              <AvField
-                type="text"
-                name="address"
-                label="Gatuadress"
-                disabled={!addMode}
-              />
-              <Row>
-                <Col xs={4}>
-                  <AvField
-                    type="number"
-                    name="zip_code"
-                    label="Postnummer"
-                    disabled={!addMode}
-                  />
-                </Col>
-                <Col xs={8}>
-                  <AvField
-                    type="text"
-                    name="city"
-                    label="Postort"
-                    disabled={!addMode}
-                  />
-                </Col>
-              </Row>
-            </Col>
-            <Col md={6} className="d-none d-md-block">
-              <GoogleMap profile={profile} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <h5 className="section-title">Övrigt</h5>
-            </Col>
-            <Col xs={12} lg={6}>
-              <AvField
-                type="text"
-                name="linkedin_url"
-                label="LinkedIn"
-                disabled={!addMode}
-              />
-            </Col>
-            <Col xs={12} lg={6}>
-              <AvField
-                type="text"
-                name="homepage"
-                label="Hemsida"
-                disabled={!addMode}
-                placeholder="Ex. http://workandpassion.se"
-                helpMessage="Måste börja med http:// eller https://"
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12} md={6} lg={4}>
-              <Checkbox
-                name="student"
-                label="Student"
-                defaultChecked={profile.student}
-                onChange={this.handleCheckboxChange}
-                disabled={!addMode}
-              />
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <Checkbox
-                name="actively_searching"
-                label="Aktivt sökande"
-                defaultChecked={profile.actively_searching}
-                onChange={this.handleCheckboxChange}
-                disabled={!addMode}
-              />
-            </Col>
-          </Row>
-        </AvForm>
+        {!fetchingProfile && (
+          <AvForm
+            onValidSubmit={this.handleValidSubmit}
+            ref={c => {
+              this.form = c
+            }}
+            model={!fetchingProfile ? profile : {}}
+            className={cn('editForm', !addMode && 'viewMode')}
+          >
+            <Row className="profile-content">
+              <Col xs={12}>
+                <h5 className="section-title">Personuppgifter</h5>
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="text"
+                  name="first_name"
+                  label="Förnamn *"
+                  disabled={!addMode}
+                  required
+                  errorMessage="Förnamn krävs"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="text"
+                  name="last_name"
+                  label="Efternamn *"
+                  disabled={!addMode}
+                  required
+                  errorMessage="Efternamn krävs"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="text"
+                  name="title"
+                  label={addMode ? 'Titel *' : 'Titel'}
+                  disabled={!addMode}
+                  required
+                  errorMessage="Titel krävs"
+                  placeholder="Ex. Ekonomiassistent"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="email"
+                  name="email"
+                  label="Epost *"
+                  disabled={!addMode}
+                  required
+                  errorMessage="Epost krävs"
+                  placeholder="Ex. anna@workandpassion.se"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="text"
+                  name="mobile_phone_number"
+                  label="Telefon *"
+                  disabled={!addMode}
+                  required
+                  errorMessage="Telefon krävs"
+                  placeholder="Ex. 0701234567"
+                  helpMessage="Enbart siffror, inga mellanslag, prefix eller '-'"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="date"
+                  name="birthday"
+                  label="Födelsedatum"
+                  disabled={!addMode}
+                  required
+                  helpMessage="Ange ditt födelsedatum YYYY-MM-DD"
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <AvField
+                  type="select"
+                  name="gender"
+                  label="Kön"
+                  disabled={!addMode}
+                  value="female"
+                >
+                  <option value="female">Kvinna</option>
+                  <option value="male">Man</option>
+                  <option value="male">Annat / okänt</option>
+                </AvField>
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <label>Lönespann</label>
+                <Row>
+                  <Col xs={6} id="salary_expectations_min">
+                    <AvField
+                      type="number"
+                      name="salary_expectations_min"
+                      placeholder="Från"
+                      disabled={!addMode}
+                    />
+                  </Col>
+                  <Col xs={6}>
+                    <AvField
+                      type="number"
+                      name="salary_expectations_max"
+                      placeholder="Till"
+                      disabled={!addMode}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <h5 className="section-title">Adress</h5>
+              </Col>
+              <Col xs={12} md={6}>
+                <AvField
+                  type="text"
+                  name="address"
+                  label="Gatuadress"
+                  disabled={!addMode}
+                />
+                <Row>
+                  <Col xs={4}>
+                    <AvField
+                      type="number"
+                      name="zip_code"
+                      label="Postnummer"
+                      disabled={!addMode}
+                    />
+                  </Col>
+                  <Col xs={8}>
+                    <AvField
+                      type="text"
+                      name="city"
+                      label="Postort"
+                      disabled={!addMode}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+              <Col md={6} className="d-none d-md-block">
+                <GoogleMap profile={profile} />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <h5 className="section-title">Övrigt</h5>
+              </Col>
+              <Col xs={12} lg={6}>
+                <AvField
+                  type="text"
+                  name="linkedin_url"
+                  label="LinkedIn"
+                  disabled={!addMode}
+                />
+              </Col>
+              <Col xs={12} lg={6}>
+                <AvField
+                  type="text"
+                  name="homepage"
+                  label="Hemsida"
+                  disabled={!addMode}
+                  placeholder="Ex. http://workandpassion.se"
+                  helpMessage="Måste börja med http:// eller https://"
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={6} lg={4}>
+                <Checkbox
+                  name="student"
+                  label="Student"
+                  defaultChecked={profile.student}
+                  onChange={this.handleCheckboxChange}
+                  disabled={!addMode}
+                />
+              </Col>
+              <Col xs={12} md={6} lg={4}>
+                <Checkbox
+                  name="actively_searching"
+                  label="Aktivt sökande"
+                  defaultChecked={profile.actively_searching}
+                  onChange={this.handleCheckboxChange}
+                  disabled={!addMode}
+                />
+              </Col>
+            </Row>
+          </AvForm>
+        )}
       </ProfileEditableCard>
     )
   }
