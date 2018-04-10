@@ -148,7 +148,7 @@ class Register extends React.Component {
                       name="confirm_password"
                       label="Bekräfta lösenord"
                       required
-                      validate={{ match: { value: 'password' }, minLength: 8 }}
+                      validate={{ match: { value: 'password' } }}
                       errorMessage="Lösenorden matchar inte"
                     />
                     <AvField
