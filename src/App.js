@@ -5,9 +5,11 @@ import routes from './routes'
 /* global gtag */
 class App extends Component {
   logPageView() {
-    gtag('config', 'UA-100067149-3', {
-      page_path: window.location.pathname + window.location.search
-    })
+    if (process.env.NODE_ENV !== 'development') {
+      gtag('config', 'UA-100067149-3', {
+        page_path: window.location.pathname + window.location.search
+      })
+    }
   }
 
   render() {
