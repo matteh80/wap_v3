@@ -120,7 +120,7 @@ class ProfileEditableCard extends React.Component {
               </CardTitle>
             </Col>
           </Row>
-          {!fetching && children}
+          {children}
         </CardBody>
       </Card>
     )
