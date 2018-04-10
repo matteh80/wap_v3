@@ -85,9 +85,7 @@ class Profile extends React.Component {
         </Container>
         <div className="profile-footer">
           <Container>
-            <Row>
-              <Col xs={12}>asdasd</Col>
-            </Row>
+            <Row />
           </Container>
         </div>
       </div>

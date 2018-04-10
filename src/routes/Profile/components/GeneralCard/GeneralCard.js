@@ -29,9 +29,16 @@ class GeneralCard extends React.Component {
   }
 
   componentDidMount() {
-    let { dispatch } = this.props
+    let { dispatch, profile } = this.props
 
-    Promise.all([dispatch(fetchProfile())])
+    Promise.all([dispatch(fetchProfile())]).then(() => {
+      this.setState({
+        tmpProfile: {
+          actively_searching: profile.actively_searching,
+          student: profile.student
+        }
+      })
+    })
   }
 
   cbAddMode(addMode) {
@@ -47,6 +54,7 @@ class GeneralCard extends React.Component {
   handleCheckboxChange(name) {
     this.setState({
       tmpProfile: {
+        ...this.state.tmpProfile,
         [name]: !this.state.tmpProfile[name]
       }
     })
