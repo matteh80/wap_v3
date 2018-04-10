@@ -52,22 +52,23 @@ class Account extends React.Component {
                   Händelser <Badge>3</Badge>
                 </CardTitle>
                 <Row>
-                  <h5 className="col-12">
-                    <strong>{faker.company.companyName()}</strong> har köpt din
-                    profil (+300 kr) <Badge color="accent">Ny</Badge>
-                  </h5>
-                  <h5 className="col-12">
-                    <strong>{faker.company.companyName()}</strong> har köpt din
-                    profil (+300 kr) <Badge color="accent">Ny</Badge>
-                  </h5>
-                  <h5 className="col-12">
-                    <strong>{faker.company.companyName()}</strong> har köpt din
-                    profil (+300 kr) <Badge color="accent">Ny</Badge>
-                  </h5>
-                  <h5 className="col-12">
-                    <strong>{faker.company.companyName()}</strong> har köpt din
-                    profil (+300 kr)
-                  </h5>
+                  <h3>Inga händelser</h3>
+                  {/*<h5 className="col-12">*/}
+                  {/*<strong>{faker.company.companyName()}</strong> har köpt din*/}
+                  {/*profil (+300 kr) <Badge color="accent">Ny</Badge>*/}
+                  {/*</h5>*/}
+                  {/*<h5 className="col-12">*/}
+                  {/*<strong>{faker.company.companyName()}</strong> har köpt din*/}
+                  {/*profil (+300 kr) <Badge color="accent">Ny</Badge>*/}
+                  {/*</h5>*/}
+                  {/*<h5 className="col-12">*/}
+                  {/*<strong>{faker.company.companyName()}</strong> har köpt din*/}
+                  {/*profil (+300 kr) <Badge color="accent">Ny</Badge>*/}
+                  {/*</h5>*/}
+                  {/*<h5 className="col-12">*/}
+                  {/*<strong>{faker.company.companyName()}</strong> har köpt din*/}
+                  {/*profil (+300 kr)*/}
+                  {/*</h5>*/}
                 </Row>
               </CardBody>
             </Card>

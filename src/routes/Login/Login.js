@@ -9,6 +9,7 @@ import { login } from '../../store/modules/auth'
 import login_bg from './login_bg.jpg'
 import login_bg_2 from './login_bg_2.jpg'
 import login_bg_3 from './login_bg_3.jpg'
+import logga_bla from './logga_bla.png'
 
 class Login extends React.Component {
   constructor(props) {
@@ -58,12 +59,7 @@ class Login extends React.Component {
             >
               <Row>
                 <Col xs={12} className="text-center">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/wap_logo_bee_wap_black.png'
-                    }
-                    className="login-logo"
-                  />
+                  <img src={logga_bla} className="login-logo" />
                 </Col>
                 <Col xs={12}>
                   <SocialLogin />

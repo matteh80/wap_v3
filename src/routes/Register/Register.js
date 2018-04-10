@@ -11,6 +11,7 @@ import TermsOfService from '../../components/TermsOfService'
 import register_bg from './register_bg.jpg'
 import register_bg_2 from './register_bg_2.jpg'
 import register_bg_3 from './register_bg_3.jpg'
+import logga_bla from './logga_bla.png'
 
 class Register extends React.Component {
   constructor(props) {
@@ -113,12 +114,7 @@ class Register extends React.Component {
             >
               <Row>
                 <Col xs={12} className="text-center">
-                  <img
-                    src={
-                      process.env.PUBLIC_URL + '/img/wap_logo_bee_wap_black.png'
-                    }
-                    className="register-logo"
-                  />
+                  <img src={logga_bla} className="register-logo" />
                 </Col>
                 <Col xs={12}>
                   <SocialLogin />
