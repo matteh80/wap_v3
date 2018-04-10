@@ -124,9 +124,9 @@ class Login extends React.Component {
                   betalt för.
                 </h1>
                 <h3 className="subtitle">
-                  Matching värd vaje krona och sekund
+                  Matchning värd varje krona och sekund
                 </h3>
-                <span className="py-5">
+                <span className="py-5" style={{ fontSize: 16 }}>
                   Genom oss matchas du med seriösa arbetsgivare och tjänar
                   pengar på kuppen. Ju mer information de vill ha om dig, desto
                   mer betalt får du. Och skulle du bli kallad till intervju
