@@ -29,33 +29,38 @@ class TermsOfService extends React.Component {
       <div>
         <Collapse isOpen={isOpen}>
           <small>
-            De uppgifter som du uppger i din profil lagras i vår databas för att
-            vi i Maxkompetens koncernen (nedan företaget) ska kunna administrera
-            din profil och matcha det mot lämpliga karriärsutmaningar.
-            Uppgifterna kan förekomma skriftligen, muntligen eller som bild,
-            film- eller ljudinspelning. Vi garanterar att dina uppgifter inte
-            kommer att användas i andra sammanhang eller av andra företag utan
-            ditt medgivande. Vårt dataregister samkörs inte med register från
-            tredje part. Upphovsrätt, under förutsättning att du har överlämnat
-            eller laddat upp meterial såsom bilder, film- eller ljudinspelningar
-            till företaget, alternativt på annat sätt registrerat dem i
-            företagets system, överlåter du genom godkännande av
-            integritetsvillkoren samtliga dina eventuella rättigheter av
-            material till företaget. Du kan när som helst ändra eller radera
-            dina uppgifter i din profil. Efter 24 månader av inaktivitet kommer
-            din profil raderas automatiskt. Du ansvarar själv för att innehållet
-            är aktuellt och återspeglar din status. All insamling och behandling
-            av personuppgifter sker i enlighet med bestämmelserna i
-            dataskyddsförordningen - GDPR. Med personuppgifter avses alla
-            uppgifter som kan användas för att identifiera en person, till
-            exempel namn, hemadress och e-postadress. Med behandling av
-            personuppgifter avses alla åtgärder som vidtas med personuppgifter
-            såsom exempelvis insamling, lagring och bearbetning. Vill du veta
-            mer om dataskyddsförordningen – GDPR, läs vidare på
-            www.datainspektionen.se. Enligt dataskyddsförordningen - GDPR får
-            ingen registrering ske utan personens medgivande. Om du samtycker
-            till att dina uppgifter lagras så måste du markera kryssrutan för
-            godkännande innan du kommer vidare.
+            <p>
+              Den information som du uppger i din Work and Passion-profil lagras
+              i vår databas för att vi i Maxkompetens (koncernen (nedan
+              företaget)) ska kunna administrera din Work and Passion-profil och
+              matcha den mot lämpliga karriärsutmaningar. Uppgifterna kan
+              förekomma skriftligen, muntligen, som bild, film- eller
+              ljudinspelning. Vi garanterar att dina uppgifter inte kommer att
+              användas i andra sammanhang eller av andra företag utan ditt
+              medgivande. Vårt dataregister samkörs inte med register från
+              tredje part. Upphovsrätt, under förutsättning att du har
+              överlämnat eller laddat upp meterial såsom bilder, film- eller
+              ljudinspelningar till företaget, alternativt på annat sätt
+              registrerat dem i företagets system, överlåter du genom
+              godkännande av integritetsvillkoren samtliga dina eventuella
+              rättigheter av material till företaget. Du ansvarar själv för att
+              innehållet är aktuellt och återspeglar din status.
+            </p>
+            <p>
+              All insamling och behandling av personuppgifter sker i enlighet
+              med PuL. Med personuppgifter avses alla uppgifter som kan användas
+              för att identifiera en person, till exempel namn, hemadress och
+              e-postadress. Med behandling av personuppgifter avses alla
+              åtgärder som vidtas med personuppgifter såsom exempelvis
+              insamling, lagring och bearbetning. För att skydda integriteten
+              för dina personuppgifter som du överför via användningen av vår
+              tjänst, vidtar vi lämpliga tekniska och organisatoriska
+              skyddsåtgärder. Vi uppdaterar och testar kontinuerligt vår
+              säkerhetsteknik. Vill du veta mer om PuL, läs vidare på
+              www.datainspektionen.se. Om du samtycker till att dina uppgifter
+              lagras så måste du markera kryssrutan för godkännande innan du
+              kommer vidare till din Work and Passion-profil.
+            </p>
           </small>
         </Collapse>
         <Checkbox

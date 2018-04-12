@@ -13,6 +13,7 @@ import register_bg_2 from './register_bg_2.jpg'
 import register_bg_3 from './register_bg_3.jpg'
 import logga_bla from './logga_bla.png'
 
+/* global gtag */
 class Register extends React.Component {
   constructor(props) {
     super(props)
@@ -48,7 +49,11 @@ class Register extends React.Component {
           tos_accepted: this.state.tosAccepted
         })
       )
-    )
+    ).then(() => {
+      gtag('event', 'conversion', {
+        send_to: 'AW-809204708/CUchCMmW938Q5PftgQM'
+      })
+    })
   }
 
   handleTosChange() {
