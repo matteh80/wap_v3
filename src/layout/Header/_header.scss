@@ -20,15 +20,24 @@ $level3_color: #18c20c;
 }
 
 header.header {
-  //background: url('layout/Header/headerBg.jpg');
-  background: linear-gradient(to right, #132b41 0% , #075170 50%, #132b41 100%);
   background-size: cover;
   background-position: center;
   position: fixed;
   width: 100%;
   z-index: 98;
 
-  >.container {
+  #header-picture {
+    background: linear-gradient(to right, rgba(19, 43, 65, 1) 0% , rgba(7, 81, 112, 1) 50%, rgba(19, 43, 65, 1) 100%);
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .container {
     position: relative;
   }
 
@@ -97,6 +106,18 @@ header.header {
       padding-top: 1rem;
       margin-bottom: 2rem;
       transition: all 250ms ease-in-out;
+
+      @include media-breakpoint-up(md) {
+        padding-left: 150px + 15px;
+        //width: calc(100% - 150px - 45px);
+      }
+      @include media-breakpoint-up(lg) {
+        padding-left: 210px + 15px;
+      }
+      @include media-breakpoint-up(xl) {
+        padding-left: 305px + 15px;
+        //width: calc(100% - 305px - 45px - 15px);
+      }
     }
 
     .candidate-name {
@@ -203,17 +224,30 @@ header.header {
 
   &.header-profile {
     #header-bottom:not(.collapsed) {
-      @include media-breakpoint-up(md) {
-        padding-left: 150px + 15px;
-        //width: calc(100% - 150px - 45px);
+      #header-progress {
+        @include media-breakpoint-up(md) {
+          padding-left: 150px + 15px;
+          //width: calc(100% - 150px - 45px);
+        }
+        @include media-breakpoint-up(lg) {
+          padding-left: 210px + 15px;
+        }
+        @include media-breakpoint-up(xl) {
+          padding-left: 305px + 15px;
+          //width: calc(100% - 305px - 45px - 15px);
+        }
       }
-      @include media-breakpoint-up(lg) {
-        padding-left: 210px + 15px;
-      }
-      @include media-breakpoint-up(xl) {
-        padding-left: 305px + 15px;
-        //width: calc(100% - 305px - 45px - 15px);
-      }
+      //@include media-breakpoint-up(md) {
+      //  padding-left: 150px + 15px;
+      //  //width: calc(100% - 150px - 45px);
+      //}
+      //@include media-breakpoint-up(lg) {
+      //  padding-left: 210px + 15px;
+      //}
+      //@include media-breakpoint-up(xl) {
+      //  padding-left: 305px + 15px;
+      //  //width: calc(100% - 305px - 45px - 15px);
+      //}
     }
   }
   

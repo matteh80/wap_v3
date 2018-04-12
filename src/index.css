@@ -8891,14 +8891,23 @@ input[type='checkbox']:checked + label:before {
 }
 
 header.header {
-  background: linear-gradient(to right, #132b41 0%, #075170 50%, #132b41 100%);
   background-size: cover;
   background-position: center;
   position: fixed;
   width: 100%;
   z-index: 98;
 }
-header.header > .container {
+header.header #header-picture {
+  background: linear-gradient(to right, #132b41 0%, #075170 50%, #132b41 100%);
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+header.header .container {
   position: relative;
 }
 header.header .navbar-brand {
@@ -8954,6 +8963,21 @@ header.header #header-bottom .shouldFade {
   padding-top: 1rem;
   margin-bottom: 2rem;
   transition: all 250ms ease-in-out;
+}
+@media (min-width: 768px) {
+  header.header #header-bottom .shouldFade {
+    padding-left: 165px;
+  }
+}
+@media (min-width: 992px) {
+  header.header #header-bottom .shouldFade {
+    padding-left: 225px;
+  }
+}
+@media (min-width: 1400px) {
+  header.header #header-bottom .shouldFade {
+    padding-left: 320px;
+  }
 }
 header.header #header-bottom .candidate-name {
   font-weight: bold;
@@ -9059,17 +9083,17 @@ header.header.collapsed .navbar-brand #header--logo {
   max-height: 40px;
 }
 @media (min-width: 768px) {
-  header.header.header-profile #header-bottom:not(.collapsed) {
+  header.header.header-profile #header-bottom:not(.collapsed) #header-progress {
     padding-left: 165px;
   }
 }
 @media (min-width: 992px) {
-  header.header.header-profile #header-bottom:not(.collapsed) {
+  header.header.header-profile #header-bottom:not(.collapsed) #header-progress {
     padding-left: 225px;
   }
 }
 @media (min-width: 1400px) {
-  header.header.header-profile #header-bottom:not(.collapsed) {
+  header.header.header-profile #header-bottom:not(.collapsed) #header-progress {
     padding-left: 320px;
   }
 }
@@ -9082,6 +9106,9 @@ header.header.header-account #header-progress {
   height: auto;
 }
 
+#header-progress {
+  transition: padding 250ms ease-out;
+}
 #header-progress #header-progress-step-wrapper {
   display: flex;
 }
@@ -9690,6 +9717,13 @@ header.header.header-account #header-progress {
   font-size: 15px;
   margin-right: 0.5rem;
 }
+@media (max-width: 767.98px) {
+  .profile-card .card-title .badge {
+    position: absolute;
+    top: -25px;
+    left: -12px;
+  }
+}
 .profile-card .section-title {
   border-bottom: 3px solid #547581;
   color: #547581;
@@ -9724,8 +9758,8 @@ header.header.header-account #header-progress {
 .profile-card .addNew {
   position: absolute;
   z-index: 1;
-  top: 30px;
-  right: 45px;
+  top: 3px;
+  right: 3px;
   display: flex;
   align-items: center;
   height: 30px;
@@ -9734,6 +9768,12 @@ header.header.header-account #header-progress {
   border-radius: 15px;
   cursor: pointer;
   transition: all 250ms;
+}
+@media (min-width: 992px) {
+  .profile-card .addNew {
+    top: 30px;
+    right: 45px;
+  }
 }
 .profile-card .addNew .addNewIcon {
   width: 30px;

@@ -83,6 +83,7 @@ class Header extends React.Component {
 
     return (
       <header className={cn('header', 'header-' + path)}>
+        <div id="header-picture" />
         <Container>
           <Navbar color="faded" dark expand="lg">
             <NavbarBrand href="/">

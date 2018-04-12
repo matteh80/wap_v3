@@ -4,6 +4,7 @@ $smallIconSize: 18px;
 $progressGreen: $secondary;
 
 #header-progress {
+ transition: padding 250ms ease-out;
 
   #header-progress-step-wrapper {
     display: flex;

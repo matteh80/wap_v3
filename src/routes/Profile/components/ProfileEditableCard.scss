@@ -60,6 +60,14 @@ $title-icon-size: 30px;
       font-size: $title-icon-size / 2;
       margin-right: .5rem;
     }
+
+    .badge {
+      @include media-breakpoint-down(sm) {
+        position: absolute;
+        top: -25px;
+        left: -12px;
+      }
+    }
   }
 
   .section-title {
@@ -104,8 +112,13 @@ $title-icon-size: 30px;
   .addNew {
     position: absolute;
     z-index: 1;
-    top: 30px;
-    right: 45px;
+    top: 3px;
+    right: 3px;
+
+    @include media-breakpoint-up(lg) {
+      top: 30px;
+      right: 45px;
+    }
     display: flex;
     align-items: center;
     height: 30px;
