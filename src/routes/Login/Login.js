@@ -46,7 +46,7 @@ class Login extends React.Component {
       <div
         className="login-wrapper h-100"
         style={{
-          background: 'url("' + bgImage + '")'
+          backgroundImage: 'url("' + bgImage + '")'
         }}
       >
         <Container fluid className="login-container h-100">
@@ -96,7 +96,10 @@ class Login extends React.Component {
                 </Col>
                 <Col xs={12}>
                   <small>
-                    <a href="https://app.workandpassion.se/password/reset/">
+                    <a
+                      href="https://app.wapcard.se/password/reset/"
+                      target="_blank"
+                    >
                       Glömt ditt lösenord?
                     </a>
                   </small>

@@ -9342,10 +9342,12 @@ header.header.header-account #header-progress {
   box-shadow: -50px 0px 0 #d73925 inset;
 }
 
+.login-wrapper {
+  background-size: cover;
+}
 .login-wrapper .login-container .left-content {
   min-height: 100vh;
 }
-
 .login-wrapper .login-container .right-content .subtitle {
   font-family: 'Playfair Display', serif;
   font-style: italic;
