@@ -308,7 +308,7 @@ class EducationsForm extends React.Component {
 
   render() {
     const { isOpen } = this.props
-    const { occupationValue, education } = this.state
+    const { education } = this.state
     const defaultDateValues = education
       ? [education.start_date, education.end_date, education.current]
       : null

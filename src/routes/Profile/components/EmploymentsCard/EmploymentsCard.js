@@ -307,7 +307,15 @@ class EmploymentsForm extends React.Component {
 
   handleSubmit(event, values) {
     const { dispatch } = this.props
-    const employment = Object.assign({}, this.state.employment, values)
+    const employment = Object.assign({}, this.state.employment, values, {
+      current: values.current === 'true',
+      start_date: values.start_date
+        ? values.start_date
+        : moment().format('YYYY-MM-DD'),
+      end_date: values.end_date
+        ? values.end_date
+        : moment().format('YYYY-MM-DD')
+    })
 
     this.state.editMode
       ? dispatch(updateEmployment(employment))
