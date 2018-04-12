@@ -8883,11 +8883,11 @@ input[type='checkbox']:checked + label:before {
 }
 
 .fg_level2 {
-  color: #11ada7 !important;
+  color: #ff6e14 !important;
 }
 
 .fg_level3 {
-  color: #00e30e !important;
+  color: #18c20c !important;
 }
 
 header.header {
@@ -9121,24 +9121,24 @@ header.header.header-account #header-progress {
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper.level-2:before {
-  background: #11ada7;
+  background: #ff6e14;
 }
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper.level-2.done
   .progress-step {
-  background: #11ada7;
+  background: #ff6e14;
 }
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper.level-3:before {
-  background: #00e30e;
+  background: #18c20c;
 }
 #header-progress
   #header-progress-step-wrapper
   .progress-step-wrapper.level-3.done
   .progress-step {
-  background: #00e30e;
+  background: #18c20c;
 }
 #header-progress
   #header-progress-step-wrapper
@@ -9448,12 +9448,12 @@ header.header.header-account #header-progress {
 .profile-progress--wrapper
   .progress-circle.profile-level-2
   .CircularProgressbar-path {
-  stroke: #11ada7;
+  stroke: #ff6e14;
 }
 .profile-progress--wrapper
   .progress-circle.profile-level-3
   .CircularProgressbar-path {
-  stroke: #00e30e;
+  stroke: #18c20c;
 }
 .profile-progress--wrapper.scrolled {
   top: 120px;
@@ -9549,25 +9549,25 @@ header.header.header-account #header-progress {
 
 @keyframes changeLevelProgressCircle-2 {
   0% {
-    box-shadow: 0 0 0 #11ada7;
+    box-shadow: 0 0 0 #ff6e14;
   }
   50% {
-    box-shadow: 0 0 40px #11ada7;
+    box-shadow: 0 0 40px #ff6e14;
   }
   100% {
-    box-shadow: 0 0 0 #11ada7;
+    box-shadow: 0 0 0 #ff6e14;
   }
 }
 
 @keyframes changeLevelProgressCircle-3 {
   0% {
-    box-shadow: 0 0 0 #00e30e;
+    box-shadow: 0 0 0 #18c20c;
   }
   50% {
-    box-shadow: 0 0 40px #00e30e;
+    box-shadow: 0 0 40px #18c20c;
   }
   100% {
-    box-shadow: 0 0 0 #00e30e;
+    box-shadow: 0 0 0 #18c20c;
   }
 }
 
@@ -9841,6 +9841,21 @@ header.header.header-account #header-progress {
 .profile-card.inEditMode .addNew {
   transform: translateY(-15px);
   opacity: 0;
+}
+.profile-card.level-1 .title-icon {
+  background: #e8003b;
+  color: #fff;
+  box-shadow: 0 0 0 3px #ff698f;
+}
+.profile-card.level-2 .title-icon {
+  background: #ff6e14;
+  color: #fff;
+  box-shadow: 0 0 0 3px #ffbd94;
+}
+.profile-card.level-3 .title-icon {
+  background: #18c20c;
+  color: #fff;
+  box-shadow: 0 0 0 3px #63f559;
 }
 
 @keyframes moving-gradient {

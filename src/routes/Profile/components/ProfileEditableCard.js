@@ -40,7 +40,8 @@ class ProfileEditableCard extends React.Component {
           'level-' + item.level,
           addMode && 'inAddMode',
           inEditMode && 'inEditMode',
-          fetching && 'fetching'
+          fetching && 'fetching',
+          'done-' + item.done
         )}
         id={item && item.id}
       >

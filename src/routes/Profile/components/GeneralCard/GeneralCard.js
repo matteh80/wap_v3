@@ -111,7 +111,7 @@ class GeneralCard extends React.Component {
                 <AvField
                   type="text"
                   name="first_name"
-                  label="Förnamn *"
+                  label={addMode ? 'Förnamn *' : 'Förnamn'}
                   disabled={!addMode}
                   required
                   errorMessage="Förnamn krävs"
@@ -121,7 +121,7 @@ class GeneralCard extends React.Component {
                 <AvField
                   type="text"
                   name="last_name"
-                  label="Efternamn *"
+                  label={addMode ? 'Efternamn *' : 'Efternamn'}
                   disabled={!addMode}
                   required
                   errorMessage="Efternamn krävs"
@@ -142,7 +142,7 @@ class GeneralCard extends React.Component {
                 <AvField
                   type="email"
                   name="email"
-                  label="Epost *"
+                  label={addMode ? 'Epost *' : 'Epost'}
                   disabled={!addMode}
                   required
                   errorMessage="Epost krävs"
@@ -153,19 +153,20 @@ class GeneralCard extends React.Component {
                 <AvField
                   type="text"
                   name="mobile_phone_number"
-                  label="Telefon *"
+                  label={addMode ? 'Telefon *' : 'Telefon'}
                   disabled={!addMode}
                   required
                   errorMessage="Telefon krävs"
                   placeholder="Ex. 0701234567"
                   helpMessage="Enbart siffror, inga mellanslag, prefix eller '-'"
+                  validate={{ number: true }}
                 />
               </Col>
               <Col xs={12} md={6} lg={4}>
                 <AvField
                   type="date"
                   name="birthday"
-                  label="Födelsedatum"
+                  label={addMode ? 'Födelsedatum *' : 'Födelsedatum'}
                   disabled={!addMode}
                   required
                   helpMessage="Ange ditt födelsedatum YYYY-MM-DD"
@@ -185,7 +186,7 @@ class GeneralCard extends React.Component {
                 </AvField>
               </Col>
               <Col xs={12} md={6} lg={4}>
-                <label>Lönespann</label>
+                <label>{addMode ? 'Lönespann *' : 'Lönespann'}</label>
                 <Row>
                   <Col xs={6} id="salary_expectations_min">
                     <AvField
@@ -193,6 +194,8 @@ class GeneralCard extends React.Component {
                       name="salary_expectations_min"
                       placeholder="Från"
                       disabled={!addMode}
+                      required
+                      validate={{ number: true }}
                     />
                   </Col>
                   <Col xs={6}>
@@ -201,6 +204,8 @@ class GeneralCard extends React.Component {
                       name="salary_expectations_max"
                       placeholder="Till"
                       disabled={!addMode}
+                      required
+                      validate={{ number: true }}
                     />
                   </Col>
                 </Row>
@@ -214,7 +219,8 @@ class GeneralCard extends React.Component {
                 <AvField
                   type="text"
                   name="address"
-                  label="Gatuadress"
+                  required
+                  label={addMode ? 'Gatuadress *' : 'Gatuadress'}
                   disabled={!addMode}
                 />
                 <Row>
@@ -222,7 +228,8 @@ class GeneralCard extends React.Component {
                     <AvField
                       type="number"
                       name="zip_code"
-                      label="Postnummer"
+                      required
+                      label={addMode ? 'Postnummer *' : 'Postnummer'}
                       disabled={!addMode}
                     />
                   </Col>
@@ -230,7 +237,8 @@ class GeneralCard extends React.Component {
                     <AvField
                       type="text"
                       name="city"
-                      label="Postort"
+                      required
+                      label={addMode ? 'Postort *' : 'Postort'}
                       disabled={!addMode}
                     />
                   </Col>

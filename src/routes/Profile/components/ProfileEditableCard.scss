@@ -251,8 +251,29 @@ $title-icon-size: 30px;
   }
 
   &.level-1 {
-    label {
-      //color: $level1_color;
+    .title-icon {
+      //box-shadow: 0 0 3px 3px rgba(232, 0, 59, 0.3);
+      background: $level1_color;
+      color: #fff;
+      box-shadow: 0 0 0 3px lighten($level1_color, 25%);
+    }
+  }
+
+  &.level-2 {
+    .title-icon {
+      //box-shadow: 0 0 3px 3px rgba(232, 0, 59, 0.3);
+      background: $level2_color;
+      color: #fff;
+      box-shadow: 0 0 0 3px lighten($level2_color, 25%);
+    }
+  }
+
+  &.level-3 {
+    .title-icon {
+      //box-shadow: 0 0 3px 3px rgba(232, 0, 59, 0.3);
+      background: $level3_color;
+      color: #fff;
+      box-shadow: 0 0 0 3px lighten($level3_color, 25%);
     }
   }
 }

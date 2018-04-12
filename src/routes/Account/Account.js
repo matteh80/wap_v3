@@ -49,10 +49,16 @@ class Account extends React.Component {
             <Card>
               <CardBody>
                 <CardTitle>
-                  Händelser <Badge>3</Badge>
+                  Händelser <Badge className="d-none">3</Badge>
                 </CardTitle>
                 <Row>
-                  <h3>Inga händelser</h3>
+                  <Col
+                    xs={12}
+                    className="d-flex flex-column justify-content-center align-items-center text-muted"
+                  >
+                    <i className="far fa-frown" style={{ fontSize: 40 }} />
+                    <h3>Inga händelser</h3>
+                  </Col>
                   {/*<h5 className="col-12">*/}
                   {/*<strong>{faker.company.companyName()}</strong> har köpt din*/}
                   {/*profil (+300 kr) <Badge color="accent">Ny</Badge>*/}
