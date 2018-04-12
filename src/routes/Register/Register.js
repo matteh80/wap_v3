@@ -70,8 +70,9 @@ class Register extends React.Component {
             '&token=f32f01cc4c6512fb2e36d54fb9e46bb21f939acf'
         )
         .then(result => {
+          console.log(result)
           this.setState({
-            cityValue: result.data.result[0].city
+            cityValue: result.data.result[0] ? result.data.result[0].city : null
           })
         })
     } else {
@@ -168,6 +169,7 @@ class Register extends React.Component {
                       label="Mobiltelefon"
                       required
                       errorMessage="Du måste skriva in ett telefonnummer"
+                      validate={{ number: true }}
                     />
                     <Row className="align-items-center">
                       <Col xs={12} md={5} lg={4}>
@@ -179,6 +181,7 @@ class Register extends React.Component {
                           maxLength={5}
                           onBlur={this.onZipChange}
                           errorMessage="Du måste skriva in ditt postnummer (5 siffror)"
+                          validate={{ number: true }}
                         />
                       </Col>
                       <Col xs={12} md={7} lg={8}>
@@ -253,8 +256,8 @@ export default connect(mapStateToProps)(Register)
 const defaultProfile = {
   title: '',
   care_of: '',
-  address: 'Null',
-  city: 'Null',
+  address: null,
+  city: null,
   linkedin_url: '',
   personal_info: '',
   phone_number: '',
