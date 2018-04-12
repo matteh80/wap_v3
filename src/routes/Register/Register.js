@@ -53,6 +53,10 @@ class Register extends React.Component {
       gtag('event', 'conversion', {
         send_to: 'AW-809204708/CUchCMmW938Q5PftgQM'
       })
+      gtag('event', 'complete', {
+        event_category: 'register',
+        event_label: 'kandidat'
+      })
     })
   }
 
