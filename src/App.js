@@ -12,16 +12,15 @@ Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
 class App extends Component {
   componentDidMount() {
     this.props.history.listen((location, action) => {
+      console.log(location)
       this.logPageView()
     })
   }
 
   logPageView() {
-    if (process.env.NODE_ENV !== 'development') {
-      gtag('config', 'UA-100067149-3', {
-        page_path: window.location.pathname + window.location.search
-      })
-    }
+    gtag('config', 'UA-100067149-3', {
+      page_path: window.location.pathname + window.location.search
+    })
   }
 
   render() {
