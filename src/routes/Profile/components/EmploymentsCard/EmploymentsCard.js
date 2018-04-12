@@ -245,6 +245,7 @@ class EmploymentsForm extends React.Component {
 
     this.abort = this.abort.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleOccupationChange = this.handleOccupationChange.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -272,8 +273,6 @@ class EmploymentsForm extends React.Component {
     $.each(occupations, function(i, categoryitem) {
       $.each(categoryitem.occupations, function(x, item) {
         optiondata.push({
-          label: item.name,
-          value: item.id,
           name: item.name,
           id: item.id,
           parent_name: categoryitem.name
@@ -296,6 +295,16 @@ class EmploymentsForm extends React.Component {
     this.props.cbRevert()
   }
 
+  handleOccupationChange(value) {
+    this.setState({
+      occupationValue: value,
+      employment: {
+        ...this.state.employment,
+        occupation: value
+      }
+    })
+  }
+
   handleSubmit(event, values) {
     const { dispatch } = this.props
     const employment = Object.assign({}, this.state.employment, values)
@@ -305,9 +314,10 @@ class EmploymentsForm extends React.Component {
       : dispatch(createEmployment(employment))
 
     this.form && this.form.reset()
-    this.setState({
-      occupationValue: null
-    })
+    !this.state.editMode &&
+      this.setState({
+        occupationValue: null
+      })
   }
 
   render() {
@@ -352,8 +362,10 @@ class EmploymentsForm extends React.Component {
                 <Select
                   name="form-field-name"
                   simpleValue
+                  valueKey={'id'}
+                  labelKey={'name'}
                   value={occupationValue}
-                  onChange={value => this.setState({ occupationValue: value })}
+                  onChange={this.handleOccupationChange}
                   options={this.setUpOccupations()}
                   placeholder="Välj en befattning"
                   clearable={false}

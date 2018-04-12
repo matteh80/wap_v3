@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { ConnectedRouter as Router } from 'react-router-redux'
 import routes from './routes'
+import oops from './oops.png'
 
 let Raven = require('raven-js')
 
@@ -10,6 +11,17 @@ Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
 
 /* global gtag */
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { error: null }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({ error })
+    Raven.captureException(error, { extra: errorInfo })
+  }
+
   componentDidMount() {
     this.props.history.listen((location, action) => {
       console.log(location)
@@ -24,13 +36,37 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <Router history={this.props.history} onUpdate={this.logPageView}>
-          {routes}
-        </Router>
-      </div>
-    )
+    const { error } = this.state
+
+    if (error) {
+      //render fallback UI
+      return (
+        <div
+          className="snap d-flex flex-column justify-content-center align-items-center"
+          style={{
+            minHeight: '100vh',
+            minWidth: '100vw',
+            backgroundSize: 'cover'
+          }}
+          onClick={() => Raven.lastEventId() && Raven.showReportDialog()}
+        >
+          <img src={oops} className="img-fluid" style={{ maxWidth: '20% ' }} />
+          <p>
+            Vi är ledsna, men något har gått fel. Vårt utvecklingsteam har
+            blivit underrättade.
+          </p>
+          <p>Klicka här för att skicka en felrapport.</p>
+        </div>
+      )
+    } else {
+      return (
+        <div className="App">
+          <Router history={this.props.history} onUpdate={this.logPageView}>
+            {routes}
+          </Router>
+        </div>
+      )
+    }
   }
 }
 

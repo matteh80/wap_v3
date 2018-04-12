@@ -75,6 +75,7 @@ class StartEndDate extends React.Component {
 
   render() {
     const { start_date, end_date, current } = this.state
+    const { withCurrent } = this.props
 
     return (
       <AvGroup className="col-12 col-md-6 start-end-date">
@@ -147,14 +148,17 @@ class StartEndDate extends React.Component {
               </div>
             </div>
           </Col>
-          <Col xs={12} className="mt-2">
-            <Checkbox
-              label="Nuvarande"
-              name="hidden"
-              onChange={this.handleCurrentChange}
-              defaultChecked={current}
-            />
-          </Col>
+          {withCurrent && (
+            <Col xs={12} className="mt-2">
+              <Checkbox
+                label="Nuvarande"
+                name="hidden"
+                onChange={this.handleCurrentChange}
+                defaultChecked={current}
+              />
+              <AvField type="hidden" name="current" value={current} />
+            </Col>
+          )}
         </Row>
       </AvGroup>
     )

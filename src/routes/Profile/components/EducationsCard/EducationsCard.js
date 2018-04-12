@@ -352,7 +352,6 @@ class EducationsForm extends React.Component {
                 />
               </Col>
               <StartEndDate
-                withCurrent
                 onChange={this.handleDateChange}
                 defaultValues={defaultDateValues}
               />
