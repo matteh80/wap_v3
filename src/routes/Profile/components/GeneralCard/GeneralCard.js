@@ -32,7 +32,7 @@ class GeneralCard extends React.Component {
   componentDidMount() {
     let { dispatch, profile } = this.props
 
-    Promise.all([dispatch(fetchProfile())]).then(() => {
+    dispatch(fetchProfile()).then(result => {
       this.setState({
         tmpProfile: {
           actively_searching: profile.actively_searching,
@@ -307,11 +307,16 @@ class GeneralCard extends React.Component {
                   min={0}
                   max={4}
                   dots
+                  defaultValue={profile.availability}
                   value={tmpProfile.availability}
                   onChange={this.handleAvailabilityChange}
                 />
                 <div className="value text-center">
-                  {this.getAvailabilityString(tmpProfile.availability)}
+                  {this.getAvailabilityString(
+                    tmpProfile.availability
+                      ? tmpProfile.availability
+                      : profile.availability
+                  )}
                 </div>
               </Col>
             </Row>
