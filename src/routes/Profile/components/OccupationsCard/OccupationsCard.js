@@ -27,6 +27,7 @@ import {
   arrayMove,
   SortableHandle
 } from 'react-sortable-hoc'
+import _ from 'lodash'
 
 class OccupationsCard extends React.Component {
   constructor(props) {
@@ -229,9 +230,7 @@ class OccupationsForm extends React.Component {
 
     $.each(occupations, function(i, categoryitem) {
       $.each(categoryitem.occupations, function(x, item) {
-        index = userOccupations.findIndex(
-          userOccupations => userOccupations.id === item.id
-        )
+        index = _.findIndex(userOccupations, { id: item.id })
         if (index === -1) {
           optiondata.push({
             label: item.name,

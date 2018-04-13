@@ -287,7 +287,7 @@ class SkillsForm extends React.Component {
 
     $.each(skills, function(i, categoryitem) {
       $.each(categoryitem.skills, function(x, item) {
-        index = userSkills.findIndex(userSkills => userSkills.id === item.id)
+        index = _.findIndex(userSkills, { id: item.id })
         if (index === -1) {
           optiondata.push({
             label: item.name,

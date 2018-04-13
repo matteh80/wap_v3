@@ -293,9 +293,7 @@ class LanguagesForm extends React.Component {
     let index = -1
 
     $.each(languages, function(x, item) {
-      index = userLanguages.findIndex(
-        userLanguages => userLanguages.id === item.id
-      )
+      index = _.findIndex(userLanguages, { id: item.id })
       if (index === -1) {
         optiondata.push({
           label: item.name,
