@@ -229,6 +229,14 @@ export function updateProfile(profile) {
   return dispatch => {
     dispatch({ type: UPDATE_PROFILE_START })
 
+    const notNull = ['phone_number', 'mobile_phone_number']
+
+    Object.keys(profile).forEach(k => {
+      profile[k] === '' && !notNull.includes(k)
+        ? (profile[k] = null)
+        : profile[k]
+    })
+
     return apiClient
       .post('me/', profile)
       .then(result => {
@@ -338,7 +346,10 @@ export function setProfileProgress() {
       'last_name',
       'title',
       'email',
-      'mobile_phone_number'
+      'mobile_phone_number',
+      'address',
+      'zip_code',
+      'city'
     ]
 
     required.forEach(item => {
