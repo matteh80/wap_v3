@@ -13,28 +13,28 @@ if (process.env.NODE_ENV === 'development') {
 
 instance.defaults.timeout = 15000
 
-instance.interceptors.response.use(
-  response => {
-    return response
-  },
-  error => {
-    console.log(`error ${error}`)
-    if (!error === 'Network Error') {
-      // network error
-      mStore.dispatch(
-        Notifications.error({
-          uid: 'network-error',
-          title: 'Nätverksproblem',
-          message:
-            'Det är problem med nätverksuppkopplingen, säkerställ att du har internetuppkoppling och försök igen.',
-          position: 'br',
-          autoDismiss: 15
-        })
-      )
-    }
-    return Promise.reject(error)
-  }
-)
+// instance.interceptors.response.use(
+//   response => {
+//     return response
+//   },
+//   error => {
+//     console.log(`error ${error}`)
+//     if (!error === 'Network Error') {
+//       // network error
+//       mStore.dispatch(
+//         Notifications.error({
+//           uid: 'network-error',
+//           title: 'Nätverksproblem',
+//           message:
+//             'Det är problem med nätverksuppkopplingen, säkerställ att du har internetuppkoppling och försök igen.',
+//           position: 'br',
+//           autoDismiss: 15
+//         })
+//       )
+//     }
+//     return Promise.reject(error)
+//   }
+// )
 
 export const apiClient = instance
 
