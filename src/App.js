@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ConnectedRouter as Router } from 'react-router-redux'
+import $ from 'jquery'
 import routes from './routes'
 import oops from './oops.png'
 
@@ -15,6 +16,13 @@ class App extends Component {
     super(props)
 
     this.state = { error: null }
+
+    if (window.location.href.indexOf('password/reset') > -1) {
+      window.location = window.location.href.replace(
+        /https?:\/\/[^\/]+/i,
+        'https://app.wapcard.se'
+      )
+    }
   }
 
   componentDidCatch(error, errorInfo) {
@@ -24,7 +32,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.history.listen((location, action) => {
-      console.log(location)
       this.logPageView()
     })
   }
