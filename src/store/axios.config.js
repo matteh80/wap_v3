@@ -5,8 +5,8 @@ let mStore
 let instance = axios.create()
 if (process.env.NODE_ENV === 'development') {
   // instance.defaults.baseURL = 'https://dev.workandpassion.bid/api/v1/'
-  instance.defaults.baseURL = 'https://dev-aws.workandpassion.bid/api/v1/'
-  // instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
+  // instance.defaults.baseURL = 'https://dev-aws.workandpassion.bid/api/v1/'
+  instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 } else {
   instance.defaults.baseURL = 'https://api.workandpassion.se/api/v1/'
 }

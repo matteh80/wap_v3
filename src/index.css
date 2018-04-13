@@ -10152,6 +10152,14 @@ header.header.header-account #header-progress {
   height: 100%;
 }
 
+#general .rc-slider .rc-slider-track {
+  background: linear-gradient(to right, #547581 30%, #11ada7 100%);
+}
+
+#general .rc-slider-disabled .rc-slider-dot {
+  opacity: 1;
+}
+
 .profile-tips {
   z-index: 99;
   transition: all 250ms;

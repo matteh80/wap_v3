@@ -59,4 +59,16 @@
     //border-radius: 0 0 15px 15px;
     //overflow: hidden;
   }
+
+  .rc-slider {
+    .rc-slider-track {
+      background: linear-gradient(to right, $primary 30%, $secondary 100%);
+    }
+  }
+
+  .rc-slider-disabled {
+    .rc-slider-dot {
+      opacity: 1;
+    }
+  }
 }

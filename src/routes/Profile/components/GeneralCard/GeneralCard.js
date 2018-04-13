@@ -12,7 +12,7 @@ import {
 import GoogleMapReact from 'google-map-react'
 import $ from 'jquery'
 import Checkbox from '../../../../components/Checkbox/Checkbox'
-// import Slider, { Range } from 'rc-slider'
+import Slider from 'rc-slider'
 
 class GeneralCard extends React.Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class GeneralCard extends React.Component {
     this.cbAddMode = this.cbAddMode.bind(this)
     this.handleValidSubmit = this.handleValidSubmit.bind(this)
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
+    this.handleAvailabilityChange = this.handleAvailabilityChange.bind(this)
   }
 
   componentDidMount() {
@@ -35,7 +36,8 @@ class GeneralCard extends React.Component {
       this.setState({
         tmpProfile: {
           actively_searching: profile.actively_searching,
-          student: profile.student
+          student: profile.student,
+          availability: profile.availability
         }
       })
     })
@@ -60,6 +62,15 @@ class GeneralCard extends React.Component {
     })
   }
 
+  handleAvailabilityChange(value) {
+    this.setState({
+      tmpProfile: {
+        ...this.state.tmpProfile,
+        availability: value
+      }
+    })
+  }
+
   handleValidSubmit(event, values) {
     const { dispatch, profile } = this.props
     const { tmpProfile } = this.state
@@ -72,6 +83,23 @@ class GeneralCard extends React.Component {
     })
   }
 
+  getAvailabilityString(value) {
+    switch (value) {
+      case 0:
+        return 'Tillgänglig omgående'
+      case 1:
+        return 'Inom en månad'
+      case 2:
+        return 'Inom två månader'
+      case 3:
+        return 'Inom tre månader'
+      case 4:
+        return 'Fyra månader eller längre'
+      default:
+        return 'Okänt'
+    }
+  }
+
   render() {
     const {
       isDone,
@@ -81,7 +109,7 @@ class GeneralCard extends React.Component {
       errors,
       item
     } = this.props
-    const { addMode } = this.state
+    const { addMode, tmpProfile } = this.state
 
     return (
       <ProfileEditableCard
@@ -185,31 +213,6 @@ class GeneralCard extends React.Component {
                   <option value="male">Annat / okänt</option>
                 </AvField>
               </Col>
-              <Col xs={12} md={6} lg={4}>
-                <label>{addMode ? 'Lönespann *' : 'Lönespann'}</label>
-                <Row>
-                  <Col xs={6} id="salary_expectations_min">
-                    <AvField
-                      type="number"
-                      name="salary_expectations_min"
-                      placeholder="Från"
-                      disabled={!addMode}
-                      required
-                      validate={{ number: true }}
-                    />
-                  </Col>
-                  <Col xs={6}>
-                    <AvField
-                      type="number"
-                      name="salary_expectations_max"
-                      placeholder="Till"
-                      disabled={!addMode}
-                      required
-                      validate={{ number: true }}
-                    />
-                  </Col>
-                </Row>
-              </Col>
             </Row>
             <Row>
               <Col xs={12}>
@@ -269,6 +272,47 @@ class GeneralCard extends React.Component {
                   placeholder="Ex. http://workandpassion.se"
                   helpMessage="Måste börja med http:// eller https://"
                 />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12} md={6}>
+                <label>{addMode ? 'Lönespann *' : 'Lönespann'}</label>
+                <Row>
+                  <Col xs={6} id="salary_expectations_min">
+                    <AvField
+                      type="number"
+                      name="salary_expectations_min"
+                      placeholder="Från"
+                      disabled={!addMode}
+                      required
+                      validate={{ number: true }}
+                    />
+                  </Col>
+                  <Col xs={6}>
+                    <AvField
+                      type="number"
+                      name="salary_expectations_max"
+                      placeholder="Till"
+                      disabled={!addMode}
+                      required
+                      validate={{ number: true }}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={12} md={6}>
+                <label>Tillgänglighet</label>
+                <Slider
+                  disabled={!addMode}
+                  min={0}
+                  max={4}
+                  dots
+                  value={tmpProfile.availability}
+                  onChange={this.handleAvailabilityChange}
+                />
+                <div className="value text-center">
+                  {this.getAvailabilityString(tmpProfile.availability)}
+                </div>
               </Col>
             </Row>
             <Row>
