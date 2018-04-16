@@ -253,7 +253,7 @@ export function updateProfile(profile) {
       : profile['last_name']
 
     Object.keys(profile).forEach(k => {
-      profile[k] === '' && !notNull.includes(k)
+      profile[k] === '' && !_.includes(notNull, k)
         ? (profile[k] = null)
         : profile[k]
     })

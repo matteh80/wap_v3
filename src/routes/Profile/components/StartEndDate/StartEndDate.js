@@ -49,7 +49,7 @@ class StartEndDate extends React.Component {
       const value = target.value
       const name = target.name
 
-      if (name.includes('start_date')) {
+      if (name.indexOf('start_date') >= 0) {
         let newStartDate
         if (isNaN(value)) {
           newStartDate = moment(start_date).month(value)
