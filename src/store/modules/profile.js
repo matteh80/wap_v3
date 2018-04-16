@@ -188,6 +188,11 @@ export function fetchProfile() {
       .get('me/')
       .then(result => {
         const profileData = result.data
+
+        Object.keys(profileData).forEach(k => {
+          profileData[k] === null ? (profileData[k] = '') : profileData[k]
+        })
+
         let hasPic = true
         let request = new XMLHttpRequest()
         let picurl = apiClient.baseURL

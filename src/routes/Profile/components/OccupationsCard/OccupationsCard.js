@@ -6,16 +6,7 @@ import {
   fetchAllOccupations,
   fetchUserOccupations
 } from '../../../../store/modules/occupations'
-import Slider, { Handle } from 'rc-slider'
-import {
-  Row,
-  Col,
-  Collapse,
-  Button,
-  Card,
-  CardBody,
-  CardTitle
-} from 'reactstrap'
+import { Row, Col, Collapse, Button } from 'reactstrap'
 import Select from 'react-select'
 import $ from 'jquery'
 import PropTypes from 'prop-types'
@@ -110,7 +101,7 @@ class OccupationsCard extends React.Component {
       updatingUserOccupations,
       fetchingUserOccupations
     } = this.props
-    const { allLoaded, addMode, occupationsInEditMode } = this.state
+    const { addMode, occupationsInEditMode } = this.state
 
     const DragHandle = SortableHandle(({ mIndex }) => (
       <div className="index">

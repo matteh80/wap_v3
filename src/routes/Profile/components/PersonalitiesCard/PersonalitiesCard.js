@@ -64,6 +64,7 @@ class PersonalitiesCard extends React.Component {
             {userPersonalities &&
               userPersonalities.map(item => (
                 <Badge
+                  key={item.id}
                   pill
                   className={classnames('mr-1', addMode && 'disabled')}
                 >

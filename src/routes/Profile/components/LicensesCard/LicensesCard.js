@@ -62,6 +62,7 @@ class LicensesCard extends React.Component {
             {userDrivinglicenses &&
               userDrivinglicenses.map(item => (
                 <Badge
+                  key={item.id}
                   pill
                   className={classnames('mr-1', addMode && 'disabled')}
                 >

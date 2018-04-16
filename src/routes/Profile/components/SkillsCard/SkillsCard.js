@@ -71,8 +71,7 @@ class SkillsCard extends React.Component {
         item={item}
       >
         {allSkills &&
-          userSkills &&
-          !fetchingUserSkills && (
+          userSkills && (
             <SkillsForm
               skills={allSkills}
               userSkills={userSkills}
@@ -323,13 +322,8 @@ class SkillsForm extends React.Component {
   }
 
   render() {
-    let { value, skills, experience, options } = this.state
-    const { isOpen, cbAddMode } = this.props
-    const inputProps = {
-      placeholder: 'Skriv in en kompetens',
-      value,
-      onChange: this.onChange
-    }
+    let { value, skills, experience } = this.state
+    const { isOpen } = this.props
 
     return (
       <Collapse isOpen={isOpen}>

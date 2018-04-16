@@ -132,7 +132,7 @@ export default ProfileEditableCard
 
 ProfileEditableCard.propTypes = {
   cbAddMode: PropTypes.func,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   loadingPercent: PropTypes.number,
   fetching: PropTypes.bool,
   inEditMode: PropTypes.bool,
