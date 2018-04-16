@@ -240,12 +240,17 @@ export function updateProfile(profile) {
       ? (profile['mobile_phone_number'] = '00')
       : null
 
+    !profile['first_name']
+      ? (profile['first_name'] = 'Null')
+      : profile['first_name']
+    !profile['last_name']
+      ? (profile['last_name'] = 'Null')
+      : profile['last_name']
+
     Object.keys(profile).forEach(k => {
       profile[k] === '' && !notNull.includes(k)
         ? (profile[k] = null)
-        : k === 'first_name' || k === 'last_name'
-          ? (profile[k] = 'Null')
-          : profile[k]
+        : profile[k]
     })
 
     return apiClient
