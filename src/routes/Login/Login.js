@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { AvForm, AvGroup, AvField } from 'availity-reactstrap-validation'
 import { Container, Row, Col, Alert } from 'reactstrap'
-import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { login } from '../../store/modules/auth'
 import login_bg from './login_bg.jpg'
@@ -60,9 +59,6 @@ class Login extends React.Component {
               <Row>
                 <Col xs={12} className="text-center">
                   <img src={logga_bla} className="login-logo" />
-                </Col>
-                <Col xs={12}>
-                  <SocialLogin />
                 </Col>
                 <Col xs={12} className="mt-5">
                   {loginError && (

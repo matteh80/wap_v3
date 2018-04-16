@@ -142,7 +142,11 @@ class GeneralCard extends React.Component {
                   label={addMode ? 'Förnamn *' : 'Förnamn'}
                   disabled={!addMode}
                   required
-                  errorMessage="Förnamn krävs"
+                  errorMessage={{
+                    required: 'Förnamn krävs',
+                    minLength: 'Minst 2 tecken'
+                  }}
+                  minLength="2"
                 />
               </Col>
               <Col xs={12} md={6} lg={4}>
@@ -152,7 +156,10 @@ class GeneralCard extends React.Component {
                   label={addMode ? 'Efternamn *' : 'Efternamn'}
                   disabled={!addMode}
                   required
-                  errorMessage="Efternamn krävs"
+                  errorMessage={{
+                    required: 'Efternamn krävs',
+                    minLength: 'Minst 2 tecken'
+                  }}
                 />
               </Col>
               <Col xs={12} md={6} lg={4}>
@@ -184,10 +191,14 @@ class GeneralCard extends React.Component {
                   label={addMode ? 'Telefon *' : 'Telefon'}
                   disabled={!addMode}
                   required
-                  errorMessage="Telefon krävs"
+                  errorMessage={{
+                    required: 'Telefon krävs',
+                    number: 'Enbart siffror',
+                    minLength: 'Minst 7 siffror'
+                  }}
                   placeholder="Ex. 0701234567"
                   helpMessage="Enbart siffror, inga mellanslag, prefix eller '-'"
-                  validate={{ number: true }}
+                  validate={{ number: true, minLength: { value: 7 } }}
                 />
               </Col>
               <Col xs={12} md={6} lg={4}>
@@ -218,7 +229,7 @@ class GeneralCard extends React.Component {
               <Col xs={12}>
                 <h5 className="section-title">Adress</h5>
               </Col>
-              <Col xs={12} md={6}>
+              <Col xs={12} lg={6}>
                 <AvField
                   type="text"
                   name="address"
@@ -247,7 +258,7 @@ class GeneralCard extends React.Component {
                   </Col>
                 </Row>
               </Col>
-              <Col md={6} className="d-none d-md-block">
+              <Col lg={6} className="d-none d-lg-block">
                 <GoogleMap profile={profile} />
               </Col>
             </Row>

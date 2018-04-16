@@ -229,12 +229,23 @@ export function updateProfile(profile) {
   return dispatch => {
     dispatch({ type: UPDATE_PROFILE_START })
 
-    const notNull = ['phone_number', 'mobile_phone_number']
+    const notNull = [
+      'phone_number',
+      'mobile_phone_number',
+      'first_name',
+      'last_name'
+    ]
+
+    !profile['phone_number'] && !profile['mobile_phone_number']
+      ? (profile['mobile_phone_number'] = '00')
+      : null
 
     Object.keys(profile).forEach(k => {
       profile[k] === '' && !notNull.includes(k)
         ? (profile[k] = null)
-        : profile[k]
+        : k === 'first_name' || k === 'last_name'
+          ? (profile[k] = 'Null')
+          : profile[k]
     })
 
     return apiClient

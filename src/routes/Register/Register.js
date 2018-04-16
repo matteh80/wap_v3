@@ -1,7 +1,6 @@
 import React from 'react'
 import { AvForm, AvField } from 'availity-reactstrap-validation'
 import { Container, Row, Col, Alert } from 'reactstrap'
-import SocialLogin from '../../layout/SocialLogin/SocialLogin'
 import LoadingButton from '../../components/LoadingButton/LoadingButton'
 import { connect } from 'react-redux'
 import { register } from '../../store/modules/auth'
@@ -125,9 +124,6 @@ class Register extends React.Component {
               <Row>
                 <Col xs={12} className="text-center">
                   <img src={logga_bla} className="register-logo" />
-                </Col>
-                <Col xs={12}>
-                  <SocialLogin />
                 </Col>
                 <Col xs={12} className="mt-5">
                   {registerError && (
