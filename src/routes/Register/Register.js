@@ -48,14 +48,16 @@ class Register extends React.Component {
           tos_accepted: this.state.tosAccepted
         })
       )
-    ).then(() => {
-      gtag('event', 'conversion', {
-        send_to: 'AW-809204708/CUchCMmW938Q5PftgQM'
-      })
-      gtag('event', 'complete', {
-        event_category: 'register',
-        event_label: 'kandidat'
-      })
+    ).then(result => {
+      if (result.type !== 'wap/auth/REGISTER_FAIL') {
+        gtag('event', 'conversion', {
+          send_to: 'AW-809204708/CUchCMmW938Q5PftgQM'
+        })
+        gtag('event', 'complete', {
+          event_category: 'register',
+          event_label: 'kandidat'
+        })
+      }
     })
   }
 
