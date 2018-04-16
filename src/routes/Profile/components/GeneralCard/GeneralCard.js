@@ -10,7 +10,7 @@ import {
   updateProfile
 } from '../../../../store/modules/profile'
 import GoogleMapReact from 'google-map-react'
-import $ from 'jquery'
+import moment from 'moment'
 import Checkbox from '../../../../components/Checkbox/Checkbox'
 import Slider from 'rc-slider'
 
@@ -74,7 +74,10 @@ class GeneralCard extends React.Component {
   handleValidSubmit(event, values) {
     const { dispatch, profile } = this.props
     const { tmpProfile } = this.state
-    const newProfile = Object.assign({}, profile, tmpProfile, values)
+    const newProfile = Object.assign({}, profile, tmpProfile, values, {
+      birthday: moment(values.birthday).format('YYYY-MM-DD')
+    })
+
     dispatch(updateProfile(newProfile)).then(() => {
       this.props.dispatch(setProfileProgress())
       this.setState({
@@ -217,7 +220,6 @@ class GeneralCard extends React.Component {
                   name="gender"
                   label="Kön"
                   disabled={!addMode}
-                  value="female"
                 >
                   <option value="female">Kvinna</option>
                   <option value="male">Man</option>
