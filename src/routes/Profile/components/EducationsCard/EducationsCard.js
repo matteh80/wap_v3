@@ -171,7 +171,7 @@ class EducationItem extends React.Component {
         style={{ zIndex: editMode && 2 }}
       >
         <Col xs={12} className="d-flex flex-row">
-          <div className="left mr-3">
+          <div className="left mr-3 d-none d-md-block">
             <div className={classnames('education-icon', editMode && 'edit')}>
               <i
                 className={classnames(
@@ -183,7 +183,7 @@ class EducationItem extends React.Component {
           <div className="right d-flex align-items-center w-100">
             <Row>
               <Col xs={12}>
-                <h4 className="mb-0">
+                <h4 className="mb-0 education-title">
                   {education.orientation} ({education.school})
                 </h4>
               </Col>

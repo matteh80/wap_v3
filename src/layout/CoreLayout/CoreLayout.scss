@@ -1,6 +1,10 @@
 .main-content {
   background-color: #f0f4f8;
-  padding-top: 240px;
+  padding-top: 180px;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 240px;
+  }
   min-height: 100vh;
 
   .clouds-wrapper {

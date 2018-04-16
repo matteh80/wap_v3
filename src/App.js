@@ -7,7 +7,7 @@ import oops from './oops.png'
 let Raven = require('raven-js')
 
 Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
-  release: '3.0.1'
+  release: '3.0.2'
 }).install()
 
 /* global gtag */

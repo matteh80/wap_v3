@@ -8761,7 +8761,6 @@ input[type='checkbox']:checked + label:before {
 
 .card {
   border: none;
-  border-radius: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   margin-bottom: 2rem;
 }
@@ -8796,8 +8795,13 @@ input[type='checkbox']:checked + label:before {
 
 .main-content {
   background-color: #f0f4f8;
-  padding-top: 240px;
+  padding-top: 180px;
   min-height: 100vh;
+}
+@media (min-width: 768px) {
+  .main-content {
+    padding-top: 240px;
+  }
 }
 .main-content .clouds-wrapper {
   width: 100%;
@@ -8921,6 +8925,12 @@ header.header .navbar-brand #header--logo {
 header.header .navbar {
   position: relative;
   z-index: 1;
+  padding: 0;
+}
+@media (min-width: 768px) {
+  header.header .navbar {
+    padding: 0.5rem 1rem;
+  }
 }
 header.header .navbar > .container {
   position: relative;
@@ -8938,6 +8948,13 @@ header.header .navbar > .container {
 header.header .navbar .nav-item {
   text-align: right;
   cursor: pointer;
+}
+@media (max-width: 991.98px) {
+  header.header .navbar .nav-item a,
+  header.header .navbar .nav-item .nav-link {
+    padding-right: 15px;
+    font-size: 18px;
+  }
 }
 header.header .navbar .nav-item .nav-link.active {
   box-shadow: inset 0 -4px 0 rgba(255, 255, 255, 0.65);
@@ -8957,12 +8974,24 @@ header.header #header-bottom {
   transition: all 250ms ease;
 }
 header.header #header-bottom > .container {
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 768px) {
+  header.header #header-bottom > .container {
+    padding-bottom: 1rem;
+  }
 }
 header.header #header-bottom .shouldFade {
   padding-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   transition: all 250ms ease-in-out;
+}
+@media (min-width: 768px) {
+  header.header #header-bottom .shouldFade {
+    margin-bottom: 2rem;
+  }
 }
 @media (min-width: 768px) {
   header.header #header-bottom .shouldFade {
@@ -9636,6 +9665,12 @@ header.header.header-account #header-progress {
 .profile-card {
   position: relative;
 }
+.profile-card.done-false {
+  box-shadow: 0 2px 3px rgba(255, 0, 0, 0.25) !important;
+}
+.profile-card .card-body {
+  padding: 5px 15px 15px;
+}
 @media (min-width: 768px) {
   .profile-card .card-body {
     padding-left: 45px;
@@ -9643,6 +9678,7 @@ header.header.header-account #header-progress {
   }
 }
 .profile-card .card-body .badge {
+  margin-bottom: 10px;
   transform: scale(1);
   transition: transform 250ms ease-in-out;
 }
@@ -9666,9 +9702,7 @@ header.header.header-account #header-progress {
 }
 @media (max-width: 767.98px) {
   .profile-card .card-title .badge {
-    position: absolute;
-    top: -25px;
-    left: -12px;
+    display: none;
   }
 }
 .profile-card .section-title {
@@ -9718,7 +9752,7 @@ header.header.header-account #header-progress {
 }
 @media (min-width: 992px) {
   .profile-card .addNew {
-    top: 30px;
+    top: 15px;
     right: 45px;
   }
 }
@@ -9980,8 +10014,7 @@ header.header.header-account #header-progress {
   min-width: 40px;
   height: 40px;
   line-height: 40px;
-  border-radius: 20px;
-  background: #11ada7;
+  background: #ced4da;
   color: #fff;
   text-align: center;
   font-size: 16px;
@@ -10000,7 +10033,7 @@ header.header.header-account #header-progress {
   margin-top: -3px;
 }
 .employment-item:hover .left {
-  background: #e8003b;
+  background: #11ada7;
 }
 .employment-item.editMode {
   background: #f8f9fa;
@@ -10008,7 +10041,7 @@ header.header.header-account #header-progress {
 }
 .employment-item.editMode .left {
   border-radius: 0;
-  background: #e8003b;
+  background: #fd7e14;
 }
 
 .education-item {
@@ -10021,8 +10054,7 @@ header.header.header-account #header-progress {
   min-width: 40px;
   height: 40px;
   line-height: 40px;
-  border-radius: 20px;
-  background: #11ada7;
+  background: #ced4da;
   color: #fff;
   text-align: center;
   font-size: 16px;
@@ -10041,7 +10073,7 @@ header.header.header-account #header-progress {
   margin-top: -3px;
 }
 .education-item:hover .left {
-  background: #e8003b;
+  background: #11ada7;
 }
 .education-item.editMode {
   background: #f8f9fa;
@@ -10049,7 +10081,7 @@ header.header.header-account #header-progress {
 }
 .education-item.editMode .left {
   border-radius: 0;
-  background: #e8003b;
+  background: #fd7e14;
 }
 
 #general .editForm input,

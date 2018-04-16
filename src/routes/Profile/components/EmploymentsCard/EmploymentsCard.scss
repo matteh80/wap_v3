@@ -10,8 +10,8 @@ $employmentIconSize: 40px;
     min-width: $employmentIconSize;
     height: $employmentIconSize;
     line-height: $employmentIconSize;
-    border-radius: $employmentIconSize / 2;
-    background: $secondary;
+    //border-radius: $employmentIconSize / 2;
+    background: $gray-400;
     color: #fff;
     text-align: center;
     font-size: $employmentIconSize / 2.5;
@@ -35,7 +35,7 @@ $employmentIconSize: 40px;
 
   &:hover {
     .left {
-      background: $accent;
+      background: $secondary;
     }
   }
 
@@ -45,7 +45,7 @@ $employmentIconSize: 40px;
 
     .left {
       border-radius: 0;
-      background: $accent;
+      background: $orange;
     }
   }
 }

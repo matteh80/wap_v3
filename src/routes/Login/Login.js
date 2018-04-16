@@ -111,7 +111,6 @@ class Login extends React.Component {
                 <Col xs={12}>
                   <small>
                     ©2018 All Rights Reserved. WAP® is a registered trademark.
-                    Privacy and Terms
                   </small>
                 </Col>
               </Row>

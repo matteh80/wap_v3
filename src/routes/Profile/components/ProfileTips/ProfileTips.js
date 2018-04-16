@@ -45,10 +45,6 @@ class ProfileTips extends React.Component {
       })
     }
 
-    if (prevProps.progressPercent !== this.props.progressPercent) {
-      console.log('new percent')
-    }
-
     if (prevState.nextTip !== this.state.nextTip) {
       $('.message').fadeOut(250, function() {
         _this.setState({

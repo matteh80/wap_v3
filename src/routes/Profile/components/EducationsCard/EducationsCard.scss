@@ -10,8 +10,8 @@ $educationIconSize: 40px;
     min-width: $educationIconSize;
     height: $educationIconSize;
     line-height: $educationIconSize;
-    border-radius: $educationIconSize / 2;
-    background: $secondary;
+    //border-radius: $educationIconSize / 2;
+    background: $gray-400;
     color: #fff;
     text-align: center;
     font-size: $educationIconSize / 2.5;
@@ -35,7 +35,7 @@ $educationIconSize: 40px;
 
   &:hover {
     .left {
-      background: $accent;
+      background: $secondary;
     }
   }
 
@@ -45,7 +45,7 @@ $educationIconSize: 40px;
 
     .left {
       border-radius: 0;
-      background: $accent;
+      background: $orange;
     }
   }
 }
