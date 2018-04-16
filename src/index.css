@@ -9815,6 +9815,8 @@ header.header.header-account #header-progress {
   z-index: 1;
 }
 .profile-card .edit-remove-buttons {
+  position: relative;
+  z-index: 1;
   width: 0;
   transition: width 250ms, opacity 250ms 150ms;
   overflow: hidden;
@@ -9827,15 +9829,16 @@ header.header.header-account #header-progress {
 .profile-card .edit-remove-buttons .edit-remove-button {
   color: #dee2e6;
   cursor: pointer;
-  width: 22px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   float: right;
+  font-size: 21.33333px;
 }
 .profile-card .edit-remove-buttons .edit-remove-button:hover {
   color: #495057;
 }
 .profile-card .edit-remove-buttons.edit-remove-buttons--edit-mode {
-  width: 48px;
+  width: 64px !important;
   opacity: 1;
 }
 .profile-card .edit-remove-buttons.edit-remove-buttons--edit-mode .done,
@@ -9850,7 +9853,7 @@ header.header.header-account #header-progress {
   color: #cd2500;
 }
 .profile-card:hover:not(.fetching) .edit-remove-buttons {
-  width: 48px;
+  width: 64px !important;
   opacity: 1;
 }
 .profile-card:hover:not(.fetching) .addNew:not(.addMode) .addNewIcon {
@@ -10026,6 +10029,19 @@ header.header.header-account #header-progress {
   position: relative;
   transition: all 500ms;
 }
+.employment-item .right .employment-title {
+  font-size: 1.1rem;
+}
+@media (min-width: 768px) {
+  .employment-item .right .employment-title {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 992px) {
+  .employment-item .right .employment-title {
+    font-size: 1.5rem;
+  }
+}
 .employment-item .right .date-string {
   color: #6c757d;
   text-transform: uppercase;
@@ -10065,6 +10081,19 @@ header.header.header-account #header-progress {
   height: 100%;
   position: relative;
   transition: all 500ms;
+}
+.education-item .right .education-title {
+  font-size: 1.1rem;
+}
+@media (min-width: 768px) {
+  .education-item .right .education-title {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 992px) {
+  .education-item .right .education-title {
+    font-size: 1.5rem;
+  }
 }
 .education-item .right .date-string {
   color: #6c757d;

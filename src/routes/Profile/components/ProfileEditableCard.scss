@@ -1,4 +1,5 @@
 $title-icon-size: 30px;
+$edit-remove-width: 64px;
 
 .profile-card {
   position: relative;
@@ -179,6 +180,8 @@ $title-icon-size: 30px;
   }
 
   .edit-remove-buttons {
+    position: relative;
+    z-index: 1;
     width: 0;
     transition: width 250ms, opacity 250ms 150ms;
     overflow: hidden;
@@ -191,9 +194,10 @@ $title-icon-size: 30px;
     .edit-remove-button {
       color: $gray-300;
       cursor: pointer;
-      width: 22px;
-      height: 24px;
+      width: $edit-remove-width / 2;
+      height: $edit-remove-width / 2;
       float: right;
+      font-size: $edit-remove-width / 3;
 
       &:hover {
         color: $gray-700;
@@ -201,7 +205,7 @@ $title-icon-size: 30px;
     }
 
     &.edit-remove-buttons--edit-mode {
-      width: 48px;
+      width: $edit-remove-width !important;
       opacity: 1;
 
       .done, .revert {
@@ -220,7 +224,7 @@ $title-icon-size: 30px;
 
   &:hover:not(.fetching) {
     .edit-remove-buttons {
-      width: 48px;
+      width: $edit-remove-width !important;
       opacity: 1;
     }
 

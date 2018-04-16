@@ -181,7 +181,7 @@ class EducationItem extends React.Component {
             </div>
           </div>
           <div className="right d-flex align-items-center w-100">
-            <Row>
+            <Row className="w-100 flex-column">
               <Col xs={12}>
                 <h4 className="mb-0 education-title">
                   {education.orientation} ({education.school})

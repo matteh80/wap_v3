@@ -51,6 +51,12 @@ class TalentQCard extends React.Component {
                 beteende preferenser och vad du brinner för, ökar du chansen
                 betydligt till att nå ditt drömjobb.
               </p>
+              <p>
+                Teknisk support:{' '}
+                <a href="mailto:technicalsupport@sova.com">
+                  technicalsupport@sova.com
+                </a>
+              </p>
               <Button onClick={this.startTest}>
                 {test.initiated ? 'Återuppta testet' : 'Starta testet'}
               </Button>
