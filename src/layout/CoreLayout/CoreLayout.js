@@ -6,6 +6,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from 'reactstrap'
 import { updateProfile } from '../../store/modules/profile'
 import { logout } from '../../store/modules/auth'
 import Notifications from 'react-notification-system-redux'
+import Footer from '../Footer/Footer'
 
 class CoreLayout extends React.Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class CoreLayout extends React.Component {
       >
         <Header />
         <div className="main-content h-100">{this.props.children}</div>
+        <Footer />
         <Modal
           isOpen={!profile.fetchingProfile && !tos_accepted}
           className="modal-dialog-centered modal-lg"

@@ -4,10 +4,11 @@ import $ from 'jquery'
 import routes from './routes'
 import oops from './oops.png'
 
-let Raven = require('raven-js')
+const pjson = require('../package.json')
 
+let Raven = require('raven-js')
 Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
-  release: '3.0.3'
+  release: pjson.version
 }).install()
 
 /* global gtag */
@@ -34,6 +35,12 @@ class App extends Component {
     this.props.history.listen((location, action) => {
       this.logPageView()
     })
+
+    if (process.env.NODE_ENV !== 'development') {
+      window.onblur = function() {
+        window.location.reload(true)
+      }
+    }
   }
 
   logPageView() {

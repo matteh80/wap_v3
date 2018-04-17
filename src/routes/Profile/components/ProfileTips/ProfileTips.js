@@ -212,7 +212,7 @@ class ProfileTips extends React.Component {
     tips.push(
       <div>
         Saknar du några kompetenser eller befattningar? Tipsa oss på
-        info@workandpassion.se!
+        <a href="mailto:info@workandpassion.se">info@workandpassion.se</a>
       </div>
     )
 

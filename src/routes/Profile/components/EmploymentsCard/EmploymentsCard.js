@@ -322,10 +322,6 @@ class EmploymentsForm extends React.Component {
       : dispatch(createEmployment(employment))
 
     this.form && this.form.reset()
-    !this.state.editMode &&
-      this.setState({
-        occupationValue: null
-      })
   }
 
   render() {

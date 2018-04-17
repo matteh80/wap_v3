@@ -235,7 +235,6 @@ class EducationsForm extends React.Component {
 
     this.state = {
       education: props.education ? props.education : { description: null },
-      occupationValue: props.education && props.education.occupation,
       editMode: !!props.education
     }
 
@@ -294,23 +293,27 @@ class EducationsForm extends React.Component {
 
   handleSubmit(event, values) {
     const { dispatch } = this.props
-    const education = Object.assign({}, this.state.education, values)
+    const education = Object.assign({}, this.state.education, values, {
+      start_date: values.start_date
+        ? values.start_date
+        : moment().format('YYYY-MM-DD'),
+      end_date: values.end_date
+        ? values.end_date
+        : moment().format('YYYY-MM-DD')
+    })
 
     this.state.editMode
       ? dispatch(updateEducation(education))
       : dispatch(createEducation(education))
 
     this.form && this.form.reset()
-    this.setState({
-      occupationValue: null
-    })
   }
 
   render() {
     const { isOpen } = this.props
     const { education } = this.state
     const defaultDateValues = education
-      ? [education.start_date, education.end_date, education.current]
+      ? [education.start_date, education.end_date]
       : null
 
     return (

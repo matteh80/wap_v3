@@ -9034,30 +9034,29 @@ header.header #header-bottom .candidate-name {
 }
 header.header #header-bottom .candidate-subtitle {
   font-family: 'Playfair Display', serif;
-  font-style: italic;
   font-weight: 100;
   margin-top: -10px;
   margin-bottom: 0;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 @media (min-width: 576px) {
   header.header #header-bottom .candidate-subtitle {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
   }
 }
 @media (min-width: 768px) {
   header.header #header-bottom .candidate-subtitle {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 }
 @media (min-width: 992px) {
   header.header #header-bottom .candidate-subtitle {
-    font-size: 2.05rem;
+    font-size: 1.95rem;
   }
 }
 @media (min-width: 576px) {
   header.header #header-bottom .candidate-subtitle {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
 }
 header.header #header-bottom .profile-stats {
@@ -9130,9 +9129,18 @@ header.header.header-account #header-bottom > .container {
   padding-bottom: 0.5rem;
   padding-top: 1rem;
 }
+header.header.header-account #header-bottom .shouldFade {
+  padding-left: 15px;
+}
 header.header.header-account #header-progress {
   display: none;
   height: auto;
+}
+
+#footer {
+  padding: 1rem 0;
+  background: #547581;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 #header-progress {
