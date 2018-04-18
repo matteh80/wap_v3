@@ -116,7 +116,7 @@ class OccupationsCard extends React.Component {
         <h5>{value.name}</h5>
         <div
           className="remove-icon"
-          onClick={() => this.removeOccupation(index)}
+          onClick={() => this.removeOccupation(mIndex)}
         >
           <i className="fa fa-trash ml-1" />
         </div>
