@@ -39,7 +39,7 @@ class TermsOfService extends React.Component {
               användas i andra sammanhang eller av andra företag utan ditt
               medgivande. Vårt dataregister samkörs inte med register från
               tredje part. Upphovsrätt, under förutsättning att du har
-              överlämnat eller laddat upp meterial såsom bilder, film- eller
+              överlämnat eller laddat upp material såsom bilder, film- eller
               ljudinspelningar till företaget, alternativt på annat sätt
               registrerat dem i företagets system, överlåter du genom
               godkännande av integritetsvillkoren samtliga dina eventuella

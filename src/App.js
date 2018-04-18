@@ -35,12 +35,6 @@ class App extends Component {
     this.props.history.listen((location, action) => {
       this.logPageView()
     })
-
-    if (process.env.NODE_ENV !== 'development') {
-      window.onblur = function() {
-        window.location.reload(true)
-      }
-    }
   }
 
   logPageView() {
