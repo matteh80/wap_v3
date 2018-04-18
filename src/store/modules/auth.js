@@ -129,7 +129,7 @@ export function logout() {
         })
       )
     }).then(() => {
-      window.location.reload()
+      window.location.reload(true)
     })
   }
 }
