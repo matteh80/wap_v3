@@ -122,8 +122,14 @@ export function socialLogin(data) {
 
 export function logout() {
   return dispatch => {
-    return dispatch({
-      type: LOGOUT
+    return new Promise(resolve => {
+      resolve(
+        dispatch({
+          type: LOGOUT
+        })
+      )
+    }).then(() => {
+      window.location.reload()
     })
   }
 }
