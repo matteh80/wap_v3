@@ -223,7 +223,7 @@ class GeneralCard extends React.Component {
                 >
                   <option value="female">Kvinna</option>
                   <option value="male">Man</option>
-                  <option value="male">Annat / okänt</option>
+                  <option value="other">Annat / okänt</option>
                 </AvField>
               </Col>
             </Row>
