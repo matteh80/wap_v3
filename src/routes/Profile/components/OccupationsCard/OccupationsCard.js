@@ -264,6 +264,7 @@ class OccupationsForm extends React.Component {
       <Collapse isOpen={isOpen}>
         <div className="occupations-form mb-3 py-3">
           <Row>
+            <h5 className="col-12">Vad önskar du arbeta inom för område?</h5>
             <Col xs={12} md={6}>
               <Select
                 name="form-field-name"
