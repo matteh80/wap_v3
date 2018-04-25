@@ -81,7 +81,7 @@ export function fetchUserLanguages() {
     dispatch({ type: FETCH_USERLANGUAGES_START })
 
     return apiClient
-      .get('me/languages/')
+      .get('api/v1/me/languages/')
       .then(result => {
         return dispatch({
           type: FETCH_USERLANGUAGES_SUCCESS,
@@ -103,7 +103,7 @@ export function editUserLanguages(languages) {
     dispatch({ type: EDIT_USERLANGUAGES_START })
 
     return apiClient
-      .post('me/languages/', languages)
+      .post('api/v1/me/languages/', languages)
       .then(result => {
         return dispatch({
           type: EDIT_USERLANGUAGES_SUCCESS,
@@ -125,7 +125,7 @@ export function fetchAllLanguages() {
     dispatch({ type: FETCH_ALLLANGUAGES_START })
 
     return apiClient
-      .get('languages/')
+      .get('api/v1/languages/')
       .then(result => {
         return dispatch({
           type: FETCH_ALLLANGUAGES_SUCCESS,

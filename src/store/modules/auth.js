@@ -68,7 +68,7 @@ export function login(email, password) {
     let token = null
 
     return axios
-      .post(apiClient.defaults.baseURL + 'token/', {
+      .post(apiClient.defaults.baseURL + 'api/v1/token/', {
         username: email,
         password: password
       })
@@ -100,7 +100,7 @@ export function socialLogin(data) {
     dispatch({ type: LOGIN_START })
 
     return apiClient
-      .post('login/social/token/', data)
+      .post('api/v1/login/social/token/', data)
       .catch(function(error) {
         console.log(error)
         return dispatch({
@@ -139,7 +139,7 @@ export function register(email, password, profile) {
     dispatch({ type: REGISTER_START })
 
     return apiClient
-      .post('register/', {
+      .post('api/v1/register/', {
         email: email,
         password: password
       })

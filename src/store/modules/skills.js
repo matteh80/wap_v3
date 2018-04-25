@@ -81,7 +81,7 @@ export function fetchUserSkills() {
     dispatch({ type: FETCH_USERSKILLS_START })
 
     return apiClient
-      .get('me/skills/')
+      .get('api/v1/me/skills/')
       .then(result => {
         return dispatch({
           type: FETCH_USERSKILLS_SUCCESS,
@@ -103,7 +103,7 @@ export function editUserSkills(skills) {
     dispatch({ type: EDIT_USERSKILLS_START })
 
     return apiClient
-      .post('me/skills/', skills)
+      .post('api/v1/me/skills/', skills)
       .then(result => {
         return dispatch({
           type: EDIT_USERSKILLS_SUCCESS,
@@ -125,7 +125,7 @@ export function fetchAllSkills() {
     dispatch({ type: FETCH_ALLSKILLS_START })
 
     return apiClient
-      .get('skills/')
+      .get('api/v1/skills/')
       .then(result => {
         return dispatch({
           type: FETCH_ALLSKILLS_SUCCESS,

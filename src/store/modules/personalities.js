@@ -93,7 +93,7 @@ export function fetchUserPersonalities() {
     dispatch({ type: FETCH_USERPERSONALITIES_START })
 
     return apiClient
-      .get('me/personalities/')
+      .get('api/v1/me/personalities/')
       .then(result => {
         return dispatch({
           type: FETCH_USERPERSONALITIES_SUCCESS,
@@ -124,7 +124,7 @@ export function editUserPersonalities(personality) {
     }
 
     return apiClient
-      .post('me/personalities/', userPersonalities)
+      .post('api/v1/me/personalities/', userPersonalities)
       .then(result => {
         let allPersonalities = getState().personalities.allPersonalities
 
@@ -149,7 +149,7 @@ export function fetchAllPersonalities() {
     dispatch({ type: FETCH_ALLPERSONALITIES_START })
 
     return apiClient
-      .get('personalities/')
+      .get('api/v1/personalities/')
       .then(result => {
         let allPersonalities = result.data
         let userPersonalities = getState().personalities.userPersonalities

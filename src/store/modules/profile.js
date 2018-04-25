@@ -185,7 +185,7 @@ export function fetchProfile() {
     dispatch({ type: FETCH_PROFILE_START })
 
     return apiClient
-      .get('me/')
+      .get('api/v1/me/')
       .then(result => {
         const profileData = result.data
 
@@ -259,7 +259,7 @@ export function updateProfile(profile) {
     })
 
     return apiClient
-      .post('me/', profile)
+      .post('api/v1/me/', profile)
       .then(result => {
         return dispatch({
           type: UPDATE_PROFILE_SUCCESS,
@@ -281,7 +281,7 @@ export function uploadProfilePic(data) {
     dispatch({ type: UPLOAD_PICTURE_START })
 
     return apiClient
-      .post('me/picture/', data)
+      .post('api/v1/me/picture/', data)
       .then(result => {
         let picurl = apiClient.baseURL
           ? apiClient.baseURL +

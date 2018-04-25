@@ -128,7 +128,7 @@ export function fetchEmployments() {
     dispatch({ type: FETCH_EMPLOYMENTS_START })
 
     return apiClient
-      .get('me/employments/')
+      .get('api/v1/me/employments/')
       .then(result => {
         return dispatch({
           type: FETCH_EMPLOYMENTS_SUCCESS,
@@ -152,7 +152,7 @@ export function updateEmployment(employment) {
     })
 
     return apiClient
-      .put('me/employments/' + employment.id, employment)
+      .put('api/v1/me/employments/' + employment.id, employment)
       .then(result => {
         return dispatch({
           type: UPDATE_EMPLOYMENT_SUCCESS,
@@ -175,7 +175,7 @@ export function removeEmployment(employment) {
     })
 
     return apiClient
-      .delete('me/employments/' + employment.id)
+      .delete('api/v1/me/employments/' + employment.id)
       .then(result => {
         return dispatch({
           type: REMOVE_EMPLOYMENT_SUCCESS,
@@ -198,7 +198,7 @@ export function createEmployment(employment) {
     })
 
     return apiClient
-      .post('me/employments/', employment)
+      .post('api/v1/me/employments/', employment)
       .then(result => {
         return dispatch({
           type: CREATE_EMPLOYMENT_SUCCESS,

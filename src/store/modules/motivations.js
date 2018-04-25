@@ -88,7 +88,7 @@ export function fetchUserMotivations() {
     dispatch({ type: FETCH_USERMOTIVATIONS_START })
 
     return apiClient
-      .get('me/motivations/')
+      .get('api/v1/me/motivations/')
       .then(result => {
         return dispatch({
           type: FETCH_USERMOTIVATIONS_SUCCESS,
@@ -144,7 +144,7 @@ export function fetchAllMotivations() {
     dispatch({ type: FETCH_ALLMOTIVATIONS_START })
 
     return apiClient
-      .get('motivations/')
+      .get('api/v1/motivations/')
       .then(result => {
         let allMotivations = result.data
         let userMotivations = getState().motivations.userMotivations

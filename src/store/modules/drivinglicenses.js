@@ -93,7 +93,7 @@ export function fetchUserDrivinglicenses() {
     dispatch({ type: FETCH_USERDRIVINGLICENSES_START })
 
     return apiClient
-      .get('me/driving-licenses/')
+      .get('api/v1/me/driving-licenses/')
       .then(result => {
         return dispatch({
           type: FETCH_USERDRIVINGLICENSES_SUCCESS,
@@ -149,7 +149,7 @@ export function fetchAllDrivinglicenses() {
     dispatch({ type: FETCH_ALLDRIVINGLICENSES_START })
 
     return apiClient
-      .get('driving-licenses/')
+      .get('api/v1/driving-licenses/')
       .then(result => {
         let allLicenses = result.data
         let userLicenses = getState().drivinglicenses.userDrivinglicenses

@@ -128,7 +128,7 @@ export function fetchEducations() {
     dispatch({ type: FETCH_EDUCATIONS_START })
 
     return apiClient
-      .get('me/educations/')
+      .get('api/v1/me/educations/')
       .then(result => {
         return dispatch({
           type: FETCH_EDUCATIONS_SUCCESS,
@@ -152,7 +152,7 @@ export function updateEducation(education) {
     })
 
     return apiClient
-      .put('me/educations/' + education.id, education)
+      .put('api/v1/me/educations/' + education.id, education)
       .then(result => {
         return dispatch({
           type: UPDATE_EDUCATION_SUCCESS,
@@ -175,7 +175,7 @@ export function removeEducation(education) {
     })
 
     return apiClient
-      .delete('me/educations/' + education.id)
+      .delete('api/v1/me/educations/' + education.id)
       .then(result => {
         return dispatch({
           type: REMOVE_EDUCATION_SUCCESS,
@@ -198,7 +198,7 @@ export function createEducation(education) {
     })
 
     return apiClient
-      .post('me/educations/', education)
+      .post('api/v1/me/educations/', education)
       .then(result => {
         return dispatch({
           type: CREATE_EDUCATION_SUCCESS,

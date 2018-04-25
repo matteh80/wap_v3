@@ -85,7 +85,7 @@ export function fetchUserOccupations() {
     dispatch({ type: FETCH_USEROCCUPATIONS_START })
 
     return apiClient
-      .get('me/occupations/')
+      .get('api/v1/me/occupations/')
       .then(result => {
         return dispatch({
           type: FETCH_USEROCCUPATIONS_SUCCESS,
@@ -107,7 +107,7 @@ export function editUserOccupations(occupations) {
     dispatch({ type: EDIT_USEROCCUPATIONS_START })
 
     return apiClient
-      .post('me/occupations/', occupations)
+      .post('api/v1/me/occupations/', occupations)
       .then(result => {
         return dispatch({
           type: EDIT_USEROCCUPATIONS_SUCCESS,
@@ -129,7 +129,7 @@ export function fetchAllOccupations() {
     dispatch({ type: FETCH_ALLOCCUPATIONS_START })
 
     return apiClient
-      .get('occupations/')
+      .get('api/v1/occupations/')
       .then(result => {
         return dispatch({
           type: FETCH_ALLOCCUPATIONS_SUCCESS,

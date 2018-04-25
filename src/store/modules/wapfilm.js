@@ -60,7 +60,7 @@ export function fetchWapfilm() {
     })
 
     return apiClient
-      .get('me/videos/')
+      .get('api/v1/me/videos/')
       .then(result => {
         dispatch({
           type: FETCH_WAPFILM_SUCCESS,
@@ -79,7 +79,7 @@ export function fetchWapfilm() {
 export function deleteVideo(videoId) {
   return dispatch => {
     return apiClient
-      .delete('me/videos/' + videoId)
+      .delete('api/v1/me/videos/' + videoId)
       .then(() => {
         return dispatch({
           type: DELETE_WAPFILM_SUCCESS

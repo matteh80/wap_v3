@@ -80,7 +80,7 @@ export function fetchUserLocations() {
     dispatch({ type: FETCH_USERLOCATIONS_START })
 
     return apiClient
-      .get('me/locations/')
+      .get('api/v1/me/locations/')
       .then(result => {
         return dispatch({
           type: FETCH_USERLOCATIONS_SUCCESS,
@@ -102,7 +102,7 @@ export function editUserLocations(locations) {
     dispatch({ type: EDIT_USERLOCATIONS_START })
 
     return apiClient
-      .post('me/locations/', locations)
+      .post('api/v1/me/locations/', locations)
       .then(result => {
         return dispatch({
           type: EDIT_USERLOCATIONS_SUCCESS,
@@ -124,7 +124,7 @@ export function fetchAllLocations() {
     dispatch({ type: FETCH_ALLLOCATIONS_START })
 
     return apiClient
-      .get('locations/')
+      .get('api/v1/locations/')
       .then(result => {
         return dispatch({
           type: FETCH_ALLLOCATIONS_SUCCESS,

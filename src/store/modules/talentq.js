@@ -40,7 +40,7 @@ export function getTestStatus() {
     })
 
     return apiClient
-      .get('me/assessment/')
+      .get('api/v1/me/assessment/')
       .then(result => {
         return dispatch({
           type: FETCH_TQ_SUCCESS,
@@ -63,7 +63,7 @@ export function initiateTest(lang) {
     })
 
     return apiClient
-      .post('me/assessment/', null)
+      .post('api/v1/me/assessment/', null)
       .then(result => {
         return dispatch({
           type: FETCH_TQ_SUCCESS,
