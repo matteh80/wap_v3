@@ -75,12 +75,16 @@ class WapfilmCard extends React.Component {
       })
       .then(result => {
         dispatch(setVideoInfo(result.data))
-        this.setState({
+        _this.setState({
           loadingPercent: undefined
         })
       })
       .catch(function(error) {
-        console.log(error)
+        console.log(error.response)
+        _this.setState({
+          loadingPercent: undefined,
+          errors: 'Något gick fel vid uppladdningen...'
+        })
       })
   }
 
@@ -104,7 +108,7 @@ class WapfilmCard extends React.Component {
       console.log(rejectedFiles)
       if (Math.abs(276134947 / 1048576).toFixed(2) > 100) {
         this.setState({
-          errorMsg: 'För stor fil, maxstorlek är 100 mb'
+          errors: 'För stor fil, maxstorlek är 100 mb'
         })
       }
     }
@@ -118,7 +122,7 @@ class WapfilmCard extends React.Component {
       fetchingWapfilm,
       uploadingWapfilm
     } = this.props
-    const { addMode, videoSrc, loadingPercent } = this.state
+    const { addMode, videoSrc, loadingPercent, errors } = this.state
 
     return (
       <ProfileEditableCard
@@ -127,6 +131,7 @@ class WapfilmCard extends React.Component {
         loading={uploadingWapfilm}
         loadingPercent={loadingPercent}
         fetching={fetchingWapfilm}
+        errors={errors}
         noForm
         item={item}
       >
