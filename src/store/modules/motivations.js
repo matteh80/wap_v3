@@ -119,7 +119,7 @@ export function editUserMotivations(motivation) {
     }
 
     return apiClient
-      .post('me/motivations/', userMotivations)
+      .post('api/v1/me/motivations/', userMotivations)
       .then(result => {
         let allMotivations = getState().motivations.allMotivations
 

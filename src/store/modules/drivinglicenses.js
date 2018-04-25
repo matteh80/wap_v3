@@ -124,7 +124,7 @@ export function editUserDrivinglicenses(license) {
     }
 
     return apiClient
-      .post('me/driving-licenses/', userLicenses)
+      .post('api/v1/me/driving-licenses/', userLicenses)
       .then(result => {
         let allLicenses = getState().drivinglicenses.allDrivinglicenses
 
