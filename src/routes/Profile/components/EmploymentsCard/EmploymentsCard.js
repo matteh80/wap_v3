@@ -238,7 +238,7 @@ class EmploymentsForm extends React.Component {
     super(props)
 
     this.state = {
-      employment: props.employment ? props.employment : { description: null },
+      employment: props.employment && props.employment,
       occupationValue: props.employment && props.employment.occupation,
       editMode: !!props.employment
     }
@@ -314,7 +314,8 @@ class EmploymentsForm extends React.Component {
         : moment().format('YYYY-MM-DD'),
       end_date: values.end_date
         ? values.end_date
-        : moment().format('YYYY-MM-DD')
+        : moment().format('YYYY-MM-DD'),
+      description: values.description ? values.description : ''
     })
 
     this.state.editMode
