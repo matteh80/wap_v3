@@ -234,7 +234,7 @@ class EducationsForm extends React.Component {
     super(props)
 
     this.state = {
-      education: props.education ? props.education : { description: null },
+      education: props.education && props.education,
       editMode: !!props.education
     }
 
@@ -299,7 +299,8 @@ class EducationsForm extends React.Component {
         : moment().format('YYYY-MM-DD'),
       end_date: values.end_date
         ? values.end_date
-        : moment().format('YYYY-MM-DD')
+        : moment().format('YYYY-MM-DD'),
+      description: values.description ? values.description : ''
     })
 
     this.state.editMode

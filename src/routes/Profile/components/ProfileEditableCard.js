@@ -81,7 +81,7 @@ class ProfileEditableCard extends React.Component {
         <CardBody>
           {errors && (
             <Row>
-              <Col xs={12}>
+              <Col xs={10}>
                 <Alert color="danger">
                   {Object.keys(errors).map(function(key) {
                     return errors[key]

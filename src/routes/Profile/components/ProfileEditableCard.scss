@@ -70,10 +70,14 @@ $edit-remove-width: 64px;
     &.visible {
       opacity: 1;
     }
-    
+
     &.error {
       background: #ff0000;
       opacity: 1;
+      
+      .loading-progressbar {
+        display: none;
+      }
     }
 
     .loading-progressbar {
