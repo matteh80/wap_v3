@@ -195,9 +195,12 @@ export function fetchProfile() {
 
         let hasPic = true
         let request = new XMLHttpRequest()
-        let picurl = apiClient.baseURL
-          ? apiClient.baseURL + 'profiles/' + result.data.id + '/picture/500'
-          : 'https://api.wapcard.se/api/v1/' +
+        let picurl = apiClient.defaults.baseURL
+          ? apiClient.defaults.baseURL +
+            'profiles/' +
+            result.data.id +
+            '/picture/500'
+          : 'https://api.workandpassion.se/api/v1/' +
             'profiles/' +
             result.data.id +
             '/picture/500?' +
@@ -283,13 +286,13 @@ export function uploadProfilePic(data) {
     return apiClient
       .post('api/v1/me/picture/', data)
       .then(result => {
-        let picurl = apiClient.baseURL
-          ? apiClient.baseURL +
+        let picurl = apiClient.defaults.baseURL
+          ? apiClient.defaults.baseURL +
             'profiles/' +
             getState().profile.id +
             '/picture/500?' +
             moment().milliseconds()
-          : 'https://api.wapcard.se/api/v1/' +
+          : 'https://api.workandpassion.se/api/v1/' +
             'profiles/' +
             getState().profile.id +
             '/picture/500?' +
