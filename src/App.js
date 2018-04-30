@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import { ConnectedRouter as Router } from 'react-router-redux'
-import $ from 'jquery'
 import routes from './routes'
 import oops from './oops.png'
-
-const pjson = require('../package.json')
-
-let Raven = require('raven-js')
-Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
-  release: pjson.version
-}).install()
+import Raven from 'raven-js'
 
 /* global gtag */
 class App extends Component {

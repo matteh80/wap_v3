@@ -196,7 +196,6 @@ class OccupationsForm extends React.Component {
     this.state = {
       occupations: this.setUpOccupations(),
       value: undefined,
-      experience: 1,
       options: []
     }
 
@@ -245,10 +244,9 @@ class OccupationsForm extends React.Component {
 
   addOccupation() {
     let { updateFn, userOccupations } = this.props
-    let { value, experience } = this.state
+    let { value } = this.state
     let occupationToAdd = {
-      id: value,
-      experience: experience
+      id: value
     }
 
     let newOccupations = update(userOccupations, { $push: [occupationToAdd] })
