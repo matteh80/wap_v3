@@ -197,7 +197,7 @@ export function fetchProfile() {
         let request = new XMLHttpRequest()
         let picurl = apiClient.defaults.baseURL
           ? apiClient.defaults.baseURL +
-            'profiles/' +
+            'api/v1/profiles/' +
             result.data.id +
             '/picture/500'
           : 'https://api.workandpassion.se/api/v1/' +
@@ -288,7 +288,7 @@ export function uploadProfilePic(data) {
       .then(result => {
         let picurl = apiClient.defaults.baseURL
           ? apiClient.defaults.baseURL +
-            'profiles/' +
+            'api/v1/profiles/' +
             getState().profile.id +
             '/picture/500?' +
             moment().milliseconds()
