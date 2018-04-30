@@ -82,9 +82,14 @@ export function fetchUserLocations() {
     return apiClient
       .get('api/v1/me/locations/')
       .then(result => {
+        const sortedLocations = result.data.sort((a, b) => {
+          return a.parent_name > b.parent_name
+            ? 1
+            : a.parent_name < b.parent_name ? -1 : 0
+        })
         return dispatch({
           type: FETCH_USERLOCATIONS_SUCCESS,
-          userLocations: result.data
+          userLocations: sortedLocations
         })
       })
       .catch(error => {

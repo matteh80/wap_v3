@@ -30,6 +30,14 @@ $edit-remove-width: 64px;
   .card-title {
     border-bottom: 1px solid $gray-500;
     padding-bottom: 15px;
+    font-size: 14px;
+    @include media-breakpoint-up(sm) {
+      font-size: 18px;
+    }
+    @include media-breakpoint-up(md) {
+      font-size: 24px;
+    }
+
     .title-icon {
       background: $gray-400;
       height: $title-icon-size;

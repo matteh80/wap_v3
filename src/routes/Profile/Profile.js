@@ -7,6 +7,7 @@ import { setProfileProgress } from '../../store/modules/profile'
 import EmploymentsCard from '../../routes/Profile/components/EmploymentsCard/EmploymentsCard'
 import SkillsCard from '../../routes/Profile/components/SkillsCard/SkillsCard'
 import LanguagesCard from '../../routes/Profile/components/LanguagesCard/LanguagesCard'
+import LocationsCard from '../../routes/Profile/components/LocationsCard/LocationsCard'
 import OccupationsCard from '../../routes/Profile/components/OccupationsCard/OccupationsCard'
 import EducationsCard from '../../routes/Profile/components/EducationsCard/EducationsCard'
 import LicensesCard from '../../routes/Profile/components/LicensesCard/LicensesCard'
@@ -42,6 +43,8 @@ class Profile extends React.Component {
         return <SkillsCard key={item.id} item={item} />
       case 'languages':
         return <LanguagesCard key={item.id} item={item} />
+      case 'locations':
+        return <LocationsCard key={item.id} item={item} />
       case 'occupations':
         return <OccupationsCard key={item.id} item={item} />
       case 'drivinglicenses':

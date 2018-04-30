@@ -57,7 +57,7 @@ const EMPTY_STATE = {
         level: 1
       },
       occupations: {
-        name: 'Befattningar',
+        name: 'Önskade befattningar',
         id: 'occupations',
         done: false,
         icon: 'fa-tags',
@@ -68,6 +68,13 @@ const EMPTY_STATE = {
         id: 'languages',
         done: false,
         icon: 'fa-comments',
+        level: 2
+      },
+      locations: {
+        name: 'Önskade arbetsorter',
+        id: 'locations',
+        done: false,
+        icon: 'fa-map-marker-alt',
         level: 2
       },
       personalities: {
@@ -337,6 +344,9 @@ export function setProfileProgress() {
     mProgress.items['languages'].done =
       getState().languages.userLanguages &&
       getState().languages.userLanguages.length > 0
+    mProgress.items['locations'].done =
+      getState().locations.userLocations &&
+      getState().locations.userLocations.length > 0
     mProgress.items['personalities'].done =
       getState().personalities.userPersonalities &&
       getState().personalities.userPersonalities.length > 0

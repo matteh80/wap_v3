@@ -342,7 +342,7 @@ class LanguagesForm extends React.Component {
                 value={value}
                 onChange={value => this.setState({ value: value })}
                 options={languages}
-                placeholder="Välj en språk"
+                placeholder="Välj språk"
               />
             </Col>
             <Col xs={12} md={6}>
