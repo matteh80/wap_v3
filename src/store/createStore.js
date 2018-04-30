@@ -5,8 +5,15 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './modules/reducer'
 import { persistStore } from 'redux-persist'
 import setListener from './axios.config'
+import createRavenMiddleware from 'raven-for-redux'
+import Raven from 'raven-js'
 
 export const history = createHistory()
+
+const pjson = require('../../package.json')
+Raven.config('https://9e381a0287464529af7a8a88edc27c9b@sentry.io/210938', {
+  release: pjson.version
+}).install()
 
 function savePreloadedState({ getState }) {
   return next => action => {
@@ -32,7 +39,12 @@ export default function configureStore() {
   }
 
   const composedEnhancers = compose(
-    applyMiddleware(...middleware),
+    applyMiddleware(
+      ...middleware,
+      createRavenMiddleware(Raven, {
+        // Optionally pass some options here.
+      })
+    ),
     ...enhancers
   )
 
