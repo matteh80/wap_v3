@@ -92,12 +92,14 @@ class Login extends React.Component {
                 </Col>
                 <Col xs={12}>
                   <small>
-                    <a
-                      href="https://app.wapcard.se/password/reset/"
-                      target="_blank"
-                    >
-                      Glömt ditt lösenord?
-                    </a>
+                    {/*<a*/}
+                    {/*href="https://app.wapcard.se/password/reset/"*/}
+                    {/*target="_blank"*/}
+                    {/*>*/}
+                    {/*Glömt ditt lösenord?*/}
+                    {/*</a>*/}
+                    Det går tyvärr inte att återställa lösenord för tillfället
+                    och vi beräknar att problemet är löst inom 1-2 arbetsdagar.
                   </small>
                 </Col>
               </Row>
